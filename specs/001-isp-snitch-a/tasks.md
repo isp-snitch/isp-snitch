@@ -53,10 +53,10 @@ Tasks without **[P]** must be completed in order due to file dependencies.
 - `README.md` - Project documentation
 
 **Acceptance Criteria:**
-- [ ] `swift package init --type executable` creates basic structure
-- [ ] `Package.swift` includes all required dependencies
-- [ ] Project builds with `swift build`
-- [ ] Tests run with `swift test`
+;- [x] `swift package init --type executable` creates basic structure
+- [x] `Package.swift` includes all required dependencies
+- [x] Project builds with `swift build`
+- [x] Tests run with `swift test`
 
 **Implementation:**
 ```bash
@@ -76,14 +76,14 @@ swift package init --type executable --name ISPSnitch
 - `Package.swift` - Add all dependencies and targets
 
 **Acceptance Criteria:**
-- [ ] SwiftNIO dependency added (Apple official)
-- [ ] SQLite.swift dependency added (Community)
-- [ ] Swift System dependency added (Apple official)
-- [ ] ArgumentParser dependency added (Apple official)
-- [ ] Swift Metrics dependency added (Apple official)
-- [ ] Swift Log dependency added (Apple official)
-- [ ] All targets properly configured
-- [ ] `swift package resolve` succeeds
+- [x] SwiftNIO dependency added (Apple official)
+- [x] SQLite.swift dependency added (Community)
+- [x] Swift System dependency added (Apple official)
+- [x] ArgumentParser dependency added (Apple official)
+- [x] Swift Metrics dependency added (Apple official)
+- [x] Swift Log dependency added (Apple official)
+- [x] All targets properly configured
+- [x] `swift package resolve` succeeds
 
 **Implementation:**
 ```bash
@@ -112,11 +112,11 @@ swift build
 - `Tests/ISPSnitchTests/Models/TestConfigurationTests.swift`
 
 **Acceptance Criteria:**
-- [ ] All data models have comprehensive test coverage
-- [ ] Sendable conformance tests pass
-- [ ] Codable serialization/deserialization tests pass
-- [ ] Validation tests cover all edge cases
-- [ ] `swift test` passes for all model tests
+- [x] All data models have comprehensive test coverage
+- [x] Sendable conformance tests pass
+- [x] Codable serialization/deserialization tests pass
+- [x] Validation tests cover all edge cases
+- [x] `swift test` passes for all model tests
 
 **Test Commands:**
 ```bash
@@ -142,12 +142,12 @@ swift test --filter SpeedtestDataTests
 - `Tests/ISPSnitchTests/Database/DataRetentionTests.swift`
 
 **Acceptance Criteria:**
-- [ ] Database schema creation tests pass
-- [ ] CRUD operations tests pass
-- [ ] Migration tests pass
-- [ ] Data validation tests pass
-- [ ] Performance tests for large datasets pass
-- [ ] Data retention policy tests pass
+- [x] Database schema creation tests pass
+- [x] CRUD operations tests pass
+- [x] Migration tests pass
+- [x] Data validation tests pass
+- [x] Performance tests for large datasets pass
+- [x] Data retention policy tests pass
 
 **Test Commands:**
 ```bash
@@ -172,12 +172,12 @@ swift test --filter MigrationTests
 - `Tests/ISPSnitchTests/Network/UtilityExecutorTests.swift`
 
 **Acceptance Criteria:**
-- [ ] Ping utility integration tests pass (validated output format)
-- [ ] HTTP utility integration tests pass (curl output parsing)
-- [ ] DNS utility integration tests pass (dig output parsing)
-- [ ] Speedtest utility integration tests pass (speedtest-cli output)
-- [ ] Error handling tests pass (exit codes and error messages)
-- [ ] Output parsing tests pass (regex patterns from utility-analysis.md)
+- [x] Ping utility integration tests pass (validated output format)
+- [x] HTTP utility integration tests pass (curl output parsing)
+- [x] DNS utility integration tests pass (dig output parsing)
+- [x] Speedtest utility integration tests pass (speedtest-cli output)
+- [x] Error handling tests pass (exit codes and error messages)
+- [x] Output parsing tests pass (regex patterns from utility-analysis.md)
 
 **Test Commands:**
 ```bash
@@ -203,13 +203,13 @@ swift test --filter SpeedtestTests
 - `Tests/ISPSnitchTests/CLI/ServiceCommandTests.swift`
 
 **Acceptance Criteria:**
-- [ ] Status command tests pass
-- [ ] Report command tests pass
-- [ ] Config command tests pass
-- [ ] Export command tests pass
-- [ ] Service command tests pass
-- [ ] Error handling tests pass
-- [ ] Output format tests pass
+- [x] Status command tests pass
+- [x] Report command tests pass
+- [x] Config command tests pass
+- [x] Export command tests pass
+- [x] Service command tests pass
+- [x] Error handling tests pass
+- [x] Output format tests pass
 
 **Test Commands:**
 ```bash
@@ -237,13 +237,13 @@ swift test --filter ExportCommandTests
 - `Tests/ISPSnitchTests/WebAPI/MetricsEndpointTests.swift`
 
 **Acceptance Criteria:**
-- [ ] All REST endpoint tests pass
-- [ ] WebSocket connection tests pass
-- [ ] JSON response format tests pass
-- [ ] Error response tests pass
-- [ ] Authentication tests pass (local access only)
-- [ ] Health check tests pass
-- [ ] Metrics endpoint tests pass
+- [x] All REST endpoint tests pass
+- [x] WebSocket connection tests pass
+- [x] JSON response format tests pass
+- [x] Error response tests pass
+- [x] Authentication tests pass (local access only)
+- [x] Health check tests pass
+- [x] Metrics endpoint tests pass
 
 **Test Commands:**
 ```bash
@@ -269,11 +269,11 @@ swift test --filter WebSocketTests
 - `Tests/ISPSnitchTests/System/StartupTests.swift`
 
 **Acceptance Criteria:**
-- [ ] LaunchAgent configuration tests pass
-- [ ] Service management tests pass
-- [ ] Permission tests pass
-- [ ] Startup integration tests pass
-- [ ] Graceful shutdown tests pass
+- [x] LaunchAgent configuration tests pass
+- [x] Service management tests pass
+- [x] Permission tests pass
+- [x] Startup integration tests pass
+- [x] Graceful shutdown tests pass
 
 **Test Commands:**
 ```bash
@@ -304,11 +304,11 @@ swift test --filter StartupTests
 - `Sources/ISPSnitchCore/Models/TestConfiguration.swift`
 
 **Acceptance Criteria:**
-- [ ] All models conform to Sendable (Swift 6.2)
-- [ ] All models conform to Codable
-- [ ] All models have proper validation
-- [ ] All models pass existing tests
-- [ ] Models compile without warnings
+- [x] All models conform to Sendable (Swift 6.2)
+- [x] All models conform to Codable
+- [x] All models have proper validation
+- [x] All models pass existing tests
+- [x] Models compile without warnings
 
 **Build Commands:**
 ```bash
@@ -332,12 +332,12 @@ swift test --filter ConnectivityRecordTests
 - `Sources/ISPSnitchCore/Database/DataRetentionManager.swift`
 
 **Acceptance Criteria:**
-- [ ] Database schema creates successfully
-- [ ] CRUD operations work correctly
-- [ ] Migration system functions properly
-- [ ] Actor-based thread safety implemented (Swift 6.2)
-- [ ] All database tests pass
-- [ ] Data retention policies work correctly
+- [x] Database schema creates successfully
+- [x] CRUD operations work correctly
+- [x] Migration system functions properly
+- [x] Actor-based thread safety implemented (Swift 6.2)
+- [x] All database tests pass
+- [x] Data retention policies work correctly
 
 **Build Commands:**
 ```bash
@@ -364,11 +364,11 @@ swift test --filter DataStorageTests
 - `Sources/ISPSnitchCore/Network/OutputParser.swift`
 
 **Acceptance Criteria:**
-- [ ] All network tests execute successfully
-- [ ] Output parsing works correctly (based on utility-analysis.md)
-- [ ] Error handling is robust (exit codes and error messages)
-- [ ] Resource usage is minimal
-- [ ] All network tests pass
+- [x] All network tests execute successfully
+- [x] Output parsing works correctly (based on utility-analysis.md)
+- [x] Error handling is robust (exit codes and error messages)
+- [x] Resource usage is minimal
+- [x] All network tests pass
 
 **Build Commands:**
 ```bash
@@ -397,11 +397,11 @@ swift test --filter SpeedtestTests
 - `Sources/ISPSnitchCLI/Output/OutputFormatter.swift`
 
 **Acceptance Criteria:**
-- [ ] All CLI commands work correctly
-- [ ] Help text is comprehensive
-- [ ] Error handling is user-friendly
-- [ ] Output formats work as specified
-- [ ] All CLI tests pass
+- [x] All CLI commands work correctly
+- [x] Help text is comprehensive
+- [x] Error handling is user-friendly
+- [x] Output formats work as specified
+- [x] All CLI tests pass
 
 **Build Commands:**
 ```bash
@@ -432,11 +432,11 @@ swift test --filter ExportCommandTests
 - `Sources/ISPSnitchWeb/Resources/web/` - Static web files
 
 **Acceptance Criteria:**
-- [ ] HTTP server starts successfully
-- [ ] All REST endpoints respond correctly
-- [ ] WebSocket connections work
-- [ ] Static web files serve correctly
-- [ ] All web API tests pass
+- [x] HTTP server starts successfully
+- [x] All REST endpoints respond correctly
+- [x] WebSocket connections work
+- [x] Static web files serve correctly
+- [x] All web API tests pass
 
 **Build Commands:**
 ```bash
@@ -465,11 +465,11 @@ swift test --filter WebSocketTests
 - `Sources/ISPSnitchCore/ResourceMonitor.swift`
 
 **Acceptance Criteria:**
-- [ ] Service starts and stops gracefully
-- [ ] All components integrate correctly
-- [ ] Resource usage is within limits
-- [ ] Error handling is comprehensive
-- [ ] Service runs continuously
+- [x] Service starts and stops gracefully
+- [x] All components integrate correctly
+- [x] Resource usage is within limits
+- [x] Error handling is comprehensive
+- [x] Service runs continuously
 
 **Build Commands:**
 ```bash
