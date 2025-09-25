@@ -1,10 +1,10 @@
 class IspSnitch < Formula
   desc "Lightweight ISP service monitor for macOS"
   homepage "https://github.com/isp-snitch/isp-snitch"
-  url "https://github.com/isp-snitch/isp-snitch/archive/refs/heads/main.tar.gz"
-  sha256 "2284122b96fc5ccee99969a5be14bfbb46aafb33a8399021e307130a10be20ee"
+  url "https://github.com/isp-snitch/isp-snitch/archive/refs/tags/v1.1.0.tar.gz"
+  sha256 "d23f792808d9a0050ebc236c5c63020a1c22f530c95c1030219619461547d86d"
   license "MIT"
-  version "1.0.0"
+  version "1.1.0"
   
   depends_on "swift" => :build
   depends_on "sqlite"
