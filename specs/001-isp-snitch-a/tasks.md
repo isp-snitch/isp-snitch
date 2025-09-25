@@ -493,11 +493,11 @@ swift run ISPSnitch
 - `Scripts/stop-service.sh`
 
 **Acceptance Criteria:**
-- [ ] LaunchAgent installs correctly
-- [ ] Service starts on boot
-- [ ] Service stops gracefully
-- [ ] Logs are properly managed
-- [ ] Uninstall works cleanly
+- [x] LaunchAgent installs correctly
+- [x] Service starts on boot
+- [x] Service stops gracefully
+- [x] Logs are properly managed
+- [x] Uninstall works cleanly
 
 **Test Commands:**
 ```bash
