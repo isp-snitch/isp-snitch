@@ -2,7 +2,7 @@ class IspSnitch < Formula
   desc "Lightweight ISP service monitor for macOS"
   homepage "https://github.com/isp-snitch/isp-snitch"
   url "https://github.com/isp-snitch/isp-snitch/archive/refs/heads/main.tar.gz"
-  sha256 "placeholder-sha256-will-be-updated"
+  sha256 "2284122b96fc5ccee99969a5be14bfbb46aafb33a8399021e307130a10be20ee"
   license "MIT"
   version "1.0.0"
   
