@@ -1,127 +1,241 @@
-# Tasks: [FEATURE NAME]
+# Task Management Template
 
-**Input**: Design documents from `/specs/[###-feature-name]/`
-**Prerequisites**: plan.md (required), research.md, data-model.md, contracts/
+## Constitution Alignment
+All tasks MUST align with ISP Snitch constitution principles:
+- **Minimal Resource Footprint:** Tasks include resource optimization
+- **Accurate Connectivity Reporting:** Tasks include testing and validation
+- **Modern Swift Architecture:** Tasks specify Swift implementation
+- **Homebrew Integration:** Tasks include package management
+- **Multi-Access Interface:** Tasks cover CLI and web development
+- **Automatic Startup Integration:** Tasks include macOS integration
+- **Public Project Transparency:** Tasks include documentation and open source
+- **Data Privacy and Security:** Tasks include security measures
 
-## Execution Flow (main)
+## Task Categories
+
+### Core Development Tasks
+- [ ] **Swift Service Implementation**
+  - Background network monitoring service
+  - Data collection and storage
+  - Resource usage tracking
+  - Automatic startup integration
+
+- [ ] **CLI Interface Development**
+  - Command-line reporting tools
+  - Configuration management
+  - Service control commands
+  - Data export functionality
+
+- [ ] **Web Interface Development**
+  - Real-time dashboard
+  - Historical data visualization
+  - Configuration interface
+  - Network accessibility (.local)
+
+### Infrastructure Tasks
+- [ ] **Homebrew Package Creation**
+  - Formula development
+  - Dependency management
+  - Installation automation
+  - Service management
+
+- [ ] **macOS Integration**
+  - LaunchAgent configuration
+  - Permission management
+  - Startup automation
+  - System integration
+
+- [ ] **Data Management**
+  - SQLite database design
+  - Encryption implementation
+  - Data retention policies
+  - Backup procedures
+
+### Quality Assurance Tasks
+- [ ] **Testing Implementation**
+  - Unit test coverage
+  - Integration testing
+  - Performance testing
+  - Security testing
+
+- [ ] **Performance Optimization**
+  - Resource usage monitoring
+  - Memory optimization
+  - CPU usage reduction
+  - Network efficiency
+
+- [ ] **Security Implementation**
+  - Data encryption
+  - Local access controls
+  - Authentication mechanisms
+  - Audit logging
+
+### Documentation Tasks
+- [ ] **Technical Documentation**
+  - API documentation
+  - Architecture documentation
+  - Configuration guides
+  - Troubleshooting guides
+
+- [ ] **User Documentation**
+  - Installation instructions
+  - Usage guides
+  - FAQ development
+  - Video tutorials
+
+- [ ] **Open Source Documentation**
+  - Contributing guidelines
+  - Code of conduct
+  - License documentation
+  - Community guidelines
+
+### Community Tasks
+- [ ] **Open Source Setup**
+  - Repository configuration
+  - Issue templates
+  - Pull request templates
+  - CI/CD pipeline
+
+- [ ] **Community Engagement**
+  - Issue triage
+  - Pull request review
+  - Community support
+  - Regular updates
+
+## Task Prioritization
+
+### High Priority (P0)
+- Core service implementation
+- Basic CLI functionality
+- Essential security measures
+- Homebrew package creation
+
+### Medium Priority (P1)
+- Web interface development
+- Advanced reporting features
+- Performance optimization
+- Comprehensive testing
+
+### Low Priority (P2)
+- Advanced visualization
+- Additional export formats
+- Plugin system
+- Advanced analytics
+
+## Task Dependencies
+
+### Phase 1: Foundation
+1. Swift service implementation
+2. Basic data storage
+3. Simple CLI interface
+4. Homebrew package creation
+
+### Phase 2: Interface Development
+1. Web interface development
+2. Advanced CLI features
+3. Configuration management
+4. macOS integration
+
+### Phase 3: Enhancement
+1. Performance optimization
+2. Advanced reporting
+3. Security hardening
+4. Documentation completion
+
+### Phase 4: Community
+1. Open source setup
+2. Community engagement
+3. Issue management
+4. Regular releases
+
+## Task Templates
+
+### Development Task Template
+```markdown
+## [TASK_NAME]
+**Priority:** [P0/P1/P2]
+**Estimated Time:** [HOURS]
+**Dependencies:** [DEPENDENCY_LIST]
+**Constitution Alignment:** [PRINCIPLE_LIST]
+
+### Description
+[Detailed task description]
+
+### Acceptance Criteria
+- [ ] [CRITERIA_1]
+- [ ] [CRITERIA_2]
+- [ ] [CRITERIA_3]
+
+### Implementation Notes
+[Technical implementation details]
+
+### Testing Requirements
+- [ ] [TEST_1]
+- [ ] [TEST_2]
+- [ ] [TEST_3]
 ```
-1. Load plan.md from feature directory
-   → If not found: ERROR "No implementation plan found"
-   → Extract: tech stack, libraries, structure
-2. Load optional design documents:
-   → data-model.md: Extract entities → model tasks
-   → contracts/: Each file → contract test task
-   → research.md: Extract decisions → setup tasks
-3. Generate tasks by category:
-   → Setup: project init, dependencies, linting
-   → Tests: contract tests, integration tests
-   → Core: models, services, CLI commands
-   → Integration: DB, middleware, logging
-   → Polish: unit tests, performance, docs
-4. Apply task rules:
-   → Different files = mark [P] for parallel
-   → Same file = sequential (no [P])
-   → Tests before implementation (TDD)
-5. Number tasks sequentially (T001, T002...)
-6. Generate dependency graph
-7. Create parallel execution examples
-8. Validate task completeness:
-   → All contracts have tests?
-   → All entities have models?
-   → All endpoints implemented?
-9. Return: SUCCESS (tasks ready for execution)
+
+### Documentation Task Template
+```markdown
+## [DOCUMENTATION_TASK_NAME]
+**Priority:** [P0/P1/P2]
+**Estimated Time:** [HOURS]
+**Dependencies:** [DEPENDENCY_LIST]
+**Constitution Alignment:** [PRINCIPLE_LIST]
+
+### Description
+[Documentation task description]
+
+### Content Requirements
+- [ ] [CONTENT_1]
+- [ ] [CONTENT_2]
+- [ ] [CONTENT_3]
+
+### Review Criteria
+- [ ] [REVIEW_1]
+- [ ] [REVIEW_2]
+- [ ] [REVIEW_3]
 ```
 
-## Format: `[ID] [P?] Description`
-- **[P]**: Can run in parallel (different files, no dependencies)
-- Include exact file paths in descriptions
+### Testing Task Template
+```markdown
+## [TESTING_TASK_NAME]
+**Priority:** [P0/P1/P2]
+**Estimated Time:** [HOURS]
+**Dependencies:** [DEPENDENCY_LIST]
+**Constitution Alignment:** [PRINCIPLE_LIST]
 
-## Path Conventions
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
+### Description
+[Testing task description]
 
-## Phase 3.1: Setup
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+### Test Cases
+- [ ] [TEST_CASE_1]
+- [ ] [TEST_CASE_2]
+- [ ] [TEST_CASE_3]
 
-## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
-**CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
-- [ ] T004 [P] Contract test POST /api/users in tests/contract/test_users_post.py
-- [ ] T005 [P] Contract test GET /api/users/{id} in tests/contract/test_users_get.py
-- [ ] T006 [P] Integration test user registration in tests/integration/test_registration.py
-- [ ] T007 [P] Integration test auth flow in tests/integration/test_auth.py
-
-## Phase 3.3: Core Implementation (ONLY after tests are failing)
-- [ ] T008 [P] User model in src/models/user.py
-- [ ] T009 [P] UserService CRUD in src/services/user_service.py
-- [ ] T010 [P] CLI --create-user in src/cli/user_commands.py
-- [ ] T011 POST /api/users endpoint
-- [ ] T012 GET /api/users/{id} endpoint
-- [ ] T013 Input validation
-- [ ] T014 Error handling and logging
-
-## Phase 3.4: Integration
-- [ ] T015 Connect UserService to DB
-- [ ] T016 Auth middleware
-- [ ] T017 Request/response logging
-- [ ] T018 CORS and security headers
-
-## Phase 3.5: Polish
-- [ ] T019 [P] Unit tests for validation in tests/unit/test_validation.py
-- [ ] T020 Performance tests (<200ms)
-- [ ] T021 [P] Update docs/api.md
-- [ ] T022 Remove duplication
-- [ ] T023 Run manual-testing.md
-
-## Dependencies
-- Tests (T004-T007) before implementation (T008-T014)
-- T008 blocks T009, T015
-- T016 blocks T018
-- Implementation before polish (T019-T023)
-
-## Parallel Example
-```
-# Launch T004-T007 together:
-Task: "Contract test POST /api/users in tests/contract/test_users_post.py"
-Task: "Contract test GET /api/users/{id} in tests/contract/test_users_get.py"
-Task: "Integration test registration in tests/integration/test_registration.py"
-Task: "Integration test auth in tests/integration/test_auth.py"
+### Success Criteria
+- [ ] [SUCCESS_1]
+- [ ] [SUCCESS_2]
+- [ ] [SUCCESS_3]
 ```
 
-## Notes
-- [P] tasks = different files, no dependencies
-- Verify tests fail before implementing
-- Commit after each task
-- Avoid: vague tasks, same file conflicts
+## Progress Tracking
 
-## Task Generation Rules
-*Applied during main() execution*
+### Task Status
+- **Not Started:** Task not yet begun
+- **In Progress:** Task currently being worked on
+- **Blocked:** Task waiting on dependencies
+- **Review:** Task completed, awaiting review
+- **Completed:** Task finished and approved
 
-1. **From Contracts**:
-   - Each contract file → contract test task [P]
-   - Each endpoint → implementation task
-   
-2. **From Data Model**:
-   - Each entity → model creation task [P]
-   - Relationships → service layer tasks
-   
-3. **From User Stories**:
-   - Each story → integration test [P]
-   - Quickstart scenarios → validation tasks
+### Metrics
+- **Completion Rate:** Percentage of tasks completed
+- **Velocity:** Tasks completed per sprint
+- **Quality:** Defect rate and test coverage
+- **Resource Usage:** Actual vs. estimated time
 
-4. **Ordering**:
-   - Setup → Tests → Models → Services → Endpoints → Polish
-   - Dependencies block parallel execution
-
-## Validation Checklist
-*GATE: Checked by main() before returning*
-
-- [ ] All contracts have corresponding tests
-- [ ] All entities have model tasks
-- [ ] All tests come before implementation
-- [ ] Parallel tasks truly independent
-- [ ] Each task specifies exact file path
-- [ ] No task modifies same file as another [P] task
+### Reporting
+- **Daily Standups:** Progress updates
+- **Weekly Reviews:** Task completion status
+- **Monthly Reports:** Overall project progress
+- **Quarterly Assessments:** Constitution compliance review

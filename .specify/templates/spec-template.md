@@ -1,116 +1,201 @@
-# Feature Specification: [FEATURE NAME]
+# Technical Specification Template
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
-**Input**: User description: "$ARGUMENTS"
+## Constitution Alignment
+This specification MUST implement ISP Snitch constitution principles:
+- **Minimal Resource Footprint:** All components designed for low resource usage
+- **Accurate Connectivity Reporting:** Scientific measurement methodology
+- **Modern Swift Architecture:** Swift-based implementation with concurrency
+- **Homebrew Integration:** Package management through Homebrew
+- **Multi-Access Interface:** CLI and web interfaces
+- **Automatic Startup Integration:** macOS service integration
+- **Public Project Transparency:** Open source with comprehensive documentation
+- **Data Privacy and Security:** Local data handling with encryption
 
-## Execution Flow (main)
+## System Architecture
+
+### Core Components
+1. **Background Service (Swift)**
+   - Network monitoring daemon
+   - Data collection and storage
+   - Resource usage tracking
+   - Automatic startup integration
+
+2. **CLI Interface (Swift)**
+   - Command-line reporting
+   - Configuration management
+   - Service control
+   - Data export functionality
+
+3. **Web Interface (Swift + HTML/JS)**
+   - Real-time dashboard
+   - Historical data visualization
+   - Configuration interface
+   - Network accessibility (.local)
+
+4. **Data Layer**
+   - Local SQLite database
+   - Encrypted storage
+   - Data retention policies
+   - Export capabilities
+
+## Technical Requirements
+
+### Performance Requirements
+- **CPU Usage:** < 1% average, < 5% peak
+- **Memory Usage:** < 50MB baseline, < 100MB peak
+- **Network Overhead:** < 1KB/s for monitoring
+- **Startup Time:** < 5 seconds from system boot
+- **Response Time:** < 100ms for CLI commands, < 500ms for web interface
+
+### Connectivity Testing
+- **Ping Tests:** ICMP ping to multiple targets
+- **HTTP Tests:** GET requests to test endpoints
+- **DNS Tests:** Resolution time and accuracy
+- **Bandwidth Tests:** Download/upload speed measurements
+- **Latency Tests:** Round-trip time measurements
+
+### Data Collection
+- **Timestamp:** ISO 8601 format with timezone
+- **Latency:** Millisecond precision
+- **Success/Failure:** Boolean with error categorization
+- **Network Interface:** Source interface identification
+- **Target Information:** Test endpoint details
+
+### Security Requirements
+- **Data Encryption:** AES-256 for stored data
+- **Local Access Only:** No external network access
+- **Authentication:** Optional local authentication
+- **Audit Logging:** All actions logged locally
+- **Privacy:** No telemetry or external data transmission
+
+## Implementation Details
+
+### Swift Architecture
+```swift
+// Core service structure
+@main
+struct ISPSnitchService {
+    static func main() async {
+        let monitor = NetworkMonitor()
+        let storage = DataStorage()
+        let webServer = WebServer()
+        
+        await monitor.startMonitoring()
+        await webServer.start()
+    }
+}
 ```
-1. Parse user description from Input
-   → If empty: ERROR "No feature description provided"
-2. Extract key concepts from description
-   → Identify: actors, actions, data, constraints
-3. For each unclear aspect:
-   → Mark with [NEEDS CLARIFICATION: specific question]
-4. Fill User Scenarios & Testing section
-   → If no clear user flow: ERROR "Cannot determine user scenarios"
-5. Generate Functional Requirements
-   → Each requirement must be testable
-   → Mark ambiguous requirements
-6. Identify Key Entities (if data involved)
-7. Run Review Checklist
-   → If any [NEEDS CLARIFICATION]: WARN "Spec has uncertainties"
-   → If implementation details found: ERROR "Remove tech details"
-8. Return: SUCCESS (spec ready for planning)
+
+### Homebrew Integration
+- **Formula:** `isp-snitch.rb`
+- **Dependencies:** Swift, SQLite, curl
+- **Installation:** `brew install isp-snitch`
+- **Service Management:** `brew services start isp-snitch`
+
+### macOS Integration
+- **LaunchAgent:** `com.isp-snitch.monitor.plist`
+- **User Agent:** Runs in user context
+- **Permissions:** Network access, file system access
+- **Startup:** Automatic on user login
+
+### Web Interface
+- **Framework:** Swift HTTP server
+- **Frontend:** HTML5, CSS3, JavaScript
+- **Real-time:** WebSocket connections
+- **Responsive:** Mobile-friendly design
+- **Accessibility:** WCAG 2.1 AA compliance
+
+## Data Models
+
+### Connectivity Record
+```swift
+struct ConnectivityRecord {
+    let id: UUID
+    let timestamp: Date
+    let testType: TestType
+    let target: String
+    let latency: TimeInterval?
+    let success: Bool
+    let errorMessage: String?
+    let networkInterface: String
+}
 ```
 
----
+### Test Configuration
+```swift
+struct TestConfiguration {
+    let pingTargets: [String]
+    let httpTargets: [String]
+    let dnsTargets: [String]
+    let testInterval: TimeInterval
+    let timeout: TimeInterval
+    let retryCount: Int
+}
+```
 
-## ⚡ Quick Guidelines
-- ✅ Focus on WHAT users need and WHY
-- ❌ Avoid HOW to implement (no tech stack, APIs, code structure)
-- 👥 Written for business stakeholders, not developers
+## API Specifications
 
-### Section Requirements
-- **Mandatory sections**: Must be completed for every feature
-- **Optional sections**: Include only when relevant to the feature
-- When a section doesn't apply, remove it entirely (don't leave as "N/A")
+### CLI Commands
+- `isp-snitch status` - Show service status
+- `isp-snitch report` - Generate connectivity report
+- `isp-snitch config` - Manage configuration
+- `isp-snitch export` - Export data
+- `isp-snitch start` - Start service
+- `isp-snitch stop` - Stop service
 
-### For AI Generation
-When creating this spec from a user prompt:
-1. **Mark all ambiguities**: Use [NEEDS CLARIFICATION: specific question] for any assumption you'd need to make
-2. **Don't guess**: If the prompt doesn't specify something (e.g., "login system" without auth method), mark it
-3. **Think like a tester**: Every vague requirement should fail the "testable and unambiguous" checklist item
-4. **Common underspecified areas**:
-   - User types and permissions
-   - Data retention/deletion policies  
-   - Performance targets and scale
-   - Error handling behaviors
-   - Integration requirements
-   - Security/compliance needs
+### Web API Endpoints
+- `GET /api/status` - Service status
+- `GET /api/reports` - Historical reports
+- `GET /api/config` - Configuration
+- `POST /api/config` - Update configuration
+- `GET /api/export` - Export data
+- `WebSocket /ws/realtime` - Real-time updates
 
----
+## Testing Strategy
 
-## User Scenarios & Testing *(mandatory)*
+### Unit Tests
+- Network monitoring logic
+- Data storage operations
+- Configuration management
+- Report generation
 
-### Primary User Story
-[Describe the main user journey in plain language]
+### Integration Tests
+- Service startup/shutdown
+- Web interface functionality
+- CLI command execution
+- Data persistence
 
-### Acceptance Scenarios
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
+### Performance Tests
+- Resource usage monitoring
+- Network test accuracy
+- Concurrent user handling
+- Long-running stability
 
-### Edge Cases
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+### Security Tests
+- Data encryption verification
+- Local access restrictions
+- Input validation
+- Authentication mechanisms
 
-## Requirements *(mandatory)*
+## Deployment
 
-### Functional Requirements
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+### Installation Process
+1. Homebrew installation
+2. Service registration
+3. Configuration setup
+4. Initial data collection
+5. Web interface access
 
-*Example of marking unclear requirements:*
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+### Configuration
+- Default test targets
+- Monitoring intervals
+- Data retention policies
+- Web interface settings
+- Security preferences
 
-### Key Entities *(include if feature involves data)*
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
-
----
-
-## Review & Acceptance Checklist
-*GATE: Automated checks run during main() execution*
-
-### Content Quality
-- [ ] No implementation details (languages, frameworks, APIs)
-- [ ] Focused on user value and business needs
-- [ ] Written for non-technical stakeholders
-- [ ] All mandatory sections completed
-
-### Requirement Completeness
-- [ ] No [NEEDS CLARIFICATION] markers remain
-- [ ] Requirements are testable and unambiguous  
-- [ ] Success criteria are measurable
-- [ ] Scope is clearly bounded
-- [ ] Dependencies and assumptions identified
-
----
-
-## Execution Status
-*Updated by main() during processing*
-
-- [ ] User description parsed
-- [ ] Key concepts extracted
-- [ ] Ambiguities marked
-- [ ] User scenarios defined
-- [ ] Requirements generated
-- [ ] Entities identified
-- [ ] Review checklist passed
-
----
+### Maintenance
+- Automatic updates via Homebrew
+- Data backup procedures
+- Log rotation
+- Performance monitoring
+- Security updates
