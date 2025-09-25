@@ -1,0 +1,20 @@
+{
+  "monitoring": {
+    "enabled": true,
+    "interval": 300,
+    "tests": ["ping", "http", "dns", "speedtest"]
+  },
+  "web": {
+    "enabled": true,
+    "port": 8080,
+    "host": "localhost"
+  },
+  "database": {
+    "path": "/usr/local/var/isp-snitch/data/connectivity.db",
+    "retention_days": 30
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "/usr/local/var/log/isp-snitch/app.log"
+  }
+}

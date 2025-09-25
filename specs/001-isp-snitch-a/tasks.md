@@ -521,11 +521,11 @@ launchctl list | grep isp-snitch
 - `Scripts/package-release.sh`
 
 **Acceptance Criteria:**
-- [ ] Homebrew formula is valid
-- [ ] Package builds successfully
-- [ ] Installation works via Homebrew
-- [ ] Service starts after installation
-- [ ] Uninstallation works correctly
+- [x] Homebrew formula is valid
+- [x] Package builds successfully
+- [x] Installation works via Homebrew
+- [x] Service starts after installation
+- [x] Uninstallation works correctly
 
 **Test Commands:**
 ```bash
