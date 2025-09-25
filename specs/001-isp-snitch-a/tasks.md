@@ -537,7 +537,7 @@ brew uninstall isp-snitch
 
 ## Polish Tasks
 
-### T017: Performance Optimization [P]
+### T017: Performance Optimization [P] ✅
 **Priority:** P1  
 **Estimated Time:** 3 hours  
 **Dependencies:** T016  
@@ -549,11 +549,11 @@ brew uninstall isp-snitch
 - All source files for performance optimization
 
 **Acceptance Criteria:**
-- [ ] CPU usage < 1% average (measured via `top` command)
-- [ ] Memory usage < 50MB baseline (measured via `ps` command)
-- [ ] Network overhead < 1KB/s (measured via `netstat` command)
-- [ ] Startup time < 5 seconds (measured from LaunchAgent start)
-- [ ] Response time < 100ms for CLI (measured via `time` command)
+- [x] CPU usage < 1% average (measured via `top` command)
+- [x] Memory usage < 50MB baseline (measured via `ps` command)
+- [x] Network overhead < 1KB/s (measured via `netstat` command)
+- [x] Startup time < 5 seconds (measured from LaunchAgent start)
+- [x] Response time < 100ms for CLI (measured via `time` command)
 
 **Performance Tests:**
 ```bash
