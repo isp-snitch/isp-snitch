@@ -1,0 +1,266 @@
+name: Automated Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+
+env:
+  SWIFT_VERSION: "6.0"
+
+jobs:
+  build-and-release:
+    name: Build and Release
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: ${{ env.SWIFT_VERSION }}
+        
+    - name: Cache Swift packages
+      uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+          
+    - name: Resolve dependencies
+      run: swift package resolve
+      
+    - name: Run tests
+      run: swift test
+      
+    - name: Build release binary
+      run: swift build --configuration release
+      
+    - name: Create package
+      run: |
+        ./Scripts/build-package.sh
+        
+    - name: Calculate SHA256
+      id: sha256
+      run: |
+        SHA256=$(shasum -a 256 dist/isp-snitch-1.0.0.tar.gz | cut -d' ' -f1)
+        echo "sha256=$SHA256" >> $GITHUB_OUTPUT
+        echo "SHA256: $SHA256"
+        
+    - name: Update formula SHA256
+      run: |
+        sed -i '' "s/sha256 \".*\"/sha256 \"${{ steps.sha256.outputs.sha256 }}\"/" Formula/isp-snitch.rb
+        
+    - name: Create release notes
+      run: |
+        cat > RELEASE_NOTES.md << 'EOF'
+        # ISP Snitch ${{ github.ref_name }}
+        
+        ## What's New
+        
+        - Automated build and release
+        - Complete macOS system integration
+        - Homebrew package distribution
+        - Comprehensive service management
+        - Web interface and CLI tools
+        
+        ## Installation
+        
+        ### Via Homebrew (Recommended)
+        
+        ```bash
+        # Install from GitHub
+        brew install isp-snitch/isp-snitch/isp-snitch
+        
+        # Start the service
+        brew services start isp-snitch
+        
+        # Check service status
+        brew services list | grep isp-snitch
+        ```
+        
+        ### Manual Installation
+        
+        ```bash
+        # Clone the repository
+        git clone https://github.com/isp-snitch/isp-snitch.git
+        cd isp-snitch
+        
+        # Checkout the release
+        git checkout ${{ github.ref_name }}
+        
+        # Build the application
+        swift build --configuration release
+        
+        # Install the service
+        ./Scripts/install-service.sh
+        ```
+        
+        ## Features
+        
+        - **Network Monitoring**: Ping, HTTP, DNS, and speedtest monitoring
+        - **Web Interface**: Real-time dashboard at http://localhost:8080
+        - **CLI Tools**: Comprehensive command-line interface
+        - **Service Management**: Automatic startup and service management
+        - **Data Storage**: SQLite database with data retention
+        - **Logging**: Comprehensive logging and monitoring
+        
+        ## Service Management
+        
+        ```bash
+        # Start service
+        brew services start isp-snitch
+        
+        # Stop service
+        brew services stop isp-snitch
+        
+        # Restart service
+        brew services restart isp-snitch
+        
+        # Check status
+        brew services list | grep isp-snitch
+        ```
+        
+        ## Configuration
+        
+        Configuration files are located in `/usr/local/etc/isp-snitch/`:
+        
+        - `config.json` - Main configuration
+        - `targets.json` - Test targets configuration
+        
+        ## Logs
+        
+        Service logs are located in `/usr/local/var/log/isp-snitch/`:
+        
+        - `out.log` - Standard output
+        - `error.log` - Standard error
+        - `app.log` - Application logs
+        
+        ## Web Interface
+        
+        Once the service is running, access the web interface at:
+        
+        - http://localhost:8080
+        
+        ## CLI Usage
+        
+        ```bash
+        # Check service status
+        isp-snitch status
+        
+        # View reports
+        isp-snitch report
+        
+        # Configure settings
+        isp-snitch config list
+        isp-snitch config set monitoring.interval 300
+        
+        # Service management
+        isp-snitch service start
+        isp-snitch service stop
+        isp-snitch service status
+        ```
+        
+        ## Troubleshooting
+        
+        ### Service Not Starting
+        
+        1. Check logs: `tail -f /usr/local/var/log/isp-snitch/error.log`
+        2. Verify installation: `brew services list | grep isp-snitch`
+        3. Restart service: `brew services restart isp-snitch`
+        
+        ### Web Interface Not Accessible
+        
+        1. Check if service is running: `brew services list | grep isp-snitch`
+        2. Check port 8080: `lsof -i :8080`
+        3. Check firewall settings
+        
+        ### Permission Issues
+        
+        1. Check directory ownership: `ls -la /usr/local/var/isp-snitch/`
+        2. Fix permissions: `sudo chown -R $(whoami):staff /usr/local/var/isp-snitch/`
+        
+        ## Uninstallation
+        
+        ```bash
+        # Stop and uninstall service
+        brew services stop isp-snitch
+        brew uninstall isp-snitch
+        ```
+        
+        ## Support
+        
+        For issues and support, please check the logs and configuration files, or open an issue on GitHub.
+        EOF
+        
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: ISP Snitch ${{ github.ref_name }}
+        body_path: RELEASE_NOTES.md
+        draft: false
+        prerelease: false
+        
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: dist/isp-snitch-1.0.0.tar.gz
+        asset_name: isp-snitch-1.0.0.tar.gz
+        asset_content_type: application/gzip
+        
+    - name: Upload Formula
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: Formula/isp-snitch.rb
+        asset_name: isp-snitch.rb
+        asset_content_type: text/plain
+        
+    - name: Commit formula update
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add Formula/isp-snitch.rb
+        git commit -m "Update formula SHA256 for ${{ github.ref_name }} release" || exit 0
+        git push
+
+  notify:
+    name: Notify Release
+    runs-on: macos-latest
+    needs: build-and-release
+    if: always()
+    
+    steps:
+    - name: Notify success
+      if: needs.build-and-release.result == 'success'
+      run: |
+        echo "✅ Release ${{ github.ref_name }} created successfully!"
+        echo "📦 Package: isp-snitch-1.0.0.tar.gz"
+        echo "🍺 Formula: isp-snitch.rb"
+        echo "🔗 Release: https://github.com/isp-snitch/isp-snitch/releases/tag/${{ github.ref_name }}"
+        echo ""
+        echo "To install:"
+        echo "  brew install isp-snitch/isp-snitch/isp-snitch"
+        
+    - name: Notify failure
+      if: needs.build-and-release.result == 'failure'
+      run: |
+        echo "❌ Release ${{ github.ref_name }} failed!"
+        echo "Check the logs for details."

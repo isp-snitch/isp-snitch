@@ -1,0 +1,368 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+env:
+  SWIFT_VERSION: "6.0"
+  MACOS_VERSION: "14"
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: ${{ env.SWIFT_VERSION }}
+        
+    - name: Cache Swift packages
+      uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+          
+    - name: Resolve dependencies
+      run: swift package resolve
+      
+    - name: Build project
+      run: swift build --configuration release
+      
+    - name: Run tests
+      run: swift test
+      
+    - name: Run linting
+      run: |
+        if command -v swiftlint >/dev/null 2>&1; then
+          swiftlint
+        else
+          echo "SwiftLint not installed, skipping linting"
+        fi
+
+  build:
+    name: Build Release
+    runs-on: macos-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: ${{ env.SWIFT_VERSION }}
+        
+    - name: Cache Swift packages
+      uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+          
+    - name: Resolve dependencies
+      run: swift package resolve
+      
+    - name: Build release binary
+      run: swift build --configuration release
+      
+    - name: Create package
+      run: |
+        ./Scripts/build-package.sh
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: isp-snitch-${{ github.sha }}
+        path: |
+          dist/
+          Formula/
+        retention-days: 30
+
+  homebrew:
+    name: Update Homebrew Formula
+    runs-on: macos-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: isp-snitch-${{ github.sha }}
+        path: artifacts/
+        
+    - name: Calculate SHA256
+      id: sha256
+      run: |
+        SHA256=$(shasum -a 256 artifacts/dist/isp-snitch-1.0.0.tar.gz | cut -d' ' -f1)
+        echo "sha256=$SHA256" >> $GITHUB_OUTPUT
+        echo "SHA256: $SHA256"
+        
+    - name: Update formula SHA256
+      run: |
+        sed -i '' "s/placeholder-sha256-will-be-updated/${{ steps.sha256.outputs.sha256 }}/" Formula/isp-snitch.rb
+        
+    - name: Commit formula update
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add Formula/isp-snitch.rb
+        git commit -m "Update formula SHA256 for ${{ github.sha }}" || exit 0
+        git push
+
+  release:
+    name: Create Release
+    runs-on: macos-latest
+    needs: [test, build, homebrew]
+    if: github.event_name == 'release'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: isp-snitch-${{ github.sha }}
+        path: artifacts/
+        
+    - name: Create release notes
+      run: |
+        cat > RELEASE_NOTES.md << 'EOF'
+        # ISP Snitch ${{ github.event.release.tag_name }}
+        
+        ## What's New
+        
+        - Automated build and release
+        - Complete macOS system integration
+        - Homebrew package distribution
+        - Comprehensive service management
+        - Web interface and CLI tools
+        
+        ## Installation
+        
+        ### Via Homebrew (Recommended)
+        
+        ```bash
+        # Install from GitHub
+        brew install isp-snitch/isp-snitch/isp-snitch
+        
+        # Start the service
+        brew services start isp-snitch
+        
+        # Check service status
+        brew services list | grep isp-snitch
+        ```
+        
+        ### Manual Installation
+        
+        ```bash
+        # Clone the repository
+        git clone https://github.com/isp-snitch/isp-snitch.git
+        cd isp-snitch
+        
+        # Build the application
+        swift build --configuration release
+        
+        # Install the service
+        ./Scripts/install-service.sh
+        ```
+        
+        ## Features
+        
+        - **Network Monitoring**: Ping, HTTP, DNS, and speedtest monitoring
+        - **Web Interface**: Real-time dashboard at http://localhost:8080
+        - **CLI Tools**: Comprehensive command-line interface
+        - **Service Management**: Automatic startup and service management
+        - **Data Storage**: SQLite database with data retention
+        - **Logging**: Comprehensive logging and monitoring
+        
+        ## Service Management
+        
+        ```bash
+        # Start service
+        brew services start isp-snitch
+        
+        # Stop service
+        brew services stop isp-snitch
+        
+        # Restart service
+        brew services restart isp-snitch
+        
+        # Check status
+        brew services list | grep isp-snitch
+        ```
+        
+        ## Configuration
+        
+        Configuration files are located in `/usr/local/etc/isp-snitch/`:
+        
+        - `config.json` - Main configuration
+        - `targets.json` - Test targets configuration
+        
+        ## Logs
+        
+        Service logs are located in `/usr/local/var/log/isp-snitch/`:
+        
+        - `out.log` - Standard output
+        - `error.log` - Standard error
+        - `app.log` - Application logs
+        
+        ## Web Interface
+        
+        Once the service is running, access the web interface at:
+        
+        - http://localhost:8080
+        
+        ## CLI Usage
+        
+        ```bash
+        # Check service status
+        isp-snitch status
+        
+        # View reports
+        isp-snitch report
+        
+        # Configure settings
+        isp-snitch config list
+        isp-snitch config set monitoring.interval 300
+        
+        # Service management
+        isp-snitch service start
+        isp-snitch service stop
+        isp-snitch service status
+        ```
+        
+        ## Troubleshooting
+        
+        ### Service Not Starting
+        
+        1. Check logs: `tail -f /usr/local/var/log/isp-snitch/error.log`
+        2. Verify installation: `brew services list | grep isp-snitch`
+        3. Restart service: `brew services restart isp-snitch`
+        
+        ### Web Interface Not Accessible
+        
+        1. Check if service is running: `brew services list | grep isp-snitch`
+        2. Check port 8080: `lsof -i :8080`
+        3. Check firewall settings
+        
+        ### Permission Issues
+        
+        1. Check directory ownership: `ls -la /usr/local/var/isp-snitch/`
+        2. Fix permissions: `sudo chown -R $(whoami):staff /usr/local/var/isp-snitch/`
+        
+        ## Uninstallation
+        
+        ```bash
+        # Stop and uninstall service
+        brew services stop isp-snitch
+        brew uninstall isp-snitch
+        ```
+        
+        ## Support
+        
+        For issues and support, please check the logs and configuration files, or open an issue on GitHub.
+        EOF
+        
+    - name: Upload release assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: artifacts/dist/isp-snitch-1.0.0.tar.gz
+        asset_name: isp-snitch-1.0.0.tar.gz
+        asset_content_type: application/gzip
+        
+    - name: Update release description
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const releaseNotes = fs.readFileSync('RELEASE_NOTES.md', 'utf8');
+          
+          await github.rest.repos.updateRelease({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            release_id: context.payload.release.id,
+            body: releaseNotes
+          });
+
+  security:
+    name: Security Scan
+    runs-on: macos-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  performance:
+    name: Performance Tests
+    runs-on: macos-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: ${{ env.SWIFT_VERSION }}
+        
+    - name: Build project
+      run: swift build --configuration release
+      
+    - name: Run performance tests
+      run: |
+        echo "Running performance tests..."
+        time swift test --filter PerformanceIntegrationTests
+        echo "Performance tests completed"
+        
+    - name: Memory usage test
+      run: |
+        echo "Testing memory usage..."
+        swift run isp-snitch --help > /dev/null &
+        PID=$!
+        sleep 2
+        MEMORY=$(ps -p $PID -o rss= | tr -d ' ')
+        echo "Memory usage: ${MEMORY}KB"
+        kill $PID
+        if [ $MEMORY -gt 102400 ]; then
+          echo "WARNING: Memory usage exceeds 100MB"
+          exit 1
+        fi

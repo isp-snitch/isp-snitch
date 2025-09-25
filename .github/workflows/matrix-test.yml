@@ -1,0 +1,102 @@
+name: Matrix Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-matrix:
+    name: Test on macOS ${{ matrix.os }} with Swift ${{ matrix.swift }}
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [macos-13, macos-14]
+        swift: ["6.0", "6.1"]
+        exclude:
+          - os: macos-13
+            swift: "6.1"  # Swift 6.1 not available on macOS 13
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: ${{ matrix.swift }}
+        
+    - name: Cache Swift packages
+      uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ matrix.swift }}-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-${{ matrix.swift }}-
+          ${{ runner.os }}-spm-
+          
+    - name: Resolve dependencies
+      run: swift package resolve
+      
+    - name: Build project
+      run: swift build --configuration release
+      
+    - name: Run tests
+      run: swift test
+      
+    - name: Test CLI commands
+      run: |
+        swift run isp-snitch --help
+        swift run isp-snitch status --help
+        swift run isp-snitch config --help
+        swift run isp-snitch report --help
+        swift run isp-snitch service --help
+        
+    - name: Test service scripts
+      run: |
+        chmod +x Scripts/*.sh
+        for script in Scripts/*.sh; do
+          bash -n "$script"
+        done
+
+  integration-test:
+    name: Integration Tests
+    runs-on: macos-latest
+    needs: test-matrix
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: "6.0"
+        
+    - name: Install dependencies
+      run: |
+        brew install sqlite
+        brew install speedtest-cli || echo "speedtest-cli not available"
+        brew install curl || echo "curl not available"
+        brew install bind || echo "bind not available"
+        
+    - name: Build and test
+      run: |
+        swift build --configuration release
+        swift test
+        
+    - name: Test service installation
+      run: |
+        # Test service installation without actually installing
+        ./Scripts/test-service.sh
+        
+    - name: Test package creation
+      run: |
+        ./Scripts/build-package.sh
+        ./Scripts/test-package.sh
+        
+    - name: Test Homebrew formula
+      run: |
+        ./Scripts/test-homebrew-installation.sh
