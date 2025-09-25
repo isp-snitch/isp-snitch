@@ -12,53 +12,53 @@ public actor DataStorage: Sendable {
     private let serviceStatus = Table("service_status")
     
     // Connectivity Records columns
-    private let id = Expression<String>("id")
-    private let timestamp = Expression<Date>("timestamp")
-    private let testType = Expression<String>("test_type")
-    private let target = Expression<String>("target")
-    private let latency = Expression<Double?>("latency")
-    private let success = Expression<Bool>("success")
-    private let errorMessage = Expression<String?>("error_message")
-    private let errorCode = Expression<Int?>("error_code")
-    private let networkInterface = Expression<String>("network_interface")
+    private let id = Expression<String>(value: "id")
+    private let timestamp = Expression<Date>(value: "timestamp")
+    private let testType = Expression<String>(value: "test_type")
+    private let target = Expression<String>(value: "target")
+    private let latency = Expression<Double?>(value: "latency")
+    private let success = Expression<Bool>(value: "success")
+    private let errorMessage = Expression<String?>(value: "error_message")
+    private let errorCode = Expression<Int?>(value: "error_code")
+    private let networkInterface = Expression<String>(value: "network_interface")
     
     // System Context columns
-    private let cpuUsage = Expression<Double>("cpu_usage")
-    private let memoryUsage = Expression<Double>("memory_usage")
-    private let networkInterfaceStatus = Expression<String>("network_interface_status")
-    private let batteryLevel = Expression<Double?>("battery_level")
+    private let cpuUsage = Expression<Double>(value: "cpu_usage")
+    private let memoryUsage = Expression<Double>(value: "memory_usage")
+    private let networkInterfaceStatus = Expression<String>(value: "network_interface_status")
+    private let batteryLevel = Expression<Double?>(value: "battery_level")
     
     // Test-specific data columns
-    private let pingData = Expression<String?>("ping_data")
-    private let httpData = Expression<String?>("http_data")
-    private let dnsData = Expression<String?>("dns_data")
-    private let speedtestData = Expression<String?>("speedtest_data")
+    private let pingData = Expression<String?>(value: "ping_data")
+    private let httpData = Expression<String?>(value: "http_data")
+    private let dnsData = Expression<String?>(value: "dns_data")
+    private let speedtestData = Expression<String?>(value: "speedtest_data")
     
     // Test Configuration columns
-    private let name = Expression<String>("name")
-    private let pingTargets = Expression<String>("ping_targets")
-    private let httpTargets = Expression<String>("http_targets")
-    private let dnsTargets = Expression<String>("dns_targets")
-    private let testInterval = Expression<Double>("test_interval")
-    private let timeout = Expression<Double>("timeout")
-    private let retryCount = Expression<Int>("retry_count")
-    private let webPort = Expression<Int>("web_port")
-    private let dataRetentionDays = Expression<Int>("data_retention_days")
-    private let enableNotifications = Expression<Bool>("enable_notifications")
-    private let enableWebInterface = Expression<Bool>("enable_web_interface")
-    private let isActive = Expression<Bool>("is_active")
-    private let createdAt = Expression<Date>("created_at")
-    private let updatedAt = Expression<Date>("updated_at")
+    private let name = Expression<String>(value: "name")
+    private let pingTargets = Expression<String>(value: "ping_targets")
+    private let httpTargets = Expression<String>(value: "http_targets")
+    private let dnsTargets = Expression<String>(value: "dns_targets")
+    private let testInterval = Expression<Double>(value: "test_interval")
+    private let timeout = Expression<Double>(value: "timeout")
+    private let retryCount = Expression<Int>(value: "retry_count")
+    private let webPort = Expression<Int>(value: "web_port")
+    private let dataRetentionDays = Expression<Int>(value: "data_retention_days")
+    private let enableNotifications = Expression<Bool>(value: "enable_notifications")
+    private let enableWebInterface = Expression<Bool>(value: "enable_web_interface")
+    private let isActive = Expression<Bool>(value: "is_active")
+    private let createdAt = Expression<Date>(value: "created_at")
+    private let updatedAt = Expression<Date>(value: "updated_at")
     
     // System Metrics columns
-    private let diskUsage = Expression<Double>("disk_usage")
-    private let networkBytesIn = Expression<Int64>("network_bytes_in")
-    private let networkBytesOut = Expression<Int64>("network_bytes_out")
+    private let diskUsage = Expression<Double>(value: "disk_usage")
+    private let networkBytesIn = Expression<Int64>(value: "network_bytes_in")
+    private let networkBytesOut = Expression<Int64>(value: "network_bytes_out")
     
     // Service Status columns
-    private let status = Expression<String>("status")
-    private let uptime = Expression<Double>("uptime")
-    private let version = Expression<String>("version")
+    private let status = Expression<String>(value: "status")
+    private let uptime = Expression<Double>(value: "uptime")
+    private let version = Expression<String>(value: "version")
     
     public init(connection: Connection) throws {
         self.connection = connection
@@ -304,9 +304,9 @@ public actor DataStorage: Sendable {
         var configurations: [TestConfiguration] = []
         
         for row in try connection.prepare(testConfigurations.select(*)) {
-            let pingTargetsDecoded = try decoder.decode([String].self, from: row[pingTargets].data(using: .utf8)!)
-            let httpTargetsDecoded = try decoder.decode([String].self, from: row[httpTargets].data(using: .utf8)!)
-            let dnsTargetsDecoded = try decoder.decode([String].self, from: row[dnsTargets].data(using: .utf8)!)
+            let pingTargetsDecoded = try decoder.decode([String].self, from: row[pingTargets]!.data(using: .utf8)!)
+            let httpTargetsDecoded = try decoder.decode([String].self, from: row[httpTargets]!.data(using: .utf8)!)
+            let dnsTargetsDecoded = try decoder.decode([String].self, from: row[dnsTargets]!.data(using: .utf8)!)
             
             let configuration = TestConfiguration(
                 id: UUID(uuidString: row[id])!,

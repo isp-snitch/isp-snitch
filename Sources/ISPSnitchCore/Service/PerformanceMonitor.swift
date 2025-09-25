@@ -105,7 +105,7 @@ public actor PerformanceMonitor: Sendable {
     private func measureMemoryUsage() async -> Double {
         // Get process memory usage (simplified implementation)
         // In production, use proper system APIs like mach_task_basic_info
-        let processInfo = ProcessInfo.processInfo
+        _ = ProcessInfo.processInfo
         // This is a simplified implementation - in production, use proper system APIs
         // For now, return a reasonable baseline value
         return 25.0 // 25MB baseline

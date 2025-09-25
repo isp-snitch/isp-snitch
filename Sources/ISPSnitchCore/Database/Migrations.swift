@@ -4,9 +4,9 @@ import Foundation
 // MARK: - Migration System
 public struct Migrations {
     private static let migrations = Table("migrations")
-    private static let migrationVersion = Expression<Int>("version")
-    private static let migrationName = Expression<String>("name")
-    private static let migrationTimestamp = Expression<Date>("timestamp")
+    private static let migrationVersion = Expression<Int>(value: "version")
+    private static let migrationName = Expression<String>(value: "name")
+    private static let migrationTimestamp = Expression<Date>(value: "timestamp")
     
     public static func runMigrations(on connection: Connection) throws {
         try createMigrationsTable(on: connection)
@@ -67,10 +67,10 @@ public struct Migrations {
         let connectivityRecords = Table("connectivity_records")
         let systemMetrics = Table("system_metrics")
         
-        let timestamp = Expression<Date>("timestamp")
-        let testType = Expression<String>("test_type")
-        let success = Expression<Bool>("success")
-        let networkInterface = Expression<String>("network_interface")
+        let timestamp = Expression<Date>(value: "timestamp")
+        let testType = Expression<String>(value: "test_type")
+        let success = Expression<Bool>(value: "success")
+        let networkInterface = Expression<String>(value: "network_interface")
         
         // Add composite indexes for common queries
         try connection.execute("CREATE INDEX IF NOT EXISTS idx_connectivity_test_type_timestamp ON connectivity_records(test_type, timestamp)")
@@ -84,11 +84,11 @@ public struct Migrations {
     private static func migration003_AddServiceStatusTable(_ connection: Connection) throws {
         let serviceStatus = Table("service_status")
         
-        let id = Expression<String>("id")
-        let timestamp = Expression<Date>("timestamp")
-        let status = Expression<String>("status")
-        let uptime = Expression<Double>("uptime")
-        let version = Expression<String>("version")
+        let id = Expression<String>(value: "id")
+        let timestamp = Expression<Date>(value: "timestamp")
+        let status = Expression<String>(value: "status")
+        let uptime = Expression<Double>(value: "uptime")
+        let version = Expression<String>(value: "version")
         
         try connection.run(serviceStatus.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
