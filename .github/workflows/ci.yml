@@ -104,7 +104,7 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Download build artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v5
       with:
         name: isp-snitch-${{ github.sha }}
         path: artifacts/
@@ -139,7 +139,7 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Download build artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v5
       with:
         name: isp-snitch-${{ github.sha }}
         path: artifacts/
