@@ -294,7 +294,7 @@ jobs:
         asset_content_type: application/gzip
         
     - name: Update release description
-      uses: actions/github-script@v6
+      uses: actions/github-script@v8
       with:
         script: |
           const fs = require('fs');
