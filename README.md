@@ -1,75 +1,247 @@
 # ISP Snitch
 
-A lightweight ISP service monitor for macOS that tracks network connectivity and performance from your local Mac.
+A lightweight ISP service monitor for macOS that tracks network connectivity, performance, and service quality.
 
 ## Features
 
-- **Continuous Monitoring**: Automatically tests network connectivity using ping, HTTP, DNS, and bandwidth tests
-- **Accurate Reporting**: Scientific measurement approach with detailed connectivity data
-- **Multi-Access Interface**: Both CLI and web interfaces for data visualization
-- **Local Data Storage**: All data remains on your machine with configurable retention
-- **Minimal Resource Usage**: < 1% CPU, < 50MB memory, < 1KB/s network overhead
-- **Automatic Startup**: Integrates with macOS LaunchAgent for automatic operation
-- **Homebrew Integration**: Easy installation and management via Homebrew
+- **Network Monitoring**: Ping, HTTP, DNS, and speedtest monitoring
+- **Web Interface**: Real-time dashboard at http://localhost:8080
+- **CLI Tools**: Comprehensive command-line interface
+- **Service Management**: Automatic startup and service management
+- **Data Storage**: SQLite database with data retention
+- **Logging**: Comprehensive logging and monitoring
 
 ## Quick Start
 
-### Installation
+### Installation via Homebrew (Recommended)
 
 ```bash
-# Install via Homebrew (recommended)
-brew install isp-snitch
+# Install ISP Snitch
+brew install isp-snitch/isp-snitch/isp-snitch
 
 # Start the service
 brew services start isp-snitch
+
+# Access web interface
+open http://localhost:8080
 ```
 
-### Basic Usage
+### Manual Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/isp-snitch/isp-snitch.git
+cd isp-snitch
+
+# Build the application
+swift build --configuration release
+
+# Install the service
+./Scripts/install-service.sh
+```
+
+## Usage
+
+### CLI Commands
 
 ```bash
 # Check service status
 isp-snitch status
 
-# Generate a report
-isp-snitch report --days 7
+# View reports
+isp-snitch report
 
-# View web interface
-open http://localhost:8080
+# Configure settings
+isp-snitch config list
+isp-snitch config set monitoring.interval 300
+
+# Service management
+isp-snitch service start
+isp-snitch service stop
+isp-snitch service status
 ```
 
-## Technology Stack
+### Web Interface
 
-- **Swift 6.2+**: Modern Swift with enhanced concurrency
-- **Swift Package Manager**: Apple's official package management
-- **SwiftNIO**: High-performance HTTP server
-- **SQLite.swift**: Type-safe local data storage
-- **ArgumentParser**: CLI interface
-- **System Utilities**: ping, curl, dig, speedtest-cli
+Once the service is running, access the web interface at:
 
-## Requirements
+- **Dashboard**: http://localhost:8080
+- **API Status**: http://localhost:8080/api/status
+- **Health Check**: http://localhost:8080/api/health
+- **Metrics**: http://localhost:8080/api/metrics
 
-- macOS 12.0 or later
-- Homebrew package manager
-- Internet connection for initial setup
+## Configuration
 
-## Documentation
+Configuration files are located in `/usr/local/etc/isp-snitch/`:
 
-- [Quick Start Guide](docs/QUICKSTART.md)
-- [CLI Reference](docs/CLI.md)
-- [API Documentation](docs/API.md)
-- [Configuration Guide](docs/CONFIG.md)
-- [Troubleshooting](docs/TROUBLESHOOTING.md)
+- `config.json` - Main configuration
+- `targets.json` - Test targets configuration
+
+### Example Configuration
+
+```json
+{
+  "monitoring": {
+    "enabled": true,
+    "interval": 300,
+    "tests": ["ping", "http", "dns", "speedtest"]
+  },
+  "web": {
+    "enabled": true,
+    "port": 8080,
+    "host": "localhost"
+  },
+  "database": {
+    "path": "/usr/local/var/isp-snitch/data/connectivity.db",
+    "retention_days": 30
+  }
+}
+```
+
+## Service Management
+
+### Homebrew Services
+
+```bash
+# Start service
+brew services start isp-snitch
+
+# Stop service
+brew services stop isp-snitch
+
+# Restart service
+brew services restart isp-snitch
+
+# Check status
+brew services list | grep isp-snitch
+```
+
+### Manual Service Management
+
+```bash
+# Start service
+./Scripts/start-service.sh
+
+# Stop service
+./Scripts/stop-service.sh
+
+# Check health
+./Scripts/health-check.sh
+
+# Monitor resources
+./Scripts/resource-monitor.sh
+```
+
+## Logs
+
+Service logs are located in `/usr/local/var/log/isp-snitch/`:
+
+- `out.log` - Standard output
+- `error.log` - Standard error
+- `app.log` - Application logs
+
+## Development
+
+### Prerequisites
+
+- macOS 10.15 or later
+- Swift 6.0 or later
+- Xcode Command Line Tools
+
+### Building
+
+```bash
+# Clone the repository
+git clone https://github.com/isp-snitch/isp-snitch.git
+cd isp-snitch
+
+# Build the application
+swift build --configuration release
+
+# Run tests
+swift test
+
+# Run the application
+swift run isp-snitch
+```
+
+### Project Structure
+
+```
+ISP Snitch/
+├── Sources/
+│   ├── ISPSnitchCLI/          # CLI interface
+│   ├── ISPSnitchCore/         # Core library
+│   └── ISPSnitchWeb/          # Web interface
+├── Tests/                     # Test suite
+├── Scripts/                   # Management scripts
+├── Resources/                 # LaunchAgent configuration
+├── Formula/                   # Homebrew formula
+└── README.md                  # This file
+```
+
+## Troubleshooting
+
+### Service Not Starting
+
+1. Check logs: `tail -f /usr/local/var/log/isp-snitch/error.log`
+2. Verify installation: `brew services list | grep isp-snitch`
+3. Restart service: `brew services restart isp-snitch`
+
+### Web Interface Not Accessible
+
+1. Check if service is running: `brew services list | grep isp-snitch`
+2. Check port 8080: `lsof -i :8080`
+3. Check firewall settings
+
+### Permission Issues
+
+1. Check directory ownership: `ls -la /usr/local/var/isp-snitch/`
+2. Fix permissions: `sudo chown -R $(whoami):staff /usr/local/var/isp-snitch/`
+
+## Uninstallation
+
+### Homebrew
+
+```bash
+# Stop and uninstall service
+brew services stop isp-snitch
+brew uninstall isp-snitch
+```
+
+### Manual
+
+```bash
+# Stop and uninstall service
+./Scripts/uninstall-service.sh
+```
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Make your changes
+4. Run tests: `swift test`
+5. Commit your changes: `git commit -am 'Add feature'`
+6. Push to the branch: `git push origin feature-name`
+7. Create a Pull Request
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- [GitHub Issues](https://github.com/isp-snitch/isp-snitch/issues)
-- [GitHub Discussions](https://github.com/isp-snitch/isp-snitch/discussions)
-- [Discord Server](https://discord.gg/isp-snitch)
+For issues and support, please check the logs and configuration files, or open an issue on GitHub.
+
+## Changelog
+
+### v1.0.0
+
+- Initial release
+- Complete macOS system integration
+- Homebrew package distribution
+- Web interface and CLI tools
+- Service management and monitoring
+- SQLite database with data retention
+- Comprehensive logging and health checks
