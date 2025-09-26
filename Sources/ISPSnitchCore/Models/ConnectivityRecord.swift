@@ -1,4 +1,4 @@
-import Foundation
+@preconcurrency import Foundation
 
 // MARK: - Connectivity Record
 public struct ConnectivityRecord: Sendable, Codable, Identifiable {

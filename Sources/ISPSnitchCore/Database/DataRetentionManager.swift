@@ -1,4 +1,4 @@
-import Foundation
+@preconcurrency import Foundation
 @preconcurrency import SQLite
 
 // MARK: - Data Retention Manager
