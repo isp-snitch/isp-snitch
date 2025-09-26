@@ -12,7 +12,7 @@ public actor DataRetentionManager {
     private let serviceStatus = Table("service_status")
 
     // Columns
-    private let timestamp = Expression<Date>("timestamp")
+    private let timestamp = Expression<Date>(value: "timestamp")
 
     public init(connection: Connection, retentionDays: Int = 30) {
         self.connection = connection
