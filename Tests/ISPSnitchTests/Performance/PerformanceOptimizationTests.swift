@@ -4,7 +4,6 @@ import Foundation
 
 /// Performance optimization tests for ISP Snitch
 /// Validates that the service meets performance criteria
-@MainActor
 class PerformanceOptimizationTests: XCTestCase {
 
     

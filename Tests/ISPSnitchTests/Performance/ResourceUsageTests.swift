@@ -4,7 +4,6 @@ import Foundation
 
 /// Resource usage tests for ISP Snitch
 /// Validates resource consumption and efficiency
-@MainActor
 class ResourceUsageTests: XCTestCase {
 
     

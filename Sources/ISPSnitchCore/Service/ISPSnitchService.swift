@@ -6,7 +6,6 @@ import Logging
 /// This is the main service that integrates all core components
 /// and provides the primary interface for the ISP Snitch application.
 /// Optimized for minimal resource usage and high performance.
-@MainActor
 public final class ISPSnitchService {
     public static let shared = ISPSnitchService()
 
