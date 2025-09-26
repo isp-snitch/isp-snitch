@@ -1,29 +1,29 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct StatusCommandTests {
+class StatusCommandTests: XCTestCase {
 
-    @Test func statusCommandStructure() throws {
+    func teststatusCommandStructure() throws {
         // Test that we can construct the status command
         let command = "isp-snitch status"
         let expectedCommand = "isp-snitch status"
 
-        #expect(command == expectedCommand)
+        XCTAssertEqual(command, expectedCommand)
     }
 
-    @Test func statusCommandOptions() throws {
+    func teststatusCommandOptions() throws {
         // Test status command options
         let jsonOption = "isp-snitch status --json"
         let formatOption = "isp-snitch status --format json"
         let liveOption = "isp-snitch status --live"
 
-        #expect(jsonOption.contains("--json"))
-        #expect(formatOption.contains("--format json"))
-        #expect(liveOption.contains("--live"))
+        XCTAssert(jsonOption.contains("--json"))
+        XCTAssert(formatOption.contains("--format json"))
+        XCTAssert(liveOption.contains("--live"))
     }
 
-    @Test func statusCommandOutputFormat() throws {
+    func teststatusCommandOutputFormat() throws {
         // Test expected output format structure
         let expectedOutput = """
         ISP Snitch Service Status
@@ -44,13 +44,13 @@ struct StatusCommandTests {
         """
 
         // Test that output contains expected sections
-        #expect(expectedOutput.contains("ISP Snitch Service Status"))
-        #expect(expectedOutput.contains("Status: Running"))
-        #expect(expectedOutput.contains("Current Connectivity:"))
-        #expect(expectedOutput.contains("System Metrics:"))
+        XCTAssert(expectedOutput.contains("ISP Snitch Service Status"))
+        XCTAssert(expectedOutput.contains("Status: Running"))
+        XCTAssert(expectedOutput.contains("Current Connectivity:"))
+        XCTAssert(expectedOutput.contains("System Metrics:"))
     }
 
-    @Test func statusCommandJsonOutput() throws {
+    func teststatusCommandJsonOutput() throws {
         // Test JSON output structure
         let jsonOutput = """
         {
@@ -84,72 +84,72 @@ struct StatusCommandTests {
         """
 
         // Test that JSON contains expected fields
-        #expect(jsonOutput.contains("\"serviceStatus\""))
-        #expect(jsonOutput.contains("\"currentConnectivity\""))
-        #expect(jsonOutput.contains("\"systemMetrics\""))
-        #expect(jsonOutput.contains("\"status\": \"running\""))
-        #expect(jsonOutput.contains("\"testType\": \"ping\""))
+        XCTAssert(jsonOutput.contains("\"serviceStatus\""))
+        XCTAssert(jsonOutput.contains("\"currentConnectivity\""))
+        XCTAssert(jsonOutput.contains("\"systemMetrics\""))
+        XCTAssert(jsonOutput.contains("\"status\": \"running\""))
+        XCTAssert(jsonOutput.contains("\"testType\": \"ping\""))
     }
 
-    @Test func statusCommandLiveUpdates() throws {
+    func teststatusCommandLiveUpdates() throws {
         // Test live updates functionality
         let liveCommand = "isp-snitch status --live"
 
-        #expect(liveCommand.contains("--live"))
+        XCTAssert(liveCommand.contains("--live"))
 
         // Test that live updates would refresh every 5 seconds
         let refreshInterval = 5
-        #expect(refreshInterval == 5)
+        XCTAssertEqual(refreshInterval, 5)
     }
 
-    @Test func statusCommandFormatOptions() throws {
+    func teststatusCommandFormatOptions() throws {
         // Test different format options
         let textFormat = "isp-snitch status --format text"
         let jsonFormat = "isp-snitch status --format json"
         let csvFormat = "isp-snitch status --format csv"
 
-        #expect(textFormat.contains("--format text"))
-        #expect(jsonFormat.contains("--format json"))
-        #expect(csvFormat.contains("--format csv"))
+        XCTAssert(textFormat.contains("--format text"))
+        XCTAssert(jsonFormat.contains("--format json"))
+        XCTAssert(csvFormat.contains("--format csv"))
     }
 
-    @Test func statusCommandVerboseOutput() throws {
+    func teststatusCommandVerboseOutput() throws {
         // Test verbose output option
         let verboseCommand = "isp-snitch status --verbose"
 
-        #expect(verboseCommand.contains("--verbose"))
+        XCTAssert(verboseCommand.contains("--verbose"))
     }
 
-    @Test func statusCommandQuietOutput() throws {
+    func teststatusCommandQuietOutput() throws {
         // Test quiet output option
         let quietCommand = "isp-snitch status --quiet"
 
-        #expect(quietCommand.contains("--quiet"))
+        XCTAssert(quietCommand.contains("--quiet"))
     }
 
-    @Test func statusCommandHelp() throws {
+    func teststatusCommandHelp() throws {
         // Test help option
         let helpCommand = "isp-snitch status --help"
 
-        #expect(helpCommand.contains("--help"))
+        XCTAssert(helpCommand.contains("--help"))
     }
 
-    @Test func statusCommandVersion() throws {
+    func teststatusCommandVersion() throws {
         // Test version option
         let versionCommand = "isp-snitch status --version"
 
-        #expect(versionCommand.contains("--version"))
+        XCTAssert(versionCommand.contains("--version"))
     }
 
-    @Test func statusCommandConfigFile() throws {
+    func teststatusCommandConfigFile() throws {
         // Test custom config file option
         let configCommand = "isp-snitch status --config-file /path/to/config.json"
 
-        #expect(configCommand.contains("--config-file"))
-        #expect(configCommand.contains("/path/to/config.json"))
+        XCTAssert(configCommand.contains("--config-file"))
+        XCTAssert(configCommand.contains("/path/to/config.json"))
     }
 
-    @Test func statusCommandErrorHandling() throws {
+    func teststatusCommandErrorHandling() throws {
         // Test error handling scenarios
         let errorScenarios = [
             "Service not running",
@@ -160,43 +160,43 @@ struct StatusCommandTests {
 
         for scenario in errorScenarios {
             let isError = scenario.contains("not") || scenario.contains("failed") || scenario.contains("Invalid")
-            #expect(isError == true)
+            XCTAssertEqual(isError, true)
         }
     }
 
-    @Test func statusCommandDataValidation() throws {
+    func teststatusCommandDataValidation() throws {
         // Test data validation for status output
         let validStatuses = ["running", "stopped", "error"]
         let validTestTypes = ["ping", "http", "dns", "bandwidth"]
         let validNetworkInterfaces = ["en0", "en1", "wlan0", "eth0"]
 
         for status in validStatuses {
-            #expect(!status.isEmpty)
+            XCTAssert(!status.isEmpty)
         }
 
         for testType in validTestTypes {
-            #expect(!testType.isEmpty)
+            XCTAssert(!testType.isEmpty)
         }
 
         for interface in validNetworkInterfaces {
-            #expect(!interface.isEmpty)
+            XCTAssert(!interface.isEmpty)
         }
     }
 
-    @Test func statusCommandPerformanceMetrics() throws {
+    func teststatusCommandPerformanceMetrics() throws {
         // Test performance metrics structure
         let cpuUsage = 0.8
         let memoryUsage = 42.0
         let networkInterface = "en0"
         let networkInterfaceStatus = "active"
 
-        #expect(cpuUsage == 0.8)
-        #expect(memoryUsage == 42.0)
-        #expect(networkInterface == "en0")
-        #expect(networkInterfaceStatus == "active")
+        XCTAssertEqual(cpuUsage, 0.8)
+        XCTAssertEqual(memoryUsage, 42.0)
+        XCTAssertEqual(networkInterface, "en0")
+        XCTAssertEqual(networkInterfaceStatus, "active")
     }
 
-    @Test func statusCommandConnectivityData() throws {
+    func teststatusCommandConnectivityData() throws {
         // Test connectivity data structure
         let id = "uuid"
         let timestamp = "2024-12-19T14:30:25Z"
@@ -207,10 +207,10 @@ struct StatusCommandTests {
         let errorCode = 0
         let networkInterface = "en1"
 
-        #expect(testType == "ping")
-        #expect(target == "8.8.8.8")
-        #expect(latency == 0.024)
-        #expect(success == true)
-        #expect(errorCode == 0)
+        XCTAssertEqual(testType, "ping")
+        XCTAssertEqual(target, "8.8.8.8")
+        XCTAssertEqual(latency, 0.024)
+        XCTAssertEqual(success, true)
+        XCTAssertEqual(errorCode, 0)
     }
 }

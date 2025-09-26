@@ -1,10 +1,10 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct PerformanceIntegrationTests {
+class PerformanceIntegrationTests: XCTestCase {
 
-    @Test func systemPerformanceMonitoring() throws {
+    func testsystemPerformanceMonitoring() throws {
         // Test system performance monitoring
         let performanceMetrics = [
             "CPU usage tracking",
@@ -20,20 +20,20 @@ struct PerformanceIntegrationTests {
             "Resource usage alerts"
         ]
 
-        #expect(performanceMetrics.count == 4)
-        #expect(performanceMetrics.contains("CPU usage tracking"))
-        #expect(performanceMetrics.contains("Memory usage tracking"))
-        #expect(performanceMetrics.contains("Network interface status monitoring"))
-        #expect(performanceMetrics.contains("Battery level monitoring"))
+        XCTAssertEqual(performanceMetrics.count, 4)
+        XCTAssert(performanceMetrics.contains("CPU usage tracking"))
+        XCTAssert(performanceMetrics.contains("Memory usage tracking"))
+        XCTAssert(performanceMetrics.contains("Network interface status monitoring"))
+        XCTAssert(performanceMetrics.contains("Battery level monitoring"))
 
-        #expect(monitoringFeatures.count == 4)
-        #expect(monitoringFeatures[0].contains("Real-time performance"))
-        #expect(monitoringFeatures[1].contains("Historical performance"))
-        #expect(monitoringFeatures[2].contains("Performance trend"))
-        #expect(monitoringFeatures[3].contains("Resource usage alerts"))
+        XCTAssertEqual(monitoringFeatures.count, 4)
+        XCTAssert(monitoringFeatures[0].contains("Real-time performance"))
+        XCTAssert(monitoringFeatures[1].contains("Historical performance"))
+        XCTAssert(monitoringFeatures[2].contains("Performance trend"))
+        XCTAssert(monitoringFeatures[3].contains("Resource usage alerts"))
     }
 
-    @Test func performanceOptimization() throws {
+    func testperformanceOptimization() throws {
         // Test performance optimization
         let optimizationFeatures = [
             "Efficient async/await patterns",
@@ -49,20 +49,20 @@ struct PerformanceIntegrationTests {
             "Power efficiency"
         ]
 
-        #expect(optimizationFeatures.count == 4)
-        #expect(optimizationFeatures[0].contains("Efficient async/await"))
-        #expect(optimizationFeatures[1].contains("Minimal resource usage"))
-        #expect(optimizationFeatures[2].contains("Background operation"))
-        #expect(optimizationFeatures[3].contains("Power management"))
+        XCTAssertEqual(optimizationFeatures.count, 4)
+        XCTAssert(optimizationFeatures[0].contains("Efficient async/await"))
+        XCTAssert(optimizationFeatures[1].contains("Minimal resource usage"))
+        XCTAssert(optimizationFeatures[2].contains("Background operation"))
+        XCTAssert(optimizationFeatures[3].contains("Power management"))
 
-        #expect(optimizationTargets.count == 4)
-        #expect(optimizationTargets.contains("CPU efficiency"))
-        #expect(optimizationTargets.contains("Memory efficiency"))
-        #expect(optimizationTargets.contains("Network efficiency"))
-        #expect(optimizationTargets.contains("Power efficiency"))
+        XCTAssertEqual(optimizationTargets.count, 4)
+        XCTAssert(optimizationTargets.contains("CPU efficiency"))
+        XCTAssert(optimizationTargets.contains("Memory efficiency"))
+        XCTAssert(optimizationTargets.contains("Network efficiency"))
+        XCTAssert(optimizationTargets.contains("Power efficiency"))
     }
 
-    @Test func performanceReporting() throws {
+    func testperformanceReporting() throws {
         // Test performance reporting
         let reportTypes = [
             "Real-time performance metrics",
@@ -78,46 +78,46 @@ struct PerformanceIntegrationTests {
             "PDF"
         ]
 
-        #expect(reportTypes.count == 4)
-        #expect(reportTypes[0].contains("Real-time performance"))
-        #expect(reportTypes[1].contains("Historical performance"))
-        #expect(reportTypes[2].contains("Performance trend"))
-        #expect(reportTypes[3].contains("Resource usage alerts"))
+        XCTAssertEqual(reportTypes.count, 4)
+        XCTAssert(reportTypes[0].contains("Real-time performance"))
+        XCTAssert(reportTypes[1].contains("Historical performance"))
+        XCTAssert(reportTypes[2].contains("Performance trend"))
+        XCTAssert(reportTypes[3].contains("Resource usage alerts"))
 
-        #expect(reportFormats.count == 4)
-        #expect(reportFormats.contains("JSON"))
-        #expect(reportFormats.contains("CSV"))
-        #expect(reportFormats.contains("HTML"))
-        #expect(reportFormats.contains("PDF"))
+        XCTAssertEqual(reportFormats.count, 4)
+        XCTAssert(reportFormats.contains("JSON"))
+        XCTAssert(reportFormats.contains("CSV"))
+        XCTAssert(reportFormats.contains("HTML"))
+        XCTAssert(reportFormats.contains("PDF"))
     }
 
-    @Test func resourceUsageLimits() throws {
+    func testresourceUsageLimits() throws {
         // Test resource usage limits
         let cpuLimit = 5.0
         let memoryLimit = 100.0
         let networkLimit = 1.0
         let diskLimit = 100.0
 
-        #expect(cpuLimit == 5.0)
-        #expect(memoryLimit == 100.0)
-        #expect(networkLimit == 1.0)
-        #expect(diskLimit == 100.0)
+        XCTAssertEqual(cpuLimit, 5.0)
+        XCTAssertEqual(memoryLimit, 100.0)
+        XCTAssertEqual(networkLimit, 1.0)
+        XCTAssertEqual(diskLimit, 100.0)
     }
 
-    @Test func performanceThresholds() throws {
+    func testperformanceThresholds() throws {
         // Test performance thresholds
         let cpuThreshold = 1.0
         let memoryThreshold = 50.0
         let networkThreshold = 0.5
         let diskThreshold = 50.0
 
-        #expect(cpuThreshold == 1.0)
-        #expect(memoryThreshold == 50.0)
-        #expect(networkThreshold == 0.5)
-        #expect(diskThreshold == 50.0)
+        XCTAssertEqual(cpuThreshold, 1.0)
+        XCTAssertEqual(memoryThreshold, 50.0)
+        XCTAssertEqual(networkThreshold, 0.5)
+        XCTAssertEqual(diskThreshold, 50.0)
     }
 
-    @Test func performanceAlerts() throws {
+    func testperformanceAlerts() throws {
         // Test performance alerts
         let alertTypes = [
             "CPU usage alert",
@@ -132,32 +132,32 @@ struct PerformanceIntegrationTests {
             "FATAL"
         ]
 
-        #expect(alertTypes.count == 4)
-        #expect(alertTypes.contains("CPU usage alert"))
-        #expect(alertTypes.contains("Memory usage alert"))
-        #expect(alertTypes.contains("Network usage alert"))
-        #expect(alertTypes.contains("Disk usage alert"))
+        XCTAssertEqual(alertTypes.count, 4)
+        XCTAssert(alertTypes.contains("CPU usage alert"))
+        XCTAssert(alertTypes.contains("Memory usage alert"))
+        XCTAssert(alertTypes.contains("Network usage alert"))
+        XCTAssert(alertTypes.contains("Disk usage alert"))
 
-        #expect(alertLevels.count == 3)
-        #expect(alertLevels.contains("WARNING"))
-        #expect(alertLevels.contains("CRITICAL"))
-        #expect(alertLevels.contains("FATAL"))
+        XCTAssertEqual(alertLevels.count, 3)
+        XCTAssert(alertLevels.contains("WARNING"))
+        XCTAssert(alertLevels.contains("CRITICAL"))
+        XCTAssert(alertLevels.contains("FATAL"))
     }
 
-    @Test func performanceDataCollection() throws {
+    func testperformanceDataCollection() throws {
         // Test performance data collection
         let dataCollectionInterval = 30
         let dataRetentionDays = 30
         let dataCompressionEnabled = true
         let dataEncryptionEnabled = false
 
-        #expect(dataCollectionInterval == 30)
-        #expect(dataRetentionDays == 30)
-        #expect(dataCompressionEnabled == true)
-        #expect(dataEncryptionEnabled == false)
+        XCTAssertEqual(dataCollectionInterval, 30)
+        XCTAssertEqual(dataRetentionDays, 30)
+        XCTAssertEqual(dataCompressionEnabled, true)
+        XCTAssertEqual(dataEncryptionEnabled, false)
     }
 
-    @Test func performanceDataStorage() throws {
+    func testperformanceDataStorage() throws {
         // Test performance data storage
         let storageFormats = [
             "SQLite database",
@@ -172,19 +172,19 @@ struct PerformanceIntegrationTests {
             "/usr/local/var/isp-snitch/backups/"
         ]
 
-        #expect(storageFormats.count == 4)
-        #expect(storageFormats.contains("SQLite database"))
-        #expect(storageFormats.contains("JSON files"))
-        #expect(storageFormats.contains("CSV files"))
-        #expect(storageFormats.contains("Binary files"))
+        XCTAssertEqual(storageFormats.count, 4)
+        XCTAssert(storageFormats.contains("SQLite database"))
+        XCTAssert(storageFormats.contains("JSON files"))
+        XCTAssert(storageFormats.contains("CSV files"))
+        XCTAssert(storageFormats.contains("Binary files"))
 
-        #expect(storageLocations.count == 3)
-        #expect(storageLocations[0].contains("data/"))
-        #expect(storageLocations[1].contains("logs/"))
-        #expect(storageLocations[2].contains("backups/"))
+        XCTAssertEqual(storageLocations.count, 3)
+        XCTAssert(storageLocations[0].contains("data/"))
+        XCTAssert(storageLocations[1].contains("logs/"))
+        XCTAssert(storageLocations[2].contains("backups/"))
     }
 
-    @Test func performanceDataAnalysis() throws {
+    func testperformanceDataAnalysis() throws {
         // Test performance data analysis
         let analysisTypes = [
             "Trend analysis",
@@ -200,20 +200,20 @@ struct PerformanceIntegrationTests {
             "Predictive modeling"
         ]
 
-        #expect(analysisTypes.count == 4)
-        #expect(analysisTypes.contains("Trend analysis"))
-        #expect(analysisTypes.contains("Anomaly detection"))
-        #expect(analysisTypes.contains("Performance comparison"))
-        #expect(analysisTypes.contains("Capacity planning"))
+        XCTAssertEqual(analysisTypes.count, 4)
+        XCTAssert(analysisTypes.contains("Trend analysis"))
+        XCTAssert(analysisTypes.contains("Anomaly detection"))
+        XCTAssert(analysisTypes.contains("Performance comparison"))
+        XCTAssert(analysisTypes.contains("Capacity planning"))
 
-        #expect(analysisFeatures.count == 4)
-        #expect(analysisFeatures.contains("Statistical analysis"))
-        #expect(analysisFeatures.contains("Machine learning"))
-        #expect(analysisFeatures.contains("Pattern recognition"))
-        #expect(analysisFeatures.contains("Predictive modeling"))
+        XCTAssertEqual(analysisFeatures.count, 4)
+        XCTAssert(analysisFeatures.contains("Statistical analysis"))
+        XCTAssert(analysisFeatures.contains("Machine learning"))
+        XCTAssert(analysisFeatures.contains("Pattern recognition"))
+        XCTAssert(analysisFeatures.contains("Predictive modeling"))
     }
 
-    @Test func performanceOptimizationStrategies() throws {
+    func testperformanceOptimizationStrategies() throws {
         // Test performance optimization strategies
         let optimizationStrategies = [
             "Async/await patterns",
@@ -229,16 +229,16 @@ struct PerformanceIntegrationTests {
             "Disk usage"
         ]
 
-        #expect(optimizationStrategies.count == 4)
-        #expect(optimizationStrategies.contains("Async/await patterns"))
-        #expect(optimizationStrategies.contains("Background processing"))
-        #expect(optimizationStrategies.contains("Resource pooling"))
-        #expect(optimizationStrategies.contains("Caching mechanisms"))
+        XCTAssertEqual(optimizationStrategies.count, 4)
+        XCTAssert(optimizationStrategies.contains("Async/await patterns"))
+        XCTAssert(optimizationStrategies.contains("Background processing"))
+        XCTAssert(optimizationStrategies.contains("Resource pooling"))
+        XCTAssert(optimizationStrategies.contains("Caching mechanisms"))
 
-        #expect(optimizationTargets.count == 4)
-        #expect(optimizationTargets.contains("CPU usage"))
-        #expect(optimizationTargets.contains("Memory usage"))
-        #expect(optimizationTargets.contains("Network usage"))
-        #expect(optimizationTargets.contains("Disk usage"))
+        XCTAssertEqual(optimizationTargets.count, 4)
+        XCTAssert(optimizationTargets.contains("CPU usage"))
+        XCTAssert(optimizationTargets.contains("Memory usage"))
+        XCTAssert(optimizationTargets.contains("Network usage"))
+        XCTAssert(optimizationTargets.contains("Disk usage"))
     }
 }

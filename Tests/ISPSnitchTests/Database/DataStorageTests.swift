@@ -1,11 +1,11 @@
-import Testing
+import XCTest
 import Foundation
 import SQLite
 @testable import ISPSnitchCore
 
-struct DataStorageTests {
+class DataStorageTests: XCTestCase {
 
-    @Test func insertConnectivityRecord() throws {
+    func testinsertConnectivityRecord() throws {
         let db = try Connection(":memory:")
 
         // Create table
@@ -50,18 +50,18 @@ struct DataStorageTests {
 
         // Verify insertion
         let count = try db.scalar(connectivityRecords.count)
-        #expect(count == 1)
+        XCTAssertEqual(count, 1)
 
         // Verify data
         let record = try db.pluck(connectivityRecords.filter(id == recordId))
-        #expect(record != nil)
-        #expect(record![testType] == "ping")
-        #expect(record![target] == "8.8.8.8")
-        #expect(record![latency] == 0.024)
-        #expect(record![success] == true)
+        XCTAssert(record != nil)
+        XCTAssertEqual(record![testType], "ping")
+        XCTAssertEqual(record![target], "8.8.8.8")
+        XCTAssertEqual(record![latency], 0.024)
+        XCTAssertEqual(record![success], true)
     }
 
-    @Test func insertTestConfiguration() throws {
+    func testinsertTestConfiguration() throws {
         let db = try Connection(":memory:")
 
         // Create table
@@ -120,23 +120,23 @@ struct DataStorageTests {
 
         // Verify insertion
         let count = try db.scalar(testConfigurations.count)
-        #expect(count == 1)
+        XCTAssertEqual(count, 1)
 
         // Verify data
         let config = try db.pluck(testConfigurations.filter(id == configId))
-        #expect(config != nil)
-        #expect(config![name] == "Default Configuration")
-        #expect(config![testInterval] == 60)
-        #expect(config![timeout] == 30)
-        #expect(config![retryCount] == 3)
-        #expect(config![webPort] == 8080)
-        #expect(config![dataRetentionDays] == 30)
-        #expect(config![enableNotifications] == true)
-        #expect(config![enableWebInterface] == true)
-        #expect(config![isActive] == true)
+        XCTAssert(config != nil)
+        XCTAssertEqual(config![name], "Default Configuration")
+        XCTAssertEqual(config![testInterval], 60)
+        XCTAssertEqual(config![timeout], 30)
+        XCTAssertEqual(config![retryCount], 3)
+        XCTAssertEqual(config![webPort], 8080)
+        XCTAssertEqual(config![dataRetentionDays], 30)
+        XCTAssertEqual(config![enableNotifications], true)
+        XCTAssertEqual(config![enableWebInterface], true)
+        XCTAssertEqual(config![isActive], true)
     }
 
-    @Test func insertSystemMetrics() throws {
+    func testinsertSystemMetrics() throws {
         let db = try Connection(":memory:")
 
         // Create table
@@ -175,19 +175,19 @@ struct DataStorageTests {
 
         // Verify insertion
         let count = try db.scalar(systemMetrics.count)
-        #expect(count == 1)
+        XCTAssertEqual(count, 1)
 
         // Verify data
         let metrics = try db.pluck(systemMetrics.filter(id == metricsId))
-        #expect(metrics != nil)
-        #expect(metrics![cpuUsage] == 0.25)
-        #expect(metrics![memoryUsage] == 512.0)
-        #expect(metrics![networkInterface] == "en0")
-        #expect(metrics![networkInterfaceStatus] == "active")
-        #expect(metrics![batteryLevel] == 85.0)
+        XCTAssert(metrics != nil)
+        XCTAssertEqual(metrics![cpuUsage], 0.25)
+        XCTAssertEqual(metrics![memoryUsage], 512.0)
+        XCTAssertEqual(metrics![networkInterface], "en0")
+        XCTAssertEqual(metrics![networkInterfaceStatus], "active")
+        XCTAssertEqual(metrics![batteryLevel], 85.0)
     }
 
-    @Test func insertServiceStatus() throws {
+    func testinsertServiceStatus() throws {
         let db = try Connection(":memory:")
 
         // Create table
@@ -226,19 +226,19 @@ struct DataStorageTests {
 
         // Verify insertion
         let count = try db.scalar(serviceStatus.count)
-        #expect(count == 1)
+        XCTAssertEqual(count, 1)
 
         // Verify data
         let statusRecord = try db.pluck(serviceStatus.filter(id == statusId))
-        #expect(statusRecord != nil)
-        #expect(statusRecord![status] == "running")
-        #expect(statusRecord![uptimeSeconds] == 3600)
-        #expect(statusRecord![totalTests] == 100)
-        #expect(statusRecord![successfulTests] == 95)
-        #expect(statusRecord![failedTests] == 5)
+        XCTAssert(statusRecord != nil)
+        XCTAssertEqual(statusRecord![status], "running")
+        XCTAssertEqual(statusRecord![uptimeSeconds], 3600)
+        XCTAssertEqual(statusRecord![totalTests], 100)
+        XCTAssertEqual(statusRecord![successfulTests], 95)
+        XCTAssertEqual(statusRecord![failedTests], 5)
     }
 
-    @Test func queryConnectivityRecords() throws {
+    func testqueryConnectivityRecords() throws {
         let db = try Connection(":memory:")
 
         // Create table and insert test data
@@ -275,22 +275,22 @@ struct DataStorageTests {
         // Test queries
         let allRecords = try db.prepare(connectivityRecords)
         let allCount = try allRecords.map { _ in 1 }.reduce(0, +)
-        #expect(allCount == 5)
+        XCTAssertEqual(allCount, 5)
 
         let pingRecords = try db.prepare(connectivityRecords.filter(testType == "ping"))
         let pingCount = try pingRecords.map { _ in 1 }.reduce(0, +)
-        #expect(pingCount == 2)
+        XCTAssertEqual(pingCount, 2)
 
         let successfulRecords = try db.prepare(connectivityRecords.filter(success == true))
         let successCount = try successfulRecords.map { _ in 1 }.reduce(0, +)
-        #expect(successCount == 4) // 1,2,4,5 are successful (i % 3 != 0)
+        XCTAssertEqual(successCount, 4) // 1,2,4,5 are successful (i % 3 != 0)
 
         let failedRecords = try db.prepare(connectivityRecords.filter(success == false))
         let failCount = try failedRecords.map { _ in 1 }.reduce(0, +)
-        #expect(failCount == 1) // Only 3 fails (i % 3 == 0)
+        XCTAssertEqual(failCount, 1) // Only 3 fails (i % 3 == 0)
     }
 
-    @Test func updateServiceStatus() throws {
+    func testupdateServiceStatus() throws {
         let db = try Connection(":memory:")
 
         // Create table
@@ -340,15 +340,15 @@ struct DataStorageTests {
 
         // Verify update
         let updatedStatus = try db.pluck(serviceStatus.filter(id == statusId))
-        #expect(updatedStatus != nil)
-        #expect(updatedStatus![status] == "running")
-        #expect(updatedStatus![uptimeSeconds] == 3600)
-        #expect(updatedStatus![totalTests] == 100)
-        #expect(updatedStatus![successfulTests] == 95)
-        #expect(updatedStatus![failedTests] == 5)
+        XCTAssert(updatedStatus != nil)
+        XCTAssertEqual(updatedStatus![status], "running")
+        XCTAssertEqual(updatedStatus![uptimeSeconds], 3600)
+        XCTAssertEqual(updatedStatus![totalTests], 100)
+        XCTAssertEqual(updatedStatus![successfulTests], 95)
+        XCTAssertEqual(updatedStatus![failedTests], 5)
     }
 
-    @Test func deleteOldRecords() throws {
+    func testdeleteOldRecords() throws {
         let db = try Connection(":memory:")
 
         // Create table
@@ -388,7 +388,7 @@ struct DataStorageTests {
 
         // Verify initial count
         let initialCount = try db.scalar(connectivityRecords.count)
-        #expect(initialCount == 5)
+        XCTAssertEqual(initialCount, 5)
 
         // Delete old records (older than 30 days)
         let cutoffDate = now.addingTimeInterval(-86400 * 30)
@@ -398,6 +398,6 @@ struct DataStorageTests {
 
         // Verify deletion
         let finalCount = try db.scalar(connectivityRecords.count)
-        #expect(finalCount == 3) // Should have deleted 2 old records
+        XCTAssertEqual(finalCount, 3) // Should have deleted 2 old records
     }
 }

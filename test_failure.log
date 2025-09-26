@@ -1,0 +1,977 @@
+﻿2025-09-26T12:14:39.6454558Z Current runner version: '2.328.0'
+2025-09-26T12:14:39.6487054Z ##[group]Runner Image Provisioner
+2025-09-26T12:14:39.6488306Z Hosted Compute Agent
+2025-09-26T12:14:39.6489174Z Version: 20250912.392
+2025-09-26T12:14:39.6490211Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
+2025-09-26T12:14:39.6491641Z Build Date: 2025-09-12T15:23:14Z
+2025-09-26T12:14:39.6492524Z ##[endgroup]
+2025-09-26T12:14:39.6493485Z ##[group]Operating System
+2025-09-26T12:14:39.6494350Z Ubuntu
+2025-09-26T12:14:39.6495092Z 24.04.3
+2025-09-26T12:14:39.6495893Z LTS
+2025-09-26T12:14:39.6496762Z ##[endgroup]
+2025-09-26T12:14:39.6497553Z ##[group]Runner Image
+2025-09-26T12:14:39.6498687Z Image: ubuntu-24.04
+2025-09-26T12:14:39.6499565Z Version: 20250922.53.1
+2025-09-26T12:14:39.6501500Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250922.53/images/ubuntu/Ubuntu2404-Readme.md
+2025-09-26T12:14:39.6504586Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250922.53
+2025-09-26T12:14:39.6506439Z ##[endgroup]
+2025-09-26T12:14:39.6508424Z ##[group]GITHUB_TOKEN Permissions
+2025-09-26T12:14:39.6511321Z Contents: read
+2025-09-26T12:14:39.6512160Z Metadata: read
+2025-09-26T12:14:39.6513111Z SecurityEvents: write
+2025-09-26T12:14:39.6514124Z ##[endgroup]
+2025-09-26T12:14:39.6517500Z Secret source: Actions
+2025-09-26T12:14:39.6519049Z Prepare workflow directory
+2025-09-26T12:14:39.7085747Z Prepare all required actions
+2025-09-26T12:14:39.7144165Z Getting action download info
+2025-09-26T12:14:39.9363544Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-09-26T12:14:40.0183535Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2025-09-26T12:14:40.3917437Z Complete job name: build_test
+2025-09-26T12:14:40.4576584Z ##[group]Run actions/checkout@v4
+2025-09-26T12:14:40.4577401Z with:
+2025-09-26T12:14:40.4577796Z   repository: isp-snitch/isp-snitch
+2025-09-26T12:14:40.4578545Z   token: ***
+2025-09-26T12:14:40.4578955Z   ssh-strict: true
+2025-09-26T12:14:40.4579334Z   ssh-user: git
+2025-09-26T12:14:40.4579723Z   persist-credentials: true
+2025-09-26T12:14:40.4580148Z   clean: true
+2025-09-26T12:14:40.4580743Z   sparse-checkout-cone-mode: true
+2025-09-26T12:14:40.4581221Z   fetch-depth: 1
+2025-09-26T12:14:40.4581607Z   fetch-tags: false
+2025-09-26T12:14:40.4582000Z   show-progress: true
+2025-09-26T12:14:40.4582392Z   lfs: false
+2025-09-26T12:14:40.4582743Z   submodules: false
+2025-09-26T12:14:40.4583128Z   set-safe-directory: true
+2025-09-26T12:14:40.4583805Z env:
+2025-09-26T12:14:40.4584160Z   SWIFT_VERSION: 5.6
+2025-09-26T12:14:40.4584711Z ##[endgroup]
+2025-09-26T12:14:40.5625886Z Syncing repository: isp-snitch/isp-snitch
+2025-09-26T12:14:40.5627581Z ##[group]Getting Git version info
+2025-09-26T12:14:40.5628453Z Working directory is '/home/runner/work/isp-snitch/isp-snitch'
+2025-09-26T12:14:40.5629386Z [command]/usr/bin/git version
+2025-09-26T12:14:40.5662648Z git version 2.51.0
+2025-09-26T12:14:40.5688102Z ##[endgroup]
+2025-09-26T12:14:40.5701689Z Temporarily overriding HOME='/home/runner/work/_temp/497e0886-5c29-4854-b55a-a62ea32d28d8' before making global git config changes
+2025-09-26T12:14:40.5703027Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-26T12:14:40.5714125Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:14:40.5746632Z Deleting the contents of '/home/runner/work/isp-snitch/isp-snitch'
+2025-09-26T12:14:40.5750026Z ##[group]Initializing the repository
+2025-09-26T12:14:40.5753971Z [command]/usr/bin/git init /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:14:40.5816826Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-09-26T12:14:40.5818447Z hint: is subject to change. To configure the initial branch name to use in all
+2025-09-26T12:14:40.5820088Z hint: of your new repositories, which will suppress this warning, call:
+2025-09-26T12:14:40.5821410Z hint:
+2025-09-26T12:14:40.5822224Z hint: 	git config --global init.defaultBranch <name>
+2025-09-26T12:14:40.5822790Z hint:
+2025-09-26T12:14:40.5823347Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-09-26T12:14:40.5824205Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-09-26T12:14:40.5824878Z hint:
+2025-09-26T12:14:40.5825246Z hint: 	git branch -m <name>
+2025-09-26T12:14:40.5825937Z hint:
+2025-09-26T12:14:40.5826836Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-09-26T12:14:40.5827802Z Initialized empty Git repository in /home/runner/work/isp-snitch/isp-snitch/.git/
+2025-09-26T12:14:40.5831479Z [command]/usr/bin/git remote add origin https://github.com/isp-snitch/isp-snitch
+2025-09-26T12:14:40.5863442Z ##[endgroup]
+2025-09-26T12:14:40.5864518Z ##[group]Disabling automatic garbage collection
+2025-09-26T12:14:40.5867271Z [command]/usr/bin/git config --local gc.auto 0
+2025-09-26T12:14:40.5894464Z ##[endgroup]
+2025-09-26T12:14:40.5895498Z ##[group]Setting up auth
+2025-09-26T12:14:40.5900910Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-26T12:14:40.5929530Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-26T12:14:40.6224667Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-26T12:14:40.6253317Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-26T12:14:40.6486836Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-26T12:14:40.6531431Z ##[endgroup]
+2025-09-26T12:14:40.6532698Z ##[group]Fetching the repository
+2025-09-26T12:14:40.6541044Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5b64489a5c9e021b8e791eb830731e60a20ab0eb:refs/remotes/origin/main
+2025-09-26T12:14:40.9455125Z From https://github.com/isp-snitch/isp-snitch
+2025-09-26T12:14:40.9456158Z  * [new ref]         5b64489a5c9e021b8e791eb830731e60a20ab0eb -> origin/main
+2025-09-26T12:14:40.9486455Z ##[endgroup]
+2025-09-26T12:14:40.9487773Z ##[group]Determining the checkout info
+2025-09-26T12:14:40.9489275Z ##[endgroup]
+2025-09-26T12:14:40.9494967Z [command]/usr/bin/git sparse-checkout disable
+2025-09-26T12:14:40.9533600Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-09-26T12:14:40.9562820Z ##[group]Checking out the ref
+2025-09-26T12:14:40.9567043Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-09-26T12:14:40.9888556Z Switched to a new branch 'main'
+2025-09-26T12:14:40.9891493Z branch 'main' set up to track 'origin/main'.
+2025-09-26T12:14:40.9898161Z ##[endgroup]
+2025-09-26T12:14:40.9931263Z [command]/usr/bin/git log -1 --format=%H
+2025-09-26T12:14:40.9952297Z 5b64489a5c9e021b8e791eb830731e60a20ab0eb
+2025-09-26T12:14:41.0138764Z ##[group]Run wget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz
+2025-09-26T12:14:41.0141410Z [36;1mwget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz[0m
+2025-09-26T12:14:41.0142935Z [36;1mtar xzf swift-5.6-RELEASE-ubuntu20.04.tar.gz[0m
+2025-09-26T12:14:41.0143902Z [36;1mecho "$PWD/swift-5.6-RELEASE-ubuntu20.04/usr/bin" >> $GITHUB_PATH[0m
+2025-09-26T12:14:41.0180958Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:14:41.0181504Z env:
+2025-09-26T12:14:41.0181867Z   SWIFT_VERSION: 5.6
+2025-09-26T12:14:41.0182291Z ##[endgroup]
+2025-09-26T12:14:52.9371382Z ##[group]Run actions/cache@v4
+2025-09-26T12:14:52.9371736Z with:
+2025-09-26T12:14:52.9372033Z   path: ~/.swiftpm
+~/Library/Caches/org.swift.swiftpm
+
+2025-09-26T12:14:52.9372827Z   key: Linux-spmcache-21d754f6a67725cc64b067e8ac65a75e2befbe2f070d9a3edc6a120364f684da
+2025-09-26T12:14:52.9373307Z   restore-keys: Linux-spmcache-
+2025-09-26T12:14:52.9373584Z   enableCrossOsArchive: false
+2025-09-26T12:14:52.9373849Z   fail-on-cache-miss: false
+2025-09-26T12:14:52.9374113Z   lookup-only: false
+2025-09-26T12:14:52.9374377Z   save-always: false
+2025-09-26T12:14:52.9374601Z env:
+2025-09-26T12:14:52.9374798Z   SWIFT_VERSION: 5.6
+2025-09-26T12:14:52.9375027Z ##[endgroup]
+2025-09-26T12:14:53.1662525Z Cache not found for input keys: Linux-spmcache-21d754f6a67725cc64b067e8ac65a75e2befbe2f070d9a3edc6a120364f684da, Linux-spmcache-
+2025-09-26T12:14:53.1744352Z ##[group]Run swift package resolve
+2025-09-26T12:14:53.1744686Z [36;1mswift package resolve[0m
+2025-09-26T12:14:53.1779809Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:14:53.1780052Z env:
+2025-09-26T12:14:53.1780226Z   SWIFT_VERSION: 5.6
+2025-09-26T12:14:53.1780585Z ##[endgroup]
+2025-09-26T12:14:55.5214417Z Fetching https://github.com/apple/swift-log.git
+2025-09-26T12:14:55.5215267Z Fetching https://github.com/apple/swift-argument-parser.git
+2025-09-26T12:14:55.5218116Z Fetching https://github.com/swiftlang/swift-toolchain-sqlite
+2025-09-26T12:14:55.7529619Z [1/181] Fetching objects
+2025-09-26T12:14:57.2893186Z Fetched https://github.com/apple/swift-log.git (1.77s)
+2025-09-26T12:14:57.2908080Z Fetching https://github.com/stephencelis/SQLite.swift.git
+2025-09-26T12:14:57.2960052Z Fetched https://github.com/apple/swift-argument-parser.git (1.77s)
+2025-09-26T12:14:57.2961059Z Fetched https://github.com/swiftlang/swift-toolchain-sqlite (1.77s)
+2025-09-26T12:14:58.0302538Z Fetched https://github.com/stephencelis/SQLite.swift.git (0.74s)
+2025-09-26T12:14:58.0307106Z Computing version for https://github.com/apple/swift-log.git
+2025-09-26T12:14:58.0625514Z Computing version for https://github.com/apple/swift-argument-parser.git
+2025-09-26T12:14:58.0876860Z Computing version for https://github.com/stephencelis/SQLite.swift.git
+2025-09-26T12:14:58.2887798Z Computed https://github.com/stephencelis/SQLite.swift.git at 0.14.1 (0.18s)
+2025-09-26T12:14:58.2891764Z Fetching https://github.com/stephencelis/CSQLite.git
+2025-09-26T12:14:58.4480949Z Fetched https://github.com/stephencelis/CSQLite.git (0.16s)
+2025-09-26T12:14:58.4505641Z Computing version for https://github.com/stephencelis/CSQLite.git
+2025-09-26T12:14:59.0162922Z Computed https://github.com/stephencelis/CSQLite.git at 0.0.3 (0.57s)
+2025-09-26T12:14:59.1772094Z Computed https://github.com/apple/swift-argument-parser.git at 1.2.3 (0.16s)
+2025-09-26T12:14:59.3231296Z Computed https://github.com/apple/swift-log.git at 1.5.4 (0.15s)
+2025-09-26T12:14:59.3672564Z Creating working copy for https://github.com/stephencelis/CSQLite.git
+2025-09-26T12:14:59.4065768Z Working copy of https://github.com/stephencelis/CSQLite.git resolved at 0.0.3
+2025-09-26T12:14:59.4110980Z Creating working copy for https://github.com/stephencelis/SQLite.swift.git
+2025-09-26T12:14:59.4682581Z Working copy of https://github.com/stephencelis/SQLite.swift.git resolved at 0.14.1
+2025-09-26T12:14:59.4727244Z Creating working copy for https://github.com/apple/swift-argument-parser.git
+2025-09-26T12:14:59.5370086Z Working copy of https://github.com/apple/swift-argument-parser.git resolved at 1.2.3
+2025-09-26T12:14:59.5414985Z Creating working copy for https://github.com/apple/swift-log.git
+2025-09-26T12:14:59.5872845Z Working copy of https://github.com/apple/swift-log.git resolved at 1.5.4
+2025-09-26T12:14:59.9579639Z ##[group]Run swift build --configuration debug -Xswiftc -parse-as-library
+2025-09-26T12:14:59.9580161Z [36;1mswift build --configuration debug -Xswiftc -parse-as-library[0m
+2025-09-26T12:14:59.9614238Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:14:59.9614495Z env:
+2025-09-26T12:14:59.9614656Z   SWIFT_VERSION: 5.6
+2025-09-26T12:14:59.9614840Z ##[endgroup]
+2025-09-26T12:15:00.7132387Z 'csqlite': warning: ignoring declared target(s) 'CSQLite' in the system package
+2025-09-26T12:15:00.7579455Z Compiling plugin GenerateManual...
+2025-09-26T12:15:01.1804936Z Building for debugging...
+2025-09-26T12:15:01.1875936Z [1/8] Copying Schema.sql
+2025-09-26T12:15:03.3371886Z [2/42] Emitting module SQLite
+2025-09-26T12:15:03.5482928Z [3/50] Emitting module ArgumentParserToolInfo
+2025-09-26T12:15:03.5552454Z [4/50] Compiling ArgumentParserToolInfo ToolInfo.swift
+2025-09-26T12:15:03.6863497Z [7/52] Wrapping AST for ArgumentParserToolInfo for debugging
+2025-09-26T12:15:05.1621141Z [8/84] Compiling ArgumentParser ParsedValues.swift
+2025-09-26T12:15:05.1621804Z [9/84] Compiling ArgumentParser ParserError.swift
+2025-09-26T12:15:05.1622401Z [10/84] Compiling ArgumentParser SplitArguments.swift
+2025-09-26T12:15:05.1622968Z [11/84] Compiling ArgumentParser Option.swift
+2025-09-26T12:15:05.1623493Z [12/84] Compiling ArgumentParser OptionGroup.swift
+2025-09-26T12:15:05.1624097Z [13/84] Compiling ArgumentParser AsyncParsableCommand.swift
+2025-09-26T12:15:05.1624748Z [14/84] Compiling ArgumentParser CommandConfiguration.swift
+2025-09-26T12:15:05.1625408Z [15/84] Compiling ArgumentParser EnumerableFlag.swift
+2025-09-26T12:15:05.1626025Z [16/84] Compiling ArgumentParser ExpressibleByArgument.swift
+2025-09-26T12:15:05.2661775Z [17/84] Compiling Logging LogHandler.swift
+2025-09-26T12:15:05.2680692Z [18/85] Emitting module Logging
+2025-09-26T12:15:05.2701834Z [19/85] Compiling Logging Logging.swift
+2025-09-26T12:15:05.2731332Z [20/85] Compiling Logging Locks.swift
+2025-09-26T12:15:05.4328207Z [21/85] Compiling Logging MetadataProvider.swift
+2025-09-26T12:15:05.5355460Z [24/87] Emitting module ArgumentParser
+2025-09-26T12:15:05.5671596Z [25/97] Wrapping AST for Logging for debugging
+2025-09-26T12:15:05.9069067Z [26/97] Compiling ArgumentParser BashCompletionsGenerator.swift
+2025-09-26T12:15:05.9070083Z [27/97] Compiling ArgumentParser CompletionsGenerator.swift
+2025-09-26T12:15:05.9071219Z [28/97] Compiling ArgumentParser FishCompletionsGenerator.swift
+2025-09-26T12:15:05.9072694Z [29/97] Compiling ArgumentParser ZshCompletionsGenerator.swift
+2025-09-26T12:15:05.9073388Z [30/97] Compiling ArgumentParser Argument.swift
+2025-09-26T12:15:05.9073982Z [31/97] Compiling ArgumentParser ArgumentHelp.swift
+2025-09-26T12:15:05.9075136Z [32/97] Compiling ArgumentParser ArgumentVisibility.swift
+2025-09-26T12:15:05.9076811Z [33/97] Compiling ArgumentParser CompletionKind.swift
+2025-09-26T12:15:05.9095736Z [34/97] Compiling ArgumentParser Errors.swift
+2025-09-26T12:15:05.9096402Z [35/97] Compiling ArgumentParser Flag.swift
+2025-09-26T12:15:05.9097069Z [36/97] Compiling ArgumentParser NameSpecification.swift
+2025-09-26T12:15:05.9097830Z [37/97] Compiling ArgumentParser ArgumentDefinition.swift
+2025-09-26T12:15:05.9098488Z [38/97] Compiling ArgumentParser ArgumentSet.swift
+2025-09-26T12:15:05.9099101Z [39/97] Compiling ArgumentParser CommandParser.swift
+2025-09-26T12:15:05.9099710Z [40/97] Compiling ArgumentParser InputKey.swift
+2025-09-26T12:15:05.9100283Z [41/97] Compiling ArgumentParser InputOrigin.swift
+2025-09-26T12:15:05.9101053Z [42/97] Compiling ArgumentParser Name.swift
+2025-09-26T12:15:05.9101619Z [43/97] Compiling ArgumentParser Parsed.swift
+2025-09-26T12:15:06.8217390Z [50/97] Compiling ArgumentParser ParsableArguments.swift
+2025-09-26T12:15:06.8223463Z [51/97] Compiling ArgumentParser ParsableArgumentsValidation.swift
+2025-09-26T12:15:06.8224594Z [52/97] Compiling ArgumentParser ParsableCommand.swift
+2025-09-26T12:15:06.8225546Z [53/97] Compiling ArgumentParser ArgumentDecoder.swift
+2025-09-26T12:15:07.5161677Z [75/97] Compiling ArgumentParser DumpHelpGenerator.swift
+2025-09-26T12:15:07.5166482Z [76/97] Compiling ArgumentParser HelpCommand.swift
+2025-09-26T12:15:07.5167060Z [77/97] Compiling ArgumentParser HelpGenerator.swift
+2025-09-26T12:15:07.5167620Z [78/97] Compiling ArgumentParser MessageInfo.swift
+2025-09-26T12:15:07.5168358Z [79/97] Compiling ArgumentParser UsageGenerator.swift
+2025-09-26T12:15:07.5169066Z [80/97] Compiling ArgumentParser CollectionExtensions.swift
+2025-09-26T12:15:07.5169784Z [81/97] Compiling ArgumentParser Platform.swift
+2025-09-26T12:15:07.5170999Z [82/97] Compiling ArgumentParser SequenceExtensions.swift
+2025-09-26T12:15:07.5172982Z [83/97] Compiling ArgumentParser StringExtensions.swift
+2025-09-26T12:15:07.5173533Z [84/97] Compiling ArgumentParser Tree.swift
+2025-09-26T12:15:07.6221068Z [87/99] Wrapping AST for ArgumentParser for debugging
+2025-09-26T12:15:08.3188640Z [98/101] Wrapping AST for SQLite for debugging
+2025-09-26T12:15:08.9083186Z [99/129] Emitting module ISPSnitchCore
+2025-09-26T12:15:08.9084542Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9085783Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9086143Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:08.9087182Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9088352Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9088720Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:08.9089755Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9131383Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9131811Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:08.9132937Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9134181Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9134567Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:08.9135894Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9137392Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9137777Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:08.9139091Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9140788Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9141179Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:08.9142481Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9143933Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9144323Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:08.9145664Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9147154Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9147557Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:08.9148718Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9150031Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9150416Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:08.9212004Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:08.9213379Z @preconcurrency import SQLite
+2025-09-26T12:15:08.9213766Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.2802264Z [100/137] Compiling ISPSnitchCore CommandProtocols.swift
+2025-09-26T12:15:09.2807428Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.2809067Z @preconcurrency import SQLite
+2025-09-26T12:15:09.2813014Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.2814333Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.2851541Z @preconcurrency import SQLite
+2025-09-26T12:15:09.2852390Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.2853572Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.2854863Z @preconcurrency import SQLite
+2025-09-26T12:15:09.2855257Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.2856319Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.2857503Z @preconcurrency import SQLite
+2025-09-26T12:15:09.2857846Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.2859220Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.2861121Z @preconcurrency import SQLite
+2025-09-26T12:15:09.2861484Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.2862743Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.2864058Z @preconcurrency import SQLite
+2025-09-26T12:15:09.2864422Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.2865688Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.2867064Z @preconcurrency import SQLite
+2025-09-26T12:15:09.2867420Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.2868697Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.2870131Z @preconcurrency import SQLite
+2025-09-26T12:15:09.2870673Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3312045Z [101/137] Compiling ISPSnitchCore DataRetentionManager.swift
+2025-09-26T12:15:09.3314531Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3316198Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3317777Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3319009Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3321525Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3322012Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3324269Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3325613Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3327798Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3328920Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3330150Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3330656Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3331993Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3333715Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3334082Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3335345Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3336732Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3337087Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3338347Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3339933Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3340282Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3371677Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3373216Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3373609Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3741705Z [102/137] Compiling ISPSnitchCore DataStorage.swift
+2025-09-26T12:15:09.3745769Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3748250Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3749744Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3752203Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3754682Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3756220Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3758509Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3776993Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3777380Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3778464Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3779652Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3780021Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3781537Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3782998Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3783412Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3784812Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3786212Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3786576Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3787850Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3789242Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3789602Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.3811152Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.3812626Z @preconcurrency import SQLite
+2025-09-26T12:15:09.3812996Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4216579Z [103/137] Compiling ISPSnitchCore DatabaseManager.swift
+2025-09-26T12:15:09.4218046Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4219529Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4221378Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4222796Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4224354Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4224957Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4226127Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4227637Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4228287Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4229398Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4231240Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4231938Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4233337Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4235067Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4235504Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4237038Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4238477Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4239113Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4240588Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4242532Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4243432Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4245269Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4247214Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4248049Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4578839Z [104/137] Compiling ISPSnitchCore Migrations.swift
+2025-09-26T12:15:09.4581845Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4583103Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4583442Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4584478Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4585637Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4585973Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4587016Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4588178Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4588509Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4589510Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4590775Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4591098Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4592363Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4593759Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4594102Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4595341Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4596691Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4597027Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4598518Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4599863Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4600196Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4601574Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4602972Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4603302Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4937009Z [105/137] Compiling ISPSnitchCore ConnectivityRecordRepository.swift
+2025-09-26T12:15:09.4948409Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4949655Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4950010Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4951186Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4952327Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4952656Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4953704Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4954869Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4955197Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4956200Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4957328Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4957658Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4958901Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4960289Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4960746Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4961961Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4963302Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4963625Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4964836Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4966177Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4966501Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.4967747Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.4969116Z @preconcurrency import SQLite
+2025-09-26T12:15:09.4969453Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5296708Z [106/137] Compiling ISPSnitchCore ServiceStatusRepository.swift
+2025-09-26T12:15:09.5312127Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5313468Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5313859Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5314967Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5316227Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5316641Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5317768Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5319092Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5319755Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5321006Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5322204Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5322567Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5323910Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5325388Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5326033Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5327331Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5328782Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5329175Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5330732Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5332206Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5332590Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5333911Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5335370Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5335727Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5653750Z [107/137] Compiling ISPSnitchCore SystemMetricsRepository.swift
+2025-09-26T12:15:09.5655706Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5658929Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5659292Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5660343Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5661664Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5662007Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5663064Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5664242Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5664575Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5665584Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5666712Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5667039Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5668316Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5669711Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5670045Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5671388Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5672752Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5673139Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5674354Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5675696Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5676023Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.5677280Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.5678887Z @preconcurrency import SQLite
+2025-09-26T12:15:09.5679222Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6011669Z [108/137] Compiling ISPSnitchCore TestConfigurationRepository.swift
+2025-09-26T12:15:09.6013785Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6015220Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6015712Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6016820Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6018270Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6018635Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6019653Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6021108Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6021480Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6022481Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6023619Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6023974Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6025196Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6026591Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6026933Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6028170Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6029527Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6029858Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6031178Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6032448Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6032783Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6034042Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6035337Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6035637Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6378237Z [109/137] Compiling ISPSnitchCore NetworkMonitorStatus.swift
+2025-09-26T12:15:09.6378947Z [110/137] Compiling ISPSnitchCore TestDataContainer.swift
+2025-09-26T12:15:09.6379512Z [111/137] Compiling ISPSnitchCore TestResult.swift
+2025-09-26T12:15:09.6380041Z [112/137] Compiling ISPSnitchCore NetworkMonitor.swift
+2025-09-26T12:15:09.6380770Z [113/137] Compiling ISPSnitchCore OutputParser.swift
+2025-09-26T12:15:09.6381304Z [114/137] Compiling ISPSnitchCore PingMonitor.swift
+2025-09-26T12:15:09.6381826Z [115/137] Compiling ISPSnitchCore TestStrategy.swift
+2025-09-26T12:15:09.6382368Z [116/137] Compiling ISPSnitchCore UtilityExecutor.swift
+2025-09-26T12:15:09.6382913Z [117/137] Compiling ISPSnitchCore ServiceCoordinator.swift
+2025-09-26T12:15:09.6383302Z [118/137] Compiling ISPSnitchCore ServiceLifecycleManager.swift
+2025-09-26T12:15:09.6383669Z [119/137] Compiling ISPSnitchCore ServiceMetricsCollector.swift
+2025-09-26T12:15:09.6384016Z [120/137] Compiling ISPSnitchCore ISPSnitchService.swift
+2025-09-26T12:15:09.6384336Z [121/137] Compiling ISPSnitchCore ServiceError.swift
+2025-09-26T12:15:09.6384630Z [122/137] Compiling ISPSnitchCore ServiceMetrics.swift
+2025-09-26T12:15:09.6384929Z [123/137] Compiling ISPSnitchCore ServiceState.swift
+2025-09-26T12:15:09.6385236Z [124/137] Compiling ISPSnitchCore PerformanceMonitor.swift
+2025-09-26T12:15:09.6385786Z [125/137] Compiling ISPSnitchCore resource_bundle_accessor.swift
+2025-09-26T12:15:09.6386136Z [126/137] Compiling ISPSnitchCore SchemaManager.swift
+2025-09-26T12:15:09.6386876Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6387581Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6387785Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6388424Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6389237Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6389437Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6402735Z [127/137] Compiling ISPSnitchCore TableDefinitions.swift
+2025-09-26T12:15:09.6404061Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6405279Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6405633Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6406337Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6407059Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6407276Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6427343Z [128/137] Compiling ISPSnitchCore JSONSerializer.swift
+2025-09-26T12:15:09.6428663Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6429954Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6430300Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6431397Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6432109Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6432317Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6452787Z [129/137] Compiling ISPSnitchCore ISPSnitchCore.swift
+2025-09-26T12:15:09.6454077Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6455270Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6455606Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6456711Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6457942Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6458275Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6478335Z [130/137] Compiling ISPSnitchCore ConnectivityRecord.swift
+2025-09-26T12:15:09.6479673Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6481087Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6481380Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6482062Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6482782Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6482987Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6503868Z [131/137] Compiling ISPSnitchCore ConnectivityRecordBuilder.swift
+2025-09-26T12:15:09.6505247Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6506470Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6506804Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6507955Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6509368Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6509597Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6529162Z [132/137] Compiling ISPSnitchCore TestExecutor.swift
+2025-09-26T12:15:09.6530959Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6532461Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6532906Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6534268Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6535820Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6536079Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6554107Z [133/137] Compiling ISPSnitchCore TestScheduler.swift
+2025-09-26T12:15:09.6555399Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6556832Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6557260Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6558250Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6559127Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6559374Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6579431Z [134/137] Compiling ISPSnitchCore NetworkMonitorError.swift
+2025-09-26T12:15:09.6581134Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6582619Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6584760Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6586445Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:15:09.6587956Z @preconcurrency import SQLite
+2025-09-26T12:15:09.6588342Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:15:09.6952478Z [137/139] Wrapping AST for ISPSnitchCore for debugging
+2025-09-26T12:15:09.9853810Z [138/145] Compiling ISPSnitchCLI StatusCommand.swift
+2025-09-26T12:15:09.9854918Z [139/145] Compiling ISPSnitchCLI ReportCommand.swift
+2025-09-26T12:15:09.9856807Z [140/145] Compiling ISPSnitchCLI ServiceCommand.swift
+2025-09-26T12:15:10.0229177Z [141/146] Emitting module ISPSnitchCLI
+2025-09-26T12:15:10.0229767Z [142/146] Compiling ISPSnitchCLI ConfigCommand.swift
+2025-09-26T12:15:10.0230308Z [143/146] Compiling ISPSnitchCLI ExportCommand.swift
+2025-09-26T12:15:10.0638952Z [144/146] Compiling ISPSnitchCLI main.swift
+2025-09-26T12:15:10.1290206Z [147/148] Wrapping AST for ISPSnitchCLI for debugging
+2025-09-26T12:15:10.3631828Z [148/148] Linking isp-snitch
+2025-09-26T12:15:10.3656337Z Build complete! (10.19s)
+2025-09-26T12:15:10.3712006Z ##[group]Run swift test --parallel -Xswiftc -parse-as-library
+2025-09-26T12:15:10.3712457Z [36;1mswift test --parallel -Xswiftc -parse-as-library[0m
+2025-09-26T12:15:10.3746224Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:15:10.3746443Z env:
+2025-09-26T12:15:10.3746600Z   SWIFT_VERSION: 5.6
+2025-09-26T12:15:10.3746787Z ##[endgroup]
+2025-09-26T12:15:11.1044661Z 'csqlite': warning: ignoring declared target(s) 'CSQLite' in the system package
+2025-09-26T12:15:11.1489332Z [1/1] Planning build
+2025-09-26T12:15:11.1572550Z Compiling plugin GenerateManual...
+2025-09-26T12:15:11.5137016Z Building for debugging...
+2025-09-26T12:15:11.6873884Z error: emit-module command failed with exit code 1 (use -v to see invocation)[1/20] Emitting module ISPSnitchTests
+2025-09-26T12:15:11.6908119Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.6909496Z import Testing
+2025-09-26T12:15:11.6910029Z        ^
+2025-09-26T12:15:11.7628447Z [2/25] Compiling ISPSnitchTests HomebrewTests.swift
+2025-09-26T12:15:11.7641187Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.7645723Z import Testing
+2025-09-26T12:15:11.7649424Z        ^
+2025-09-26T12:15:11.7653377Z [3/25] Compiling ISPSnitchTests LaunchAgentTests.swift
+2025-09-26T12:15:11.7658806Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.7662604Z import Testing
+2025-09-26T12:15:11.7671531Z        ^
+2025-09-26T12:15:11.7671974Z [4/25] Compiling ISPSnitchTests NetworkIntegrationTests.swift
+2025-09-26T12:15:11.7673101Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.7674080Z import Testing
+2025-09-26T12:15:11.7674349Z        ^
+2025-09-26T12:15:11.7674800Z [5/25] Compiling ISPSnitchTests PerformanceIntegrationTests.swift
+2025-09-26T12:15:11.7675950Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.7676918Z import Testing
+2025-09-26T12:15:11.7677190Z        ^
+2025-09-26T12:15:11.7677573Z [6/25] Compiling ISPSnitchTests ServiceLifecycleTests.swift
+2025-09-26T12:15:11.7678663Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.7679655Z import Testing
+2025-09-26T12:15:11.7679912Z        ^
+2025-09-26T12:15:11.8788549Z [7/25] Compiling ISPSnitchTests ISPSnitchTests.swift
+2025-09-26T12:15:11.8793179Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8794219Z import Testing
+2025-09-26T12:15:11.8794458Z        ^
+2025-09-26T12:15:11.8794802Z [8/25] Compiling ISPSnitchTests ConnectivityRecordSwiftTestingTests.swift
+2025-09-26T12:15:11.8795541Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8796139Z import Testing
+2025-09-26T12:15:11.8796314Z        ^
+2025-09-26T12:15:11.8796563Z [9/25] Compiling ISPSnitchTests ConnectivityRecordTests.swift
+2025-09-26T12:15:11.8797225Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8797799Z import Testing
+2025-09-26T12:15:11.8797970Z        ^
+2025-09-26T12:15:11.8798165Z [10/25] Compiling ISPSnitchTests DnsTests.swift
+2025-09-26T12:15:11.8798759Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8799287Z import Testing
+2025-09-26T12:15:11.8799439Z        ^
+2025-09-26T12:15:11.8799629Z [11/25] Compiling ISPSnitchTests HttpTests.swift
+2025-09-26T12:15:11.8800620Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8801270Z import Testing
+2025-09-26T12:15:11.8801426Z        ^
+2025-09-26T12:15:11.8801617Z [12/25] Compiling ISPSnitchTests PingTests.swift
+2025-09-26T12:15:11.8802181Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8802712Z import Testing
+2025-09-26T12:15:11.8802869Z        ^
+2025-09-26T12:15:11.8803066Z [13/25] Compiling ISPSnitchTests SpeedtestTests.swift
+2025-09-26T12:15:11.8803646Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8804163Z import Testing
+2025-09-26T12:15:11.8804315Z        ^
+2025-09-26T12:15:11.8804561Z [14/25] Compiling ISPSnitchTests PerformanceOptimizationTests.swift
+2025-09-26T12:15:11.8805189Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8805709Z import Testing
+2025-09-26T12:15:11.8805864Z        ^
+2025-09-26T12:15:11.8806073Z [15/25] Compiling ISPSnitchTests ResourceUsageTests.swift
+2025-09-26T12:15:11.8806650Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8807169Z import Testing
+2025-09-26T12:15:11.8807316Z        ^
+2025-09-26T12:15:11.8807513Z [16/25] Compiling ISPSnitchTests FileSystemTests.swift
+2025-09-26T12:15:11.8808073Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.8808766Z import Testing
+2025-09-26T12:15:11.8808916Z        ^
+2025-09-26T12:15:11.9530415Z [17/25] Compiling ISPSnitchTests ConfigCommandTests.swift
+2025-09-26T12:15:11.9532727Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:12:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9533833Z         #expect(command == expectedCommand)
+2025-09-26T12:15:11.9534239Z         ^
+2025-09-26T12:15:11.9535144Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:23:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9536220Z         #expect(getCommand.contains("config get"))
+2025-09-26T12:15:11.9536640Z         ^
+2025-09-26T12:15:11.9537546Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:36:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9538624Z         #expect(getAllCommand.contains("config get"))
+2025-09-26T12:15:11.9538898Z         ^
+2025-09-26T12:15:11.9539426Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:49:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9540127Z         #expect(setIntervalCommand.contains("config set test_interval 60"))
+2025-09-26T12:15:11.9540672Z         ^
+2025-09-26T12:15:11.9541215Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:73:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9541848Z             #expect(setCommand.contains("config set \(key)"))
+2025-09-26T12:15:11.9542105Z             ^
+2025-09-26T12:15:11.9542611Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:89:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9543239Z         #expect(defaultValues["test_interval"] as? Int == 30)
+2025-09-26T12:15:11.9543496Z         ^
+2025-09-26T12:15:11.9544012Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:115:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9544640Z         #expect(expectedOutput.contains("Configuration:"))
+2025-09-26T12:15:11.9544894Z         ^
+2025-09-26T12:15:11.9545599Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:129:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9546194Z             #expect(isValid == true)
+2025-09-26T12:15:11.9546407Z             ^
+2025-09-26T12:15:11.9546915Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:134:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9547501Z             #expect(isInvalid == true)
+2025-09-26T12:15:11.9547718Z             ^
+2025-09-26T12:15:11.9548252Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:146:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9548857Z             #expect(isValid == true)
+2025-09-26T12:15:11.9549070Z             ^
+2025-09-26T12:15:11.9549591Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:151:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9550167Z             #expect(isValid == true)
+2025-09-26T12:15:11.9550380Z             ^
+2025-09-26T12:15:11.9551080Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:156:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9551658Z             #expect(isValid == true)
+2025-09-26T12:15:11.9551860Z             ^
+2025-09-26T12:15:11.9552361Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:164:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9552968Z         #expect(resetCommand.contains("config reset"))
+2025-09-26T12:15:11.9553211Z         ^
+2025-09-26T12:15:11.9553711Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:175:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9554438Z         #expect(defaultInterval == 30)
+2025-09-26T12:15:11.9554660Z         ^
+2025-09-26T12:15:11.9555169Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:196:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9555743Z             #expect(isError == true)
+2025-09-26T12:15:11.9555954Z             ^
+2025-09-26T12:15:11.9556459Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:217:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9557072Z         #expect(jsonOutput.contains("\"test_interval\""))
+2025-09-26T12:15:11.9557325Z         ^
+2025-09-26T12:15:11.9557823Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:230:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9558496Z         #expect(helpCommand.contains("--help"))
+2025-09-26T12:15:11.9558895Z         ^
+2025-09-26T12:15:11.9559779Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:237:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9560894Z         #expect(verboseCommand.contains("--verbose"))
+2025-09-26T12:15:11.9561178Z         ^
+2025-09-26T12:15:11.9561685Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:244:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9562284Z         #expect(quietCommand.contains("--quiet"))
+2025-09-26T12:15:11.9562518Z         ^
+2025-09-26T12:15:11.9563008Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:251:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9563626Z         #expect(configFileCommand.contains("--config-file"))
+2025-09-26T12:15:11.9564025Z         ^
+2025-09-26T12:15:11.9564621Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.9565192Z import Testing
+2025-09-26T12:15:11.9565347Z        ^
+2025-09-26T12:15:11.9565565Z [18/25] Compiling ISPSnitchTests ReportCommandTests.swift
+2025-09-26T12:15:11.9566198Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:12:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9566948Z         #expect(command == expectedCommand)
+2025-09-26T12:15:11.9567175Z         ^
+2025-09-26T12:15:11.9567672Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:23:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9568359Z         #expect(getCommand.contains("config get"))
+2025-09-26T12:15:11.9568777Z         ^
+2025-09-26T12:15:11.9569282Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:36:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9569877Z         #expect(getAllCommand.contains("config get"))
+2025-09-26T12:15:11.9570129Z         ^
+2025-09-26T12:15:11.9571439Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:49:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9572126Z         #expect(setIntervalCommand.contains("config set test_interval 60"))
+2025-09-26T12:15:11.9572443Z         ^
+2025-09-26T12:15:11.9572957Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:73:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9573574Z             #expect(setCommand.contains("config set \(key)"))
+2025-09-26T12:15:11.9573828Z             ^
+2025-09-26T12:15:11.9574334Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:89:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9574941Z         #expect(defaultValues["test_interval"] as? Int == 30)
+2025-09-26T12:15:11.9575198Z         ^
+2025-09-26T12:15:11.9575694Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:115:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9576470Z         #expect(expectedOutput.contains("Configuration:"))
+2025-09-26T12:15:11.9576730Z         ^
+2025-09-26T12:15:11.9577228Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:129:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9577811Z             #expect(isValid == true)
+2025-09-26T12:15:11.9578017Z             ^
+2025-09-26T12:15:11.9578521Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:134:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9579099Z             #expect(isInvalid == true)
+2025-09-26T12:15:11.9579308Z             ^
+2025-09-26T12:15:11.9580137Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:146:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9580915Z             #expect(isValid == true)
+2025-09-26T12:15:11.9581124Z             ^
+2025-09-26T12:15:11.9581634Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:151:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9582212Z             #expect(isValid == true)
+2025-09-26T12:15:11.9582409Z             ^
+2025-09-26T12:15:11.9582919Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:156:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9583490Z             #expect(isValid == true)
+2025-09-26T12:15:11.9583689Z             ^
+2025-09-26T12:15:11.9584193Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:164:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9584796Z         #expect(resetCommand.contains("config reset"))
+2025-09-26T12:15:11.9585052Z         ^
+2025-09-26T12:15:11.9585547Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:175:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9586136Z         #expect(defaultInterval == 30)
+2025-09-26T12:15:11.9586353Z         ^
+2025-09-26T12:15:11.9586849Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:196:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9587423Z             #expect(isError == true)
+2025-09-26T12:15:11.9587625Z             ^
+2025-09-26T12:15:11.9588264Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:217:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9588876Z         #expect(jsonOutput.contains("\"test_interval\""))
+2025-09-26T12:15:11.9589129Z         ^
+2025-09-26T12:15:11.9589620Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:230:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9590222Z         #expect(helpCommand.contains("--help"))
+2025-09-26T12:15:11.9590628Z         ^
+2025-09-26T12:15:11.9591134Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:237:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9591748Z         #expect(verboseCommand.contains("--verbose"))
+2025-09-26T12:15:11.9591987Z         ^
+2025-09-26T12:15:11.9592627Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:244:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9593757Z         #expect(quietCommand.contains("--quiet"))
+2025-09-26T12:15:11.9594186Z         ^
+2025-09-26T12:15:11.9595116Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:251:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9596132Z         #expect(configFileCommand.contains("--config-file"))
+2025-09-26T12:15:11.9596408Z         ^
+2025-09-26T12:15:11.9596872Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.9597408Z import Testing
+2025-09-26T12:15:11.9597735Z        ^
+2025-09-26T12:15:11.9597948Z [19/25] Compiling ISPSnitchTests StatusCommandTests.swift
+2025-09-26T12:15:11.9598584Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:12:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9599173Z         #expect(command == expectedCommand)
+2025-09-26T12:15:11.9599403Z         ^
+2025-09-26T12:15:11.9599899Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:23:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9600694Z         #expect(getCommand.contains("config get"))
+2025-09-26T12:15:11.9600943Z         ^
+2025-09-26T12:15:11.9601778Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:36:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9602402Z         #expect(getAllCommand.contains("config get"))
+2025-09-26T12:15:11.9602643Z         ^
+2025-09-26T12:15:11.9603134Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:49:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9603936Z         #expect(setIntervalCommand.contains("config set test_interval 60"))
+2025-09-26T12:15:11.9604256Z         ^
+2025-09-26T12:15:11.9604752Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:73:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9605362Z             #expect(setCommand.contains("config set \(key)"))
+2025-09-26T12:15:11.9605619Z             ^
+2025-09-26T12:15:11.9606111Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:89:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9606869Z         #expect(defaultValues["test_interval"] as? Int == 30)
+2025-09-26T12:15:11.9607126Z         ^
+2025-09-26T12:15:11.9607669Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:115:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9608310Z         #expect(expectedOutput.contains("Configuration:"))
+2025-09-26T12:15:11.9608567Z         ^
+2025-09-26T12:15:11.9609075Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:129:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9609655Z             #expect(isValid == true)
+2025-09-26T12:15:11.9609867Z             ^
+2025-09-26T12:15:11.9610703Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:134:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9611403Z             #expect(isInvalid == true)
+2025-09-26T12:15:11.9611622Z             ^
+2025-09-26T12:15:11.9612127Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:146:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9612702Z             #expect(isValid == true)
+2025-09-26T12:15:11.9612904Z             ^
+2025-09-26T12:15:11.9613409Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:151:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9613975Z             #expect(isValid == true)
+2025-09-26T12:15:11.9614178Z             ^
+2025-09-26T12:15:11.9614673Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:156:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9615241Z             #expect(isValid == true)
+2025-09-26T12:15:11.9615440Z             ^
+2025-09-26T12:15:11.9615935Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:164:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9616540Z         #expect(resetCommand.contains("config reset"))
+2025-09-26T12:15:11.9616784Z         ^
+2025-09-26T12:15:11.9617280Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:175:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9617857Z         #expect(defaultInterval == 30)
+2025-09-26T12:15:11.9618196Z         ^
+2025-09-26T12:15:11.9618692Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:196:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9619255Z             #expect(isError == true)
+2025-09-26T12:15:11.9619456Z             ^
+2025-09-26T12:15:11.9619954Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:217:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9620761Z         #expect(jsonOutput.contains("\"test_interval\""))
+2025-09-26T12:15:11.9621016Z         ^
+2025-09-26T12:15:11.9621506Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:230:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9622097Z         #expect(helpCommand.contains("--help"))
+2025-09-26T12:15:11.9622324Z         ^
+2025-09-26T12:15:11.9622822Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:237:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9623426Z         #expect(verboseCommand.contains("--verbose"))
+2025-09-26T12:15:11.9623671Z         ^
+2025-09-26T12:15:11.9624169Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:244:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9624755Z         #expect(quietCommand.contains("--quiet"))
+2025-09-26T12:15:11.9624997Z         ^
+2025-09-26T12:15:11.9625483Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:251:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9626102Z         #expect(configFileCommand.contains("--config-file"))
+2025-09-26T12:15:11.9626360Z         ^
+2025-09-26T12:15:11.9626826Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.9627370Z import Testing
+2025-09-26T12:15:11.9627643Z        ^
+2025-09-26T12:15:11.9627999Z [20/25] Compiling ISPSnitchTests DataStorageTests.swift
+2025-09-26T12:15:11.9628911Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:12:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9629503Z         #expect(command == expectedCommand)
+2025-09-26T12:15:11.9629722Z         ^
+2025-09-26T12:15:11.9630602Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:23:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9649335Z         #expect(getCommand.contains("config get"))
+2025-09-26T12:15:11.9649648Z         ^
+2025-09-26T12:15:11.9650197Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:36:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9651041Z         #expect(getAllCommand.contains("config get"))
+2025-09-26T12:15:11.9651307Z         ^
+2025-09-26T12:15:11.9651832Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:49:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9652524Z         #expect(setIntervalCommand.contains("config set test_interval 60"))
+2025-09-26T12:15:11.9652846Z         ^
+2025-09-26T12:15:11.9653372Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:73:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9654003Z             #expect(setCommand.contains("config set \(key)"))
+2025-09-26T12:15:11.9654261Z             ^
+2025-09-26T12:15:11.9654774Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:89:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9655391Z         #expect(defaultValues["test_interval"] as? Int == 30)
+2025-09-26T12:15:11.9655650Z         ^
+2025-09-26T12:15:11.9656158Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:115:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9656779Z         #expect(expectedOutput.contains("Configuration:"))
+2025-09-26T12:15:11.9657264Z         ^
+2025-09-26T12:15:11.9657769Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:129:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9658347Z             #expect(isValid == true)
+2025-09-26T12:15:11.9658555Z             ^
+2025-09-26T12:15:11.9659099Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:134:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9660119Z             #expect(isInvalid == true)
+2025-09-26T12:15:11.9660650Z             ^
+2025-09-26T12:15:11.9661439Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:146:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9662046Z             #expect(isValid == true)
+2025-09-26T12:15:11.9662262Z             ^
+2025-09-26T12:15:11.9662775Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:151:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9663363Z             #expect(isValid == true)
+2025-09-26T12:15:11.9663563Z             ^
+2025-09-26T12:15:11.9664091Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:156:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9664678Z             #expect(isValid == true)
+2025-09-26T12:15:11.9664908Z             ^
+2025-09-26T12:15:11.9665428Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:164:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9666040Z         #expect(resetCommand.contains("config reset"))
+2025-09-26T12:15:11.9666292Z         ^
+2025-09-26T12:15:11.9666789Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:175:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9667374Z         #expect(defaultInterval == 30)
+2025-09-26T12:15:11.9667587Z         ^
+2025-09-26T12:15:11.9668088Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:196:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9668672Z             #expect(isError == true)
+2025-09-26T12:15:11.9668873Z             ^
+2025-09-26T12:15:11.9669407Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:217:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9670173Z         #expect(jsonOutput.contains("\"test_interval\""))
+2025-09-26T12:15:11.9670615Z         ^
+2025-09-26T12:15:11.9671277Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:230:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9671881Z         #expect(helpCommand.contains("--help"))
+2025-09-26T12:15:11.9672120Z         ^
+2025-09-26T12:15:11.9672612Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:237:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9673219Z         #expect(verboseCommand.contains("--verbose"))
+2025-09-26T12:15:11.9673475Z         ^
+2025-09-26T12:15:11.9673975Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:244:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9674568Z         #expect(quietCommand.contains("--quiet"))
+2025-09-26T12:15:11.9674801Z         ^
+2025-09-26T12:15:11.9675303Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:251:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9675921Z         #expect(configFileCommand.contains("--config-file"))
+2025-09-26T12:15:11.9676189Z         ^
+2025-09-26T12:15:11.9676651Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.9677184Z import Testing
+2025-09-26T12:15:11.9677343Z        ^
+2025-09-26T12:15:11.9677564Z [21/25] Compiling ISPSnitchTests DatabaseSchemaTests.swift
+2025-09-26T12:15:11.9678253Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:12:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9679002Z         #expect(command == expectedCommand)
+2025-09-26T12:15:11.9679241Z         ^
+2025-09-26T12:15:11.9679733Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:23:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9680339Z         #expect(getCommand.contains("config get"))
+2025-09-26T12:15:11.9680794Z         ^
+2025-09-26T12:15:11.9681317Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:36:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9681933Z         #expect(getAllCommand.contains("config get"))
+2025-09-26T12:15:11.9682173Z         ^
+2025-09-26T12:15:11.9682666Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:49:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9683332Z         #expect(setIntervalCommand.contains("config set test_interval 60"))
+2025-09-26T12:15:11.9683662Z         ^
+2025-09-26T12:15:11.9684156Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:73:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9684772Z             #expect(setCommand.contains("config set \(key)"))
+2025-09-26T12:15:11.9685031Z             ^
+2025-09-26T12:15:11.9685533Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:89:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9686149Z         #expect(defaultValues["test_interval"] as? Int == 30)
+2025-09-26T12:15:11.9686402Z         ^
+2025-09-26T12:15:11.9686899Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:115:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9687518Z         #expect(expectedOutput.contains("Configuration:"))
+2025-09-26T12:15:11.9687771Z         ^
+2025-09-26T12:15:11.9688283Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:129:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9688857Z             #expect(isValid == true)
+2025-09-26T12:15:11.9689069Z             ^
+2025-09-26T12:15:11.9689706Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:134:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9690296Z             #expect(isInvalid == true)
+2025-09-26T12:15:11.9690610Z             ^
+2025-09-26T12:15:11.9691117Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:146:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9691695Z             #expect(isValid == true)
+2025-09-26T12:15:11.9691895Z             ^
+2025-09-26T12:15:11.9692392Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:151:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9692958Z             #expect(isValid == true)
+2025-09-26T12:15:11.9693169Z             ^
+2025-09-26T12:15:11.9693668Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:156:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9694233Z             #expect(isValid == true)
+2025-09-26T12:15:11.9694434Z             ^
+2025-09-26T12:15:11.9694936Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:164:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9695542Z         #expect(resetCommand.contains("config reset"))
+2025-09-26T12:15:11.9695788Z         ^
+2025-09-26T12:15:11.9696279Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:175:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9696856Z         #expect(defaultInterval == 30)
+2025-09-26T12:15:11.9697064Z         ^
+2025-09-26T12:15:11.9697561Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:196:13: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9698251Z             #expect(isError == true)
+2025-09-26T12:15:11.9698455Z             ^
+2025-09-26T12:15:11.9698957Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:217:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9699561Z         #expect(jsonOutput.contains("\"test_interval\""))
+2025-09-26T12:15:11.9699823Z         ^
+2025-09-26T12:15:11.9700315Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:230:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9701008Z         #expect(helpCommand.contains("--help"))
+2025-09-26T12:15:11.9701238Z         ^
+2025-09-26T12:15:11.9701736Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:237:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9702341Z         #expect(verboseCommand.contains("--verbose"))
+2025-09-26T12:15:11.9702585Z         ^
+2025-09-26T12:15:11.9703088Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:244:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9703676Z         #expect(quietCommand.contains("--quiet"))
+2025-09-26T12:15:11.9703914Z         ^
+2025-09-26T12:15:11.9704409Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:251:9: error: use of unknown directive '#expect'
+2025-09-26T12:15:11.9705029Z         #expect(configFileCommand.contains("--config-file"))
+2025-09-26T12:15:11.9705302Z         ^
+2025-09-26T12:15:11.9705761Z /home/runner/work/isp-snitch/isp-snitch/Tests/ISPSnitchTests/CLI/ConfigCommandTests.swift:1:8: error: no such module 'Testing'
+2025-09-26T12:15:11.9706317Z import Testing
+2025-09-26T12:15:11.9706475Z        ^
+2025-09-26T12:15:11.9706644Z error: fatalError
+2025-09-26T12:15:11.9716889Z ##[error]Process completed with exit code 1.
+2025-09-26T12:15:11.9812458Z Post job cleanup.
+2025-09-26T12:15:12.0727306Z [command]/usr/bin/git version
+2025-09-26T12:15:12.0762515Z git version 2.51.0
+2025-09-26T12:15:12.0805594Z Temporarily overriding HOME='/home/runner/work/_temp/9931f8ec-e180-4c5d-842e-d0ae11e6e231' before making global git config changes
+2025-09-26T12:15:12.0806843Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-26T12:15:12.0812113Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:15:12.0846568Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-26T12:15:12.0877923Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-26T12:15:12.1096630Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-26T12:15:12.1116922Z http.https://github.com/.extraheader
+2025-09-26T12:15:12.1128839Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-09-26T12:15:12.1161168Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-26T12:15:12.1508779Z Cleaning up orphan processes

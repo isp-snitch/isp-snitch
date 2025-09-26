@@ -1,18 +1,18 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct ReportCommandTests {
+class ReportCommandTests: XCTestCase {
 
-    @Test func reportCommandStructure() throws {
+    func testreportCommandStructure() throws {
         // Test that we can construct the report command
         let command = "isp-snitch report"
         let expectedCommand = "isp-snitch report"
 
-        #expect(command == expectedCommand)
+        XCTAssertEqual(command, expectedCommand)
     }
 
-    @Test func reportCommandOptions() throws {
+    func testreportCommandOptions() throws {
         // Test report command options
         let daysOption = "isp-snitch report --days 7"
         let hoursOption = "isp-snitch report --hours 24"
@@ -23,17 +23,17 @@ struct ReportCommandTests {
         let successOnlyOption = "isp-snitch report --success-only"
         let failedOnlyOption = "isp-snitch report --failed-only"
 
-        #expect(daysOption.contains("--days 7"))
-        #expect(hoursOption.contains("--hours 24"))
-        #expect(formatOption.contains("--format json"))
-        #expect(outputOption.contains("--output report.json"))
-        #expect(testTypeOption.contains("--test-type ping"))
-        #expect(targetOption.contains("--target 8.8.8.8"))
-        #expect(successOnlyOption.contains("--success-only"))
-        #expect(failedOnlyOption.contains("--failed-only"))
+        XCTAssert(daysOption.contains("--days 7"))
+        XCTAssert(hoursOption.contains("--hours 24"))
+        XCTAssert(formatOption.contains("--format json"))
+        XCTAssert(outputOption.contains("--output report.json"))
+        XCTAssert(testTypeOption.contains("--test-type ping"))
+        XCTAssert(targetOption.contains("--target 8.8.8.8"))
+        XCTAssert(successOnlyOption.contains("--success-only"))
+        XCTAssert(failedOnlyOption.contains("--failed-only"))
     }
 
-    @Test func reportCommandOutputFormat() throws {
+    func testreportCommandOutputFormat() throws {
         // Test expected output format structure
         let expectedOutput = """
         ISP Snitch Connectivity Report
@@ -56,39 +56,39 @@ struct ReportCommandTests {
         """
 
         // Test that output contains expected sections
-        #expect(expectedOutput.contains("ISP Snitch Connectivity Report"))
-        #expect(expectedOutput.contains("Summary:"))
-        #expect(expectedOutput.contains("Test Type Breakdown:"))
-        #expect(expectedOutput.contains("Total Tests:"))
-        #expect(expectedOutput.contains("Successful:"))
-        #expect(expectedOutput.contains("Failed:"))
+        XCTAssert(expectedOutput.contains("ISP Snitch Connectivity Report"))
+        XCTAssert(expectedOutput.contains("Summary:"))
+        XCTAssert(expectedOutput.contains("Test Type Breakdown:"))
+        XCTAssert(expectedOutput.contains("Total Tests:"))
+        XCTAssert(expectedOutput.contains("Successful:"))
+        XCTAssert(expectedOutput.contains("Failed:"))
     }
 
-    @Test func reportCommandTimePeriods() throws {
+    func testreportCommandTimePeriods() throws {
         // Test different time period options
         let last24Hours = "isp-snitch report --hours 24"
         let last7Days = "isp-snitch report --days 7"
         let last30Days = "isp-snitch report --days 30"
 
-        #expect(last24Hours.contains("--hours 24"))
-        #expect(last7Days.contains("--days 7"))
-        #expect(last30Days.contains("--days 30"))
+        XCTAssert(last24Hours.contains("--hours 24"))
+        XCTAssert(last7Days.contains("--days 7"))
+        XCTAssert(last30Days.contains("--days 30"))
     }
 
-    @Test func reportCommandFormatOptions() throws {
+    func testreportCommandFormatOptions() throws {
         // Test different format options
         let textFormat = "isp-snitch report --format text"
         let jsonFormat = "isp-snitch report --format json"
         let csvFormat = "isp-snitch report --format csv"
         let htmlFormat = "isp-snitch report --format html"
 
-        #expect(textFormat.contains("--format text"))
-        #expect(jsonFormat.contains("--format json"))
-        #expect(csvFormat.contains("--format csv"))
-        #expect(htmlFormat.contains("--format html"))
+        XCTAssert(textFormat.contains("--format text"))
+        XCTAssert(jsonFormat.contains("--format json"))
+        XCTAssert(csvFormat.contains("--format csv"))
+        XCTAssert(htmlFormat.contains("--format html"))
     }
 
-    @Test func reportCommandTestTypeFilters() throws {
+    func testreportCommandTestTypeFilters() throws {
         // Test different test type filters
         let pingFilter = "isp-snitch report --test-type ping"
         let httpFilter = "isp-snitch report --test-type http"
@@ -96,64 +96,64 @@ struct ReportCommandTests {
         let bandwidthFilter = "isp-snitch report --test-type bandwidth"
         let latencyFilter = "isp-snitch report --test-type latency"
 
-        #expect(pingFilter.contains("--test-type ping"))
-        #expect(httpFilter.contains("--test-type http"))
-        #expect(dnsFilter.contains("--test-type dns"))
-        #expect(bandwidthFilter.contains("--test-type bandwidth"))
-        #expect(latencyFilter.contains("--test-type latency"))
+        XCTAssert(pingFilter.contains("--test-type ping"))
+        XCTAssert(httpFilter.contains("--test-type http"))
+        XCTAssert(dnsFilter.contains("--test-type dns"))
+        XCTAssert(bandwidthFilter.contains("--test-type bandwidth"))
+        XCTAssert(latencyFilter.contains("--test-type latency"))
     }
 
-    @Test func reportCommandTargetFilters() throws {
+    func testreportCommandTargetFilters() throws {
         // Test different target filters
         let googleFilter = "isp-snitch report --target google.com"
         let cloudflareFilter = "isp-snitch report --target cloudflare.com"
         let dnsFilter = "isp-snitch report --target 8.8.8.8"
 
-        #expect(googleFilter.contains("--target google.com"))
-        #expect(cloudflareFilter.contains("--target cloudflare.com"))
-        #expect(dnsFilter.contains("--target 8.8.8.8"))
+        XCTAssert(googleFilter.contains("--target google.com"))
+        XCTAssert(cloudflareFilter.contains("--target cloudflare.com"))
+        XCTAssert(dnsFilter.contains("--target 8.8.8.8"))
     }
 
-    @Test func reportCommandSuccessFilters() throws {
+    func testreportCommandSuccessFilters() throws {
         // Test success/failure filters
         let successOnly = "isp-snitch report --success-only"
         let failedOnly = "isp-snitch report --failed-only"
 
-        #expect(successOnly.contains("--success-only"))
-        #expect(failedOnly.contains("--failed-only"))
+        XCTAssert(successOnly.contains("--success-only"))
+        XCTAssert(failedOnly.contains("--failed-only"))
     }
 
-    @Test func reportCommandOutputFile() throws {
+    func testreportCommandOutputFile() throws {
         // Test output file options
         let jsonFile = "isp-snitch report --output report.json"
         let csvFile = "isp-snitch report --output report.csv"
         let htmlFile = "isp-snitch report --output report.html"
 
-        #expect(jsonFile.contains("--output report.json"))
-        #expect(csvFile.contains("--output report.csv"))
-        #expect(htmlFile.contains("--output report.html"))
+        XCTAssert(jsonFile.contains("--output report.json"))
+        XCTAssert(csvFile.contains("--output report.csv"))
+        XCTAssert(htmlFile.contains("--output report.html"))
     }
 
-    @Test func reportCommandDataValidation() throws {
+    func testreportCommandDataValidation() throws {
         // Test data validation for report output
         let validTestTypes = ["ping", "http", "dns", "bandwidth", "latency"]
         let validFormats = ["text", "json", "csv", "html"]
         let validTargets = ["google.com", "cloudflare.com", "8.8.8.8", "1.1.1.1"]
 
         for testType in validTestTypes {
-            #expect(!testType.isEmpty)
+            XCTAssert(!testType.isEmpty)
         }
 
         for format in validFormats {
-            #expect(!format.isEmpty)
+            XCTAssert(!format.isEmpty)
         }
 
         for target in validTargets {
-            #expect(!target.isEmpty)
+            XCTAssert(!target.isEmpty)
         }
     }
 
-    @Test func reportCommandSummaryMetrics() throws {
+    func testreportCommandSummaryMetrics() throws {
         // Test summary metrics structure
         let totalTests = 2880
         let successfulTests = 2875
@@ -163,14 +163,14 @@ struct ReportCommandTests {
         let minLatency = 8.0
         let maxLatency = 156.0
 
-        #expect(totalTests == 2880)
-        #expect(successfulTests == 2875)
-        #expect(failedTests == 5)
-        #expect(successRate == 0.998)
-        #expect(averageLatency == 23.0)
+        XCTAssertEqual(totalTests, 2880)
+        XCTAssertEqual(successfulTests, 2875)
+        XCTAssertEqual(failedTests, 5)
+        XCTAssertEqual(successRate, 0.998)
+        XCTAssertEqual(averageLatency, 23.0)
     }
 
-    @Test func reportCommandTestTypeBreakdown() throws {
+    func testreportCommandTestTypeBreakdown() throws {
         // Test test type breakdown structure
         let pingTestType = "ping"
         let pingTestCount = 1440
@@ -182,18 +182,18 @@ struct ReportCommandTests {
         let httpSuccessRate = 0.993
         let httpAverageLatency = 45.0
 
-        #expect(pingTestType == "ping")
-        #expect(pingTestCount == 1440)
-        #expect(pingSuccessRate == 0.999)
-        #expect(pingAverageLatency == 15.0)
+        XCTAssertEqual(pingTestType, "ping")
+        XCTAssertEqual(pingTestCount, 1440)
+        XCTAssertEqual(pingSuccessRate, 0.999)
+        XCTAssertEqual(pingAverageLatency, 15.0)
 
-        #expect(httpTestType == "http")
-        #expect(httpTestCount == 288)
-        #expect(httpSuccessRate == 0.993)
-        #expect(httpAverageLatency == 45.0)
+        XCTAssertEqual(httpTestType, "http")
+        XCTAssertEqual(httpTestCount, 288)
+        XCTAssertEqual(httpSuccessRate, 0.993)
+        XCTAssertEqual(httpAverageLatency, 45.0)
     }
 
-    @Test func reportCommandOutageEvents() throws {
+    func testreportCommandOutageEvents() throws {
         // Test outage events structure
         let event1Timestamp = "2024-12-19T02:15:30Z"
         let event1Target = "google.com"
@@ -207,13 +207,13 @@ struct ReportCommandTests {
         let event2Duration = 15
         let event2FailureCount = 1
 
-        #expect(event1Target == "google.com")
-        #expect(event1TestType == "http")
-        #expect(event2Target == "8.8.8.8")
-        #expect(event2TestType == "ping")
+        XCTAssertEqual(event1Target, "google.com")
+        XCTAssertEqual(event1TestType, "http")
+        XCTAssertEqual(event2Target, "8.8.8.8")
+        XCTAssertEqual(event2TestType, "ping")
     }
 
-    @Test func reportCommandErrorHandling() throws {
+    func testreportCommandErrorHandling() throws {
         // Test error handling scenarios
         let errorScenarios = [
             "Invalid time period",
@@ -225,18 +225,18 @@ struct ReportCommandTests {
 
         for scenario in errorScenarios {
             let isError = scenario.contains("Invalid") || scenario.contains("failed") || scenario.contains("No data")
-            #expect(isError == true)
+            XCTAssertEqual(isError, true)
         }
     }
 
-    @Test func reportCommandCombinedOptions() throws {
+    func testreportCommandCombinedOptions() throws {
         // Test combined options
         let combinedCommand = "isp-snitch report --days 7 --format json --test-type ping --success-only --output ping-report.json"
 
-        #expect(combinedCommand.contains("--days 7"))
-        #expect(combinedCommand.contains("--format json"))
-        #expect(combinedCommand.contains("--test-type ping"))
-        #expect(combinedCommand.contains("--success-only"))
-        #expect(combinedCommand.contains("--output ping-report.json"))
+        XCTAssert(combinedCommand.contains("--days 7"))
+        XCTAssert(combinedCommand.contains("--format json"))
+        XCTAssert(combinedCommand.contains("--test-type ping"))
+        XCTAssert(combinedCommand.contains("--success-only"))
+        XCTAssert(combinedCommand.contains("--output ping-report.json"))
     }
 }

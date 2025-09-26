@@ -1,20 +1,20 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct PingTests {
+class PingTests: XCTestCase {
 
-    @Test func pingCommandFormat() throws {
+    func testpingCommandFormat() throws {
         // Test that we can construct the correct ping command
         let target = "8.8.8.8"
         let expectedCommand = "ping -c 1 -W 1000 \(target)"
 
         // This would be the actual command construction in the implementation
         let command = "ping -c 1 -W 1000 \(target)"
-        #expect(command == expectedCommand)
+        XCTAssertEqual(command, expectedCommand)
     }
 
-    @Test func parsePingSuccessOutput() throws {
+    func testparsePingSuccessOutput() throws {
         let successOutput = """
         PING 8.8.8.8 (8.8.8.8): 56 data bytes
         64 bytes from 8.8.8.8: icmp_seq=0 ttl=117 time=24.155 ms
@@ -30,44 +30,44 @@ struct PingTests {
         // Extract latency from "time=XX.XXX ms" pattern
         let timeLine = lines.first { $0.contains("time=") } ?? ""
         let timeMatch = timeLine.range(of: "time=([0-9.]+) ms", options: .regularExpression)
-        #expect(timeMatch != nil)
+        XCTAssert(timeMatch != nil)
 
         // Extract TTL from "ttl=XXX" pattern
         let ttlMatch = timeLine.range(of: "ttl=([0-9]+)", options: .regularExpression)
-        #expect(ttlMatch != nil)
+        XCTAssert(ttlMatch != nil)
 
         // Check for success indicators
         let hasPacketsReceived = successOutput.contains("packets received")
-        #expect(hasPacketsReceived == true)
+        XCTAssertEqual(hasPacketsReceived, true)
 
         // Extract packet loss from "X.X% packet loss" pattern
         let packetLossMatch = successOutput.range(of: "([0-9.]+)% packet loss", options: .regularExpression)
-        #expect(packetLossMatch != nil)
+        XCTAssert(packetLossMatch != nil)
 
         // Extract statistics from "round-trip min/avg/max/stddev" line
         let statsLine = lines.first { $0.contains("round-trip") } ?? ""
         let statsMatch = statsLine.range(of: "([0-9.]+)/([0-9.]+)/([0-9.]+)/([0-9.]+) ms", options: .regularExpression)
-        #expect(statsMatch != nil)
+        XCTAssert(statsMatch != nil)
     }
 
-    @Test func parsePingFailureOutput() throws {
+    func testparsePingFailureOutput() throws {
         let failureOutput = "ping: cannot resolve 192.168.1.999: Unknown host"
 
         // Test parsing failure output
         let isDnsFailure = failureOutput.contains("cannot resolve")
-        #expect(isDnsFailure == true)
+        XCTAssertEqual(isDnsFailure, true)
 
         let isUnknownHost = failureOutput.contains("Unknown host")
-        #expect(isUnknownHost == true)
+        XCTAssertEqual(isUnknownHost, true)
     }
 
-    @Test func pingExitCodes() throws {
+    func testpingExitCodes() throws {
         // Test expected exit codes
         let successExitCode = 0
         let dnsFailureExitCode = 68
 
-        #expect(successExitCode == 0)
-        #expect(dnsFailureExitCode == 68)
+        XCTAssertEqual(successExitCode, 0)
+        XCTAssertEqual(dnsFailureExitCode, 68)
 
         // Test that we can handle different exit codes
         let exitCodes: [Int32] = [0, 68, 1, 2]
@@ -76,26 +76,26 @@ struct PingTests {
             let isDnsFailure = code == 68
             let isOtherFailure = code != 0 && code != 68
 
-            #expect(isSuccess || isDnsFailure || isOtherFailure)
+            XCTAssert(isSuccess || isDnsFailure || isOtherFailure)
         }
     }
 
-    @Test func pingTimeoutHandling() throws {
+    func testpingTimeoutHandling() throws {
         // Test timeout configuration
         let timeoutMs = 1000
         let command = "ping -c 1 -W \(timeoutMs) 8.8.8.8"
 
-        #expect(command.contains("-W \(timeoutMs)"))
-        #expect(command.contains("-c 1"))
+        XCTAssert(command.contains("-W \(timeoutMs)"))
+        XCTAssert(command.contains("-c 1"))
     }
 
-    @Test func pingTargetValidation() throws {
+    func testpingTargetValidation() throws {
         // Test valid targets
         let validTargets = ["8.8.8.8", "1.1.1.1", "google.com", "example.com"]
 
         for target in validTargets {
             let command = "ping -c 1 -W 1000 \(target)"
-            #expect(command.contains(target))
+            XCTAssert(command.contains(target))
         }
 
         // Test invalid targets
@@ -103,11 +103,11 @@ struct PingTests {
 
         for target in invalidTargets {
             let command = "ping -c 1 -W 1000 \(target)"
-            #expect(command.contains(target))
+            XCTAssert(command.contains(target))
         }
     }
 
-    @Test func pingStatisticsParsing() throws {
+    func testpingStatisticsParsing() throws {
         let statsLine = "round-trip min/avg/max/stddev = 24.155/24.155/24.155/0.000 ms"
 
         // Test parsing statistics
@@ -115,14 +115,14 @@ struct PingTests {
         let values = components.components(separatedBy: " ")[0]
         let stats = values.components(separatedBy: "/")
 
-        #expect(stats.count == 4)
-        #expect(stats[0] == "24.155") // min
-        #expect(stats[1] == "24.155") // avg
-        #expect(stats[2] == "24.155") // max
-        #expect(stats[3] == "0.000")  // stddev
+        XCTAssertEqual(stats.count, 4)
+        XCTAssertEqual(stats[0], "24.155") // min
+        XCTAssertEqual(stats[1], "24.155") // avg
+        XCTAssertEqual(stats[2], "24.155") // max
+        XCTAssertEqual(stats[3], "0.000")  // stddev
     }
 
-    @Test func pingPacketLossCalculation() throws {
+    func testpingPacketLossCalculation() throws {
         // Test packet loss parsing
         let successStats = "1 packets transmitted, 1 packets received, 0.0% packet loss"
         let failureStats = "1 packets transmitted, 0 packets received, 100.0% packet loss"
@@ -130,22 +130,22 @@ struct PingTests {
         let successLoss = extractPacketLoss(from: successStats)
         let failureLoss = extractPacketLoss(from: failureStats)
 
-        #expect(successLoss == 0.0)
-        #expect(failureLoss == 100.0)
+        XCTAssertEqual(successLoss, 0.0)
+        XCTAssertEqual(failureLoss, 100.0)
     }
 
-    @Test func pingLatencyExtraction() throws {
+    func testpingLatencyExtraction() throws {
         let timeLine = "64 bytes from 8.8.8.8: icmp_seq=0 ttl=117 time=24.155 ms"
 
         let latency = extractLatency(from: timeLine)
-        #expect(latency == 24.155)
+        XCTAssertEqual(latency, 24.155)
     }
 
-    @Test func pingTtlExtraction() throws {
+    func testpingTtlExtraction() throws {
         let timeLine = "64 bytes from 8.8.8.8: icmp_seq=0 ttl=117 time=24.155 ms"
 
         let ttl = extractTtl(from: timeLine)
-        #expect(ttl == 117)
+        XCTAssertEqual(ttl, 117)
     }
 
     // Helper functions for parsing (these would be implemented in the actual service)

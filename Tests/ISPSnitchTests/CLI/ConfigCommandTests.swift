@@ -1,18 +1,18 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct ConfigCommandTests {
+class ConfigCommandTests: XCTestCase {
 
-    @Test func configCommandStructure() throws {
+    func testConfigCommandStructure() throws {
         // Test that we can construct the config command
         let command = "isp-snitch config"
         let expectedCommand = "isp-snitch config"
 
-        #expect(command == expectedCommand)
+        XCTAssertEqual(command, expectedCommand)
     }
 
-    @Test func configCommandSubcommands() throws {
+    func testconfigCommandSubcommands() throws {
         // Test config command subcommands
         let getCommand = "isp-snitch config get"
         let setCommand = "isp-snitch config set test_interval 60"
@@ -20,25 +20,25 @@ struct ConfigCommandTests {
         let resetCommand = "isp-snitch config reset"
         let validateCommand = "isp-snitch config validate"
 
-        #expect(getCommand.contains("config get"))
-        #expect(setCommand.contains("config set test_interval 60"))
-        #expect(listCommand.contains("config list"))
-        #expect(resetCommand.contains("config reset"))
-        #expect(validateCommand.contains("config validate"))
+        XCTAssert(getCommand.contains("config get"))
+        XCTAssert(setCommand.contains("config set test_interval 60"))
+        XCTAssert(listCommand.contains("config list"))
+        XCTAssert(resetCommand.contains("config reset"))
+        XCTAssert(validateCommand.contains("config validate"))
     }
 
-    @Test func configCommandGetOperations() throws {
+    func testconfigCommandGetOperations() throws {
         // Test get operations
         let getAllCommand = "isp-snitch config get"
         let getSpecificCommand = "isp-snitch config get test_interval"
         let getMultipleCommand = "isp-snitch config get test_interval timeout"
 
-        #expect(getAllCommand.contains("config get"))
-        #expect(getSpecificCommand.contains("config get test_interval"))
-        #expect(getMultipleCommand.contains("config get test_interval timeout"))
+        XCTAssert(getAllCommand.contains("config get"))
+        XCTAssert(getSpecificCommand.contains("config get test_interval"))
+        XCTAssert(getMultipleCommand.contains("config get test_interval timeout"))
     }
 
-    @Test func configCommandSetOperations() throws {
+    func testconfigCommandSetOperations() throws {
         // Test set operations
         let setIntervalCommand = "isp-snitch config set test_interval 60"
         let setTimeoutCommand = "isp-snitch config set timeout 10"
@@ -46,14 +46,14 @@ struct ConfigCommandTests {
         let setPortCommand = "isp-snitch config set web_port 8080"
         let setRetentionCommand = "isp-snitch config set data_retention_days 30"
 
-        #expect(setIntervalCommand.contains("config set test_interval 60"))
-        #expect(setTimeoutCommand.contains("config set timeout 10"))
-        #expect(setTargetsCommand.contains("config set ping_targets"))
-        #expect(setPortCommand.contains("config set web_port 8080"))
-        #expect(setRetentionCommand.contains("config set data_retention_days 30"))
+        XCTAssert(setIntervalCommand.contains("config set test_interval 60"))
+        XCTAssert(setTimeoutCommand.contains("config set timeout 10"))
+        XCTAssert(setTargetsCommand.contains("config set ping_targets"))
+        XCTAssert(setPortCommand.contains("config set web_port 8080"))
+        XCTAssert(setRetentionCommand.contains("config set data_retention_days 30"))
     }
 
-    @Test func configCommandConfigurationKeys() throws {
+    func testconfigCommandConfigurationKeys() throws {
         // Test configuration keys
         let configKeys = [
             "test_interval",
@@ -70,11 +70,11 @@ struct ConfigCommandTests {
 
         for key in configKeys {
             let setCommand = "isp-snitch config set \(key) value"
-            #expect(setCommand.contains("config set \(key)"))
+            XCTAssert(setCommand.contains("config set \(key)"))
         }
     }
 
-    @Test func configCommandDefaultValues() throws {
+    func testconfigCommandDefaultValues() throws {
         // Test default values
         let defaultValues: [String: Any] = [
             "test_interval": 30,
@@ -86,16 +86,16 @@ struct ConfigCommandTests {
             "enable_web_interface": true
         ]
 
-        #expect(defaultValues["test_interval"] as? Int == 30)
-        #expect(defaultValues["timeout"] as? Int == 10)
-        #expect(defaultValues["retry_count"] as? Int == 3)
-        #expect(defaultValues["web_port"] as? Int == 8080)
-        #expect(defaultValues["data_retention_days"] as? Int == 30)
-        #expect(defaultValues["enable_notifications"] as? Bool == true)
-        #expect(defaultValues["enable_web_interface"] as? Bool == true)
+        XCTAssertEqual(defaultValues["test_interval"] as? Int, 30)
+        XCTAssertEqual(defaultValues["timeout"] as? Int, 10)
+        XCTAssertEqual(defaultValues["retry_count"] as? Int, 3)
+        XCTAssertEqual(defaultValues["web_port"] as? Int, 8080)
+        XCTAssertEqual(defaultValues["data_retention_days"] as? Int, 30)
+        XCTAssertEqual(defaultValues["enable_notifications"] as? Bool, true)
+        XCTAssertEqual(defaultValues["enable_web_interface"] as? Bool, true)
     }
 
-    @Test func configCommandListOutput() throws {
+    func testconfigCommandListOutput() throws {
         // Test list output format
         let expectedOutput = """
         Configuration:
@@ -112,30 +112,30 @@ struct ConfigCommandTests {
         dns_targets: ["google.com", "cloudflare.com"]
         """
 
-        #expect(expectedOutput.contains("Configuration:"))
-        #expect(expectedOutput.contains("test_interval:"))
-        #expect(expectedOutput.contains("timeout:"))
-        #expect(expectedOutput.contains("retry_count:"))
-        #expect(expectedOutput.contains("web_port:"))
+        XCTAssert(expectedOutput.contains("Configuration:"))
+        XCTAssert(expectedOutput.contains("test_interval:"))
+        XCTAssert(expectedOutput.contains("timeout:"))
+        XCTAssert(expectedOutput.contains("retry_count:"))
+        XCTAssert(expectedOutput.contains("web_port:"))
     }
 
-    @Test func configCommandValidation() throws {
+    func testconfigCommandValidation() throws {
         // Test configuration validation
         let validConfigs = [30, 10, 3, 8080]
         let invalidConfigs = [-1, 0, -1, 0]
 
         for value in validConfigs {
             let isValid = value > 0
-            #expect(isValid == true)
+            XCTAssertEqual(isValid, true)
         }
 
         for value in invalidConfigs {
             let isInvalid = value <= 0
-            #expect(isInvalid == true)
+            XCTAssertEqual(isInvalid, true)
         }
     }
 
-    @Test func configCommandTargetValidation() throws {
+    func testconfigCommandTargetValidation() throws {
         // Test target validation
         let validPingTargets = ["8.8.8.8", "1.1.1.1", "9.9.9.9"]
         let validHttpTargets = ["https://google.com", "https://cloudflare.com"]
@@ -143,25 +143,25 @@ struct ConfigCommandTests {
 
         for target in validPingTargets {
             let isValid = target.contains(".") && !target.isEmpty
-            #expect(isValid == true)
+            XCTAssertEqual(isValid, true)
         }
 
         for target in validHttpTargets {
             let isValid = target.hasPrefix("https://") && target.count > 8
-            #expect(isValid == true)
+            XCTAssertEqual(isValid, true)
         }
 
         for target in validDnsTargets {
             let isValid = target.contains(".") && !target.isEmpty
-            #expect(isValid == true)
+            XCTAssertEqual(isValid, true)
         }
     }
 
-    @Test func configCommandResetOperation() throws {
+    func testconfigCommandResetOperation() throws {
         // Test reset operation
         let resetCommand = "isp-snitch config reset"
 
-        #expect(resetCommand.contains("config reset"))
+        XCTAssert(resetCommand.contains("config reset"))
 
         // Test that reset would restore default values
         let defaultInterval = 30
@@ -172,16 +172,16 @@ struct ConfigCommandTests {
         let defaultNotifications = true
         let defaultWebInterface = true
 
-        #expect(defaultInterval == 30)
-        #expect(defaultTimeout == 10)
-        #expect(defaultRetryCount == 3)
-        #expect(defaultWebPort == 8080)
-        #expect(defaultRetentionDays == 30)
-        #expect(defaultNotifications == true)
-        #expect(defaultWebInterface == true)
+        XCTAssertEqual(defaultInterval, 30)
+        XCTAssertEqual(defaultTimeout, 10)
+        XCTAssertEqual(defaultRetryCount, 3)
+        XCTAssertEqual(defaultWebPort, 8080)
+        XCTAssertEqual(defaultRetentionDays, 30)
+        XCTAssertEqual(defaultNotifications, true)
+        XCTAssertEqual(defaultWebInterface, true)
     }
 
-    @Test func configCommandErrorHandling() throws {
+    func testconfigCommandErrorHandling() throws {
         // Test error handling scenarios
         let errorScenarios = [
             "Invalid configuration key",
@@ -193,11 +193,11 @@ struct ConfigCommandTests {
 
         for scenario in errorScenarios {
             let isError = scenario.contains("Invalid") || scenario.contains("not found") || scenario.contains("corrupted") || scenario.contains("denied")
-            #expect(isError == true)
+            XCTAssertEqual(isError, true)
         }
     }
 
-    @Test func configCommandJsonOutput() throws {
+    func testconfigCommandJsonOutput() throws {
         // Test JSON output format
         let jsonOutput = """
         {
@@ -214,41 +214,41 @@ struct ConfigCommandTests {
         }
         """
 
-        #expect(jsonOutput.contains("\"test_interval\""))
-        #expect(jsonOutput.contains("\"timeout\""))
-        #expect(jsonOutput.contains("\"retry_count\""))
-        #expect(jsonOutput.contains("\"web_port\""))
-        #expect(jsonOutput.contains("\"data_retention_days\""))
-        #expect(jsonOutput.contains("\"enable_notifications\""))
-        #expect(jsonOutput.contains("\"enable_web_interface\""))
+        XCTAssert(jsonOutput.contains("\"test_interval\""))
+        XCTAssert(jsonOutput.contains("\"timeout\""))
+        XCTAssert(jsonOutput.contains("\"retry_count\""))
+        XCTAssert(jsonOutput.contains("\"web_port\""))
+        XCTAssert(jsonOutput.contains("\"data_retention_days\""))
+        XCTAssert(jsonOutput.contains("\"enable_notifications\""))
+        XCTAssert(jsonOutput.contains("\"enable_web_interface\""))
     }
 
-    @Test func configCommandHelp() throws {
+    func testconfigCommandHelp() throws {
         // Test help option
         let helpCommand = "isp-snitch config --help"
 
-        #expect(helpCommand.contains("--help"))
+        XCTAssert(helpCommand.contains("--help"))
     }
 
-    @Test func configCommandVerbose() throws {
+    func testconfigCommandVerbose() throws {
         // Test verbose option
         let verboseCommand = "isp-snitch config --verbose"
 
-        #expect(verboseCommand.contains("--verbose"))
+        XCTAssert(verboseCommand.contains("--verbose"))
     }
 
-    @Test func configCommandQuiet() throws {
+    func testconfigCommandQuiet() throws {
         // Test quiet option
         let quietCommand = "isp-snitch config --quiet"
 
-        #expect(quietCommand.contains("--quiet"))
+        XCTAssert(quietCommand.contains("--quiet"))
     }
 
-    @Test func configCommandConfigFile() throws {
+    func testconfigCommandConfigFile() throws {
         // Test custom config file option
         let configFileCommand = "isp-snitch config --config-file /path/to/config.json"
 
-        #expect(configFileCommand.contains("--config-file"))
-        #expect(configFileCommand.contains("/path/to/config.json"))
+        XCTAssert(configFileCommand.contains("--config-file"))
+        XCTAssert(configFileCommand.contains("/path/to/config.json"))
     }
 }

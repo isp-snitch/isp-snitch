@@ -1,10 +1,10 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct ConnectivityRecordTests {
+class ConnectivityRecordTests: XCTestCase {
 
-    @Test func connectivityRecordInitialization() throws {
+    func testconnectivityRecordInitialization() throws {
         let systemContext = SystemContext(
             cpuUsage: 0.5,
             memoryUsage: 42.0,
@@ -21,18 +21,18 @@ struct ConnectivityRecordTests {
             systemContext: systemContext
         )
 
-        #expect(record.testType == .ping)
-        #expect(record.target == "8.8.8.8")
-        #expect(record.latency == 0.024)
-        #expect(record.success == true)
-        #expect(record.networkInterface == "en0")
-        #expect(record.systemContext.cpuUsage == 0.5)
-        #expect(record.systemContext.memoryUsage == 42.0)
-        #expect(record.systemContext.networkInterfaceStatus == "active")
-        #expect(record.systemContext.batteryLevel == 85.0)
+        XCTAssertEqual(record.testType, .ping)
+        XCTAssertEqual(record.target, "8.8.8.8")
+        XCTAssertEqual(record.latency, 0.024)
+        XCTAssertEqual(record.success, true)
+        XCTAssertEqual(record.networkInterface, "en0")
+        XCTAssertEqual(record.systemContext.cpuUsage, 0.5)
+        XCTAssertEqual(record.systemContext.memoryUsage, 42.0)
+        XCTAssertEqual(record.systemContext.networkInterfaceStatus, "active")
+        XCTAssertEqual(record.systemContext.batteryLevel, 85.0)
     }
 
-    @Test func connectivityRecordWithPingData() throws {
+    func testconnectivityRecordWithPingData() throws {
         let pingData = PingData(
             latency: 0.024,
             packetLoss: 0.0,
@@ -63,14 +63,14 @@ struct ConnectivityRecordTests {
             pingData: pingData
         )
 
-        #expect(record.pingData != nil)
-        #expect(record.pingData?.latency == 0.024)
-        #expect(record.pingData?.packetLoss == 0.0)
-        #expect(record.pingData?.ttl == 117)
-        #expect(record.pingData?.statistics != nil)
+        XCTAssert(record.pingData != nil)
+        XCTAssertEqual(record.pingData?.latency, 0.024)
+        XCTAssertEqual(record.pingData?.packetLoss, 0.0)
+        XCTAssertEqual(record.pingData?.ttl, 117)
+        XCTAssert(record.pingData?.statistics != nil)
     }
 
-    @Test func connectivityRecordWithHttpData() throws {
+    func testconnectivityRecordWithHttpData() throws {
         let httpData = HttpData(
             httpCode: 200,
             totalTime: 0.113,
@@ -96,16 +96,16 @@ struct ConnectivityRecordTests {
             httpData: httpData
         )
 
-        #expect(record.httpData != nil)
-        #expect(record.httpData?.httpCode == 200)
-        #expect(record.httpData?.totalTime == 0.113)
-        #expect(record.httpData?.connectTime == 0.045)
-        #expect(record.httpData?.dnsTime == 0.012)
-        #expect(record.httpData?.downloadSize == 220)
-        #expect(record.httpData?.downloadSpeed == 15.5)
+        XCTAssert(record.httpData != nil)
+        XCTAssertEqual(record.httpData?.httpCode, 200)
+        XCTAssertEqual(record.httpData?.totalTime, 0.113)
+        XCTAssertEqual(record.httpData?.connectTime, 0.045)
+        XCTAssertEqual(record.httpData?.dnsTime, 0.012)
+        XCTAssertEqual(record.httpData?.downloadSize, 220)
+        XCTAssertEqual(record.httpData?.downloadSpeed, 15.5)
     }
 
-    @Test func connectivityRecordWithDnsData() throws {
+    func testconnectivityRecordWithDnsData() throws {
         let dnsData = DnsData(
             queryTime: 0.028,
             status: "NOERROR",
@@ -130,15 +130,15 @@ struct ConnectivityRecordTests {
             dnsData: dnsData
         )
 
-        #expect(record.dnsData != nil)
-        #expect(record.dnsData?.queryTime == 0.028)
-        #expect(record.dnsData?.status == "NOERROR")
-        #expect(record.dnsData?.answerCount == 1)
-        #expect(record.dnsData?.server == "8.8.8.8")
-        #expect(record.dnsData?.answers == ["142.250.191.14"])
+        XCTAssert(record.dnsData != nil)
+        XCTAssertEqual(record.dnsData?.queryTime, 0.028)
+        XCTAssertEqual(record.dnsData?.status, "NOERROR")
+        XCTAssertEqual(record.dnsData?.answerCount, 1)
+        XCTAssertEqual(record.dnsData?.server, "8.8.8.8")
+        XCTAssertEqual(record.dnsData?.answers, ["142.250.191.14"])
     }
 
-    @Test func connectivityRecordWithSpeedtestData() throws {
+    func testconnectivityRecordWithSpeedtestData() throws {
         let speedtestData = SpeedtestData(
             ping: 0.012,
             downloadSpeed: 95.5,
@@ -161,13 +161,13 @@ struct ConnectivityRecordTests {
             speedtestData: speedtestData
         )
 
-        #expect(record.speedtestData != nil)
-        #expect(record.speedtestData?.ping == 0.012)
-        #expect(record.speedtestData?.downloadSpeed == 95.5)
-        #expect(record.speedtestData?.uploadSpeed == 12.3)
+        XCTAssert(record.speedtestData != nil)
+        XCTAssertEqual(record.speedtestData?.ping, 0.012)
+        XCTAssertEqual(record.speedtestData?.downloadSpeed, 95.5)
+        XCTAssertEqual(record.speedtestData?.uploadSpeed, 12.3)
     }
 
-    @Test func connectivityRecordFailure() throws {
+    func testconnectivityRecordFailure() throws {
         let systemContext = SystemContext(
             cpuUsage: 0.5,
             memoryUsage: 42.0,
@@ -184,13 +184,13 @@ struct ConnectivityRecordTests {
             systemContext: systemContext
         )
 
-        #expect(record.success == false)
-        #expect(record.errorMessage == "Invalid IP address")
-        #expect(record.errorCode == 68)
-        #expect(record.latency == nil)
+        XCTAssertEqual(record.success, false)
+        XCTAssertEqual(record.errorMessage, "Invalid IP address")
+        XCTAssertEqual(record.errorCode, 68)
+        XCTAssertEqual(record.latency, nil)
     }
 
-    @Test func connectivityRecordCodable() throws {
+    func testconnectivityRecordCodable() throws {
         let systemContext = SystemContext(
             cpuUsage: 0.5,
             memoryUsage: 42.0,
@@ -217,18 +217,18 @@ struct ConnectivityRecordTests {
         decoder.dateDecodingStrategy = .iso8601
         let decodedRecord = try decoder.decode(ConnectivityRecord.self, from: data)
 
-        #expect(decodedRecord.testType == originalRecord.testType)
-        #expect(decodedRecord.target == originalRecord.target)
-        #expect(decodedRecord.latency == originalRecord.latency)
-        #expect(decodedRecord.success == originalRecord.success)
-        #expect(decodedRecord.networkInterface == originalRecord.networkInterface)
-        #expect(decodedRecord.systemContext.cpuUsage == originalRecord.systemContext.cpuUsage)
-        #expect(decodedRecord.systemContext.memoryUsage == originalRecord.systemContext.memoryUsage)
-        #expect(decodedRecord.systemContext.networkInterfaceStatus == originalRecord.systemContext.networkInterfaceStatus)
-        #expect(decodedRecord.systemContext.batteryLevel == originalRecord.systemContext.batteryLevel)
+        XCTAssertEqual(decodedRecord.testType, originalRecord.testType)
+        XCTAssertEqual(decodedRecord.target, originalRecord.target)
+        XCTAssertEqual(decodedRecord.latency, originalRecord.latency)
+        XCTAssertEqual(decodedRecord.success, originalRecord.success)
+        XCTAssertEqual(decodedRecord.networkInterface, originalRecord.networkInterface)
+        XCTAssertEqual(decodedRecord.systemContext.cpuUsage, originalRecord.systemContext.cpuUsage)
+        XCTAssertEqual(decodedRecord.systemContext.memoryUsage, originalRecord.systemContext.memoryUsage)
+        XCTAssertEqual(decodedRecord.systemContext.networkInterfaceStatus, originalRecord.systemContext.networkInterfaceStatus)
+        XCTAssertEqual(decodedRecord.systemContext.batteryLevel, originalRecord.systemContext.batteryLevel)
     }
 
-    @Test func connectivityRecordSendable() throws {
+    func testconnectivityRecordSendable() throws {
         // This test verifies that ConnectivityRecord conforms to Sendable
         let systemContext = SystemContext(
             cpuUsage: 0.5,
@@ -247,6 +247,6 @@ struct ConnectivityRecordTests {
 
         // If this compiles, the type conforms to Sendable
         let _: any Sendable = record
-        #expect(true) // This test passes if compilation succeeds
+        XCTAssert(true) // This test passes if compilation succeeds
     }
 }

@@ -1,10 +1,10 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct LaunchAgentTests {
+class LaunchAgentTests: XCTestCase {
 
-    @Test func launchAgentPlistStructure() throws {
+    func testlaunchAgentPlistStructure() throws {
         // Test LaunchAgent plist structure
         let plistContent = """
         <?xml version="1.0" encoding="UTF-8"?>
@@ -30,22 +30,22 @@ struct LaunchAgentTests {
         </plist>
         """
 
-        #expect(plistContent.contains("com.isp-snitch.monitor"))
-        #expect(plistContent.contains("/usr/local/bin/isp-snitch"))
-        #expect(plistContent.contains("start"))
-        #expect(plistContent.contains("--background"))
+        XCTAssert(plistContent.contains("com.isp-snitch.monitor"))
+        XCTAssert(plistContent.contains("/usr/local/bin/isp-snitch"))
+        XCTAssert(plistContent.contains("start"))
+        XCTAssert(plistContent.contains("--background"))
     }
 
-    @Test func launchAgentLabel() throws {
+    func testlaunchAgentLabel() throws {
         // Test LaunchAgent label
         let label = "com.isp-snitch.monitor"
 
-        #expect(label == "com.isp-snitch.monitor")
-        #expect(label.hasPrefix("com.isp-snitch"))
-        #expect(label.contains("monitor"))
+        XCTAssertEqual(label, "com.isp-snitch.monitor")
+        XCTAssert(label.hasPrefix("com.isp-snitch"))
+        XCTAssert(label.contains("monitor"))
     }
 
-    @Test func launchAgentProgramArguments() throws {
+    func testlaunchAgentProgramArguments() throws {
         // Test program arguments
         let arguments = [
             "/usr/local/bin/isp-snitch",
@@ -53,13 +53,13 @@ struct LaunchAgentTests {
             "--background"
         ]
 
-        #expect(arguments.count == 3)
-        #expect(arguments[0] == "/usr/local/bin/isp-snitch")
-        #expect(arguments[1] == "start")
-        #expect(arguments[2] == "--background")
+        XCTAssertEqual(arguments.count, 3)
+        XCTAssertEqual(arguments[0], "/usr/local/bin/isp-snitch")
+        XCTAssertEqual(arguments[1], "start")
+        XCTAssertEqual(arguments[2], "--background")
     }
 
-    @Test func launchAgentConfiguration() throws {
+    func testlaunchAgentConfiguration() throws {
         // Test LaunchAgent configuration
         let runAtLoad = true
         let keepAlive = true
@@ -68,26 +68,26 @@ struct LaunchAgentTests {
         let lowPriorityIO = true
         let nice = 1
 
-        #expect(runAtLoad == true)
-        #expect(keepAlive == true)
-        #expect(throttleInterval == 10)
-        #expect(processType == "Background")
-        #expect(lowPriorityIO == true)
-        #expect(nice == 1)
+        XCTAssertEqual(runAtLoad, true)
+        XCTAssertEqual(keepAlive, true)
+        XCTAssertEqual(throttleInterval, 10)
+        XCTAssertEqual(processType, "Background")
+        XCTAssertEqual(lowPriorityIO, true)
+        XCTAssertEqual(nice, 1)
     }
 
-    @Test func launchAgentLogPaths() throws {
+    func testlaunchAgentLogPaths() throws {
         // Test log file paths
         let standardOutPath = "/usr/local/var/log/isp-snitch/out.log"
         let standardErrorPath = "/usr/local/var/log/isp-snitch/error.log"
         let workingDirectory = "/usr/local/var/isp-snitch"
 
-        #expect(standardOutPath.hasPrefix("/usr/local/var/log/isp-snitch"))
-        #expect(standardErrorPath.hasPrefix("/usr/local/var/log/isp-snitch"))
-        #expect(workingDirectory == "/usr/local/var/isp-snitch")
+        XCTAssert(standardOutPath.hasPrefix("/usr/local/var/log/isp-snitch"))
+        XCTAssert(standardErrorPath.hasPrefix("/usr/local/var/log/isp-snitch"))
+        XCTAssertEqual(workingDirectory, "/usr/local/var/isp-snitch")
     }
 
-    @Test func launchAgentEnvironmentVariables() throws {
+    func testlaunchAgentEnvironmentVariables() throws {
         // Test environment variables
         let environmentVariables = [
             "PATH": "/usr/local/bin:/usr/bin:/bin",
@@ -95,69 +95,69 @@ struct LaunchAgentTests {
             "ISP_SNITCH_DATA": "/usr/local/var/isp-snitch/data"
         ]
 
-        #expect(environmentVariables.count == 3)
-        #expect(environmentVariables["PATH"] == "/usr/local/bin:/usr/bin:/bin")
-        #expect(environmentVariables["ISP_SNITCH_CONFIG"] == "/usr/local/etc/isp-snitch/config.json")
-        #expect(environmentVariables["ISP_SNITCH_DATA"] == "/usr/local/var/isp-snitch/data")
+        XCTAssertEqual(environmentVariables.count, 3)
+        XCTAssertEqual(environmentVariables["PATH"], "/usr/local/bin:/usr/bin:/bin")
+        XCTAssertEqual(environmentVariables["ISP_SNITCH_CONFIG"], "/usr/local/etc/isp-snitch/config.json")
+        XCTAssertEqual(environmentVariables["ISP_SNITCH_DATA"], "/usr/local/var/isp-snitch/data")
     }
 
-    @Test func launchAgentServiceManagement() throws {
+    func testlaunchAgentServiceManagement() throws {
         // Test service management commands
         let loadCommand = "launchctl load ~/Library/LaunchAgents/com.isp-snitch.monitor.plist"
         let startCommand = "launchctl start com.isp-snitch.monitor"
         let stopCommand = "launchctl stop com.isp-snitch.monitor"
         let unloadCommand = "launchctl unload ~/Library/LaunchAgents/com.isp-snitch.monitor.plist"
 
-        #expect(loadCommand.contains("launchctl load"))
-        #expect(startCommand.contains("launchctl start"))
-        #expect(stopCommand.contains("launchctl stop"))
-        #expect(unloadCommand.contains("launchctl unload"))
+        XCTAssert(loadCommand.contains("launchctl load"))
+        XCTAssert(startCommand.contains("launchctl start"))
+        XCTAssert(stopCommand.contains("launchctl stop"))
+        XCTAssert(unloadCommand.contains("launchctl unload"))
     }
 
-    @Test func launchAgentServiceStatus() throws {
+    func testlaunchAgentServiceStatus() throws {
         // Test service status commands
         let listCommand = "launchctl list | grep com.isp-snitch.monitor"
         let printCommand = "launchctl print user/$(id -u)/com.isp-snitch.monitor"
 
-        #expect(listCommand.contains("launchctl list"))
-        #expect(listCommand.contains("grep com.isp-snitch.monitor"))
-        #expect(printCommand.contains("launchctl print"))
-        #expect(printCommand.contains("com.isp-snitch.monitor"))
+        XCTAssert(listCommand.contains("launchctl list"))
+        XCTAssert(listCommand.contains("grep com.isp-snitch.monitor"))
+        XCTAssert(printCommand.contains("launchctl print"))
+        XCTAssert(printCommand.contains("com.isp-snitch.monitor"))
     }
 
-    @Test func launchAgentFilePermissions() throws {
+    func testlaunchAgentFilePermissions() throws {
         // Test file permissions
         let plistPath = "~/Library/LaunchAgents/com.isp-snitch.monitor.plist"
         let expectedPermissions = "644"
 
-        #expect(plistPath.contains("Library/LaunchAgents"))
-        #expect(plistPath.contains("com.isp-snitch.monitor.plist"))
-        #expect(expectedPermissions == "644")
+        XCTAssert(plistPath.contains("Library/LaunchAgents"))
+        XCTAssert(plistPath.contains("com.isp-snitch.monitor.plist"))
+        XCTAssertEqual(expectedPermissions, "644")
     }
 
-    @Test func launchAgentSecurity() throws {
+    func testlaunchAgentSecurity() throws {
         // Test security considerations
         let runAsUser = true
         let localAccessOnly = true
         let minimalPermissions = true
         let noElevatedPrivileges = true
 
-        #expect(runAsUser == true)
-        #expect(localAccessOnly == true)
-        #expect(minimalPermissions == true)
-        #expect(noElevatedPrivileges == true)
+        XCTAssertEqual(runAsUser, true)
+        XCTAssertEqual(localAccessOnly, true)
+        XCTAssertEqual(minimalPermissions, true)
+        XCTAssertEqual(noElevatedPrivileges, true)
     }
 
-    @Test func launchAgentResourceLimits() throws {
+    func testlaunchAgentResourceLimits() throws {
         // Test resource limits
         let maxCpuUsage = 5.0
         let maxMemoryUsage = 100.0
         let maxNetworkBandwidth = 1.0
         let maxDiskUsage = 100.0
 
-        #expect(maxCpuUsage == 5.0)
-        #expect(maxMemoryUsage == 100.0)
-        #expect(maxNetworkBandwidth == 1.0)
-        #expect(maxDiskUsage == 100.0)
+        XCTAssertEqual(maxCpuUsage, 5.0)
+        XCTAssertEqual(maxMemoryUsage, 100.0)
+        XCTAssertEqual(maxNetworkBandwidth, 1.0)
+        XCTAssertEqual(maxDiskUsage, 100.0)
     }
 }

@@ -1,10 +1,10 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct NetworkIntegrationTests {
+class NetworkIntegrationTests: XCTestCase {
 
-    @Test func networkInterfaceDetection() throws {
+    func testnetworkInterfaceDetection() throws {
         // Test network interface detection
         let interfaceTypes = ["WiFi", "Ethernet", "Thunderbolt", "USB"]
         let detectionFeatures = [
@@ -14,20 +14,20 @@ struct NetworkIntegrationTests {
             "Fallback to default interface if detection fails"
         ]
 
-        #expect(interfaceTypes.count == 4)
-        #expect(interfaceTypes.contains("WiFi"))
-        #expect(interfaceTypes.contains("Ethernet"))
-        #expect(interfaceTypes.contains("Thunderbolt"))
-        #expect(interfaceTypes.contains("USB"))
+        XCTAssertEqual(interfaceTypes.count, 4)
+        XCTAssert(interfaceTypes.contains("WiFi"))
+        XCTAssert(interfaceTypes.contains("Ethernet"))
+        XCTAssert(interfaceTypes.contains("Thunderbolt"))
+        XCTAssert(interfaceTypes.contains("USB"))
 
-        #expect(detectionFeatures.count == 4)
-        #expect(detectionFeatures[0].contains("Automatic detection"))
-        #expect(detectionFeatures[1].contains("Support for WiFi"))
-        #expect(detectionFeatures[2].contains("Interface change detection"))
-        #expect(detectionFeatures[3].contains("Fallback to default interface"))
+        XCTAssertEqual(detectionFeatures.count, 4)
+        XCTAssert(detectionFeatures[0].contains("Automatic detection"))
+        XCTAssert(detectionFeatures[1].contains("Support for WiFi"))
+        XCTAssert(detectionFeatures[2].contains("Interface change detection"))
+        XCTAssert(detectionFeatures[3].contains("Fallback to default interface"))
     }
 
-    @Test func networkTestingIntegration() throws {
+    func testnetworkTestingIntegration() throws {
         // Test network testing integration
         let testingTools = [
             "ping",
@@ -43,33 +43,33 @@ struct NetworkIntegrationTests {
             "Bandwidth testing"
         ]
 
-        #expect(testingTools.count == 4)
-        #expect(testingTools.contains("ping"))
-        #expect(testingTools.contains("curl"))
-        #expect(testingTools.contains("dig"))
-        #expect(testingTools.contains("speedtest-cli"))
+        XCTAssertEqual(testingTools.count, 4)
+        XCTAssert(testingTools.contains("ping"))
+        XCTAssert(testingTools.contains("curl"))
+        XCTAssert(testingTools.contains("dig"))
+        XCTAssert(testingTools.contains("speedtest-cli"))
 
-        #expect(testingTypes.count == 4)
-        #expect(testingTypes.contains("ICMP testing"))
-        #expect(testingTypes.contains("HTTP testing"))
-        #expect(testingTypes.contains("DNS testing"))
-        #expect(testingTypes.contains("Bandwidth testing"))
+        XCTAssertEqual(testingTypes.count, 4)
+        XCTAssert(testingTypes.contains("ICMP testing"))
+        XCTAssert(testingTypes.contains("HTTP testing"))
+        XCTAssert(testingTypes.contains("DNS testing"))
+        XCTAssert(testingTypes.contains("Bandwidth testing"))
     }
 
-    @Test func networkAccessibility() throws {
+    func testnetworkAccessibility() throws {
         // Test network accessibility
         let localhostAccess = true
         let localNetworkAccess = true
         let externalNetworkAccess = false
         let securityRestrictions = true
 
-        #expect(localhostAccess == true)
-        #expect(localNetworkAccess == true)
-        #expect(externalNetworkAccess == false)
-        #expect(securityRestrictions == true)
+        XCTAssertEqual(localhostAccess, true)
+        XCTAssertEqual(localNetworkAccess, true)
+        XCTAssertEqual(externalNetworkAccess, false)
+        XCTAssertEqual(securityRestrictions, true)
     }
 
-    @Test func networkInterfaceStatus() throws {
+    func testnetworkInterfaceStatus() throws {
         // Test network interface status monitoring
         let statusTypes = ["active", "inactive", "unknown", "error"]
         let monitoringFeatures = [
@@ -79,20 +79,20 @@ struct NetworkIntegrationTests {
             "Automatic reconnection handling"
         ]
 
-        #expect(statusTypes.count == 4)
-        #expect(statusTypes.contains("active"))
-        #expect(statusTypes.contains("inactive"))
-        #expect(statusTypes.contains("unknown"))
-        #expect(statusTypes.contains("error"))
+        XCTAssertEqual(statusTypes.count, 4)
+        XCTAssert(statusTypes.contains("active"))
+        XCTAssert(statusTypes.contains("inactive"))
+        XCTAssert(statusTypes.contains("unknown"))
+        XCTAssert(statusTypes.contains("error"))
 
-        #expect(monitoringFeatures.count == 4)
-        #expect(monitoringFeatures[0].contains("Real-time interface status"))
-        #expect(monitoringFeatures[1].contains("Interface change detection"))
-        #expect(monitoringFeatures[2].contains("Status change logging"))
-        #expect(monitoringFeatures[3].contains("Automatic reconnection"))
+        XCTAssertEqual(monitoringFeatures.count, 4)
+        XCTAssert(monitoringFeatures[0].contains("Real-time interface status"))
+        XCTAssert(monitoringFeatures[1].contains("Interface change detection"))
+        XCTAssert(monitoringFeatures[2].contains("Status change logging"))
+        XCTAssert(monitoringFeatures[3].contains("Automatic reconnection"))
     }
 
-    @Test func networkTestingTargets() throws {
+    func testnetworkTestingTargets() throws {
         // Test network testing targets
         let defaultTargets = [
             "8.8.8.8",
@@ -108,20 +108,20 @@ struct NetworkIntegrationTests {
             "Custom targets"
         ]
 
-        #expect(defaultTargets.count == 4)
-        #expect(defaultTargets.contains("8.8.8.8"))
-        #expect(defaultTargets.contains("1.1.1.1"))
-        #expect(defaultTargets.contains("google.com"))
-        #expect(defaultTargets.contains("cloudflare.com"))
+        XCTAssertEqual(defaultTargets.count, 4)
+        XCTAssert(defaultTargets.contains("8.8.8.8"))
+        XCTAssert(defaultTargets.contains("1.1.1.1"))
+        XCTAssert(defaultTargets.contains("google.com"))
+        XCTAssert(defaultTargets.contains("cloudflare.com"))
 
-        #expect(targetTypes.count == 4)
-        #expect(targetTypes.contains("IP addresses"))
-        #expect(targetTypes.contains("Domain names"))
-        #expect(targetTypes.contains("Local network targets"))
-        #expect(targetTypes.contains("Custom targets"))
+        XCTAssertEqual(targetTypes.count, 4)
+        XCTAssert(targetTypes.contains("IP addresses"))
+        XCTAssert(targetTypes.contains("Domain names"))
+        XCTAssert(targetTypes.contains("Local network targets"))
+        XCTAssert(targetTypes.contains("Custom targets"))
     }
 
-    @Test func networkTestingProtocols() throws {
+    func testnetworkTestingProtocols() throws {
         // Test network testing protocols
         let protocols = [
             "ICMP",
@@ -137,20 +137,20 @@ struct NetworkIntegrationTests {
             "Bandwidth testing"
         ]
 
-        #expect(protocols.count == 4)
-        #expect(protocols.contains("ICMP"))
-        #expect(protocols.contains("HTTP"))
-        #expect(protocols.contains("HTTPS"))
-        #expect(protocols.contains("DNS"))
+        XCTAssertEqual(protocols.count, 4)
+        XCTAssert(protocols.contains("ICMP"))
+        XCTAssert(protocols.contains("HTTP"))
+        XCTAssert(protocols.contains("HTTPS"))
+        XCTAssert(protocols.contains("DNS"))
 
-        #expect(protocolFeatures.count == 4)
-        #expect(protocolFeatures[0].contains("ICMP ping"))
-        #expect(protocolFeatures[1].contains("HTTP/HTTPS"))
-        #expect(protocolFeatures[2].contains("DNS resolution"))
-        #expect(protocolFeatures[3].contains("Bandwidth"))
+        XCTAssertEqual(protocolFeatures.count, 4)
+        XCTAssert(protocolFeatures[0].contains("ICMP ping"))
+        XCTAssert(protocolFeatures[1].contains("HTTP/HTTPS"))
+        XCTAssert(protocolFeatures[2].contains("DNS resolution"))
+        XCTAssert(protocolFeatures[3].contains("Bandwidth"))
     }
 
-    @Test func networkTestingTimeouts() throws {
+    func testnetworkTestingTimeouts() throws {
         // Test network testing timeouts
         let defaultTimeout = 10
         let icmpTimeout = 5
@@ -158,40 +158,40 @@ struct NetworkIntegrationTests {
         let dnsTimeout = 5
         let speedtestTimeout = 30
 
-        #expect(defaultTimeout == 10)
-        #expect(icmpTimeout == 5)
-        #expect(httpTimeout == 15)
-        #expect(dnsTimeout == 5)
-        #expect(speedtestTimeout == 30)
+        XCTAssertEqual(defaultTimeout, 10)
+        XCTAssertEqual(icmpTimeout, 5)
+        XCTAssertEqual(httpTimeout, 15)
+        XCTAssertEqual(dnsTimeout, 5)
+        XCTAssertEqual(speedtestTimeout, 30)
     }
 
-    @Test func networkTestingRetries() throws {
+    func testnetworkTestingRetries() throws {
         // Test network testing retries
         let defaultRetries = 3
         let maxRetries = 5
         let retryDelay = 1
         let exponentialBackoff = true
 
-        #expect(defaultRetries == 3)
-        #expect(maxRetries == 5)
-        #expect(retryDelay == 1)
-        #expect(exponentialBackoff == true)
+        XCTAssertEqual(defaultRetries, 3)
+        XCTAssertEqual(maxRetries, 5)
+        XCTAssertEqual(retryDelay, 1)
+        XCTAssertEqual(exponentialBackoff, true)
     }
 
-    @Test func networkTestingFrequency() throws {
+    func testnetworkTestingFrequency() throws {
         // Test network testing frequency
         let defaultInterval = 30
         let minInterval = 5
         let maxInterval = 300
         let adaptiveInterval = true
 
-        #expect(defaultInterval == 30)
-        #expect(minInterval == 5)
-        #expect(maxInterval == 300)
-        #expect(adaptiveInterval == true)
+        XCTAssertEqual(defaultInterval, 30)
+        XCTAssertEqual(minInterval, 5)
+        XCTAssertEqual(maxInterval, 300)
+        XCTAssertEqual(adaptiveInterval, true)
     }
 
-    @Test func networkTestingDataCollection() throws {
+    func testnetworkTestingDataCollection() throws {
         // Test network testing data collection
         let dataPoints = [
             "Latency",
@@ -209,18 +209,18 @@ struct NetworkIntegrationTests {
             "Trend analysis"
         ]
 
-        #expect(dataPoints.count == 6)
-        #expect(dataPoints.contains("Latency"))
-        #expect(dataPoints.contains("Packet loss"))
-        #expect(dataPoints.contains("Jitter"))
-        #expect(dataPoints.contains("Throughput"))
-        #expect(dataPoints.contains("DNS resolution time"))
-        #expect(dataPoints.contains("HTTP response time"))
+        XCTAssertEqual(dataPoints.count, 6)
+        XCTAssert(dataPoints.contains("Latency"))
+        XCTAssert(dataPoints.contains("Packet loss"))
+        XCTAssert(dataPoints.contains("Jitter"))
+        XCTAssert(dataPoints.contains("Throughput"))
+        XCTAssert(dataPoints.contains("DNS resolution time"))
+        XCTAssert(dataPoints.contains("HTTP response time"))
 
-        #expect(collectionFeatures.count == 4)
-        #expect(collectionFeatures[0].contains("Real-time data"))
-        #expect(collectionFeatures[1].contains("Historical data"))
-        #expect(collectionFeatures[2].contains("Data aggregation"))
-        #expect(collectionFeatures[3].contains("Trend analysis"))
+        XCTAssertEqual(collectionFeatures.count, 4)
+        XCTAssert(collectionFeatures[0].contains("Real-time data"))
+        XCTAssert(collectionFeatures[1].contains("Historical data"))
+        XCTAssert(collectionFeatures[2].contains("Data aggregation"))
+        XCTAssert(collectionFeatures[3].contains("Trend analysis"))
     }
 }

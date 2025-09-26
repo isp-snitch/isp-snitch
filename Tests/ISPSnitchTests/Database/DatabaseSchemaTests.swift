@@ -1,16 +1,16 @@
-import Testing
+import XCTest
 import Foundation
 import SQLite
 @testable import ISPSnitchCore
 
-struct DatabaseSchemaTests {
+class DatabaseSchemaTests: XCTestCase {
 
-    @Test func databaseConnection() throws {
+    func testdatabaseConnection() throws {
         let db = try Connection(":memory:")
-        #expect(db != nil)
+        XCTAssert(db != nil)
     }
 
-    @Test func createConnectivityRecordsTable() throws {
+    func testcreateConnectivityRecordsTable() throws {
         let db = try Connection(":memory:")
 
         let connectivityRecords = Table("connectivity_records")
@@ -57,10 +57,10 @@ struct DatabaseSchemaTests {
         // Verify table was created
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='connectivity_records'")
         let tableNames = try tables.map { row in row[0] as! String }
-        #expect(tableNames.contains("connectivity_records"))
+        XCTAssert(tableNames.contains("connectivity_records"))
     }
 
-    @Test func createTestConfigurationsTable() throws {
+    func testcreateTestConfigurationsTable() throws {
         let db = try Connection(":memory:")
 
         let testConfigurations = Table("test_configurations")
@@ -101,10 +101,10 @@ struct DatabaseSchemaTests {
         // Verify table was created
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='test_configurations'")
         let tableNames = try tables.map { row in row[0] as! String }
-        #expect(tableNames.contains("test_configurations"))
+        XCTAssert(tableNames.contains("test_configurations"))
     }
 
-    @Test func createSystemMetricsTable() throws {
+    func testcreateSystemMetricsTable() throws {
         let db = try Connection(":memory:")
 
         let systemMetrics = Table("system_metrics")
@@ -131,10 +131,10 @@ struct DatabaseSchemaTests {
         // Verify table was created
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='system_metrics'")
         let tableNames = try tables.map { row in row[0] as! String }
-        #expect(tableNames.contains("system_metrics"))
+        XCTAssert(tableNames.contains("system_metrics"))
     }
 
-    @Test func createServiceStatusTable() throws {
+    func testcreateServiceStatusTable() throws {
         let db = try Connection(":memory:")
 
         let serviceStatus = Table("service_status")
@@ -163,10 +163,10 @@ struct DatabaseSchemaTests {
         // Verify table was created
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='service_status'")
         let tableNames = try tables.map { row in row[0] as! String }
-        #expect(tableNames.contains("service_status"))
+        XCTAssert(tableNames.contains("service_status"))
     }
 
-    @Test func createPerformanceIndexes() throws {
+    func testcreatePerformanceIndexes() throws {
         let db = try Connection(":memory:")
 
         // Create connectivity_records table first
@@ -191,12 +191,12 @@ struct DatabaseSchemaTests {
         // Verify indexes were created
         let indexes = try db.prepare("SELECT name FROM sqlite_master WHERE type='index'")
         let indexNames = try indexes.map { row in row[0] as! String }
-        #expect(indexNames.contains("index_connectivity_records_on_timestamp"))
-        #expect(indexNames.contains("index_connectivity_records_on_test_type"))
-        #expect(indexNames.contains("index_connectivity_records_on_success"))
+        XCTAssert(indexNames.contains("index_connectivity_records_on_timestamp"))
+        XCTAssert(indexNames.contains("index_connectivity_records_on_test_type"))
+        XCTAssert(indexNames.contains("index_connectivity_records_on_success"))
     }
 
-    @Test func databaseConstraints() throws {
+    func testdatabaseConstraints() throws {
         let db = try Connection(":memory:")
 
         let connectivityRecords = Table("connectivity_records")
@@ -226,9 +226,9 @@ struct DatabaseSchemaTests {
                 success <- true,
                 networkInterface <- "en0"
             ))
-            #expect(true) // Should succeed
+            XCTAssert(true) // Should succeed
         } catch {
-            #expect(false, "Valid insert should not fail")
+            XCTAssert(false, "Valid insert should not fail")
         }
 
         // Test that missing required fields fail
@@ -237,22 +237,22 @@ struct DatabaseSchemaTests {
                 id <- "test-id-2"
                 // Missing required fields
             ))
-            #expect(false, "Insert with missing required fields should fail")
+            XCTAssert(false, "Insert with missing required fields should fail")
         } catch {
-            #expect(true) // Should fail
+            XCTAssert(true) // Should fail
         }
     }
 
-    @Test func databaseSchemaVersion() throws {
+    func testdatabaseSchemaVersion() throws {
         let db = try Connection(":memory:")
 
         // Test that we can query the schema version
         let version = try db.scalar("SELECT sqlite_version()") as! String
-        #expect(!version.isEmpty)
+        XCTAssert(!version.isEmpty)
 
         // Test that we can get table info
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table'")
         let tableNames = try tables.map { row in row[0] as! String }
-        #expect(tableNames.isEmpty) // Should be empty for new database
+        XCTAssert(tableNames.isEmpty) // Should be empty for new database
     }
 }

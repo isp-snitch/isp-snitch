@@ -1,10 +1,10 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct DnsTests {
+class DnsTests: XCTestCase {
 
-    @Test func digCommandFormat() throws {
+    func testdigCommandFormat() throws {
         // Test that we can construct the correct dig command
         let domain = "google.com"
         let server = "8.8.8.8"
@@ -12,10 +12,10 @@ struct DnsTests {
 
         // This would be the actual command construction in the implementation
         let command = "dig @\(server) \(domain) +short +stats"
-        #expect(command == expectedCommand)
+        XCTAssertEqual(command, expectedCommand)
     }
 
-    @Test func parseDigSuccessOutput() throws {
+    func testparseDigSuccessOutput() throws {
         let successOutput = """
         ; <<>> DiG 9.10.6 <<>> @8.8.8.8 google.com +stats
         ; (1 server found)
@@ -44,52 +44,52 @@ struct DnsTests {
         // Extract status
         let statusLine = lines.first { $0.contains("status:") } ?? ""
         let status = extractStatus(from: statusLine)
-        #expect(status == "NOERROR")
+        XCTAssertEqual(status, "NOERROR")
 
         // Extract query time
         let queryTimeLine = lines.first { $0.contains("Query time:") } ?? ""
         let queryTime = extractQueryTime(from: queryTimeLine)
-        #expect(queryTime == 28)
+        XCTAssertEqual(queryTime, 28)
 
         // Extract server
         let serverLine = lines.first { $0.contains("SERVER:") } ?? ""
         let server = extractServer(from: serverLine)
-        #expect(server == "8.8.8.8")
+        XCTAssertEqual(server, "8.8.8.8")
 
         // Extract answer count
         let answerCount = extractAnswerCount(from: successOutput)
-        #expect(answerCount == 1)
+        XCTAssertEqual(answerCount, 1)
 
         // Extract answers
         let answers = extractAnswers(from: successOutput)
-        #expect(answers.count == 1)
-        #expect(answers.contains("142.250.72.110"))
+        XCTAssertEqual(answers.count, 1)
+        XCTAssert(answers.contains("142.250.72.110"))
     }
 
-    @Test func parseDigShortOutput() throws {
+    func testparseDigShortOutput() throws {
         let shortOutput = "142.251.40.238"
 
         // Test parsing short output
         let answers = shortOutput.components(separatedBy: .newlines).filter { !$0.isEmpty }
-        #expect(answers.count == 1)
-        #expect(answers[0] == "142.251.40.238")
+        XCTAssertEqual(answers.count, 1)
+        XCTAssertEqual(answers[0], "142.251.40.238")
     }
 
-    @Test func parseDigFailureOutput() throws {
+    func testparseDigFailureOutput() throws {
         let failureOutput = ""
 
         // Test parsing failure output (empty)
         let answers = failureOutput.components(separatedBy: .newlines).filter { !$0.isEmpty }
-        #expect(answers.isEmpty)
+        XCTAssert(answers.isEmpty)
     }
 
-    @Test func digExitCodes() throws {
+    func testdigExitCodes() throws {
         // Test expected exit codes
         let successExitCode = 0
         let serverFailureExitCode = 9
 
-        #expect(successExitCode == 0)
-        #expect(serverFailureExitCode == 9)
+        XCTAssertEqual(successExitCode, 0)
+        XCTAssertEqual(serverFailureExitCode, 9)
 
         // Test that we can handle different exit codes
         let exitCodes: [Int32] = [0, 9, 1, 2]
@@ -98,41 +98,41 @@ struct DnsTests {
             let isServerFailure = code == 9
             let isOtherFailure = code != 0 && code != 9
 
-            #expect(isSuccess || isServerFailure || isOtherFailure)
+            XCTAssert(isSuccess || isServerFailure || isOtherFailure)
         }
     }
 
-    @Test func digServerValidation() throws {
+    func testdigServerValidation() throws {
         // Test valid DNS servers
         let validServers = ["8.8.8.8", "1.1.1.1", "9.9.9.9", "208.67.222.222"]
 
         for server in validServers {
             let command = "dig @\(server) google.com +short +stats"
-            #expect(command.contains("@\(server)"))
+            XCTAssert(command.contains("@\(server)"))
         }
     }
 
-    @Test func digDomainValidation() throws {
+    func testdigDomainValidation() throws {
         // Test valid domains
         let validDomains = ["google.com", "example.com", "apple.com", "github.com"]
 
         for domain in validDomains {
             let command = "dig @8.8.8.8 \(domain) +short +stats"
-            #expect(command.contains(domain))
+            XCTAssert(command.contains(domain))
         }
     }
 
-    @Test func digOutputFormatting() throws {
+    func testdigOutputFormatting() throws {
         // Test that we can format the output correctly
         let shortCommand = "dig @8.8.8.8 google.com +short"
         let statsCommand = "dig @8.8.8.8 google.com +short +stats"
 
-        #expect(shortCommand.contains("+short"))
-        #expect(statsCommand.contains("+short"))
-        #expect(statsCommand.contains("+stats"))
+        XCTAssert(shortCommand.contains("+short"))
+        XCTAssert(statsCommand.contains("+short"))
+        XCTAssert(statsCommand.contains("+stats"))
     }
 
-    @Test func digErrorHandling() throws {
+    func testdigErrorHandling() throws {
         // Test handling of various error scenarios
         let errorScenarios = [
             ("status: NOERROR", "Success"),
@@ -146,11 +146,11 @@ struct DnsTests {
             let isSuccess = parsedStatus == "NOERROR"
             let isFailure = parsedStatus != "NOERROR"
 
-            #expect(isSuccess || isFailure)
+            XCTAssert(isSuccess || isFailure)
         }
     }
 
-    @Test func digPerformanceMetrics() throws {
+    func testdigPerformanceMetrics() throws {
         // Test parsing performance metrics
         let metricsOutput = """
         ;; Query time: 15 msec
@@ -162,11 +162,11 @@ struct DnsTests {
         let queryTime = extractQueryTime(from: metricsOutput)
         let server = extractServer(from: metricsOutput)
 
-        #expect(queryTime == 15)
-        #expect(server == "8.8.8.8")
+        XCTAssertEqual(queryTime, 15)
+        XCTAssertEqual(server, "8.8.8.8")
     }
 
-    @Test func digAnswerParsing() throws {
+    func testdigAnswerParsing() throws {
         // Test parsing different answer formats
         let answerSection = """
         ;; ANSWER SECTION:
@@ -175,12 +175,12 @@ struct DnsTests {
         """
 
         let answers = extractAnswers(from: answerSection)
-        #expect(answers.count == 2)
-        #expect(answers.contains("142.250.72.110"))
-        #expect(answers.contains("142.250.72.111"))
+        XCTAssertEqual(answers.count, 2)
+        XCTAssert(answers.contains("142.250.72.110"))
+        XCTAssert(answers.contains("142.250.72.111"))
     }
 
-    @Test func digCnameParsing() throws {
+    func testdigCnameParsing() throws {
         // Test parsing CNAME records
         let cnameSection = """
         ;; ANSWER SECTION:
@@ -189,8 +189,8 @@ struct DnsTests {
         """
 
         let answers = extractAnswers(from: cnameSection)
-        #expect(answers.count == 1) // Only A records, not CNAME
-        #expect(answers.contains("142.250.72.110"))
+        XCTAssertEqual(answers.count, 1) // Only A records, not CNAME
+        XCTAssert(answers.contains("142.250.72.110"))
     }
 
     // Helper functions for parsing (these would be implemented in the actual service)

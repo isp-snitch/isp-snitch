@@ -1,19 +1,19 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct SpeedtestTests {
+class SpeedtestTests: XCTestCase {
 
-    @Test func speedtestCommandFormat() throws {
+    func testspeedtestCommandFormat() throws {
         // Test that we can construct the correct speedtest command
         let expectedCommand = "speedtest-cli --simple"
 
         // This would be the actual command construction in the implementation
         let command = "speedtest-cli --simple"
-        #expect(command == expectedCommand)
+        XCTAssertEqual(command, expectedCommand)
     }
 
-    @Test func parseSpeedtestSuccessOutput() throws {
+    func testparseSpeedtestSuccessOutput() throws {
         let successOutput = """
         Ping: 25.288 ms
         Download: 327.21 Mbit/s
@@ -26,38 +26,38 @@ struct SpeedtestTests {
         // Extract ping
         let pingLine = lines.first { $0.contains("Ping:") } ?? ""
         let ping = extractPing(from: pingLine)
-        #expect(ping == 25.288)
+        XCTAssertEqual(ping, 25.288)
 
         // Extract download speed
         let downloadLine = lines.first { $0.contains("Download:") } ?? ""
         let downloadSpeed = extractDownloadSpeed(from: downloadLine)
-        #expect(downloadSpeed == 327.21)
+        XCTAssertEqual(downloadSpeed, 327.21)
 
         // Extract upload speed
         let uploadLine = lines.first { $0.contains("Upload:") } ?? ""
         let uploadSpeed = extractUploadSpeed(from: uploadLine)
-        #expect(uploadSpeed == 29.69)
+        XCTAssertEqual(uploadSpeed, 29.69)
     }
 
-    @Test func parseSpeedtestFailureOutput() throws {
+    func testparseSpeedtestFailureOutput() throws {
         let failureOutput = """
         Cannot retrieve speedtest configuration
         """
 
         // Test parsing failure output
         let isConfigurationError = failureOutput.contains("Cannot retrieve speedtest configuration")
-        #expect(isConfigurationError == true)
+        XCTAssertEqual(isConfigurationError, true)
     }
 
-    @Test func speedtestExitCodes() throws {
+    func testspeedtestExitCodes() throws {
         // Test expected exit codes
         let successExitCode = 0
         let generalErrorExitCode = 1
         let invalidArgumentsExitCode = 2
 
-        #expect(successExitCode == 0)
-        #expect(generalErrorExitCode == 1)
-        #expect(invalidArgumentsExitCode == 2)
+        XCTAssertEqual(successExitCode, 0)
+        XCTAssertEqual(generalErrorExitCode, 1)
+        XCTAssertEqual(invalidArgumentsExitCode, 2)
 
         // Test that we can handle different exit codes
         let exitCodes: [Int32] = [0, 1, 2]
@@ -66,22 +66,22 @@ struct SpeedtestTests {
             let isGeneralError = code == 1
             let isInvalidArguments = code == 2
 
-            #expect(isSuccess || isGeneralError || isInvalidArguments)
+            XCTAssert(isSuccess || isGeneralError || isInvalidArguments)
         }
     }
 
-    @Test func speedtestOutputFormatting() throws {
+    func testspeedtestOutputFormatting() throws {
         // Test that we can format the output correctly
         let simpleCommand = "speedtest-cli --simple"
         let jsonCommand = "speedtest-cli --json"
         let csvCommand = "speedtest-cli --csv"
 
-        #expect(simpleCommand.contains("--simple"))
-        #expect(jsonCommand.contains("--json"))
-        #expect(csvCommand.contains("--csv"))
+        XCTAssert(simpleCommand.contains("--simple"))
+        XCTAssert(jsonCommand.contains("--json"))
+        XCTAssert(csvCommand.contains("--csv"))
     }
 
-    @Test func speedtestErrorHandling() throws {
+    func testspeedtestErrorHandling() throws {
         // Test handling of various error scenarios
         let errorScenarios = [
             ("Cannot retrieve speedtest configuration", "Configuration error"),
@@ -94,11 +94,11 @@ struct SpeedtestTests {
             let isSuccess = output.contains("Ping:") && output.contains("Download:") && output.contains("Upload:")
             let isError = !isSuccess
 
-            #expect(isSuccess || isError)
+            XCTAssert(isSuccess || isError)
         }
     }
 
-    @Test func speedtestPerformanceMetrics() throws {
+    func testspeedtestPerformanceMetrics() throws {
         // Test parsing performance metrics
         let metricsOutput = """
         Ping: 15.123 ms
@@ -110,12 +110,12 @@ struct SpeedtestTests {
         let downloadSpeed = extractDownloadSpeed(from: metricsOutput)
         let uploadSpeed = extractUploadSpeed(from: metricsOutput)
 
-        #expect(ping == 15.123)
-        #expect(downloadSpeed == 500.50)
-        #expect(uploadSpeed == 100.25)
+        XCTAssertEqual(ping, 15.123)
+        XCTAssertEqual(downloadSpeed, 500.50)
+        XCTAssertEqual(uploadSpeed, 100.25)
     }
 
-    @Test func speedtestUnitConversion() throws {
+    func testspeedtestUnitConversion() throws {
         // Test unit conversion logic
         let downloadMbps = 100.0
         let uploadMbps = 50.0
@@ -124,11 +124,11 @@ struct SpeedtestTests {
         let downloadConverted = downloadMbps
         let uploadConverted = uploadMbps
 
-        #expect(downloadConverted == 100.0)
-        #expect(uploadConverted == 50.0)
+        XCTAssertEqual(downloadConverted, 100.0)
+        XCTAssertEqual(uploadConverted, 50.0)
     }
 
-    @Test func speedtestLatencyParsing() throws {
+    func testspeedtestLatencyParsing() throws {
         // Test parsing different latency formats
         let latencyFormats = [
             "Ping: 25.288 ms",
@@ -138,11 +138,11 @@ struct SpeedtestTests {
 
         for format in latencyFormats {
             let ping = extractPing(from: format)
-            #expect(ping > 0)
+            XCTAssertGreaterThan(ping, 0)
         }
     }
 
-    @Test func speedtestSpeedParsing() throws {
+    func testspeedtestSpeedParsing() throws {
         // Test parsing different speed formats
         let speedFormats = [
             "Download: 327.21 Mbit/s",
@@ -152,11 +152,11 @@ struct SpeedtestTests {
 
         for format in speedFormats {
             let speed = extractDownloadSpeed(from: format)
-            #expect(speed > 0)
+            XCTAssertGreaterThan(speed, 0)
         }
     }
 
-    @Test func speedtestUploadParsing() throws {
+    func testspeedtestUploadParsing() throws {
         // Test parsing different upload formats
         let uploadFormats = [
             "Upload: 29.69 Mbit/s",
@@ -166,11 +166,11 @@ struct SpeedtestTests {
 
         for format in uploadFormats {
             let speed = extractUploadSpeed(from: format)
-            #expect(speed > 0)
+            XCTAssertGreaterThan(speed, 0)
         }
     }
 
-    @Test func speedtestValidation() throws {
+    func testspeedtestValidation() throws {
         // Test validation of speedtest results
         let validPing = 25.288
         let validDownload = 327.21
@@ -180,12 +180,12 @@ struct SpeedtestTests {
         let isDownloadValid = validDownload > 0 && validDownload < 10000
         let isUploadValid = validUpload > 0 && validUpload < 10000
 
-        #expect(isPingValid == true)
-        #expect(isDownloadValid == true)
-        #expect(isUploadValid == true)
+        XCTAssertEqual(isPingValid, true)
+        XCTAssertEqual(isDownloadValid, true)
+        XCTAssertEqual(isUploadValid, true)
     }
 
-    @Test func speedtestErrorDetection() throws {
+    func testspeedtestErrorDetection() throws {
         // Test detection of various error conditions
         let errorOutputs = [
             "Cannot retrieve speedtest configuration",
@@ -196,7 +196,7 @@ struct SpeedtestTests {
 
         for output in errorOutputs {
             let isError = !output.contains("Ping:") || !output.contains("Download:") || !output.contains("Upload:")
-            #expect(isError == true)
+            XCTAssertEqual(isError, true)
         }
     }
 

@@ -1,20 +1,20 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct HttpTests {
+class HttpTests: XCTestCase {
 
-    @Test func curlCommandFormat() throws {
+    func testcurlCommandFormat() throws {
         // Test that we can construct the correct curl command
         let url = "https://google.com"
         let expectedCommand = "curl -w \"HTTP_CODE:%{http_code}\\nTIME_TOTAL:%{time_total}\\nTIME_CONNECT:%{time_connect}\\nTIME_NAMELOOKUP:%{time_namelookup}\\nSIZE_DOWNLOAD:%{size_download}\\nSPEED_DOWNLOAD:%{speed_download}\\n\" -o /dev/null -s --max-time 10 \(url)"
 
         // This would be the actual command construction in the implementation
         let command = "curl -w \"HTTP_CODE:%{http_code}\\nTIME_TOTAL:%{time_total}\\nTIME_CONNECT:%{time_connect}\\nTIME_NAMELOOKUP:%{time_namelookup}\\nSIZE_DOWNLOAD:%{size_download}\\nSPEED_DOWNLOAD:%{speed_download}\\n\" -o /dev/null -s --max-time 10 \(url)"
-        #expect(command == expectedCommand)
+        XCTAssertEqual(command, expectedCommand)
     }
 
-    @Test func parseHttpSuccessOutput() throws {
+    func testparseHttpSuccessOutput() throws {
         let successOutput = """
         HTTP_CODE:200
         TIME_TOTAL:10.317338
@@ -30,35 +30,35 @@ struct HttpTests {
         // Extract HTTP code
         let httpCodeLine = lines.first { $0.contains("HTTP_CODE:") } ?? ""
         let httpCode = extractHttpCode(from: httpCodeLine)
-        #expect(httpCode == 200)
+        XCTAssertEqual(httpCode, 200)
 
         // Extract total time
         let totalTimeLine = lines.first { $0.contains("TIME_TOTAL:") } ?? ""
         let totalTime = extractTotalTime(from: totalTimeLine)
-        #expect(totalTime == 10.317338)
+        XCTAssertEqual(totalTime, 10.317338)
 
         // Extract connect time
         let connectTimeLine = lines.first { $0.contains("TIME_CONNECT:") } ?? ""
         let connectTime = extractConnectTime(from: connectTimeLine)
-        #expect(connectTime == 0.051629)
+        XCTAssertEqual(connectTime, 0.051629)
 
         // Extract DNS time
         let dnsTimeLine = lines.first { $0.contains("TIME_NAMELOOKUP:") } ?? ""
         let dnsTime = extractDnsTime(from: dnsTimeLine)
-        #expect(dnsTime == 0.023162)
+        XCTAssertEqual(dnsTime, 0.023162)
 
         // Extract download size
         let downloadSizeLine = lines.first { $0.contains("SIZE_DOWNLOAD:") } ?? ""
         let downloadSize = extractDownloadSize(from: downloadSizeLine)
-        #expect(downloadSize == 0)
+        XCTAssertEqual(downloadSize, 0)
 
         // Extract download speed
         let downloadSpeedLine = lines.first { $0.contains("SPEED_DOWNLOAD:") } ?? ""
         let downloadSpeed = extractDownloadSpeed(from: downloadSpeedLine)
-        #expect(downloadSpeed == 0)
+        XCTAssertEqual(downloadSpeed, 0)
     }
 
-    @Test func parseHttpFailureOutput() throws {
+    func testparseHttpFailureOutput() throws {
         let failureOutput = """
         HTTP_CODE:000
         TIME_TOTAL:0.075493
@@ -72,14 +72,14 @@ struct HttpTests {
         let lines = failureOutput.components(separatedBy: .newlines)
         let httpCodeLine = lines.first { $0.contains("HTTP_CODE:") } ?? ""
         let httpCode = extractHttpCode(from: httpCodeLine)
-        #expect(httpCode == 0) // Connection failed
+        XCTAssertEqual(httpCode, 0) // Connection failed
 
         let totalTimeLine = lines.first { $0.contains("TIME_TOTAL:") } ?? ""
         let totalTime = extractTotalTime(from: totalTimeLine)
-        #expect(totalTime > 0) // Some time was spent trying
+        XCTAssertGreaterThan(totalTime, 0) // Some time was spent trying
     }
 
-    @Test func parseHttp404Output() throws {
+    func testparseHttp404Output() throws {
         let notFoundOutput = """
         HTTP_CODE:404
         TIME_TOTAL:8.592113
@@ -93,24 +93,24 @@ struct HttpTests {
         let lines = notFoundOutput.components(separatedBy: .newlines)
         let httpCodeLine = lines.first { $0.contains("HTTP_CODE:") } ?? ""
         let httpCode = extractHttpCode(from: httpCodeLine)
-        #expect(httpCode == 404)
+        XCTAssertEqual(httpCode, 404)
 
         let totalTimeLine = lines.first { $0.contains("TIME_TOTAL:") } ?? ""
         let totalTime = extractTotalTime(from: totalTimeLine)
-        #expect(totalTime > 0)
+        XCTAssertGreaterThan(totalTime, 0)
     }
 
-    @Test func curlExitCodes() throws {
+    func testcurlExitCodes() throws {
         // Test expected exit codes
         let successExitCode = 0
         let dnsFailureExitCode = 6
         let connectionFailureExitCode = 7
         let timeoutExitCode = 28
 
-        #expect(successExitCode == 0)
-        #expect(dnsFailureExitCode == 6)
-        #expect(connectionFailureExitCode == 7)
-        #expect(timeoutExitCode == 28)
+        XCTAssertEqual(successExitCode, 0)
+        XCTAssertEqual(dnsFailureExitCode, 6)
+        XCTAssertEqual(connectionFailureExitCode, 7)
+        XCTAssertEqual(timeoutExitCode, 28)
 
         // Test that we can handle different exit codes
         let exitCodes: [Int32] = [0, 6, 7, 28, 1, 2]
@@ -121,20 +121,20 @@ struct HttpTests {
             let isTimeout = code == 28
             let isOtherFailure = code != 0 && code != 6 && code != 7 && code != 28
 
-            #expect(isSuccess || isDnsFailure || isConnectionFailure || isTimeout || isOtherFailure)
+            XCTAssert(isSuccess || isDnsFailure || isConnectionFailure || isTimeout || isOtherFailure)
         }
     }
 
-    @Test func curlTimeoutHandling() throws {
+    func testcurlTimeoutHandling() throws {
         // Test timeout configuration
         let timeoutSeconds = 10
         let url = "https://google.com"
         let command = "curl -w \"HTTP_CODE:%{http_code}\\n\" -o /dev/null -s --max-time \(timeoutSeconds) \(url)"
 
-        #expect(command.contains("--max-time \(timeoutSeconds)"))
+        XCTAssert(command.contains("--max-time \(timeoutSeconds)"))
     }
 
-    @Test func curlUrlValidation() throws {
+    func testcurlUrlValidation() throws {
         // Test valid URLs
         let validUrls = [
             "https://google.com",
@@ -145,23 +145,23 @@ struct HttpTests {
 
         for url in validUrls {
             let command = "curl -w \"HTTP_CODE:%{http_code}\\n\" -o /dev/null -s --max-time 10 \(url)"
-            #expect(command.contains(url))
+            XCTAssert(command.contains(url))
         }
     }
 
-    @Test func curlOutputFormatting() throws {
+    func testcurlOutputFormatting() throws {
         // Test that we can format the output correctly
         let formatString = "HTTP_CODE:%{http_code}\\nTIME_TOTAL:%{time_total}\\nTIME_CONNECT:%{time_connect}\\nTIME_NAMELOOKUP:%{time_namelookup}\\nSIZE_DOWNLOAD:%{size_download}\\nSPEED_DOWNLOAD:%{speed_download}\\n"
 
-        #expect(formatString.contains("HTTP_CODE:%{http_code}"))
-        #expect(formatString.contains("TIME_TOTAL:%{time_total}"))
-        #expect(formatString.contains("TIME_CONNECT:%{time_connect}"))
-        #expect(formatString.contains("TIME_NAMELOOKUP:%{time_namelookup}"))
-        #expect(formatString.contains("SIZE_DOWNLOAD:%{size_download}"))
-        #expect(formatString.contains("SPEED_DOWNLOAD:%{speed_download}"))
+        XCTAssert(formatString.contains("HTTP_CODE:%{http_code}"))
+        XCTAssert(formatString.contains("TIME_TOTAL:%{time_total}"))
+        XCTAssert(formatString.contains("TIME_CONNECT:%{time_connect}"))
+        XCTAssert(formatString.contains("TIME_NAMELOOKUP:%{time_namelookup}"))
+        XCTAssert(formatString.contains("SIZE_DOWNLOAD:%{size_download}"))
+        XCTAssert(formatString.contains("SPEED_DOWNLOAD:%{speed_download}"))
     }
 
-    @Test func curlErrorHandling() throws {
+    func testcurlErrorHandling() throws {
         // Test handling of various error scenarios
         let errorScenarios = [
             ("HTTP_CODE:000", "Connection failed"),
@@ -175,11 +175,11 @@ struct HttpTests {
             let isSuccess = code == 200
             let isFailure = code != 200
 
-            #expect(isSuccess || isFailure)
+            XCTAssert(isSuccess || isFailure)
         }
     }
 
-    @Test func curlPerformanceMetrics() throws {
+    func testcurlPerformanceMetrics() throws {
         // Test parsing performance metrics
         let metricsOutput = """
         HTTP_CODE:200
@@ -198,11 +198,11 @@ struct HttpTests {
         let downloadSize = extractDownloadSize(from: lines.first { $0.contains("SIZE_DOWNLOAD:") } ?? "")
         let downloadSpeed = extractDownloadSpeed(from: lines.first { $0.contains("SPEED_DOWNLOAD:") } ?? "")
 
-        #expect(totalTime == 1.234567)
-        #expect(connectTime == 0.123456)
-        #expect(dnsTime == 0.012345)
-        #expect(downloadSize == 1024)
-        #expect(downloadSpeed == 1024.0)
+        XCTAssertEqual(totalTime, 1.234567)
+        XCTAssertEqual(connectTime, 0.123456)
+        XCTAssertEqual(dnsTime, 0.012345)
+        XCTAssertEqual(downloadSize, 1024)
+        XCTAssertEqual(downloadSpeed, 1024.0)
     }
 
     // Helper functions for parsing (these would be implemented in the actual service)

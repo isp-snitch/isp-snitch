@@ -1,10 +1,10 @@
-import Testing
+import XCTest
 import Foundation
 @testable import ISPSnitchCore
 
-struct FileSystemTests {
+class FileSystemTests: XCTestCase {
 
-    @Test func installationDirectories() throws {
+    func testinstallationDirectories() throws {
         // Test installation directory structure
         let directories = [
             "/usr/local/bin/isp-snitch",
@@ -15,16 +15,16 @@ struct FileSystemTests {
             "/usr/local/var/log/isp-snitch/"
         ]
 
-        #expect(directories.count == 6)
-        #expect(directories[0] == "/usr/local/bin/isp-snitch")
-        #expect(directories[1] == "/usr/local/etc/isp-snitch/")
-        #expect(directories[2] == "/usr/local/var/isp-snitch/")
-        #expect(directories[3] == "/usr/local/var/isp-snitch/data/")
-        #expect(directories[4] == "/usr/local/var/isp-snitch/logs/")
-        #expect(directories[5] == "/usr/local/var/log/isp-snitch/")
+        XCTAssertEqual(directories.count, 6)
+        XCTAssertEqual(directories[0], "/usr/local/bin/isp-snitch")
+        XCTAssertEqual(directories[1], "/usr/local/etc/isp-snitch/")
+        XCTAssertEqual(directories[2], "/usr/local/var/isp-snitch/")
+        XCTAssertEqual(directories[3], "/usr/local/var/isp-snitch/data/")
+        XCTAssertEqual(directories[4], "/usr/local/var/isp-snitch/logs/")
+        XCTAssertEqual(directories[5], "/usr/local/var/log/isp-snitch/")
     }
 
-    @Test func configurationFiles() throws {
+    func testconfigurationFiles() throws {
         // Test configuration file paths
         let configFiles = [
             "/usr/local/etc/isp-snitch/config.json",
@@ -32,13 +32,13 @@ struct FileSystemTests {
             "/usr/local/etc/isp-snitch/logging.json"
         ]
 
-        #expect(configFiles.count == 3)
-        #expect(configFiles[0] == "/usr/local/etc/isp-snitch/config.json")
-        #expect(configFiles[1] == "/usr/local/etc/isp-snitch/targets.json")
-        #expect(configFiles[2] == "/usr/local/etc/isp-snitch/logging.json")
+        XCTAssertEqual(configFiles.count, 3)
+        XCTAssertEqual(configFiles[0], "/usr/local/etc/isp-snitch/config.json")
+        XCTAssertEqual(configFiles[1], "/usr/local/etc/isp-snitch/targets.json")
+        XCTAssertEqual(configFiles[2], "/usr/local/etc/isp-snitch/logging.json")
     }
 
-    @Test func dataFiles() throws {
+    func testdataFiles() throws {
         // Test data file paths
         let dataFiles = [
             "/usr/local/var/isp-snitch/data/connectivity.db",
@@ -46,13 +46,13 @@ struct FileSystemTests {
             "/usr/local/var/isp-snitch/data/exports/"
         ]
 
-        #expect(dataFiles.count == 3)
-        #expect(dataFiles[0] == "/usr/local/var/isp-snitch/data/connectivity.db")
-        #expect(dataFiles[1] == "/usr/local/var/isp-snitch/data/backups/")
-        #expect(dataFiles[2] == "/usr/local/var/isp-snitch/data/exports/")
+        XCTAssertEqual(dataFiles.count, 3)
+        XCTAssertEqual(dataFiles[0], "/usr/local/var/isp-snitch/data/connectivity.db")
+        XCTAssertEqual(dataFiles[1], "/usr/local/var/isp-snitch/data/backups/")
+        XCTAssertEqual(dataFiles[2], "/usr/local/var/isp-snitch/data/exports/")
     }
 
-    @Test func logFiles() throws {
+    func testlogFiles() throws {
         // Test log file paths
         let logFiles = [
             "/usr/local/var/log/isp-snitch/out.log",
@@ -61,14 +61,14 @@ struct FileSystemTests {
             "/usr/local/var/isp-snitch/logs/access.log"
         ]
 
-        #expect(logFiles.count == 4)
-        #expect(logFiles[0] == "/usr/local/var/log/isp-snitch/out.log")
-        #expect(logFiles[1] == "/usr/local/var/log/isp-snitch/error.log")
-        #expect(logFiles[2] == "/usr/local/var/isp-snitch/logs/app.log")
-        #expect(logFiles[3] == "/usr/local/var/isp-snitch/logs/access.log")
+        XCTAssertEqual(logFiles.count, 4)
+        XCTAssertEqual(logFiles[0], "/usr/local/var/log/isp-snitch/out.log")
+        XCTAssertEqual(logFiles[1], "/usr/local/var/log/isp-snitch/error.log")
+        XCTAssertEqual(logFiles[2], "/usr/local/var/isp-snitch/logs/app.log")
+        XCTAssertEqual(logFiles[3], "/usr/local/var/isp-snitch/logs/access.log")
     }
 
-    @Test func directoryPermissions() throws {
+    func testdirectoryPermissions() throws {
         // Test directory permissions
         let binPermissions = "755"
         let etcPermissions = "755"
@@ -76,27 +76,27 @@ struct FileSystemTests {
         let dataPermissions = "755"
         let logPermissions = "755"
 
-        #expect(binPermissions == "755")
-        #expect(etcPermissions == "755")
-        #expect(varPermissions == "755")
-        #expect(dataPermissions == "755")
-        #expect(logPermissions == "755")
+        XCTAssertEqual(binPermissions, "755")
+        XCTAssertEqual(etcPermissions, "755")
+        XCTAssertEqual(varPermissions, "755")
+        XCTAssertEqual(dataPermissions, "755")
+        XCTAssertEqual(logPermissions, "755")
     }
 
-    @Test func filePermissions() throws {
+    func testfilePermissions() throws {
         // Test file permissions
         let executablePermissions = "755"
         let configPermissions = "644"
         let dataPermissions = "644"
         let logPermissions = "644"
 
-        #expect(executablePermissions == "755")
-        #expect(configPermissions == "644")
-        #expect(dataPermissions == "644")
-        #expect(logPermissions == "644")
+        XCTAssertEqual(executablePermissions, "755")
+        XCTAssertEqual(configPermissions, "644")
+        XCTAssertEqual(dataPermissions, "644")
+        XCTAssertEqual(logPermissions, "644")
     }
 
-    @Test func directoryStructure() throws {
+    func testdirectoryStructure() throws {
         // Test directory structure validation
         let rootDir = "/usr/local"
         let binDir = "/usr/local/bin"
@@ -105,37 +105,37 @@ struct FileSystemTests {
         let dataDir = "/usr/local/var/isp-snitch/data"
         let logDir = "/usr/local/var/isp-snitch/logs"
 
-        #expect(rootDir == "/usr/local")
-        #expect(binDir == "/usr/local/bin")
-        #expect(etcDir == "/usr/local/etc/isp-snitch")
-        #expect(varDir == "/usr/local/var/isp-snitch")
-        #expect(dataDir == "/usr/local/var/isp-snitch/data")
-        #expect(logDir == "/usr/local/var/isp-snitch/logs")
+        XCTAssertEqual(rootDir, "/usr/local")
+        XCTAssertEqual(binDir, "/usr/local/bin")
+        XCTAssertEqual(etcDir, "/usr/local/etc/isp-snitch")
+        XCTAssertEqual(varDir, "/usr/local/var/isp-snitch")
+        XCTAssertEqual(dataDir, "/usr/local/var/isp-snitch/data")
+        XCTAssertEqual(logDir, "/usr/local/var/isp-snitch/logs")
     }
 
-    @Test func fileOwnership() throws {
+    func testfileOwnership() throws {
         // Test file ownership
         let owner = "$(whoami)"
         let group = "staff"
 
-        #expect(owner == "$(whoami)")
-        #expect(group == "staff")
+        XCTAssertEqual(owner, "$(whoami)")
+        XCTAssertEqual(group, "staff")
     }
 
-    @Test func symbolicLinks() throws {
+    func testsymbolicLinks() throws {
         // Test symbolic links
         let symlinkSource = "/usr/local/bin/isp-snitch"
         let symlinkTarget = "/usr/local/bin/isp-snitch"
 
-        #expect(symlinkSource == symlinkTarget)
+        XCTAssertEqual(symlinkSource, symlinkTarget)
     }
 
-    @Test func backupDirectories() throws {
+    func testbackupDirectories() throws {
         // Test backup directory structure
         let backupDir = "/usr/local/var/isp-snitch/data/backups"
         let exportDir = "/usr/local/var/isp-snitch/data/exports"
 
-        #expect(backupDir == "/usr/local/var/isp-snitch/data/backups")
-        #expect(exportDir == "/usr/local/var/isp-snitch/data/exports")
+        XCTAssertEqual(backupDir, "/usr/local/var/isp-snitch/data/backups")
+        XCTAssertEqual(exportDir, "/usr/local/var/isp-snitch/data/exports")
     }
 }
