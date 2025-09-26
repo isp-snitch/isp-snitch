@@ -49,11 +49,7 @@ public actor HttpMonitor {
     }
 
     public func executeHttp(target: String, timeout: TimeInterval = 10.0) async throws -> TestResult {
-        let command = "curl"
-        let arguments = [
-            "-w", "%{http_code}:%{time_total}:%{time_connect}:%{time_namelookup}",
-            "-s", "-o", "/dev/null", target
-        ]
+        let command = "curl -w \"%{http_code}:%{time_total}:%{time_connect}:%{time_namelookup}\" -s -o /dev/null \(target)"
 
         do {
             let output = try await utilityExecutor.executeCommand(command, timeout: timeout)

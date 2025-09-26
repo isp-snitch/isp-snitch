@@ -1,6 +1,5 @@
 import Foundation
 import Logging
-import Metrics
 
 // MARK: - Network Monitor
 /// Optimized network monitoring with minimal resource usage
