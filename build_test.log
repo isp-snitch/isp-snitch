@@ -1,0 +1,28 @@
+﻿2025-09-26T02:41:19.6236900Z Current runner version: '2.328.0'
+2025-09-26T02:41:19.6252470Z ##[group]Runner Image Provisioner
+2025-09-26T02:41:19.6252940Z Hosted Compute Agent
+2025-09-26T02:41:19.6253260Z Version: 20250912.392
+2025-09-26T02:41:19.6253620Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
+2025-09-26T02:41:19.6254080Z Build Date: 2025-09-12T15:23:14Z
+2025-09-26T02:41:19.6254440Z ##[endgroup]
+2025-09-26T02:41:19.6254770Z ##[group]Operating System
+2025-09-26T02:41:19.6255110Z macOS
+2025-09-26T02:41:19.6255400Z 15.6.1
+2025-09-26T02:41:19.6255680Z 24G90
+2025-09-26T02:41:19.6255950Z ##[endgroup]
+2025-09-26T02:41:19.6256250Z ##[group]Runner Image
+2025-09-26T02:41:19.6256570Z Image: macos-15-arm64
+2025-09-26T02:41:19.6256890Z Version: 20250916.2338
+2025-09-26T02:41:19.6257570Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20250916.2338/images/macos/macos-15-arm64-Readme.md
+2025-09-26T02:41:19.6258580Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20250916.2338
+2025-09-26T02:41:19.6259190Z ##[endgroup]
+2025-09-26T02:41:19.6259900Z ##[group]GITHUB_TOKEN Permissions
+2025-09-26T02:41:19.6260950Z Contents: read
+2025-09-26T02:41:19.6261250Z Metadata: read
+2025-09-26T02:41:19.6261550Z SecurityEvents: write
+2025-09-26T02:41:19.6261890Z ##[endgroup]
+2025-09-26T02:41:19.6263290Z Secret source: Actions
+2025-09-26T02:41:19.6263680Z Prepare workflow directory
+2025-09-26T02:41:19.6592300Z Prepare all required actions
+2025-09-26T02:41:19.6620480Z Getting action download info
+2025-09-26T02:41:19.8971350Z ##[error]Unable to resolve action `swift-actions/setup-swift@v2.4.0`, unable to find version `v2.4.0`
