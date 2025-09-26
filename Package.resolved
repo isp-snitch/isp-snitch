@@ -1,5 +1,4 @@
 {
-  "originHash" : "c81b268371dd08e03d8169c57cd54b637e2b692ddcc194bd05d25681c7457c30",
   "pins" : [
     {
       "identity" : "sqlite.swift",
@@ -38,5 +37,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }
