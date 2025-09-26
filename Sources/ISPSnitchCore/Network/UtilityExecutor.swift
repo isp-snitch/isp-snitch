@@ -54,7 +54,7 @@ public class UtilityExecutor {
         // This is blocking, but for simple utility execution, it's acceptable.
         // For more complex scenarios, a non-blocking approach with pipes would be needed.
         let result = system(command)
-        let exitCode = result >> 8
+        let exitCode = Int(result >> 8)
 
         if exitCode != 0 {
             throw UtilityExecutionError(

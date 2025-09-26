@@ -1,0 +1,807 @@
+﻿2025-09-26T12:11:48.9115618Z Current runner version: '2.328.0'
+2025-09-26T12:11:48.9140464Z ##[group]Runner Image Provisioner
+2025-09-26T12:11:48.9141271Z Hosted Compute Agent
+2025-09-26T12:11:48.9141888Z Version: 20250912.392
+2025-09-26T12:11:48.9142483Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
+2025-09-26T12:11:48.9143151Z Build Date: 2025-09-12T15:23:14Z
+2025-09-26T12:11:48.9143766Z ##[endgroup]
+2025-09-26T12:11:48.9144325Z ##[group]Operating System
+2025-09-26T12:11:48.9145236Z Ubuntu
+2025-09-26T12:11:48.9145806Z 24.04.3
+2025-09-26T12:11:48.9146237Z LTS
+2025-09-26T12:11:48.9146683Z ##[endgroup]
+2025-09-26T12:11:48.9147175Z ##[group]Runner Image
+2025-09-26T12:11:48.9147758Z Image: ubuntu-24.04
+2025-09-26T12:11:48.9148252Z Version: 20250922.53.1
+2025-09-26T12:11:48.9149260Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250922.53/images/ubuntu/Ubuntu2404-Readme.md
+2025-09-26T12:11:48.9150783Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250922.53
+2025-09-26T12:11:48.9151817Z ##[endgroup]
+2025-09-26T12:11:48.9152929Z ##[group]GITHUB_TOKEN Permissions
+2025-09-26T12:11:48.9155500Z Contents: read
+2025-09-26T12:11:48.9156042Z Metadata: read
+2025-09-26T12:11:48.9156545Z SecurityEvents: write
+2025-09-26T12:11:48.9157024Z ##[endgroup]
+2025-09-26T12:11:48.9159178Z Secret source: Actions
+2025-09-26T12:11:48.9159839Z Prepare workflow directory
+2025-09-26T12:11:48.9561569Z Prepare all required actions
+2025-09-26T12:11:48.9601788Z Getting action download info
+2025-09-26T12:11:49.4063919Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-09-26T12:11:49.9227632Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2025-09-26T12:11:51.0002435Z Complete job name: build_test
+2025-09-26T12:11:51.0837643Z ##[group]Run actions/checkout@v4
+2025-09-26T12:11:51.0839007Z with:
+2025-09-26T12:11:51.0839802Z   repository: isp-snitch/isp-snitch
+2025-09-26T12:11:51.0841196Z   token: ***
+2025-09-26T12:11:51.0842005Z   ssh-strict: true
+2025-09-26T12:11:51.0842811Z   ssh-user: git
+2025-09-26T12:11:51.0843636Z   persist-credentials: true
+2025-09-26T12:11:51.0844715Z   clean: true
+2025-09-26T12:11:51.0845548Z   sparse-checkout-cone-mode: true
+2025-09-26T12:11:51.0846645Z   fetch-depth: 1
+2025-09-26T12:11:51.0847464Z   fetch-tags: false
+2025-09-26T12:11:51.0848288Z   show-progress: true
+2025-09-26T12:11:51.0849139Z   lfs: false
+2025-09-26T12:11:51.0849910Z   submodules: false
+2025-09-26T12:11:51.0850736Z   set-safe-directory: true
+2025-09-26T12:11:51.0851910Z env:
+2025-09-26T12:11:51.0852637Z   SWIFT_VERSION: 5.6
+2025-09-26T12:11:51.0853459Z ##[endgroup]
+2025-09-26T12:11:51.1970938Z Syncing repository: isp-snitch/isp-snitch
+2025-09-26T12:11:51.1973806Z ##[group]Getting Git version info
+2025-09-26T12:11:51.1975463Z Working directory is '/home/runner/work/isp-snitch/isp-snitch'
+2025-09-26T12:11:51.1977424Z [command]/usr/bin/git version
+2025-09-26T12:11:51.2983017Z git version 2.51.0
+2025-09-26T12:11:51.3011697Z ##[endgroup]
+2025-09-26T12:11:51.3027537Z Temporarily overriding HOME='/home/runner/work/_temp/cfa6b4c6-0ea2-4eda-8ec0-5e60d99b19bd' before making global git config changes
+2025-09-26T12:11:51.3030327Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-26T12:11:51.3042214Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:11:51.3129012Z Deleting the contents of '/home/runner/work/isp-snitch/isp-snitch'
+2025-09-26T12:11:51.3132646Z ##[group]Initializing the repository
+2025-09-26T12:11:51.3136976Z [command]/usr/bin/git init /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:11:51.4178039Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-09-26T12:11:51.4180731Z hint: is subject to change. To configure the initial branch name to use in all
+2025-09-26T12:11:51.4182810Z hint: of your new repositories, which will suppress this warning, call:
+2025-09-26T12:11:51.4184232Z hint:
+2025-09-26T12:11:51.4185749Z hint: 	git config --global init.defaultBranch <name>
+2025-09-26T12:11:51.4186962Z hint:
+2025-09-26T12:11:51.4188113Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-09-26T12:11:51.4190044Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-09-26T12:11:51.4191553Z hint:
+2025-09-26T12:11:51.4192343Z hint: 	git branch -m <name>
+2025-09-26T12:11:51.4193227Z hint:
+2025-09-26T12:11:51.4194413Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-09-26T12:11:51.4226426Z Initialized empty Git repository in /home/runner/work/isp-snitch/isp-snitch/.git/
+2025-09-26T12:11:51.4239519Z [command]/usr/bin/git remote add origin https://github.com/isp-snitch/isp-snitch
+2025-09-26T12:11:51.4379831Z ##[endgroup]
+2025-09-26T12:11:51.4384139Z ##[group]Disabling automatic garbage collection
+2025-09-26T12:11:51.4385899Z [command]/usr/bin/git config --local gc.auto 0
+2025-09-26T12:11:51.4415604Z ##[endgroup]
+2025-09-26T12:11:51.4417038Z ##[group]Setting up auth
+2025-09-26T12:11:51.4422574Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-26T12:11:51.4458336Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-26T12:11:51.6355700Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-26T12:11:51.6391002Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-26T12:11:51.6615925Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-26T12:11:51.6650618Z ##[endgroup]
+2025-09-26T12:11:51.6651434Z ##[group]Fetching the repository
+2025-09-26T12:11:51.6668971Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3992ac7af195e657400f49250e880f10ad32891c:refs/remotes/origin/main
+2025-09-26T12:11:52.6235035Z From https://github.com/isp-snitch/isp-snitch
+2025-09-26T12:11:52.6235917Z  * [new ref]         3992ac7af195e657400f49250e880f10ad32891c -> origin/main
+2025-09-26T12:11:52.6319058Z ##[endgroup]
+2025-09-26T12:11:52.6319719Z ##[group]Determining the checkout info
+2025-09-26T12:11:52.6322781Z ##[endgroup]
+2025-09-26T12:11:52.6328013Z [command]/usr/bin/git sparse-checkout disable
+2025-09-26T12:11:52.6420594Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-09-26T12:11:52.6450746Z ##[group]Checking out the ref
+2025-09-26T12:11:52.6456193Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-09-26T12:11:52.6832035Z Switched to a new branch 'main'
+2025-09-26T12:11:52.6834321Z branch 'main' set up to track 'origin/main'.
+2025-09-26T12:11:52.6842973Z ##[endgroup]
+2025-09-26T12:11:52.6884089Z [command]/usr/bin/git log -1 --format=%H
+2025-09-26T12:11:52.6907824Z 3992ac7af195e657400f49250e880f10ad32891c
+2025-09-26T12:11:52.7083519Z ##[group]Run wget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz
+2025-09-26T12:11:52.7084445Z [36;1mwget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz[0m
+2025-09-26T12:11:52.7085267Z [36;1mtar xzf swift-5.6-RELEASE-ubuntu20.04.tar.gz[0m
+2025-09-26T12:11:52.7085654Z [36;1mecho "$PWD/swift-5.6-RELEASE-ubuntu20.04/usr/bin" >> $GITHUB_PATH[0m
+2025-09-26T12:11:52.7120683Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:11:52.7120936Z env:
+2025-09-26T12:11:52.7121100Z   SWIFT_VERSION: 5.6
+2025-09-26T12:11:52.7121299Z ##[endgroup]
+2025-09-26T12:12:04.7185408Z ##[group]Run actions/cache@v4
+2025-09-26T12:12:04.7185720Z with:
+2025-09-26T12:12:04.7185969Z   path: ~/.swiftpm
+~/Library/Caches/org.swift.swiftpm
+
+2025-09-26T12:12:04.7186769Z   key: Linux-spmcache-21d754f6a67725cc64b067e8ac65a75e2befbe2f070d9a3edc6a120364f684da
+2025-09-26T12:12:04.7187459Z   restore-keys: Linux-spmcache-
+2025-09-26T12:12:04.7187752Z   enableCrossOsArchive: false
+2025-09-26T12:12:04.7188198Z   fail-on-cache-miss: false
+2025-09-26T12:12:04.7188412Z   lookup-only: false
+2025-09-26T12:12:04.7188609Z   save-always: false
+2025-09-26T12:12:04.7188798Z env:
+2025-09-26T12:12:04.7188958Z   SWIFT_VERSION: 5.6
+2025-09-26T12:12:04.7189150Z ##[endgroup]
+2025-09-26T12:12:05.1556546Z Cache not found for input keys: Linux-spmcache-21d754f6a67725cc64b067e8ac65a75e2befbe2f070d9a3edc6a120364f684da, Linux-spmcache-
+2025-09-26T12:12:05.1626233Z ##[group]Run swift package resolve
+2025-09-26T12:12:05.1626564Z [36;1mswift package resolve[0m
+2025-09-26T12:12:05.1660989Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:12:05.1661228Z env:
+2025-09-26T12:12:05.1661405Z   SWIFT_VERSION: 5.6
+2025-09-26T12:12:05.1661599Z ##[endgroup]
+2025-09-26T12:12:07.8692802Z Fetching https://github.com/apple/swift-argument-parser.git
+2025-09-26T12:12:07.8698676Z Fetching https://github.com/apple/swift-log.git
+2025-09-26T12:12:07.8699280Z Fetching https://github.com/stephencelis/SQLite.swift.git
+2025-09-26T12:12:08.4389343Z [1/10062] Fetching objects
+2025-09-26T12:12:09.2258224Z Fetched https://github.com/apple/swift-log.git (1.36s)
+2025-09-26T12:12:09.2271788Z Fetching https://github.com/swiftlang/swift-toolchain-sqlite
+2025-09-26T12:12:09.2312907Z Fetched https://github.com/apple/swift-argument-parser.git (1.36s)
+2025-09-26T12:12:09.2352542Z Fetched https://github.com/stephencelis/SQLite.swift.git (1.37s)
+2025-09-26T12:12:09.2356081Z Computing version for https://github.com/apple/swift-log.git
+2025-09-26T12:12:09.2679866Z Computing version for https://github.com/apple/swift-argument-parser.git
+2025-09-26T12:12:09.2935060Z Computing version for https://github.com/stephencelis/SQLite.swift.git
+2025-09-26T12:12:09.5096076Z Computed https://github.com/stephencelis/SQLite.swift.git at 0.14.1 (0.19s)
+2025-09-26T12:12:09.5100633Z Fetching https://github.com/stephencelis/CSQLite.git
+2025-09-26T12:12:09.9543094Z Fetched https://github.com/stephencelis/CSQLite.git (0.44s)
+2025-09-26T12:12:09.9571857Z Computing version for https://github.com/stephencelis/CSQLite.git
+2025-09-26T12:12:10.3356695Z Fetched https://github.com/swiftlang/swift-toolchain-sqlite (1.11s)
+2025-09-26T12:12:10.6351066Z Computed https://github.com/stephencelis/CSQLite.git at 0.0.3 (0.68s)
+2025-09-26T12:12:10.8073544Z Computed https://github.com/apple/swift-argument-parser.git at 1.2.3 (0.17s)
+2025-09-26T12:12:10.9615288Z Computed https://github.com/apple/swift-log.git at 1.5.4 (0.15s)
+2025-09-26T12:12:11.0078238Z Creating working copy for https://github.com/stephencelis/CSQLite.git
+2025-09-26T12:12:11.0526559Z Working copy of https://github.com/stephencelis/CSQLite.git resolved at 0.0.3
+2025-09-26T12:12:11.0573703Z Creating working copy for https://github.com/stephencelis/SQLite.swift.git
+2025-09-26T12:12:11.1158368Z Working copy of https://github.com/stephencelis/SQLite.swift.git resolved at 0.14.1
+2025-09-26T12:12:11.1203704Z Creating working copy for https://github.com/apple/swift-argument-parser.git
+2025-09-26T12:12:11.1859890Z Working copy of https://github.com/apple/swift-argument-parser.git resolved at 1.2.3
+2025-09-26T12:12:11.1905744Z Creating working copy for https://github.com/apple/swift-log.git
+2025-09-26T12:12:11.2372858Z Working copy of https://github.com/apple/swift-log.git resolved at 1.5.4
+2025-09-26T12:12:11.6177012Z ##[group]Run swift build --configuration debug -Xswiftc -parse-as-library
+2025-09-26T12:12:11.6177536Z [36;1mswift build --configuration debug -Xswiftc -parse-as-library[0m
+2025-09-26T12:12:11.6210740Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:12:11.6210962Z env:
+2025-09-26T12:12:11.6211116Z   SWIFT_VERSION: 5.6
+2025-09-26T12:12:11.6211298Z ##[endgroup]
+2025-09-26T12:12:12.4065260Z 'csqlite': warning: ignoring declared target(s) 'CSQLite' in the system package
+2025-09-26T12:12:12.4521741Z Compiling plugin GenerateManual...
+2025-09-26T12:12:12.8909028Z Building for debugging...
+2025-09-26T12:12:12.8971206Z [1/8] Copying Schema.sql
+2025-09-26T12:12:15.0896622Z [2/42] Emitting module SQLite
+2025-09-26T12:12:15.2372412Z [3/50] Emitting module ArgumentParserToolInfo
+2025-09-26T12:12:15.2407123Z [4/50] Compiling ArgumentParserToolInfo ToolInfo.swift
+2025-09-26T12:12:15.4129067Z [7/52] Wrapping AST for ArgumentParserToolInfo for debugging
+2025-09-26T12:12:16.2147280Z [8/84] Emitting module Logging
+2025-09-26T12:12:16.4568406Z [9/85] Compiling Logging MetadataProvider.swift
+2025-09-26T12:12:17.1037646Z [10/85] Compiling ArgumentParser Errors.swift
+2025-09-26T12:12:17.1038419Z [11/85] Compiling ArgumentParser Flag.swift
+2025-09-26T12:12:17.1039050Z [12/85] Compiling ArgumentParser NameSpecification.swift
+2025-09-26T12:12:17.1039766Z [13/85] Compiling ArgumentParser ArgumentDefinition.swift
+2025-09-26T12:12:17.1040403Z [14/85] Compiling ArgumentParser ArgumentSet.swift
+2025-09-26T12:12:17.1040884Z [15/85] Compiling ArgumentParser CommandParser.swift
+2025-09-26T12:12:17.1075401Z [16/85] Compiling ArgumentParser InputKey.swift
+2025-09-26T12:12:17.1075918Z [17/85] Compiling ArgumentParser InputOrigin.swift
+2025-09-26T12:12:17.1076422Z [18/85] Compiling ArgumentParser Name.swift
+2025-09-26T12:12:17.1331208Z [19/85] Compiling Logging Logging.swift
+2025-09-26T12:12:17.1396600Z [20/85] Compiling Logging Locks.swift
+2025-09-26T12:12:17.1401236Z [21/85] Compiling Logging LogHandler.swift
+2025-09-26T12:12:17.2902053Z [24/87] Emitting module ArgumentParser
+2025-09-26T12:12:17.3436299Z [25/97] Wrapping AST for Logging for debugging
+2025-09-26T12:12:17.9564759Z [26/97] Compiling ArgumentParser Option.swift
+2025-09-26T12:12:17.9566216Z [27/97] Compiling ArgumentParser OptionGroup.swift
+2025-09-26T12:12:17.9567476Z [28/97] Compiling ArgumentParser AsyncParsableCommand.swift
+2025-09-26T12:12:17.9568675Z [29/97] Compiling ArgumentParser CommandConfiguration.swift
+2025-09-26T12:12:17.9569690Z [30/97] Compiling ArgumentParser EnumerableFlag.swift
+2025-09-26T12:12:17.9570447Z [31/97] Compiling ArgumentParser ExpressibleByArgument.swift
+2025-09-26T12:12:17.9571209Z [32/97] Compiling ArgumentParser ParsableArguments.swift
+2025-09-26T12:12:17.9571863Z [33/97] Compiling ArgumentParser ParsableArgumentsValidation.swift
+2025-09-26T12:12:17.9572536Z [34/97] Compiling ArgumentParser ParsableCommand.swift
+2025-09-26T12:12:17.9573137Z [35/97] Compiling ArgumentParser ArgumentDecoder.swift
+2025-09-26T12:12:17.9573744Z [36/97] Compiling ArgumentParser BashCompletionsGenerator.swift
+2025-09-26T12:12:17.9574399Z [37/97] Compiling ArgumentParser CompletionsGenerator.swift
+2025-09-26T12:12:17.9575249Z [38/97] Compiling ArgumentParser FishCompletionsGenerator.swift
+2025-09-26T12:12:17.9575917Z [39/97] Compiling ArgumentParser ZshCompletionsGenerator.swift
+2025-09-26T12:12:17.9576496Z [40/97] Compiling ArgumentParser Argument.swift
+2025-09-26T12:12:17.9577017Z [41/97] Compiling ArgumentParser ArgumentHelp.swift
+2025-09-26T12:12:17.9577603Z [42/97] Compiling ArgumentParser ArgumentVisibility.swift
+2025-09-26T12:12:17.9578198Z [43/97] Compiling ArgumentParser CompletionKind.swift
+2025-09-26T12:12:19.3827417Z [44/97] Compiling ArgumentParser DumpHelpGenerator.swift
+2025-09-26T12:12:19.3832356Z [45/97] Compiling ArgumentParser HelpCommand.swift
+2025-09-26T12:12:19.3837925Z [46/97] Compiling ArgumentParser HelpGenerator.swift
+2025-09-26T12:12:19.3843004Z [47/97] Compiling ArgumentParser MessageInfo.swift
+2025-09-26T12:12:19.3848756Z [48/97] Compiling ArgumentParser UsageGenerator.swift
+2025-09-26T12:12:19.3853429Z [49/97] Compiling ArgumentParser CollectionExtensions.swift
+2025-09-26T12:12:19.3857009Z [50/97] Compiling ArgumentParser Platform.swift
+2025-09-26T12:12:19.3860689Z [51/97] Compiling ArgumentParser SequenceExtensions.swift
+2025-09-26T12:12:19.3865757Z [52/97] Compiling ArgumentParser StringExtensions.swift
+2025-09-26T12:12:19.3866291Z [53/97] Compiling ArgumentParser Tree.swift
+2025-09-26T12:12:19.3891122Z [71/97] Compiling ArgumentParser Parsed.swift
+2025-09-26T12:12:19.3893318Z [72/97] Compiling ArgumentParser ParsedValues.swift
+2025-09-26T12:12:19.3896027Z [73/97] Compiling ArgumentParser ParserError.swift
+2025-09-26T12:12:19.3896566Z [74/97] Compiling ArgumentParser SplitArguments.swift
+2025-09-26T12:12:19.5481515Z [87/99] Wrapping AST for ArgumentParser for debugging
+2025-09-26T12:12:20.4990603Z [98/101] Wrapping AST for SQLite for debugging
+2025-09-26T12:12:20.8609989Z [99/129] Compiling ISPSnitchCore NetworkMonitorStatus.swift
+2025-09-26T12:12:20.8612106Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:20.8614194Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:20.8615491Z                ^
+2025-09-26T12:12:20.8616318Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8617484Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8618572Z               ^
+2025-09-26T12:12:20.8620231Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8622356Z import Foundation
+2025-09-26T12:12:20.8622958Z ^
+2025-09-26T12:12:20.8623485Z @preconcurrency 
+2025-09-26T12:12:20.8637677Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:20.8639170Z     public let timestamp: Date
+2025-09-26T12:12:20.8639550Z                ^
+2025-09-26T12:12:20.8640075Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8640861Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8641425Z               ^
+2025-09-26T12:12:20.8642645Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8643989Z import Foundation
+2025-09-26T12:12:20.8644289Z ^
+2025-09-26T12:12:20.8644779Z @preconcurrency 
+2025-09-26T12:12:20.8645948Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:12:20.8647190Z                 exitCode: exitCode,
+2025-09-26T12:12:20.8647578Z                           ^
+2025-09-26T12:12:20.8647914Z                           Int(    )
+2025-09-26T12:12:20.8648395Z [100/129] Compiling ISPSnitchCore TestDataContainer.swift
+2025-09-26T12:12:20.8650181Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:20.8651994Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:20.8652437Z                ^
+2025-09-26T12:12:20.8652986Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8653788Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8654923Z               ^
+2025-09-26T12:12:20.8656315Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8657834Z import Foundation
+2025-09-26T12:12:20.8658189Z ^
+2025-09-26T12:12:20.8658465Z @preconcurrency 
+2025-09-26T12:12:20.8659823Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:20.8661560Z     public let timestamp: Date
+2025-09-26T12:12:20.8661904Z                ^
+2025-09-26T12:12:20.8662409Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8663156Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8663703Z               ^
+2025-09-26T12:12:20.8665138Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8666452Z import Foundation
+2025-09-26T12:12:20.8666760Z ^
+2025-09-26T12:12:20.8667021Z @preconcurrency 
+2025-09-26T12:12:20.8668158Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:12:20.8669391Z                 exitCode: exitCode,
+2025-09-26T12:12:20.8669840Z                           ^
+2025-09-26T12:12:20.8670199Z                           Int(    )
+2025-09-26T12:12:20.8670623Z [101/129] Compiling ISPSnitchCore TestResult.swift
+2025-09-26T12:12:20.8672381Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:20.8674079Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:20.8674728Z                ^
+2025-09-26T12:12:20.8675270Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8676034Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8676555Z               ^
+2025-09-26T12:12:20.8677867Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8679294Z import Foundation
+2025-09-26T12:12:20.8679587Z ^
+2025-09-26T12:12:20.8679860Z @preconcurrency 
+2025-09-26T12:12:20.8681225Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:20.8682751Z     public let timestamp: Date
+2025-09-26T12:12:20.8683121Z                ^
+2025-09-26T12:12:20.8683619Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8684422Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8685129Z               ^
+2025-09-26T12:12:20.8686369Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8687724Z import Foundation
+2025-09-26T12:12:20.8688025Z ^
+2025-09-26T12:12:20.8688300Z @preconcurrency 
+2025-09-26T12:12:20.8689436Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:12:20.8690662Z                 exitCode: exitCode,
+2025-09-26T12:12:20.8691044Z                           ^
+2025-09-26T12:12:20.8691704Z                           Int(    )
+2025-09-26T12:12:20.8692172Z [102/129] Compiling ISPSnitchCore NetworkMonitor.swift
+2025-09-26T12:12:20.8693996Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:20.8695954Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:20.8696406Z                ^
+2025-09-26T12:12:20.8697237Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8698051Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8698613Z               ^
+2025-09-26T12:12:20.8699939Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8701361Z import Foundation
+2025-09-26T12:12:20.8701668Z ^
+2025-09-26T12:12:20.8701923Z @preconcurrency 
+2025-09-26T12:12:20.8703250Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:20.8704992Z     public let timestamp: Date
+2025-09-26T12:12:20.8705357Z                ^
+2025-09-26T12:12:20.8705880Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8706656Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8707198Z               ^
+2025-09-26T12:12:20.8708415Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8709734Z import Foundation
+2025-09-26T12:12:20.8710035Z ^
+2025-09-26T12:12:20.8710295Z @preconcurrency 
+2025-09-26T12:12:20.8711416Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:12:20.8712685Z                 exitCode: exitCode,
+2025-09-26T12:12:20.8713076Z                           ^
+2025-09-26T12:12:20.8713418Z                           Int(    )
+2025-09-26T12:12:20.8713868Z [103/129] Compiling ISPSnitchCore OutputParser.swift
+2025-09-26T12:12:20.8715838Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:20.8717583Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:20.8718015Z                ^
+2025-09-26T12:12:20.8718545Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8719333Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8719883Z               ^
+2025-09-26T12:12:20.8721192Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8722562Z import Foundation
+2025-09-26T12:12:20.8722843Z ^
+2025-09-26T12:12:20.8723092Z @preconcurrency 
+2025-09-26T12:12:20.8724326Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:20.8725850Z     public let timestamp: Date
+2025-09-26T12:12:20.8726176Z                ^
+2025-09-26T12:12:20.8726637Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8727543Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8728089Z               ^
+2025-09-26T12:12:20.8729262Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8730522Z import Foundation
+2025-09-26T12:12:20.8730793Z ^
+2025-09-26T12:12:20.8731073Z @preconcurrency 
+2025-09-26T12:12:20.8732194Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:12:20.8733553Z                 exitCode: exitCode,
+2025-09-26T12:12:20.8733904Z                           ^
+2025-09-26T12:12:20.8734205Z                           Int(    )
+2025-09-26T12:12:20.8734900Z [104/129] Compiling ISPSnitchCore PingMonitor.swift
+2025-09-26T12:12:20.8736662Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:20.8738351Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:20.8738770Z                ^
+2025-09-26T12:12:20.8739269Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8740031Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8740540Z               ^
+2025-09-26T12:12:20.8741810Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8743197Z import Foundation
+2025-09-26T12:12:20.8743468Z ^
+2025-09-26T12:12:20.8743706Z @preconcurrency 
+2025-09-26T12:12:20.8745207Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:20.8746658Z     public let timestamp: Date
+2025-09-26T12:12:20.8746989Z                ^
+2025-09-26T12:12:20.8747448Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8748225Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8748744Z               ^
+2025-09-26T12:12:20.8749945Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8751224Z import Foundation
+2025-09-26T12:12:20.8751506Z ^
+2025-09-26T12:12:20.8751763Z @preconcurrency 
+2025-09-26T12:12:20.8752888Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:12:20.8754068Z                 exitCode: exitCode,
+2025-09-26T12:12:20.8754431Z                           ^
+2025-09-26T12:12:20.8754896Z                           Int(    )
+2025-09-26T12:12:20.8755290Z [105/129] Compiling ISPSnitchCore TestStrategy.swift
+2025-09-26T12:12:20.8756940Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:20.8758628Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:20.8759027Z                ^
+2025-09-26T12:12:20.8759503Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8760226Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8760726Z               ^
+2025-09-26T12:12:20.8762186Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8763542Z import Foundation
+2025-09-26T12:12:20.8763818Z ^
+2025-09-26T12:12:20.8764065Z @preconcurrency 
+2025-09-26T12:12:20.8801741Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:20.8803241Z     public let timestamp: Date
+2025-09-26T12:12:20.8803874Z                ^
+2025-09-26T12:12:20.8804373Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8805321Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8805855Z               ^
+2025-09-26T12:12:20.8807080Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8808374Z import Foundation
+2025-09-26T12:12:20.8808666Z ^
+2025-09-26T12:12:20.8808929Z @preconcurrency 
+2025-09-26T12:12:20.8810049Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:12:20.8811269Z                 exitCode: exitCode,
+2025-09-26T12:12:20.8811639Z                           ^
+2025-09-26T12:12:20.8811961Z                           Int(    )
+2025-09-26T12:12:20.8812433Z [106/129] Compiling ISPSnitchCore UtilityExecutor.swift
+2025-09-26T12:12:20.8814117Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:20.8816074Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:20.8816496Z                ^
+2025-09-26T12:12:20.8816995Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8817742Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8818245Z               ^
+2025-09-26T12:12:20.8819503Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8820851Z import Foundation
+2025-09-26T12:12:20.8821130Z ^
+2025-09-26T12:12:20.8821371Z @preconcurrency 
+2025-09-26T12:12:20.8822654Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:20.8824032Z     public let timestamp: Date
+2025-09-26T12:12:20.8824363Z                ^
+2025-09-26T12:12:20.8825014Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8825850Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8826333Z               ^
+2025-09-26T12:12:20.8827439Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8828631Z import Foundation
+2025-09-26T12:12:20.8828883Z ^
+2025-09-26T12:12:20.8829127Z @preconcurrency 
+2025-09-26T12:12:20.8830130Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:12:20.8831329Z                 exitCode: exitCode,
+2025-09-26T12:12:20.8831698Z                           ^
+2025-09-26T12:12:20.8832023Z                           Int(    )
+2025-09-26T12:12:20.8832725Z [107/129] Compiling ISPSnitchCore ServiceCoordinator.swift
+2025-09-26T12:12:20.8834694Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:20.8836394Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:20.8836811Z                ^
+2025-09-26T12:12:20.8837308Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8838315Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8838835Z               ^
+2025-09-26T12:12:20.8840126Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8841527Z import Foundation
+2025-09-26T12:12:20.8841810Z ^
+2025-09-26T12:12:20.8842080Z @preconcurrency 
+2025-09-26T12:12:20.8843407Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:20.8845010Z     public let timestamp: Date
+2025-09-26T12:12:20.8845347Z                ^
+2025-09-26T12:12:20.8845857Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:20.8846629Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:20.8847148Z               ^
+2025-09-26T12:12:20.8848343Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:20.8849630Z import Foundation
+2025-09-26T12:12:20.8849918Z ^
+2025-09-26T12:12:20.8850168Z @preconcurrency 
+2025-09-26T12:12:20.8851291Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:12:20.8852501Z                 exitCode: exitCode,
+2025-09-26T12:12:20.8852867Z                           ^
+2025-09-26T12:12:20.8853195Z                           Int(    )
+2025-09-26T12:12:21.1117082Z [108/137] Emitting module ISPSnitchCore
+2025-09-26T12:12:21.1118598Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1120159Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1124412Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1130755Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1131918Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1132289Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1133383Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1134752Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1135100Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1136333Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1137496Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1137851Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1139070Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1140427Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1140763Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1142533Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1143916Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1144266Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1145661Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1146991Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1147340Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1148582Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1150233Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1150536Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1151521Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1152678Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1153021Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1154102Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.1155619Z @preconcurrency import SQLite
+2025-09-26T12:12:21.1155979Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.1157507Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:12:21.1159231Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:12:21.1159635Z                ^
+2025-09-26T12:12:21.1160142Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:21.1160937Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:21.1161471Z               ^
+2025-09-26T12:12:21.1162782Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:21.1164169Z import Foundation
+2025-09-26T12:12:21.1164472Z ^
+2025-09-26T12:12:21.1164930Z @preconcurrency 
+2025-09-26T12:12:21.1166340Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:12:21.1167834Z     public let timestamp: Date
+2025-09-26T12:12:21.1168186Z                ^
+2025-09-26T12:12:21.1168712Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:12:21.1169486Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:12:21.1170021Z               ^
+2025-09-26T12:12:21.1171255Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:12:21.1172576Z import Foundation
+2025-09-26T12:12:21.1172866Z ^
+2025-09-26T12:12:21.1173115Z @preconcurrency 
+2025-09-26T12:12:21.4264387Z [109/137] Compiling ISPSnitchCore ServiceLifecycleManager.swift
+2025-09-26T12:12:21.4270498Z [110/137] Compiling ISPSnitchCore ServiceMetricsCollector.swift
+2025-09-26T12:12:21.4273458Z [111/137] Compiling ISPSnitchCore ISPSnitchService.swift
+2025-09-26T12:12:21.4276614Z [112/137] Compiling ISPSnitchCore ServiceError.swift
+2025-09-26T12:12:21.4279392Z [113/137] Compiling ISPSnitchCore ServiceMetrics.swift
+2025-09-26T12:12:21.4282048Z [114/137] Compiling ISPSnitchCore ServiceState.swift
+2025-09-26T12:12:21.4285755Z [115/137] Compiling ISPSnitchCore PerformanceMonitor.swift
+2025-09-26T12:12:21.4286750Z [116/137] Compiling ISPSnitchCore resource_bundle_accessor.swift
+2025-09-26T12:12:21.4963893Z [117/137] Compiling ISPSnitchCore CommandProtocols.swift
+2025-09-26T12:12:21.4967069Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.4969507Z @preconcurrency import SQLite
+2025-09-26T12:12:21.4971060Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.4973336Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.4985229Z @preconcurrency import SQLite
+2025-09-26T12:12:21.4985924Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.4987330Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.4988656Z @preconcurrency import SQLite
+2025-09-26T12:12:21.4989258Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.4990631Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.4991802Z @preconcurrency import SQLite
+2025-09-26T12:12:21.4992155Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.4993465Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.4995488Z @preconcurrency import SQLite
+2025-09-26T12:12:21.4995872Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.4997163Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.4998516Z @preconcurrency import SQLite
+2025-09-26T12:12:21.4998872Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5000110Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5001458Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5001810Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5003062Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5004399Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5004914Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5359439Z [118/137] Compiling ISPSnitchCore DataRetentionManager.swift
+2025-09-26T12:12:21.5360931Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5362601Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5364277Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5365856Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5367068Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5367456Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5368551Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5369768Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5370140Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5371158Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5372313Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5372662Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5373961Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5376048Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5376417Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5377651Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5378946Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5379299Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5380504Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5382068Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5382429Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5383695Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5385297Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5385667Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5743103Z [119/137] Compiling ISPSnitchCore DataStorage.swift
+2025-09-26T12:12:21.5746725Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5747966Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5748318Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5749294Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5750480Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5750810Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5751841Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5752885Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5753226Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5754237Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5756130Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5756493Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5757782Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5759196Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5759560Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5760766Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5762103Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5762454Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5763698Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5765237Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5765575Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.5766815Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.5768166Z @preconcurrency import SQLite
+2025-09-26T12:12:21.5768505Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6097931Z [120/137] Compiling ISPSnitchCore DatabaseManager.swift
+2025-09-26T12:12:21.6101271Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6102631Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6103024Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6104471Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6105890Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6106261Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6107317Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6108495Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6108853Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6109849Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6111235Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6111582Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6112845Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6114231Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6114767Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6115963Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6117312Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6117664Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6118863Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6120156Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6120504Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6121761Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6123138Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6123509Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6458522Z [121/137] Compiling ISPSnitchCore Migrations.swift
+2025-09-26T12:12:21.6460503Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6461742Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6462097Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6463098Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6464022Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6464252Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6465303Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6466095Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6466323Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6466994Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6467714Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6467948Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6468775Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6469678Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6469914Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6470699Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6471559Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6471778Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6472828Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6473721Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6473936Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6474950Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6475735Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6475937Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6855705Z [122/137] Compiling ISPSnitchCore ConnectivityRecordRepository.swift
+2025-09-26T12:12:21.6857102Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6858264Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6858520Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6859153Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6859813Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6860027Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6860637Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6861298Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6861508Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6862083Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6862713Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6862902Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6863631Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6864407Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6864831Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6865532Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6866491Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6866858Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6868238Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6869542Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6869879Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.6871015Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.6871795Z @preconcurrency import SQLite
+2025-09-26T12:12:21.6871984Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7214312Z [123/137] Compiling ISPSnitchCore ServiceStatusRepository.swift
+2025-09-26T12:12:21.7216087Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7217177Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7217492Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7218379Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7219387Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7219692Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7220619Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7221639Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7222213Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7223107Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7224089Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7224392Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7225838Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7227056Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7227301Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7228138Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7229063Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7229296Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7230142Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7231064Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7231297Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7232164Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7233102Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7233349Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7566542Z [124/137] Compiling ISPSnitchCore SystemMetricsRepository.swift
+2025-09-26T12:12:21.7567950Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7568881Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7569137Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7569911Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7570767Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7571021Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7571816Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7572684Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7572943Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7573715Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7574831Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7575097Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7576107Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7577068Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7577301Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7578140Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7579089Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7579328Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7580157Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7581072Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7581312Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7582171Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7583349Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7583583Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7920332Z [125/137] Compiling ISPSnitchCore TestConfigurationRepository.swift
+2025-09-26T12:12:21.7921555Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7922398Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7922640Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7923342Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7924432Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7924918Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7925643Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7926456Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7926688Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7927382Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7928159Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7928391Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7929260Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7930207Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7930469Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7931315Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7932233Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7932476Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7933310Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7934228Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7934470Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.7935423Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.7936372Z @preconcurrency import SQLite
+2025-09-26T12:12:21.7936613Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8273257Z [126/137] Compiling ISPSnitchCore SchemaManager.swift
+2025-09-26T12:12:21.8274987Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8276055Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8276362Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8277349Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8278236Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8278469Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8295147Z [127/137] Compiling ISPSnitchCore TableDefinitions.swift
+2025-09-26T12:12:21.8296317Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8297161Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8297400Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8298164Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8298977Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8299201Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8317251Z [128/137] Compiling ISPSnitchCore JSONSerializer.swift
+2025-09-26T12:12:21.8318301Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8319133Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8319376Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8320138Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8321141Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8321378Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8339293Z [129/137] Compiling ISPSnitchCore ISPSnitchCore.swift
+2025-09-26T12:12:21.8340621Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8341440Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8341697Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8342455Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8343291Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8343529Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8360947Z [130/137] Compiling ISPSnitchCore ConnectivityRecord.swift
+2025-09-26T12:12:21.8362219Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8363135Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8363400Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8364252Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8365502Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8365766Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8382850Z [131/137] Compiling ISPSnitchCore ConnectivityRecordBuilder.swift
+2025-09-26T12:12:21.8384043Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8385051Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8385290Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8386056Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8386899Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8387137Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8404721Z [132/137] Compiling ISPSnitchCore TestExecutor.swift
+2025-09-26T12:12:21.8405887Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8406732Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8406971Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8407733Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8408573Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8408805Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8426437Z [133/137] Compiling ISPSnitchCore TestScheduler.swift
+2025-09-26T12:12:21.8427610Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8428473Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8428711Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8429485Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8430327Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8430737Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8448175Z [134/137] Compiling ISPSnitchCore NetworkMonitorError.swift
+2025-09-26T12:12:21.8449509Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8450353Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8450587Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8451352Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:12:21.8452387Z @preconcurrency import SQLite
+2025-09-26T12:12:21.8452622Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:12:21.8528580Z ##[error]Process completed with exit code 1.
+2025-09-26T12:12:21.8625289Z Post job cleanup.
+2025-09-26T12:12:21.9597327Z [command]/usr/bin/git version
+2025-09-26T12:12:21.9635402Z git version 2.51.0
+2025-09-26T12:12:21.9680502Z Temporarily overriding HOME='/home/runner/work/_temp/c536f52c-b305-46a9-b5a8-296f7d5a0038' before making global git config changes
+2025-09-26T12:12:21.9681364Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-26T12:12:21.9687583Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:12:21.9725350Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-26T12:12:21.9759171Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-26T12:12:21.9988840Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-26T12:12:22.0011631Z http.https://github.com/.extraheader
+2025-09-26T12:12:22.0025357Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-09-26T12:12:22.0056672Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-26T12:12:22.0386968Z Cleaning up orphan processes

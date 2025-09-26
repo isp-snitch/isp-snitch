@@ -1,4 +1,4 @@
-import Foundation
+@preconcurrency import Foundation
 
 // MARK: - Network Monitor Status
 public struct NetworkMonitorStatus: Sendable, Codable {
