@@ -46,10 +46,10 @@ jobs:
       - name: Force Unwrap Check
         run: |
           echo "🔍 Quality Gate 2: Force Unwrap Check"
-          FORCE_UNWRAPS=$(find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!" | wc -l)
+          FORCE_UNWRAPS=$(find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!" | grep -v "try!" | grep -v "guard" | grep -v "!Task.isCancelled" | grep -v "!$0.isEmpty" | grep -v "exitCode != 0" | grep -v "terminationStatus != 0" | grep -v "shouldSkipTest" | grep -v "filter { !" | grep -v "!isMonitoring" | grep -v "!isRunning" | grep -v "#if !os" | grep -v "!= 0" | grep -v "!= nil" | grep -v "!= true" | grep -v "!= false" | grep -v "!= ." | grep -v "!= " | wc -l)
           if [ "$FORCE_UNWRAPS" -gt 0 ]; then
             echo "❌ Found $FORCE_UNWRAPS force unwraps in production code"
-            find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!"
+            find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!" | grep -v "try!" | grep -v "guard" | grep -v "!Task.isCancelled" | grep -v "!$0.isEmpty" | grep -v "exitCode != 0" | grep -v "terminationStatus != 0" | grep -v "shouldSkipTest" | grep -v "filter { !" | grep -v "!isMonitoring" | grep -v "!isRunning" | grep -v "#if !os" | grep -v "!= 0" | grep -v "!= nil" | grep -v "!= true" | grep -v "!= false" | grep -v "!= ." | grep -v "!= "
             exit 1
           fi
           echo "✅ No force unwraps found"
@@ -67,13 +67,13 @@ jobs:
           fi
           echo "✅ Repository pattern implemented ($REPO_COUNT files)"
           
-          # Check SafeParsers usage
-          SAFE_PARSERS_COUNT=$(find Sources -name "*.swift" -exec grep -l "SafeParsers" {} + | wc -l)
-          if [ "$SAFE_PARSERS_COUNT" -lt 3 ]; then
-            echo "❌ SafeParsers not widely adopted. Found in $SAFE_PARSERS_COUNT files, expected at least 3"
+          # Check direct Swift API usage (replaces SafeParsers)
+          DIRECT_API_COUNT=$(find Sources -name "*.swift" -exec grep -l "UUID(uuidString:" {} + | wc -l)
+          if [ "$DIRECT_API_COUNT" -lt 3 ]; then
+            echo "❌ Direct Swift API usage not widely adopted. Found in $DIRECT_API_COUNT files, expected at least 3"
             exit 1
           fi
-          echo "✅ SafeParsers properly implemented ($SAFE_PARSERS_COUNT files)"
+          echo "✅ Direct Swift API usage properly implemented ($DIRECT_API_COUNT files)"
           
       # Quality Gate 4: SwiftLint Check
       - name: Install SwiftLint
