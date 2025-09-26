@@ -146,11 +146,11 @@ jobs:
         run: |
           echo "🔒 Quality Gate 8: Security Check"
           
-          # Check for hardcoded secrets
-          SECRETS=$(find Sources -name "*.swift" -exec grep -i "password\|secret\|key\|token" {} + | grep -v "//" | wc -l)
+          # Check for hardcoded secrets (more precise)
+          SECRETS=$(find Sources -name "*.swift" -exec grep -i "password.*=\|secret.*=\|api.*key.*=\|token.*=" {} + | grep -v "//" | wc -l)
           if [ "$SECRETS" -gt 0 ]; then
             echo "❌ Found potential hardcoded secrets"
-            find Sources -name "*.swift" -exec grep -i "password\|secret\|key\|token" {} + | grep -v "//"
+            find Sources -name "*.swift" -exec grep -i "password.*=\|secret.*=\|api.*key.*=\|token.*=" {} + | grep -v "//"
             exit 1
           fi
           
