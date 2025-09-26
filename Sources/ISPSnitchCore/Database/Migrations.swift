@@ -62,13 +62,13 @@ public struct Migrations {
 
     private static func migration002_AddIndexes(_ connection: Connection) throws {
         // Additional indexes for performance
-        let connectivityRecords = Table("connectivity_records")
-        let systemMetrics = Table("system_metrics")
+        _ = Table("connectivity_records")
+        _ = Table("system_metrics")
 
-        let timestamp = Expression<Date>("timestamp")
-        let testType = Expression<String>("test_type")
-        let success = Expression<Bool>("success")
-        let networkInterface = Expression<String>("network_interface")
+        _ = Expression<Date>("timestamp")
+        _ = Expression<String>("test_type")
+        _ = Expression<Bool>("success")
+        _ = Expression<String>("network_interface")
 
         // Add composite indexes for common queries
         try connection.execute("CREATE INDEX IF NOT EXISTS idx_connectivity_test_type_timestamp ON connectivity_records(test_type, timestamp)")

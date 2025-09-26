@@ -91,7 +91,7 @@ public actor DataRetentionManager {
         }
 
         // Delete records older than cutoff date, but keep at least the most recent ones
-        let recentRecords = serviceStatus
+        _ = serviceStatus
             .select(timestamp)
             .order(timestamp.desc)
             .limit(keepCount)
