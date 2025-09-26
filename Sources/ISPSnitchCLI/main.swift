@@ -2,7 +2,6 @@ import Foundation
 import ArgumentParser
 import ISPSnitchCore
 
-@main
 struct ISPSnitchCLI: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "isp-snitch",
@@ -18,3 +17,6 @@ struct ISPSnitchCLI: ParsableCommand {
         ]
     )
 }
+
+// Main entry point
+ISPSnitchCLI.main()

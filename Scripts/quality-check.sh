@@ -74,7 +74,7 @@ TOTAL_CHECKS=0
 # 1. Build Quality Check
 print_section "Build Quality"
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
-if swift build -Xswiftc -parse-as-library >/dev/null 2>&1; then
+if swift build >/dev/null 2>&1; then
     print_success "Build successful"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))
 else
@@ -86,7 +86,7 @@ print_section "Test Quality"
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
 
 # Count test suites
-TEST_SUITES=$(swift test list -Xswiftc -parse-as-library 2>/dev/null | grep -o "ISPSnitchTests\.[A-Za-z]*Tests" | sort | uniq | wc -l | tr -d ' ' || echo "0")
+TEST_SUITES=$(swift test list 2>/dev/null | grep -o "ISPSnitchTests\.[A-Za-z]*Tests" | sort | uniq | wc -l | tr -d ' ' || echo "0")
 if [ "$TEST_SUITES" -ge $MIN_TEST_SUITES ]; then
     print_success "Test suites: $TEST_SUITES (≥ $MIN_TEST_SUITES)"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))
@@ -95,7 +95,7 @@ else
 fi
 
 # Run tests
-if swift test -Xswiftc -parse-as-library --parallel >/dev/null 2>&1; then
+if swift test --parallel >/dev/null 2>&1; then
     print_success "All tests pass"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))
     TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
