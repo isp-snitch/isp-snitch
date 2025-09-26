@@ -13,7 +13,7 @@ permissions:
   security-events: write
 
 env:
-  SWIFT_VERSION: "6.0"
+  SWIFT_VERSION: "5.10"
 
 jobs:
   build_test:
