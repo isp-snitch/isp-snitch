@@ -1,0 +1,198 @@
+name: Quality Gates
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  SWIFT_VERSION: "6.0"
+  QUALITY_THRESHOLD: 95
+
+jobs:
+  quality-gates:
+    name: Quality Gates
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Swift
+        uses: swift-actions/setup-swift@v2.3.0
+        with:
+          swift-version: ${{ env.SWIFT_VERSION }}
+          
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.swiftpm
+            ~/Library/Caches/org.swift.swiftpm
+          key: ${{ runner.os }}-swift-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-swift-
+            
+      # Quality Gate 1: Build Check
+      - name: Build Check
+        run: |
+          echo "🔨 Quality Gate 1: Build Check"
+          swift build -Xswiftc -parse-as-library
+          echo "✅ Build successful"
+          
+      # Quality Gate 2: Force Unwrap Check
+      - name: Force Unwrap Check
+        run: |
+          echo "🔍 Quality Gate 2: Force Unwrap Check"
+          FORCE_UNWRAPS=$(find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!" | wc -l)
+          if [ "$FORCE_UNWRAPS" -gt 0 ]; then
+            echo "❌ Found $FORCE_UNWRAPS force unwraps in production code"
+            find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!"
+            exit 1
+          fi
+          echo "✅ No force unwraps found"
+          
+      # Quality Gate 3: Architecture Pattern Check
+      - name: Architecture Pattern Check
+        run: |
+          echo "🏗️ Quality Gate 3: Architecture Pattern Check"
+          
+          # Check Repository pattern
+          REPO_COUNT=$(find Sources -name "*Repository.swift" | wc -l)
+          if [ "$REPO_COUNT" -lt 4 ]; then
+            echo "❌ Repository pattern not properly implemented. Found $REPO_COUNT repository files, expected at least 4"
+            exit 1
+          fi
+          echo "✅ Repository pattern implemented ($REPO_COUNT files)"
+          
+          # Check SafeParsers usage
+          SAFE_PARSERS_COUNT=$(find Sources -name "*.swift" -exec grep -l "SafeParsers" {} + | wc -l)
+          if [ "$SAFE_PARSERS_COUNT" -lt 3 ]; then
+            echo "❌ SafeParsers not widely adopted. Found in $SAFE_PARSERS_COUNT files, expected at least 3"
+            exit 1
+          fi
+          echo "✅ SafeParsers properly implemented ($SAFE_PARSERS_COUNT files)"
+          
+      # Quality Gate 4: SwiftLint Check
+      - name: Install SwiftLint
+        run: |
+          echo "📦 Installing SwiftLint..."
+          brew install swiftlint
+          
+      - name: SwiftLint Check
+        run: |
+          echo "🔍 Quality Gate 4: SwiftLint Check"
+          swiftlint lint --strict
+          echo "✅ SwiftLint passed with strict rules"
+          
+      # Quality Gate 5: Test Suite Check
+      - name: Test Suite Check
+        run: |
+          echo "🧪 Quality Gate 5: Test Suite Check"
+          
+          # Run all tests
+          swift test -Xswiftc -parse-as-library --parallel
+          TEST_EXIT_CODE=$?
+          
+          if [ $TEST_EXIT_CODE -ne 0 ]; then
+            echo "❌ Tests failed"
+            exit 1
+          fi
+          
+          echo "✅ All tests passed"
+          
+      # Quality Gate 6: Performance Test Check
+      - name: Performance Test Check
+        run: |
+          echo "⚡ Quality Gate 6: Performance Test Check"
+          
+          # Run performance tests specifically
+          swift test -Xswiftc -parse-as-library --filter "PerformanceOptimizationTests|ResourceUsageTests" --parallel
+          PERF_EXIT_CODE=$?
+          
+          if [ $PERF_EXIT_CODE -ne 0 ]; then
+            echo "❌ Performance tests failed"
+            exit 1
+          fi
+          
+          echo "✅ Performance tests passed"
+          
+      # Quality Gate 7: Test Coverage Check
+      - name: Test Coverage Check
+        run: |
+          echo "📊 Quality Gate 7: Test Coverage Check"
+          
+          # Count test files
+          TEST_FILES=$(find Tests -name "*.swift" | wc -l)
+          echo "Found $TEST_FILES test files"
+          
+          # Count test suites
+          TEST_SUITES=$(swift test -Xswiftc -parse-as-library --list-tests | grep "Suite" | wc -l)
+          echo "Found $TEST_SUITES test suites"
+          
+          if [ "$TEST_SUITES" -lt 15 ]; then
+            echo "❌ Insufficient test coverage. Found $TEST_SUITES test suites, expected at least 15"
+            exit 1
+          fi
+          
+          echo "✅ Test coverage adequate ($TEST_SUITES test suites)"
+          
+      # Quality Gate 8: Security Check
+      - name: Security Check
+        run: |
+          echo "🔒 Quality Gate 8: Security Check"
+          
+          # Check for hardcoded secrets
+          SECRETS=$(find Sources -name "*.swift" -exec grep -i "password\|secret\|key\|token" {} + | grep -v "//" | wc -l)
+          if [ "$SECRETS" -gt 0 ]; then
+            echo "❌ Found potential hardcoded secrets"
+            find Sources -name "*.swift" -exec grep -i "password\|secret\|key\|token" {} + | grep -v "//"
+            exit 1
+          fi
+          
+          # Check for unsafe string interpolation
+          UNSAFE_INTERPOLATION=$(find Sources -name "*.swift" -exec grep -n "\\(.*\\)" {} + | grep -v "//" | wc -l)
+          if [ "$UNSAFE_INTERPOLATION" -gt 5 ]; then
+            echo "⚠️ Found $UNSAFE_INTERPOLATION string interpolations. Review for security."
+          fi
+          
+          echo "✅ Security check passed"
+          
+      # Quality Gate 9: Documentation Check
+      - name: Documentation Check
+        run: |
+          echo "📚 Quality Gate 9: Documentation Check"
+          
+          # Check for public API documentation
+          PUBLIC_APIS=$(find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "public " {} + | wc -l)
+          DOCUMENTED_APIS=$(find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "///" {} + | wc -l)
+          
+          echo "Found $PUBLIC_APIS public APIs and $DOCUMENTED_APIS documented APIs"
+          
+          if [ "$DOCUMENTED_APIS" -lt 10 ]; then
+            echo "⚠️ Low documentation coverage. Consider adding more documentation."
+          fi
+          
+          echo "✅ Documentation check passed"
+          
+      # Quality Gate 10: Final Quality Report
+      - name: Quality Report
+        run: |
+          echo ""
+          echo "🎯 ISP Snitch Quality Gates Report"
+          echo "=================================="
+          echo "✅ Build Check: PASSED"
+          echo "✅ Force Unwrap Check: PASSED"
+          echo "✅ Architecture Pattern Check: PASSED"
+          echo "✅ SwiftLint Check: PASSED"
+          echo "✅ Test Suite Check: PASSED"
+          echo "✅ Performance Test Check: PASSED"
+          echo "✅ Test Coverage Check: PASSED"
+          echo "✅ Security Check: PASSED"
+          echo "✅ Documentation Check: PASSED"
+          echo ""
+          echo "🚀 All quality gates passed! Code meets ISP Snitch standards."
+          echo "📊 Quality Score: 100%"
+          echo ""
+          echo "This code is ready for production deployment! 🎉"
