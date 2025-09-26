@@ -74,7 +74,7 @@ TOTAL_CHECKS=0
 # 1. Build Quality Check
 print_section "Build Quality"
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
-if swift build -Xswiftc -parse-as-library >/dev/null 2>&1; then
+if swift build >/dev/null 2>&1; then
     print_success "Build successful"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))
 else
@@ -86,7 +86,7 @@ print_section "Test Quality"
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
 
 # Count test suites
-TEST_SUITES=$(swift test -Xswiftc -parse-as-library --list-tests 2>/dev/null | grep -c "Suite" | head -n 1 || echo "0")
+TEST_SUITES=$(swift test list 2>/dev/null | grep -o "ISPSnitchTests\.[A-Za-z]*Tests" | sort | uniq | wc -l | tr -d ' ' || echo "0")
 if [ "$TEST_SUITES" -ge $MIN_TEST_SUITES ]; then
     print_success "Test suites: $TEST_SUITES (≥ $MIN_TEST_SUITES)"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))
@@ -95,7 +95,7 @@ else
 fi
 
 # Run tests
-if swift test -Xswiftc -parse-as-library --parallel >/dev/null 2>&1; then
+if swift test --parallel >/dev/null 2>&1; then
     print_success "All tests pass"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))
     TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
@@ -132,7 +132,7 @@ print_section "Code Quality"
 
 # Force unwrap check (exclude legitimate uses)
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
-FORCE_UNWRAPS=$(find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!" | grep -v "try!" | grep -v "guard" | grep -v "!Task.isCancelled" | grep -v "!$0.isEmpty" | grep -v "exitCode != 0" | grep -v "shouldSkipTest" | grep -v "filter { !" | grep -v "!isMonitoring" | grep -v "!isRunning" | wc -l)
+FORCE_UNWRAPS=$(find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!" | grep -v "try!" | grep -v "guard" | grep -v "!Task.isCancelled" | grep -v "!$0.isEmpty" | grep -v "exitCode != 0" | grep -v "shouldSkipTest" | grep -v "filter { !" | grep -v "!isMonitoring" | grep -v "!isRunning" | grep -v "!line.contains" | grep -v "!metrics.missingDocumentation.isEmpty" | grep -v "#if !os" | grep -v "!= 0" | wc -l)
 if [ "$FORCE_UNWRAPS" -le $MAX_FORCE_UNWRAPS ]; then
     print_success "Force unwraps: $FORCE_UNWRAPS (≤ $MAX_FORCE_UNWRAPS)"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))

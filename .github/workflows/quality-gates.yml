@@ -39,7 +39,7 @@ jobs:
       - name: Build Check
         run: |
           echo "🔨 Quality Gate 1: Build Check"
-          swift build -Xswiftc -parse-as-library
+          swift build
           echo "✅ Build successful"
           
       # Quality Gate 2: Force Unwrap Check
@@ -95,7 +95,7 @@ jobs:
           echo "🧪 Quality Gate 5: Test Suite Check"
           
           # Run all tests
-          swift test -Xswiftc -parse-as-library --parallel
+          swift test --parallel
           TEST_EXIT_CODE=$?
           
           if [ $TEST_EXIT_CODE -ne 0 ]; then
@@ -111,7 +111,7 @@ jobs:
           echo "⚡ Quality Gate 6: Performance Test Check"
           
           # Run performance tests specifically
-          swift test -Xswiftc -parse-as-library --filter "PerformanceOptimizationTests|ResourceUsageTests" --parallel
+          swift test --filter "PerformanceOptimizationTests|ResourceUsageTests" --parallel
           PERF_EXIT_CODE=$?
           
           if [ $PERF_EXIT_CODE -ne 0 ]; then
