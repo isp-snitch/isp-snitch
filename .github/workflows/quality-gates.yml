@@ -130,16 +130,16 @@ jobs:
           TEST_FILES=$(find Tests -name "*.swift" | wc -l)
           echo "Found $TEST_FILES test files"
           
-          # Count test suites
-          TEST_SUITES=$(swift test -Xswiftc -parse-as-library --list-tests | grep "Suite" | wc -l)
-          echo "Found $TEST_SUITES test suites"
+          # Count test classes (XCTest approach)
+          TEST_CLASSES=$(find Tests -name "*.swift" -exec grep -l "XCTestCase" {} + | wc -l)
+          echo "Found $TEST_CLASSES test classes"
           
-          if [ "$TEST_SUITES" -lt 15 ]; then
-            echo "❌ Insufficient test coverage. Found $TEST_SUITES test suites, expected at least 15"
+          if [ "$TEST_CLASSES" -lt 15 ]; then
+            echo "❌ Insufficient test coverage. Found $TEST_CLASSES test classes, expected at least 15"
             exit 1
           fi
           
-          echo "✅ Test coverage adequate ($TEST_SUITES test suites)"
+          echo "✅ Test coverage adequate ($TEST_CLASSES test classes)"
           
       # Quality Gate 8: Security Check
       - name: Security Check
