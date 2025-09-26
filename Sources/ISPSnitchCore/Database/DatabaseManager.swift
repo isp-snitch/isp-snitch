@@ -2,33 +2,33 @@ import Foundation
 @preconcurrency import SQLite
 
 // MARK: - Database Manager
-public actor DatabaseManager: Sendable {
+public actor DatabaseManager {
     private let connection: Connection
     private let dataStorage: DataStorage
     private let retentionManager: DataRetentionManager
-    
+
     public init(databasePath: String = ":memory:") async throws {
         self.connection = try Connection(databasePath)
         self.dataStorage = try DataStorage(connection: connection)
         self.retentionManager = DataRetentionManager(connection: connection)
-        
+
         try await setupDatabase()
     }
-    
+
     private func setupDatabase() async throws {
         // Create tables if they don't exist
         try await dataStorage.createTables()
-        
+
         // Run migrations if needed
         try Migrations.runMigrations(on: connection)
     }
-    
+
     // MARK: - Public Interface
-    
+
     public func insertConnectivityRecord(_ record: ConnectivityRecord) async throws {
         try await dataStorage.insertConnectivityRecord(record)
     }
-    
+
     public func getConnectivityRecords(
         limit: Int = 100,
         offset: Int = 0,
@@ -44,38 +44,38 @@ public actor DatabaseManager: Sendable {
             since: since
         )
     }
-    
+
     public func insertTestConfiguration(_ configuration: TestConfiguration) async throws {
         try await dataStorage.insertTestConfiguration(configuration)
     }
-    
+
     public func getTestConfigurations() async throws -> [TestConfiguration] {
         return try await dataStorage.getTestConfigurations()
     }
-    
+
     public func insertSystemMetrics(_ metrics: SystemMetrics) async throws {
         try await dataStorage.insertSystemMetrics(metrics)
     }
-    
+
     public func getSystemMetrics(
         limit: Int = 100,
         since: Date? = nil
     ) async throws -> [SystemMetrics] {
         return try await dataStorage.getSystemMetrics(limit: limit, since: since)
     }
-    
+
     public func insertServiceStatus(_ status: ServiceStatus) async throws {
         try await dataStorage.insertServiceStatus(status)
     }
-    
+
     public func getServiceStatus() async throws -> ServiceStatus? {
         return try await dataStorage.getServiceStatus()
     }
-    
+
     public func cleanup() async throws {
         try await retentionManager.cleanupOldData()
     }
-    
+
     public func close() async throws {
         // SQLite.swift Connection doesn't need explicit closing
         // The connection will be closed when the object is deallocated
@@ -91,7 +91,7 @@ public struct SystemMetrics: Sendable, Codable, Identifiable {
     public let diskUsage: Double
     public let networkBytesIn: Int64
     public let networkBytesOut: Int64
-    
+
     public init(
         id: UUID = UUID(),
         timestamp: Date = Date(),
@@ -118,7 +118,7 @@ public struct ServiceStatus: Sendable, Codable, Identifiable {
     public let status: String
     public let uptime: TimeInterval
     public let version: String
-    
+
     public init(
         id: UUID = UUID(),
         timestamp: Date = Date(),

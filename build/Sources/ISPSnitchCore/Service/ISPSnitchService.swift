@@ -7,87 +7,87 @@ import Foundation
 @MainActor
 public final class ISPSnitchService: ObservableObject {
     public static let shared = ISPSnitchService()
-    
+
     // Core components
     private var databaseManager: DatabaseManager?
     private let networkMonitor: NetworkMonitor
     private var webServer: Any? // Will be set when web server is available
-    
+
     // Service state
     @Published public private(set) var isRunning = false
     @Published public private(set) var status: ServiceState = .stopped
-    
+
     private init() {
         // Initialize components lazily
         self.databaseManager = nil as DatabaseManager?
         self.networkMonitor = NetworkMonitor()
         self.webServer = nil
     }
-    
+
     /// Start the ISP Snitch service
     public func start() async throws {
         guard !isRunning else {
             throw ServiceError.alreadyRunning
         }
-        
+
         status = .starting
-        
+
         do {
             // Initialize database
             self.databaseManager = try await DatabaseManager()
-            
+
             // Start network monitoring
             try await networkMonitor.start()
-            
+
             // Start web server (placeholder for now)
             // TODO: Integrate web server when available
-            
+
             isRunning = true
             status = .running
-            
+
             print("ISP Snitch service started successfully")
         } catch {
             status = .error
             throw ServiceError.startupFailed(error)
         }
     }
-    
+
     /// Stop the ISP Snitch service
     public func stop() async throws {
         guard isRunning else {
             throw ServiceError.notRunning
         }
-        
+
         status = .stopping
-        
+
         do {
             // Stop network monitoring
             try await networkMonitor.stop()
-            
+
             // Stop web server (placeholder for now)
             // TODO: Integrate web server when available
-            
+
             isRunning = false
             status = .stopped
-            
+
             print("ISP Snitch service stopped successfully")
         } catch {
             status = .error
             throw ServiceError.shutdownFailed(error)
         }
     }
-    
+
     /// Restart the ISP Snitch service
     public func restart() async throws {
         try await stop()
         try await start()
     }
-    
+
     /// Get current service status
     public func getStatus() -> ServiceState {
         return status
     }
-    
+
     /// Get service metrics
     public func getMetrics() async throws -> ServiceMetrics {
         // TODO: Implement real metrics collection
@@ -119,7 +119,7 @@ public struct ServiceMetrics: Sendable, Codable {
     public let errorRate: Double
     public let memoryUsage: Double
     public let cpuUsage: Double
-    
+
     public init(
         uptimeSeconds: Int,
         totalRequests: Int,
@@ -146,7 +146,7 @@ public enum ServiceError: Error, Sendable {
     case configurationError(String)
     case databaseError(String)
     case networkError(String)
-    
+
     public var localizedDescription: String {
         switch self {
         case .alreadyRunning:

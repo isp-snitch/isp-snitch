@@ -4,10 +4,10 @@ import SQLite
 @testable import ISPSnitchCore
 
 struct DataStorageTests {
-    
+
     @Test func insertConnectivityRecord() throws {
         let db = try Connection(":memory:")
-        
+
         // Create table
         let connectivityRecords = Table("connectivity_records")
         let id = Expression<String>("id")
@@ -19,7 +19,7 @@ struct DataStorageTests {
         let networkInterface = Expression<String>("network_interface")
         let cpuUsage = Expression<Double?>("cpu_usage")
         let memoryUsage = Expression<Double?>("memory_usage")
-        
+
         try db.run(connectivityRecords.create { t in
             t.column(id, primaryKey: true)
             t.column(timestamp)
@@ -31,11 +31,11 @@ struct DataStorageTests {
             t.column(cpuUsage)
             t.column(memoryUsage)
         })
-        
+
         // Insert test record
         let recordId = UUID().uuidString
         let now = ISO8601DateFormatter().string(from: Date())
-        
+
         try db.run(connectivityRecords.insert(
             id <- recordId,
             timestamp <- now,
@@ -47,11 +47,11 @@ struct DataStorageTests {
             cpuUsage <- 0.5,
             memoryUsage <- 42.0
         ))
-        
+
         // Verify insertion
         let count = try db.scalar(connectivityRecords.count)
         #expect(count == 1)
-        
+
         // Verify data
         let record = try db.pluck(connectivityRecords.filter(id == recordId))
         #expect(record != nil)
@@ -60,10 +60,10 @@ struct DataStorageTests {
         #expect(record![latency] == 0.024)
         #expect(record![success] == true)
     }
-    
+
     @Test func insertTestConfiguration() throws {
         let db = try Connection(":memory:")
-        
+
         // Create table
         let testConfigurations = Table("test_configurations")
         let id = Expression<String>("id")
@@ -79,7 +79,7 @@ struct DataStorageTests {
         let enableNotifications = Expression<Bool>("enable_notifications")
         let enableWebInterface = Expression<Bool>("enable_web_interface")
         let isActive = Expression<Bool>("is_active")
-        
+
         try db.run(testConfigurations.create { t in
             t.column(id, primaryKey: true)
             t.column(name)
@@ -95,13 +95,13 @@ struct DataStorageTests {
             t.column(enableWebInterface)
             t.column(isActive)
         })
-        
+
         // Insert test configuration
         let configId = UUID().uuidString
         let pingTargetsJson = try JSONSerialization.data(withJSONObject: ["8.8.8.8", "1.1.1.1"])
         let httpTargetsJson = try JSONSerialization.data(withJSONObject: ["https://google.com"])
         let dnsTargetsJson = try JSONSerialization.data(withJSONObject: ["google.com"])
-        
+
         try db.run(testConfigurations.insert(
             id <- configId,
             name <- "Default Configuration",
@@ -117,11 +117,11 @@ struct DataStorageTests {
             enableWebInterface <- true,
             isActive <- true
         ))
-        
+
         // Verify insertion
         let count = try db.scalar(testConfigurations.count)
         #expect(count == 1)
-        
+
         // Verify data
         let config = try db.pluck(testConfigurations.filter(id == configId))
         #expect(config != nil)
@@ -135,10 +135,10 @@ struct DataStorageTests {
         #expect(config![enableWebInterface] == true)
         #expect(config![isActive] == true)
     }
-    
+
     @Test func insertSystemMetrics() throws {
         let db = try Connection(":memory:")
-        
+
         // Create table
         let systemMetrics = Table("system_metrics")
         let id = Expression<String>("id")
@@ -148,7 +148,7 @@ struct DataStorageTests {
         let networkInterface = Expression<String>("network_interface")
         let networkInterfaceStatus = Expression<String>("network_interface_status")
         let batteryLevel = Expression<Double?>("battery_level")
-        
+
         try db.run(systemMetrics.create { t in
             t.column(id, primaryKey: true)
             t.column(timestamp)
@@ -158,11 +158,11 @@ struct DataStorageTests {
             t.column(networkInterfaceStatus)
             t.column(batteryLevel)
         })
-        
+
         // Insert test metrics
         let metricsId = UUID().uuidString
         let now = ISO8601DateFormatter().string(from: Date())
-        
+
         try db.run(systemMetrics.insert(
             id <- metricsId,
             timestamp <- now,
@@ -172,11 +172,11 @@ struct DataStorageTests {
             networkInterfaceStatus <- "active",
             batteryLevel <- 85.0
         ))
-        
+
         // Verify insertion
         let count = try db.scalar(systemMetrics.count)
         #expect(count == 1)
-        
+
         // Verify data
         let metrics = try db.pluck(systemMetrics.filter(id == metricsId))
         #expect(metrics != nil)
@@ -186,10 +186,10 @@ struct DataStorageTests {
         #expect(metrics![networkInterfaceStatus] == "active")
         #expect(metrics![batteryLevel] == 85.0)
     }
-    
+
     @Test func insertServiceStatus() throws {
         let db = try Connection(":memory:")
-        
+
         // Create table
         let serviceStatus = Table("service_status")
         let id = Expression<String>("id")
@@ -199,7 +199,7 @@ struct DataStorageTests {
         let totalTests = Expression<Int>("total_tests")
         let successfulTests = Expression<Int>("successful_tests")
         let failedTests = Expression<Int>("failed_tests")
-        
+
         try db.run(serviceStatus.create { t in
             t.column(id, primaryKey: true)
             t.column(status)
@@ -209,11 +209,11 @@ struct DataStorageTests {
             t.column(successfulTests, defaultValue: 0)
             t.column(failedTests, defaultValue: 0)
         })
-        
+
         // Insert test status
         let statusId = UUID().uuidString
         let now = ISO8601DateFormatter().string(from: Date())
-        
+
         try db.run(serviceStatus.insert(
             id <- statusId,
             status <- "running",
@@ -223,11 +223,11 @@ struct DataStorageTests {
             successfulTests <- 95,
             failedTests <- 5
         ))
-        
+
         // Verify insertion
         let count = try db.scalar(serviceStatus.count)
         #expect(count == 1)
-        
+
         // Verify data
         let statusRecord = try db.pluck(serviceStatus.filter(id == statusId))
         #expect(statusRecord != nil)
@@ -237,10 +237,10 @@ struct DataStorageTests {
         #expect(statusRecord![successfulTests] == 95)
         #expect(statusRecord![failedTests] == 5)
     }
-    
+
     @Test func queryConnectivityRecords() throws {
         let db = try Connection(":memory:")
-        
+
         // Create table and insert test data
         let connectivityRecords = Table("connectivity_records")
         let id = Expression<String>("id")
@@ -249,7 +249,7 @@ struct DataStorageTests {
         let target = Expression<String>("target")
         let success = Expression<Bool>("success")
         let networkInterface = Expression<String>("network_interface")
-        
+
         try db.run(connectivityRecords.create { t in
             t.column(id, primaryKey: true)
             t.column(timestamp)
@@ -258,7 +258,7 @@ struct DataStorageTests {
             t.column(success)
             t.column(networkInterface)
         })
-        
+
         // Insert multiple test records
         let now = ISO8601DateFormatter().string(from: Date())
         for i in 1...5 {
@@ -271,28 +271,28 @@ struct DataStorageTests {
                 networkInterface <- "en0"
             ))
         }
-        
+
         // Test queries
         let allRecords = try db.prepare(connectivityRecords)
         let allCount = try allRecords.map { _ in 1 }.reduce(0, +)
         #expect(allCount == 5)
-        
+
         let pingRecords = try db.prepare(connectivityRecords.filter(testType == "ping"))
         let pingCount = try pingRecords.map { _ in 1 }.reduce(0, +)
         #expect(pingCount == 2)
-        
+
         let successfulRecords = try db.prepare(connectivityRecords.filter(success == true))
         let successCount = try successfulRecords.map { _ in 1 }.reduce(0, +)
         #expect(successCount == 4) // 1,2,4,5 are successful (i % 3 != 0)
-        
+
         let failedRecords = try db.prepare(connectivityRecords.filter(success == false))
         let failCount = try failedRecords.map { _ in 1 }.reduce(0, +)
         #expect(failCount == 1) // Only 3 fails (i % 3 == 0)
     }
-    
+
     @Test func updateServiceStatus() throws {
         let db = try Connection(":memory:")
-        
+
         // Create table
         let serviceStatus = Table("service_status")
         let id = Expression<String>("id")
@@ -302,7 +302,7 @@ struct DataStorageTests {
         let totalTests = Expression<Int>("total_tests")
         let successfulTests = Expression<Int>("successful_tests")
         let failedTests = Expression<Int>("failed_tests")
-        
+
         try db.run(serviceStatus.create { t in
             t.column(id, primaryKey: true)
             t.column(status)
@@ -312,11 +312,11 @@ struct DataStorageTests {
             t.column(successfulTests, defaultValue: 0)
             t.column(failedTests, defaultValue: 0)
         })
-        
+
         // Insert initial status
         let statusId = UUID().uuidString
         let now = ISO8601DateFormatter().string(from: Date())
-        
+
         try db.run(serviceStatus.insert(
             id <- statusId,
             status <- "running",
@@ -326,7 +326,7 @@ struct DataStorageTests {
             successfulTests <- 0,
             failedTests <- 0
         ))
-        
+
         // Update status
         let updateTime = ISO8601DateFormatter().string(from: Date())
         try db.run(serviceStatus.filter(id == statusId).update(
@@ -337,7 +337,7 @@ struct DataStorageTests {
             successfulTests <- 95,
             failedTests <- 5
         ))
-        
+
         // Verify update
         let updatedStatus = try db.pluck(serviceStatus.filter(id == statusId))
         #expect(updatedStatus != nil)
@@ -347,10 +347,10 @@ struct DataStorageTests {
         #expect(updatedStatus![successfulTests] == 95)
         #expect(updatedStatus![failedTests] == 5)
     }
-    
+
     @Test func deleteOldRecords() throws {
         let db = try Connection(":memory:")
-        
+
         // Create table
         let connectivityRecords = Table("connectivity_records")
         let id = Expression<String>("id")
@@ -359,7 +359,7 @@ struct DataStorageTests {
         let target = Expression<String>("target")
         let success = Expression<Bool>("success")
         let networkInterface = Expression<String>("network_interface")
-        
+
         try db.run(connectivityRecords.create { t in
             t.column(id, primaryKey: true)
             t.column(timestamp)
@@ -368,12 +368,12 @@ struct DataStorageTests {
             t.column(success)
             t.column(networkInterface)
         })
-        
+
         // Insert test records with different timestamps
         let formatter = ISO8601DateFormatter()
         let now = Date()
         let oldDate = now.addingTimeInterval(-86400 * 35) // 35 days ago
-        
+
         for i in 1...5 {
             let recordDate = i <= 2 ? oldDate : now
             try db.run(connectivityRecords.insert(
@@ -385,17 +385,17 @@ struct DataStorageTests {
                 networkInterface <- "en0"
             ))
         }
-        
+
         // Verify initial count
         let initialCount = try db.scalar(connectivityRecords.count)
         #expect(initialCount == 5)
-        
+
         // Delete old records (older than 30 days)
         let cutoffDate = now.addingTimeInterval(-86400 * 30)
         let cutoffString = formatter.string(from: cutoffDate)
-        
+
         try db.run(connectivityRecords.filter(timestamp < cutoffString).delete())
-        
+
         // Verify deletion
         let finalCount = try db.scalar(connectivityRecords.count)
         #expect(finalCount == 3) // Should have deleted 2 old records

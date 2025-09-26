@@ -3,7 +3,7 @@ import Foundation
 @testable import ISPSnitchCore
 
 struct ConnectivityRecordSwiftTestingTests {
-    
+
     @Test func connectivityRecordInitialization() throws {
         let systemContext = SystemContext(
             cpuUsage: 0.5,
@@ -11,7 +11,7 @@ struct ConnectivityRecordSwiftTestingTests {
             networkInterfaceStatus: "active",
             batteryLevel: 85.0
         )
-        
+
         let record = ConnectivityRecord(
             testType: .ping,
             target: "8.8.8.8",
@@ -20,7 +20,7 @@ struct ConnectivityRecordSwiftTestingTests {
             networkInterface: "en0",
             systemContext: systemContext
         )
-        
+
         #expect(record.testType == .ping)
         #expect(record.target == "8.8.8.8")
         #expect(record.latency == 0.024)
@@ -31,7 +31,7 @@ struct ConnectivityRecordSwiftTestingTests {
         #expect(record.systemContext.networkInterfaceStatus == "active")
         #expect(record.systemContext.batteryLevel == 85.0)
     }
-    
+
     @Test func connectivityRecordWithPingData() throws {
         let pingData = PingData(
             latency: 0.024,
@@ -46,13 +46,13 @@ struct ConnectivityRecordSwiftTestingTests {
                 packetsReceived: 1
             )
         )
-        
+
         let systemContext = SystemContext(
             cpuUsage: 0.5,
             memoryUsage: 42.0,
             networkInterfaceStatus: "active"
         )
-        
+
         let record = ConnectivityRecord(
             testType: .ping,
             target: "8.8.8.8",
@@ -62,14 +62,14 @@ struct ConnectivityRecordSwiftTestingTests {
             systemContext: systemContext,
             pingData: pingData
         )
-        
+
         #expect(record.pingData != nil)
         #expect(record.pingData?.latency == 0.024)
         #expect(record.pingData?.packetLoss == 0.0)
         #expect(record.pingData?.ttl == 117)
         #expect(record.pingData?.statistics != nil)
     }
-    
+
     @Test func connectivityRecordWithHttpData() throws {
         let httpData = HttpData(
             httpCode: 200,
@@ -79,13 +79,13 @@ struct ConnectivityRecordSwiftTestingTests {
             downloadSize: 220,
             downloadSpeed: 15.5
         )
-        
+
         let systemContext = SystemContext(
             cpuUsage: 0.5,
             memoryUsage: 42.0,
             networkInterfaceStatus: "active"
         )
-        
+
         let record = ConnectivityRecord(
             testType: .http,
             target: "https://google.com",
@@ -95,7 +95,7 @@ struct ConnectivityRecordSwiftTestingTests {
             systemContext: systemContext,
             httpData: httpData
         )
-        
+
         #expect(record.httpData != nil)
         #expect(record.httpData?.httpCode == 200)
         #expect(record.httpData?.totalTime == 0.113)
@@ -104,7 +104,7 @@ struct ConnectivityRecordSwiftTestingTests {
         #expect(record.httpData?.downloadSize == 220)
         #expect(record.httpData?.downloadSpeed == 15.5)
     }
-    
+
     @Test func connectivityRecordWithDnsData() throws {
         let dnsData = DnsData(
             queryTime: 0.028,
@@ -113,13 +113,13 @@ struct ConnectivityRecordSwiftTestingTests {
             server: "8.8.8.8",
             answers: ["142.250.191.14"]
         )
-        
+
         let systemContext = SystemContext(
             cpuUsage: 0.5,
             memoryUsage: 42.0,
             networkInterfaceStatus: "active"
         )
-        
+
         let record = ConnectivityRecord(
             testType: .dns,
             target: "google.com",
@@ -129,7 +129,7 @@ struct ConnectivityRecordSwiftTestingTests {
             systemContext: systemContext,
             dnsData: dnsData
         )
-        
+
         #expect(record.dnsData != nil)
         #expect(record.dnsData?.queryTime == 0.028)
         #expect(record.dnsData?.status == "NOERROR")
@@ -137,20 +137,20 @@ struct ConnectivityRecordSwiftTestingTests {
         #expect(record.dnsData?.server == "8.8.8.8")
         #expect(record.dnsData?.answers == ["142.250.191.14"])
     }
-    
+
     @Test func connectivityRecordWithSpeedtestData() throws {
         let speedtestData = SpeedtestData(
             ping: 0.012,
             downloadSpeed: 95.5,
             uploadSpeed: 12.3
         )
-        
+
         let systemContext = SystemContext(
             cpuUsage: 0.5,
             memoryUsage: 42.0,
             networkInterfaceStatus: "active"
         )
-        
+
         let record = ConnectivityRecord(
             testType: .bandwidth,
             target: "speedtest.net",
@@ -160,20 +160,20 @@ struct ConnectivityRecordSwiftTestingTests {
             systemContext: systemContext,
             speedtestData: speedtestData
         )
-        
+
         #expect(record.speedtestData != nil)
         #expect(record.speedtestData?.ping == 0.012)
         #expect(record.speedtestData?.downloadSpeed == 95.5)
         #expect(record.speedtestData?.uploadSpeed == 12.3)
     }
-    
+
     @Test func connectivityRecordFailure() throws {
         let systemContext = SystemContext(
             cpuUsage: 0.5,
             memoryUsage: 42.0,
             networkInterfaceStatus: "active"
         )
-        
+
         let record = ConnectivityRecord(
             testType: .ping,
             target: "192.168.1.999",
@@ -183,13 +183,13 @@ struct ConnectivityRecordSwiftTestingTests {
             networkInterface: "en0",
             systemContext: systemContext
         )
-        
+
         #expect(record.success == false)
         #expect(record.errorMessage == "Invalid IP address")
         #expect(record.errorCode == 68)
         #expect(record.latency == nil)
     }
-    
+
     @Test func connectivityRecordCodable() throws {
         let systemContext = SystemContext(
             cpuUsage: 0.5,
@@ -197,7 +197,7 @@ struct ConnectivityRecordSwiftTestingTests {
             networkInterfaceStatus: "active",
             batteryLevel: 85.0
         )
-        
+
         let originalRecord = ConnectivityRecord(
             testType: .ping,
             target: "8.8.8.8",
@@ -206,17 +206,17 @@ struct ConnectivityRecordSwiftTestingTests {
             networkInterface: "en0",
             systemContext: systemContext
         )
-        
+
         // Test encoding
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let data = try encoder.encode(originalRecord)
-        
+
         // Test decoding
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let decodedRecord = try decoder.decode(ConnectivityRecord.self, from: data)
-        
+
         #expect(decodedRecord.testType == originalRecord.testType)
         #expect(decodedRecord.target == originalRecord.target)
         #expect(decodedRecord.latency == originalRecord.latency)
@@ -227,7 +227,7 @@ struct ConnectivityRecordSwiftTestingTests {
         #expect(decodedRecord.systemContext.networkInterfaceStatus == originalRecord.systemContext.networkInterfaceStatus)
         #expect(decodedRecord.systemContext.batteryLevel == originalRecord.systemContext.batteryLevel)
     }
-    
+
     @Test func connectivityRecordSendable() throws {
         // This test verifies that ConnectivityRecord conforms to Sendable
         let systemContext = SystemContext(
@@ -235,7 +235,7 @@ struct ConnectivityRecordSwiftTestingTests {
             memoryUsage: 42.0,
             networkInterfaceStatus: "active"
         )
-        
+
         let record = ConnectivityRecord(
             testType: .ping,
             target: "8.8.8.8",
@@ -244,7 +244,7 @@ struct ConnectivityRecordSwiftTestingTests {
             networkInterface: "en0",
             systemContext: systemContext
         )
-        
+
         // If this compiles, the type conforms to Sendable
         let _: any Sendable = record
         #expect(true) // This test passes if compilation succeeds

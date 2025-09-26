@@ -9,15 +9,15 @@ import NIOCore
 /// for the ISP Snitch network monitoring application.
 public struct ISPSnitchWeb {
     public static let version = "1.0.0"
-    
+
     private let eventLoopGroup: EventLoopGroup
     private let serverChannel: Channel?
-    
+
     public init() {
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
         self.serverChannel = nil
     }
-    
+
     /// Start the web server
     public func start(port: Int = 8080) async throws {
         let bootstrap = ServerBootstrap(group: eventLoopGroup)
@@ -30,14 +30,14 @@ public struct ISPSnitchWeb {
             }
             .childChannelOption(ChannelOptions.socketOption(.so_reuseaddr), value: 1)
             .childChannelOption(ChannelOptions.maxMessagesPerRead, value: 1)
-        
+
         let channel = try await bootstrap.bind(host: "localhost", port: port).get()
         print("Web server started on http://localhost:\(port)")
-        
+
         // Keep the server running
         try await channel.closeFuture.get()
     }
-    
+
     /// Stop the web server
     public func stop() async throws {
         try await eventLoopGroup.shutdownGracefully()
@@ -48,10 +48,10 @@ public struct ISPSnitchWeb {
 private final class WebServerHandler: ChannelInboundHandler {
     typealias InboundIn = HTTPServerRequestPart
     typealias OutboundOut = HTTPServerResponsePart
-    
+
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
         let requestPart = unwrapInboundIn(data)
-        
+
         switch requestPart {
         case .head(let head):
             handleRequest(context: context, head: head)
@@ -63,16 +63,16 @@ private final class WebServerHandler: ChannelInboundHandler {
             break
         }
     }
-    
+
     private func handleRequest(context: ChannelHandlerContext, head: HTTPRequestHead) {
         let responseHead = HTTPResponseHead(
             version: head.version,
             status: .ok,
             headers: HTTPHeaders([("Content-Type", "application/json")])
         )
-        
+
         let responseBody: String
-        
+
         switch head.uri {
         case "/api/status":
             responseBody = handleStatusRequest()
@@ -83,15 +83,15 @@ private final class WebServerHandler: ChannelInboundHandler {
         default:
             responseBody = handleNotFoundRequest()
         }
-        
+
         var buffer = context.channel.allocator.buffer(capacity: responseBody.utf8.count)
         buffer.writeString(responseBody)
-        
+
         context.write(wrapOutboundOut(.head(responseHead)), promise: nil)
         context.write(wrapOutboundOut(.body(.byteBuffer(buffer))), promise: nil)
         context.writeAndFlush(wrapOutboundOut(.end(nil)), promise: nil)
     }
-    
+
     private func handleStatusRequest() -> String {
         // TODO: Implement real status endpoint
         return """
@@ -123,7 +123,7 @@ private final class WebServerHandler: ChannelInboundHandler {
         }
         """
     }
-    
+
     private func handleHealthRequest() -> String {
         return """
         {
@@ -134,7 +134,7 @@ private final class WebServerHandler: ChannelInboundHandler {
         }
         """
     }
-    
+
     private func handleMetricsRequest() -> String {
         return """
         {
@@ -164,7 +164,7 @@ private final class WebServerHandler: ChannelInboundHandler {
         }
         """
     }
-    
+
     private func handleNotFoundRequest() -> String {
         return """
         {

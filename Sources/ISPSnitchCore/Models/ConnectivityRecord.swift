@@ -12,13 +12,13 @@ public struct ConnectivityRecord: Sendable, Codable, Identifiable {
     public let errorCode: Int?  // Utility exit code
     public let networkInterface: String
     public let systemContext: SystemContext
-    
+
     // Test-specific data based on actual utility outputs
     public let pingData: PingData?
     public let httpData: HttpData?
     public let dnsData: DnsData?
     public let speedtestData: SpeedtestData?
-    
+
     public init(
         id: UUID = UUID(),
         timestamp: Date = Date(),
@@ -54,12 +54,12 @@ public struct ConnectivityRecord: Sendable, Codable, Identifiable {
 
 // MARK: - Test Types
 public enum TestType: String, CaseIterable, Codable, Sendable {
-    case ping = "ping"
-    case http = "http"
-    case dns = "dns"
-    case bandwidth = "bandwidth"
-    case latency = "latency"
-    
+    case ping
+    case http
+    case dns
+    case bandwidth
+    case latency
+
     public var displayName: String {
         switch self {
         case .ping: return "Ping Test"
@@ -69,7 +69,7 @@ public enum TestType: String, CaseIterable, Codable, Sendable {
         case .latency: return "Latency Test"
         }
     }
-    
+
     public var defaultTargets: [String] {
         switch self {
         case .ping: return ["8.8.8.8", "1.1.1.1"]
@@ -87,7 +87,7 @@ public struct SystemContext: Sendable, Codable {
     public let memoryUsage: Double
     public let networkInterfaceStatus: String
     public let batteryLevel: Double?
-    
+
     public init(
         cpuUsage: Double,
         memoryUsage: Double,
@@ -107,7 +107,7 @@ public struct PingData: Sendable, Codable {
     public let packetLoss: Double
     public let ttl: Int?
     public let statistics: PingStatistics?
-    
+
     public init(
         latency: TimeInterval,
         packetLoss: Double,
@@ -128,7 +128,7 @@ public struct PingStatistics: Sendable, Codable {
     public let stdDev: TimeInterval
     public let packetsTransmitted: Int
     public let packetsReceived: Int
-    
+
     public init(
         minLatency: TimeInterval,
         avgLatency: TimeInterval,
@@ -153,7 +153,7 @@ public struct HttpData: Sendable, Codable {
     public let dnsTime: TimeInterval
     public let downloadSize: Int
     public let downloadSpeed: Double
-    
+
     public init(
         httpCode: Int,
         totalTime: TimeInterval,
@@ -177,7 +177,7 @@ public struct DnsData: Sendable, Codable {
     public let answerCount: Int
     public let server: String
     public let answers: [String]
-    
+
     public init(
         queryTime: TimeInterval,
         status: String,
@@ -197,7 +197,7 @@ public struct SpeedtestData: Sendable, Codable {
     public let ping: TimeInterval
     public let downloadSpeed: Double  // Mbit/s
     public let uploadSpeed: Double    // Mbit/s
-    
+
     public init(
         ping: TimeInterval,
         downloadSpeed: Double,
@@ -226,7 +226,7 @@ public struct TestConfiguration: Sendable, Codable, Identifiable {
     public let isActive: Bool
     public let createdAt: Date
     public let updatedAt: Date
-    
+
     public init(
         id: UUID = UUID(),
         name: String,

@@ -2,7 +2,7 @@ import Foundation
 import Logging
 
 // MARK: - Network Monitor
-public actor NetworkMonitor: Sendable {
+public actor NetworkMonitor {
     private let pingMonitor: PingMonitor
     private let httpMonitor: HttpMonitor
     private let dnsMonitor: DnsMonitor
@@ -10,7 +10,7 @@ public actor NetworkMonitor: Sendable {
     private let utilityExecutor: UtilityExecutor
     private let outputParser: OutputParser
     private let logger: Logger
-    
+
     public init(logger: Logger = Logger(label: "NetworkMonitor")) {
         self.pingMonitor = PingMonitor()
         self.httpMonitor = HttpMonitor()
@@ -20,33 +20,33 @@ public actor NetworkMonitor: Sendable {
         self.outputParser = OutputParser()
         self.logger = logger
     }
-    
+
     // MARK: - Public Interface
-    
+
     public func start() async throws {
         logger.info("Starting network monitor")
         // TODO: Implement continuous monitoring
         logger.info("Network monitor started")
     }
-    
+
     public func stop() async throws {
         logger.info("Stopping network monitor")
         // TODO: Implement graceful shutdown
         logger.info("Network monitor stopped")
     }
-    
+
     public func performConnectivityTest(
         testType: TestType,
         target: String,
         timeout: TimeInterval = 10.0
     ) async throws -> ConnectivityRecord {
         let startTime = Date()
-        
+
         do {
             let result = try await executeTest(testType: testType, target: target, timeout: timeout)
             let endTime = Date()
             let latency = endTime.timeIntervalSince(startTime)
-            
+
             return ConnectivityRecord(
                 testType: testType,
                 target: target,
@@ -63,7 +63,7 @@ public actor NetworkMonitor: Sendable {
             )
         } catch {
             logger.error("Connectivity test failed for \(testType.rawValue) to \(target): \(error)")
-            
+
             return ConnectivityRecord(
                 testType: testType,
                 target: target,
@@ -76,9 +76,9 @@ public actor NetworkMonitor: Sendable {
             )
         }
     }
-    
+
     // MARK: - Private Methods
-    
+
     private func executeTest(
         testType: TestType,
         target: String,
@@ -97,20 +97,20 @@ public actor NetworkMonitor: Sendable {
             return try await pingMonitor.executePing(target: target, timeout: timeout)
         }
     }
-    
+
     private func getCurrentNetworkInterface() async -> String {
         // Get the current active network interface
         // This is a simplified implementation
         return "en0" // Default to en0, should be dynamically detected
     }
-    
+
     private func getSystemContext() async -> SystemContext {
         // Get current system metrics
         let cpuUsage = await getCpuUsage()
         let memoryUsage = await getMemoryUsage()
         let networkInterfaceStatus = "active" // Should be dynamically detected
         let batteryLevel = await getBatteryLevel()
-        
+
         return SystemContext(
             cpuUsage: cpuUsage,
             memoryUsage: memoryUsage,
@@ -118,19 +118,19 @@ public actor NetworkMonitor: Sendable {
             batteryLevel: batteryLevel
         )
     }
-    
+
     private func getCpuUsage() async -> Double {
         // Simplified CPU usage detection
         // In a real implementation, this would use system APIs
         return 0.5
     }
-    
+
     private func getMemoryUsage() async -> Double {
         // Simplified memory usage detection
         // In a real implementation, this would use system APIs
         return 42.0
     }
-    
+
     private func getBatteryLevel() async -> Double? {
         // Simplified battery level detection
         // In a real implementation, this would use system APIs
@@ -147,7 +147,7 @@ public struct TestResult: Sendable {
     public let httpData: HttpData?
     public let dnsData: DnsData?
     public let speedtestData: SpeedtestData?
-    
+
     public init(
         success: Bool,
         errorMessage: String? = nil,

@@ -6,6 +6,6 @@ import Foundation
 /// for the ISP Snitch network monitoring application.
 public struct ISPSnitchCore {
     public static let version = "1.0.0"
-    
+
     public init() {}
 }

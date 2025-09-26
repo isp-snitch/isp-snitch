@@ -4,15 +4,15 @@ import SQLite
 @testable import ISPSnitchCore
 
 struct DatabaseSchemaTests {
-    
+
     @Test func databaseConnection() throws {
         let db = try Connection(":memory:")
         #expect(db != nil)
     }
-    
+
     @Test func createConnectivityRecordsTable() throws {
         let db = try Connection(":memory:")
-        
+
         let connectivityRecords = Table("connectivity_records")
         let id = Expression<String>("id")
         let timestamp = Expression<String>("timestamp")
@@ -32,7 +32,7 @@ struct DatabaseSchemaTests {
         let dnsData = Expression<String?>("dns_data")
         let speedtestData = Expression<String?>("speedtest_data")
         let createdAt = Expression<String>("created_at")
-        
+
         try db.run(connectivityRecords.create { t in
             t.column(id, primaryKey: true)
             t.column(timestamp)
@@ -53,16 +53,16 @@ struct DatabaseSchemaTests {
             t.column(speedtestData)
             t.column(createdAt, defaultValue: "CURRENT_TIMESTAMP")
         })
-        
+
         // Verify table was created
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='connectivity_records'")
         let tableNames = try tables.map { row in row[0] as! String }
         #expect(tableNames.contains("connectivity_records"))
     }
-    
+
     @Test func createTestConfigurationsTable() throws {
         let db = try Connection(":memory:")
-        
+
         let testConfigurations = Table("test_configurations")
         let id = Expression<String>("id")
         let name = Expression<String>("name")
@@ -79,7 +79,7 @@ struct DatabaseSchemaTests {
         let isActive = Expression<Bool>("is_active")
         let createdAt = Expression<String>("created_at")
         let updatedAt = Expression<String>("updated_at")
-        
+
         try db.run(testConfigurations.create { t in
             t.column(id, primaryKey: true)
             t.column(name)
@@ -97,16 +97,16 @@ struct DatabaseSchemaTests {
             t.column(createdAt, defaultValue: "CURRENT_TIMESTAMP")
             t.column(updatedAt, defaultValue: "CURRENT_TIMESTAMP")
         })
-        
+
         // Verify table was created
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='test_configurations'")
         let tableNames = try tables.map { row in row[0] as! String }
         #expect(tableNames.contains("test_configurations"))
     }
-    
+
     @Test func createSystemMetricsTable() throws {
         let db = try Connection(":memory:")
-        
+
         let systemMetrics = Table("system_metrics")
         let id = Expression<String>("id")
         let timestamp = Expression<String>("timestamp")
@@ -116,7 +116,7 @@ struct DatabaseSchemaTests {
         let networkInterfaceStatus = Expression<String>("network_interface_status")
         let batteryLevel = Expression<Double?>("battery_level")
         let createdAt = Expression<String>("created_at")
-        
+
         try db.run(systemMetrics.create { t in
             t.column(id, primaryKey: true)
             t.column(timestamp)
@@ -127,16 +127,16 @@ struct DatabaseSchemaTests {
             t.column(batteryLevel)
             t.column(createdAt, defaultValue: "CURRENT_TIMESTAMP")
         })
-        
+
         // Verify table was created
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='system_metrics'")
         let tableNames = try tables.map { row in row[0] as! String }
         #expect(tableNames.contains("system_metrics"))
     }
-    
+
     @Test func createServiceStatusTable() throws {
         let db = try Connection(":memory:")
-        
+
         let serviceStatus = Table("service_status")
         let id = Expression<String>("id")
         let status = Expression<String>("status")
@@ -147,7 +147,7 @@ struct DatabaseSchemaTests {
         let failedTests = Expression<Int>("failed_tests")
         let createdAt = Expression<String>("created_at")
         let updatedAt = Expression<String>("updated_at")
-        
+
         try db.run(serviceStatus.create { t in
             t.column(id, primaryKey: true)
             t.column(status)
@@ -159,22 +159,22 @@ struct DatabaseSchemaTests {
             t.column(createdAt, defaultValue: "CURRENT_TIMESTAMP")
             t.column(updatedAt, defaultValue: "CURRENT_TIMESTAMP")
         })
-        
+
         // Verify table was created
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='service_status'")
         let tableNames = try tables.map { row in row[0] as! String }
         #expect(tableNames.contains("service_status"))
     }
-    
+
     @Test func createPerformanceIndexes() throws {
         let db = try Connection(":memory:")
-        
+
         // Create connectivity_records table first
         let connectivityRecords = Table("connectivity_records")
         let timestamp = Expression<String>("timestamp")
         let testType = Expression<String>("test_type")
         let success = Expression<Bool>("success")
-        
+
         try db.run(connectivityRecords.create { t in
             t.column(Expression<String>("id"), primaryKey: true)
             t.column(timestamp)
@@ -182,12 +182,12 @@ struct DatabaseSchemaTests {
             t.column(Expression<String>("target"))
             t.column(Expression<Bool>("success"))
         })
-        
+
         // Create indexes
         try db.run(connectivityRecords.createIndex(timestamp))
         try db.run(connectivityRecords.createIndex(testType))
         try db.run(connectivityRecords.createIndex(success))
-        
+
         // Verify indexes were created
         let indexes = try db.prepare("SELECT name FROM sqlite_master WHERE type='index'")
         let indexNames = try indexes.map { row in row[0] as! String }
@@ -195,10 +195,10 @@ struct DatabaseSchemaTests {
         #expect(indexNames.contains("index_connectivity_records_on_test_type"))
         #expect(indexNames.contains("index_connectivity_records_on_success"))
     }
-    
+
     @Test func databaseConstraints() throws {
         let db = try Connection(":memory:")
-        
+
         let connectivityRecords = Table("connectivity_records")
         let id = Expression<String>("id")
         let timestamp = Expression<String>("timestamp")
@@ -206,7 +206,7 @@ struct DatabaseSchemaTests {
         let target = Expression<String>("target")
         let success = Expression<Bool>("success")
         let networkInterface = Expression<String>("network_interface")
-        
+
         try db.run(connectivityRecords.create { t in
             t.column(id, primaryKey: true)
             t.column(timestamp)
@@ -215,7 +215,7 @@ struct DatabaseSchemaTests {
             t.column(success)
             t.column(networkInterface)
         })
-        
+
         // Test NOT NULL constraints
         do {
             try db.run(connectivityRecords.insert(
@@ -230,7 +230,7 @@ struct DatabaseSchemaTests {
         } catch {
             #expect(false, "Valid insert should not fail")
         }
-        
+
         // Test that missing required fields fail
         do {
             try db.run(connectivityRecords.insert(
@@ -242,14 +242,14 @@ struct DatabaseSchemaTests {
             #expect(true) // Should fail
         }
     }
-    
+
     @Test func databaseSchemaVersion() throws {
         let db = try Connection(":memory:")
-        
+
         // Test that we can query the schema version
         let version = try db.scalar("SELECT sqlite_version()") as! String
         #expect(!version.isEmpty)
-        
+
         // Test that we can get table info
         let tables = try db.prepare("SELECT name FROM sqlite_master WHERE type='table'")
         let tableNames = try tables.map { row in row[0] as! String }
