@@ -59,6 +59,7 @@ public enum TestType: String, CaseIterable, Codable, Sendable {
     case dns
     case bandwidth
     case latency
+    case speedtest
 
     public var displayName: String {
         switch self {
@@ -67,6 +68,7 @@ public enum TestType: String, CaseIterable, Codable, Sendable {
         case .dns: return "DNS Test"
         case .bandwidth: return "Bandwidth Test"
         case .latency: return "Latency Test"
+        case .speedtest: return "Speed Test"
         }
     }
 
@@ -77,6 +79,7 @@ public enum TestType: String, CaseIterable, Codable, Sendable {
         case .dns: return ["google.com", "cloudflare.com"]
         case .bandwidth: return ["speedtest.net"]
         case .latency: return ["8.8.8.8", "1.1.1.1"]
+        case .speedtest: return ["speedtest.net"]
         }
     }
 }

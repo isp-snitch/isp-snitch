@@ -29,7 +29,7 @@ public final class ISPSnitchService: ObservableObject {
     private var totalResponseTime: Double = 0.0
     private var errorCount: Int = 0
 
-    private init() {
+    public init() {
         // Initialize components lazily for optimal startup time
         self.databaseManager = nil as DatabaseManager?
         self.networkMonitor = NetworkMonitor()

@@ -136,6 +136,8 @@ public actor NetworkMonitor {
             return try await speedtestMonitor.executeSpeedtest(target: target, timeout: timeout)
         case .latency:
             return try await pingMonitor.executePing(target: target, timeout: timeout)
+        case .speedtest:
+            return try await speedtestMonitor.executeSpeedtest(target: target, timeout: timeout)
         }
     }
 
