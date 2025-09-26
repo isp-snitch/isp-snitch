@@ -2,7 +2,7 @@ import Foundation
 @preconcurrency import SQLite
 
 // MARK: - Data Storage Facade
-public actor DataStorage {
+public class DataStorage {
     private let connection: Connection
     private let schemaManager: SchemaManager
     private let connectivityRecordRepository: ConnectivityRecordRepository
@@ -20,13 +20,13 @@ public actor DataStorage {
     }
 
     // MARK: - Table Creation
-    public func createTables() async throws {
-        try await schemaManager.createTables()
+    public func createTables() throws {
+        try schemaManager.createTables()
     }
 
     // MARK: - Connectivity Records
-    public func insertConnectivityRecord(_ record: ConnectivityRecord) async throws {
-        try await connectivityRecordRepository.insert(record)
+    public func insertConnectivityRecord(_ record: ConnectivityRecord) throws {
+        try connectivityRecordRepository.insert(record)
     }
 
     public func getConnectivityRecords(
@@ -35,8 +35,8 @@ public actor DataStorage {
         testType: TestType? = nil,
         success: Bool? = nil,
         since: Date? = nil
-    ) async throws -> [ConnectivityRecord] {
-        try await connectivityRecordRepository.getRecords(
+    ) throws -> [ConnectivityRecord] {
+        try connectivityRecordRepository.getRecords(
             limit: limit,
             offset: offset,
             testType: testType,
@@ -46,32 +46,32 @@ public actor DataStorage {
     }
 
     // MARK: - Test Configurations
-    public func insertTestConfiguration(_ configuration: TestConfiguration) async throws {
-        try await testConfigurationRepository.insert(configuration)
+    public func insertTestConfiguration(_ configuration: TestConfiguration) throws {
+        try testConfigurationRepository.insert(configuration)
     }
 
-    public func getTestConfigurations() async throws -> [TestConfiguration] {
-        try await testConfigurationRepository.getAll()
+    public func getTestConfigurations() throws -> [TestConfiguration] {
+        try testConfigurationRepository.getAll()
     }
 
     // MARK: - System Metrics
-    public func insertSystemMetrics(_ metrics: SystemMetrics) async throws {
-        try await systemMetricsRepository.insert(metrics)
+    public func insertSystemMetrics(_ metrics: SystemMetrics) throws {
+        try systemMetricsRepository.insert(metrics)
     }
 
     public func getSystemMetrics(
         limit: Int = 100,
         since: Date? = nil
-    ) async throws -> [SystemMetrics] {
-        try await systemMetricsRepository.getMetrics(limit: limit, since: since)
+    ) throws -> [SystemMetrics] {
+        try systemMetricsRepository.getMetrics(limit: limit, since: since)
     }
 
     // MARK: - Service Status
-    public func insertServiceStatus(_ status: ServiceStatus) async throws {
-        try await serviceStatusRepository.insert(status)
+    public func insertServiceStatus(_ status: ServiceStatus) throws {
+        try serviceStatusRepository.insert(status)
     }
 
-    public func getServiceStatus() async throws -> ServiceStatus? {
-        try await serviceStatusRepository.getLatest()
+    public func getServiceStatus() throws -> ServiceStatus? {
+        try serviceStatusRepository.getLatest()
     }
 }

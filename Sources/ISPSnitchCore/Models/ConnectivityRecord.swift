@@ -105,7 +105,8 @@ public struct SystemContext: Sendable, Codable {
 }
 
 // MARK: - Test-Specific Data Structures
-public struct PingData: Sendable, Codable {
+public struct PingData: Sendable, Codable, TestData {
+    public let testType: TestType = .ping
     public let latency: TimeInterval
     public let packetLoss: Double
     public let ttl: Int?
@@ -149,7 +150,8 @@ public struct PingStatistics: Sendable, Codable {
     }
 }
 
-public struct HttpData: Sendable, Codable {
+public struct HttpData: Sendable, Codable, TestData {
+    public let testType: TestType = .http
     public let httpCode: Int
     public let totalTime: TimeInterval
     public let connectTime: TimeInterval
@@ -174,7 +176,8 @@ public struct HttpData: Sendable, Codable {
     }
 }
 
-public struct DnsData: Sendable, Codable {
+public struct DnsData: Sendable, Codable, TestData {
+    public let testType: TestType = .dns
     public let queryTime: TimeInterval
     public let status: String
     public let answerCount: Int
@@ -196,7 +199,8 @@ public struct DnsData: Sendable, Codable {
     }
 }
 
-public struct SpeedtestData: Sendable, Codable {
+public struct SpeedtestData: Sendable, Codable, TestData {
+    public let testType: TestType = .speedtest
     public let ping: TimeInterval
     public let downloadSpeed: Double  // Mbit/s
     public let uploadSpeed: Double    // Mbit/s

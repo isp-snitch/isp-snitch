@@ -2,14 +2,14 @@ import Foundation
 @preconcurrency import SQLite
 
 // MARK: - Test Configuration Repository
-public actor TestConfigurationRepository {
+public class TestConfigurationRepository {
     private let connection: Connection
 
     public init(connection: Connection) {
         self.connection = connection
     }
 
-    public func insert(_ configuration: TestConfiguration) async throws {
+    public func insert(_ configuration: TestConfiguration) throws {
         let pingTargetsJson = JSONSerializer.encodeTargets(configuration.pingTargets)
         let httpTargetsJson = JSONSerializer.encodeTargets(configuration.httpTargets)
         let dnsTargetsJson = JSONSerializer.encodeTargets(configuration.dnsTargets)
@@ -35,7 +35,7 @@ public actor TestConfigurationRepository {
         try connection.run(insert)
     }
 
-    public func getAll() async throws -> [TestConfiguration] {
+    public func getAll() throws -> [TestConfiguration] {
         var configurations: [TestConfiguration] = []
 
         for row in try connection.prepare(TableDefinitions.testConfigurations.select(*)) {

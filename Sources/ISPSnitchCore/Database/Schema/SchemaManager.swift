@@ -2,7 +2,7 @@ import Foundation
 @preconcurrency import SQLite
 
 // MARK: - Schema Manager
-public actor SchemaManager {
+public class SchemaManager {
     private let connection: Connection
 
     public init(connection: Connection) {

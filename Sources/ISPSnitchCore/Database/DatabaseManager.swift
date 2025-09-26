@@ -2,22 +2,22 @@
 @preconcurrency import SQLite
 
 // MARK: - Database Manager
-public actor DatabaseManager {
+public class DatabaseManager {
     private let connection: Connection
     private let dataStorage: DataStorage
     private let retentionManager: DataRetentionManager
 
-    public init(databasePath: String = ":memory:") async throws {
+    public init(databasePath: String = ":memory:") throws {
         self.connection = try Connection(databasePath)
         self.dataStorage = try DataStorage(connection: connection)
         self.retentionManager = DataRetentionManager(connection: connection)
 
-        try await setupDatabase()
+        try setupDatabase()
     }
 
-    private func setupDatabase() async throws {
+    private func setupDatabase() throws {
         // Create tables if they don't exist
-        try await dataStorage.createTables()
+        try dataStorage.createTables()
 
         // Run migrations if needed
         try Migrations.runMigrations(on: connection)
@@ -25,8 +25,8 @@ public actor DatabaseManager {
 
     // MARK: - Public Interface
 
-    public func insertConnectivityRecord(_ record: ConnectivityRecord) async throws {
-        try await dataStorage.insertConnectivityRecord(record)
+    public func insertConnectivityRecord(_ record: ConnectivityRecord) throws {
+        try dataStorage.insertConnectivityRecord(record)
     }
 
     public func getConnectivityRecords(
@@ -35,8 +35,8 @@ public actor DatabaseManager {
         testType: TestType? = nil,
         success: Bool? = nil,
         since: Date? = nil
-    ) async throws -> [ConnectivityRecord] {
-        try await dataStorage.getConnectivityRecords(
+    ) throws -> [ConnectivityRecord] {
+        try dataStorage.getConnectivityRecords(
             limit: limit,
             offset: offset,
             testType: testType,
@@ -45,38 +45,38 @@ public actor DatabaseManager {
         )
     }
 
-    public func insertTestConfiguration(_ configuration: TestConfiguration) async throws {
-        try await dataStorage.insertTestConfiguration(configuration)
+    public func insertTestConfiguration(_ configuration: TestConfiguration) throws {
+        try dataStorage.insertTestConfiguration(configuration)
     }
 
-    public func getTestConfigurations() async throws -> [TestConfiguration] {
-        try await dataStorage.getTestConfigurations()
+    public func getTestConfigurations() throws -> [TestConfiguration] {
+        try dataStorage.getTestConfigurations()
     }
 
-    public func insertSystemMetrics(_ metrics: SystemMetrics) async throws {
-        try await dataStorage.insertSystemMetrics(metrics)
+    public func insertSystemMetrics(_ metrics: SystemMetrics) throws {
+        try dataStorage.insertSystemMetrics(metrics)
     }
 
     public func getSystemMetrics(
         limit: Int = 100,
         since: Date? = nil
-    ) async throws -> [SystemMetrics] {
-        try await dataStorage.getSystemMetrics(limit: limit, since: since)
+    ) throws -> [SystemMetrics] {
+        try dataStorage.getSystemMetrics(limit: limit, since: since)
     }
 
-    public func insertServiceStatus(_ status: ServiceStatus) async throws {
-        try await dataStorage.insertServiceStatus(status)
+    public func insertServiceStatus(_ status: ServiceStatus) throws {
+        try dataStorage.insertServiceStatus(status)
     }
 
-    public func getServiceStatus() async throws -> ServiceStatus? {
-        try await dataStorage.getServiceStatus()
+    public func getServiceStatus() throws -> ServiceStatus? {
+        try dataStorage.getServiceStatus()
     }
 
-    public func cleanup() async throws {
-        try await retentionManager.cleanupOldData()
+    public func cleanup() throws {
+        try retentionManager.cleanupOldData()
     }
 
-    public func close() async throws {
+    public func close() throws {
         // SQLite.swift Connection doesn't need explicit closing
         // The connection will be closed when the object is deallocated
     }

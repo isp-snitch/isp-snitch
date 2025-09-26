@@ -2,14 +2,14 @@ import Foundation
 @preconcurrency import SQLite
 
 // MARK: - Service Status Repository
-public actor ServiceStatusRepository {
+public class ServiceStatusRepository {
     private let connection: Connection
 
     public init(connection: Connection) {
         self.connection = connection
     }
 
-    public func insert(_ status: ServiceStatus) async throws {
+    public func insert(_ status: ServiceStatus) throws {
         let insert = TableDefinitions.serviceStatus.insert(
             ServiceStatusColumns.id <- status.id.uuidString,
             ServiceStatusColumns.timestamp <- status.timestamp,
@@ -21,7 +21,7 @@ public actor ServiceStatusRepository {
         try connection.run(insert)
     }
 
-    public func getLatest() async throws -> ServiceStatus? {
+    public func getLatest() throws -> ServiceStatus? {
         guard let row = try connection.pluck(TableDefinitions.serviceStatus.select(*).order(ServiceStatusColumns.timestamp.desc)) else {
             return nil
         }

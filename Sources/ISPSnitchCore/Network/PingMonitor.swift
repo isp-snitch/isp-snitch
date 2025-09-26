@@ -2,7 +2,7 @@ import Foundation
 import Logging
 
 // MARK: - Ping Monitor
-public actor PingMonitor {
+public class PingMonitor {
     private let utilityExecutor: UtilityExecutor
     private let outputParser: OutputParser
     private let logger: Logger
@@ -13,31 +13,43 @@ public actor PingMonitor {
         self.logger = logger
     }
 
-    public func executePing(target: String, timeout: TimeInterval = 10.0) async throws -> TestResult {
+    public func executePing(target: String, timeout: TimeInterval = 10.0) throws -> TestResult {
         let command = "ping -c 1 -W 1000 \(target)"
+        let startTime = Date()
 
         do {
-            let output = try await utilityExecutor.executeCommand(command, timeout: timeout)
+            let output = try utilityExecutor.executeCommand(command, timeout: timeout)
             let parsedData = try outputParser.parsePingOutput(output)
+            let duration = Date().timeIntervalSince(startTime)
 
             return TestResult(
+                testType: .ping,
+                target: target,
                 success: true,
-                pingData: parsedData
+                timestamp: startTime,
+                duration: duration,
+                data: .ping(parsedData),
+                error: nil
             )
         } catch {
             logger.error("Ping test failed for \(target): \(error)")
+            let duration = Date().timeIntervalSince(startTime)
 
             return TestResult(
+                testType: .ping,
+                target: target,
                 success: false,
-                errorMessage: error.localizedDescription,
-                errorCode: (error as? UtilityExecutionError)?.exitCode
+                timestamp: startTime,
+                duration: duration,
+                data: nil,
+                error: error.localizedDescription
             )
         }
     }
 }
 
 // MARK: - HTTP Monitor
-public actor HttpMonitor {
+public class HttpMonitor {
     private let utilityExecutor: UtilityExecutor
     private let outputParser: OutputParser
     private let logger: Logger
@@ -48,31 +60,43 @@ public actor HttpMonitor {
         self.logger = logger
     }
 
-    public func executeHttp(target: String, timeout: TimeInterval = 10.0) async throws -> TestResult {
+    public func executeHttp(target: String, timeout: TimeInterval = 10.0) throws -> TestResult {
         let command = "curl -w \"%{http_code}:%{time_total}:%{time_connect}:%{time_namelookup}\" -s -o /dev/null \(target)"
+        let startTime = Date()
 
         do {
-            let output = try await utilityExecutor.executeCommand(command, timeout: timeout)
+            let output = try utilityExecutor.executeCommand(command, timeout: timeout)
             let parsedData = try outputParser.parseHttpOutput(output)
+            let duration = Date().timeIntervalSince(startTime)
 
             return TestResult(
+                testType: .http,
+                target: target,
                 success: true,
-                httpData: parsedData
+                timestamp: startTime,
+                duration: duration,
+                data: .http(parsedData),
+                error: nil
             )
         } catch {
             logger.error("HTTP test failed for \(target): \(error)")
+            let duration = Date().timeIntervalSince(startTime)
 
             return TestResult(
+                testType: .http,
+                target: target,
                 success: false,
-                errorMessage: error.localizedDescription,
-                errorCode: (error as? UtilityExecutionError)?.exitCode
+                timestamp: startTime,
+                duration: duration,
+                data: nil,
+                error: error.localizedDescription
             )
         }
     }
 }
 
 // MARK: - DNS Monitor
-public actor DnsMonitor {
+public class DnsMonitor {
     private let utilityExecutor: UtilityExecutor
     private let outputParser: OutputParser
     private let logger: Logger
@@ -83,31 +107,43 @@ public actor DnsMonitor {
         self.logger = logger
     }
 
-    public func executeDns(target: String, timeout: TimeInterval = 10.0) async throws -> TestResult {
+    public func executeDns(target: String, timeout: TimeInterval = 10.0) throws -> TestResult {
         let command = "dig +short +time=1 +tries=1 \(target)"
+        let startTime = Date()
 
         do {
-            let output = try await utilityExecutor.executeCommand(command, timeout: timeout)
+            let output = try utilityExecutor.executeCommand(command, timeout: timeout)
             let parsedData = try outputParser.parseDnsOutput(output)
+            let duration = Date().timeIntervalSince(startTime)
 
             return TestResult(
+                testType: .dns,
+                target: target,
                 success: true,
-                dnsData: parsedData
+                timestamp: startTime,
+                duration: duration,
+                data: .dns(parsedData),
+                error: nil
             )
         } catch {
             logger.error("DNS test failed for \(target): \(error)")
+            let duration = Date().timeIntervalSince(startTime)
 
             return TestResult(
+                testType: .dns,
+                target: target,
                 success: false,
-                errorMessage: error.localizedDescription,
-                errorCode: (error as? UtilityExecutionError)?.exitCode
+                timestamp: startTime,
+                duration: duration,
+                data: nil,
+                error: error.localizedDescription
             )
         }
     }
 }
 
 // MARK: - Speedtest Monitor
-public actor SpeedtestMonitor {
+public class SpeedtestMonitor {
     private let utilityExecutor: UtilityExecutor
     private let outputParser: OutputParser
     private let logger: Logger
@@ -118,24 +154,36 @@ public actor SpeedtestMonitor {
         self.logger = logger
     }
 
-    public func executeSpeedtest(target: String, timeout: TimeInterval = 30.0) async throws -> TestResult {
+    public func executeSpeedtest(target: String, timeout: TimeInterval = 30.0) throws -> TestResult {
         let command = "speedtest-cli --simple"
+        let startTime = Date()
 
         do {
-            let output = try await utilityExecutor.executeCommand(command, timeout: timeout)
+            let output = try utilityExecutor.executeCommand(command, timeout: timeout)
             let parsedData = try outputParser.parseSpeedtestOutput(output)
+            let duration = Date().timeIntervalSince(startTime)
 
             return TestResult(
+                testType: .speedtest,
+                target: target,
                 success: true,
-                speedtestData: parsedData
+                timestamp: startTime,
+                duration: duration,
+                data: .speedtest(parsedData),
+                error: nil
             )
         } catch {
             logger.error("Speedtest failed for \(target): \(error)")
+            let duration = Date().timeIntervalSince(startTime)
 
             return TestResult(
+                testType: .speedtest,
+                target: target,
                 success: false,
-                errorMessage: error.localizedDescription,
-                errorCode: (error as? UtilityExecutionError)?.exitCode
+                timestamp: startTime,
+                duration: duration,
+                data: nil,
+                error: error.localizedDescription
             )
         }
     }

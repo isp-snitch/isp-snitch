@@ -8,14 +8,14 @@ public enum RepositoryError: Error, Sendable {
 }
 
 // MARK: - Connectivity Record Repository
-public actor ConnectivityRecordRepository {
+public class ConnectivityRecordRepository {
     private let connection: Connection
 
     public init(connection: Connection) {
         self.connection = connection
     }
 
-    public func insert(_ record: ConnectivityRecord) async throws {
+    public func insert(_ record: ConnectivityRecord) throws {
         let pingDataJson = JSONSerializer.encode(record.pingData)
         let httpDataJson = JSONSerializer.encode(record.httpData)
         let dnsDataJson = JSONSerializer.encode(record.dnsData)
@@ -50,7 +50,7 @@ public actor ConnectivityRecordRepository {
         testType: TestType? = nil,
         success: Bool? = nil,
         since: Date? = nil
-    ) async throws -> [ConnectivityRecord] {
+    ) throws -> [ConnectivityRecord] {
         let query = buildQuery(testType: testType, success: success, since: since)
             .limit(limit, offset: offset)
 

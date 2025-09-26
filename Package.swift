@@ -1,13 +1,10 @@
-// swift-tools-version: 5.6
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "ISPSnitch",
-    platforms: [
-        .macOS(.v12)
-    ],
     products: [
         .executable(name: "isp-snitch", targets: ["ISPSnitchCLI"]),
         .library(name: "ISPSnitchCore", targets: ["ISPSnitchCore"])

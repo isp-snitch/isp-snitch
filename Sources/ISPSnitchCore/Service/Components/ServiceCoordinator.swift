@@ -15,7 +15,7 @@ public enum ServiceCoordinatorError: Error, Sendable {
 
 // MARK: - Service Coordinator
 /// Coordinates all service components and manages their lifecycle
-public actor ServiceCoordinator {
+public class ServiceCoordinator {
     private let logger: Logger
     private var databaseManager: DatabaseManager?
     private var networkMonitor: NetworkMonitor?
@@ -25,11 +25,11 @@ public actor ServiceCoordinator {
         self.logger = logger
     }
 
-    public func initializeComponents() async throws {
+    public func initializeComponents() throws {
         logger.info("Initializing service components")
 
         // Initialize database manager
-        self.databaseManager = try await DatabaseManager()
+        self.databaseManager = try DatabaseManager()
 
         // Initialize network monitor
         self.networkMonitor = NetworkMonitor()
@@ -40,18 +40,18 @@ public actor ServiceCoordinator {
         logger.info("Service components initialized successfully")
     }
 
-    public func startComponents() async throws {
+    public func startComponents() throws {
         guard let networkMonitor = networkMonitor else {
             throw ServiceError.startupFailed(ServiceCoordinatorError.networkMonitorNotInitialized)
         }
 
-        try await networkMonitor.start()
+        try networkMonitor.start()
         logger.info("All components started successfully")
     }
 
-    public func stopComponents() async {
+    public func stopComponents() {
         if let networkMonitor = networkMonitor {
-            try? await networkMonitor.stop()
+            try? networkMonitor.stop()
         }
         logger.info("All components stopped successfully")
     }

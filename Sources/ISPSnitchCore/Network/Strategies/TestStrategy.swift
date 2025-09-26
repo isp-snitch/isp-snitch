@@ -19,8 +19,8 @@ public struct PingTestStrategy: TestStrategy {
         self.logger = logger
     }
 
-    public func executeTest(target: String, timeout: TimeInterval) async throws -> TestResult {
-        try await pingMonitor.executePing(target: target, timeout: timeout)
+    public func executeTest(target: String, timeout: TimeInterval) throws -> TestResult {
+        try pingMonitor.executePing(target: target, timeout: timeout)
     }
 }
 
@@ -36,8 +36,8 @@ public struct HttpTestStrategy: TestStrategy {
         self.logger = logger
     }
 
-    public func executeTest(target: String, timeout: TimeInterval) async throws -> TestResult {
-        try await httpMonitor.executeHttp(target: target, timeout: timeout)
+    public func executeTest(target: String, timeout: TimeInterval) throws -> TestResult {
+        try httpMonitor.executeHttp(target: target, timeout: timeout)
     }
 }
 
@@ -53,8 +53,8 @@ public struct DnsTestStrategy: TestStrategy {
         self.logger = logger
     }
 
-    public func executeTest(target: String, timeout: TimeInterval) async throws -> TestResult {
-        try await dnsMonitor.executeDns(target: target, timeout: timeout)
+    public func executeTest(target: String, timeout: TimeInterval) throws -> TestResult {
+        try dnsMonitor.executeDns(target: target, timeout: timeout)
     }
 }
 
@@ -70,8 +70,8 @@ public struct SpeedtestStrategy: TestStrategy {
         self.logger = logger
     }
 
-    public func executeTest(target: String, timeout: TimeInterval) async throws -> TestResult {
-        try await speedtestMonitor.executeSpeedtest(target: target, timeout: timeout)
+    public func executeTest(target: String, timeout: TimeInterval) throws -> TestResult {
+        try speedtestMonitor.executeSpeedtest(target: target, timeout: timeout)
     }
 }
 

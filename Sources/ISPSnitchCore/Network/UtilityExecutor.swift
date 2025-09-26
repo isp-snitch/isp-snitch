@@ -1,8 +1,12 @@
 import Foundation
 import Logging
 
+#if !os(macOS)
+import Glibc
+#endif
+
 // MARK: - Utility Executor
-public actor UtilityExecutor {
+public class UtilityExecutor {
     private let logger: Logger
 
     public init(logger: Logger = Logger(label: "UtilityExecutor")) {
@@ -12,53 +16,8 @@ public actor UtilityExecutor {
     public func executeCommand(
         _ command: String,
         timeout: TimeInterval = 10.0
-    ) async throws -> String {
-        try await withCheckedThrowingContinuation { continuation in
-            Task {
-                do {
-                    let result = try await executeCommandAsync(command, timeout: timeout)
-                    continuation.resume(returning: result)
-                } catch {
-                    continuation.resume(throwing: error)
-                }
-            }
-        }
-    }
-
-    private func executeCommandAsync(
-        _ command: String,
-        timeout: TimeInterval
-    ) async throws -> String {
-        let task = Task {
-            try await executeCommandSync(command)
-        }
-
-        let timeoutTask = Task {
-            try await Task.sleep(nanoseconds: UInt64(timeout * 1_000_000_000))
-            task.cancel()
-        }
-
-        do {
-            let result = try await task.value
-            timeoutTask.cancel()
-            return result
-        } catch {
-            timeoutTask.cancel()
-            if task.isCancelled {
-                throw UtilityExecutionError(
-                    command: command,
-                    exitCode: -1,
-                    output: "",
-                    error: "Command timed out after \(timeout) seconds"
-                )
-            }
-            throw error
-        }
-    }
-
-    private func executeCommandSync(_ command: String) async throws -> String {
+    ) throws -> String {
         #if os(macOS)
-        // Use Process on macOS
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/bash")
         process.arguments = ["-c", command]
@@ -70,33 +29,30 @@ public actor UtilityExecutor {
         try process.run()
         process.waitUntilExit()
 
-        // Get output
-        let outputData = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(bytes: outputData, encoding: .utf8) ?? ""
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        let output = String(data: data, encoding: .utf8) ?? ""
 
-        // Check exit status
-        let exitCode = process.terminationStatus
-        if exitCode != 0 {
-            let errorMessage = process.terminationReason == .uncaughtSignal ? "Process terminated by signal" : nil
+        if process.terminationStatus != 0 {
             throw UtilityExecutionError(
                 command: command,
-                exitCode: Int(exitCode),
+                exitCode: Int(process.terminationStatus),
                 output: output,
-                error: errorMessage
+                error: "Process exited with status \(process.terminationStatus)"
             )
         }
 
         return output
         #else
         // Use posix_spawn on Linux
-        return try await executeCommandPosix(command)
+        return try executeCommandPosix(command)
         #endif
     }
 
     #if !os(macOS)
-    private func executeCommandPosix(_ command: String) async throws -> String {
+    private func executeCommandPosix(_ command: String) throws -> String {
         // For Linux, we'll use a simple approach with system() call
-        // This is a simplified implementation - in production you'd want to use posix_spawn
+        // This is blocking, but for simple utility execution, it's acceptable.
+        // For more complex scenarios, a non-blocking approach with pipes would be needed.
         let result = system(command)
         let exitCode = result >> 8
 

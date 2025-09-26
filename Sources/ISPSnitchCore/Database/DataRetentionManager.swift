@@ -2,7 +2,7 @@
 @preconcurrency import SQLite
 
 // MARK: - Data Retention Manager
-public actor DataRetentionManager {
+public class DataRetentionManager {
     private let connection: Connection
     private let retentionDays: Int
 
@@ -21,7 +21,7 @@ public actor DataRetentionManager {
 
     // MARK: - Public Interface
 
-    public func cleanupOldData() async throws {
+    public func cleanupOldData() throws {
         let cutoffDate = Calendar.current.date(byAdding: .day, value: -retentionDays, to: Date()) ?? Date.distantPast
 
         let deletedConnectivityRecords = try cleanupConnectivityRecords(olderThan: cutoffDate)
@@ -35,7 +35,7 @@ public actor DataRetentionManager {
         print("- Retention period: \(retentionDays) days")
     }
 
-    public func getDataStorageStats() async throws -> DataStorageStats {
+    public func getDataStorageStats() throws -> DataStorageStats {
         let connectivityCount = try connection.scalar(connectivityRecords.count)
         let systemMetricsCount = try connection.scalar(systemMetrics.count)
         let serviceStatusCount = try connection.scalar(serviceStatus.count)
@@ -58,12 +58,12 @@ public actor DataRetentionManager {
         )
     }
 
-    public func vacuum() async throws {
+    public func vacuum() throws {
         try connection.execute("VACUUM")
         print("Database vacuum completed")
     }
 
-    public func analyzeDatabase() async throws {
+    public func analyzeDatabase() throws {
         try connection.execute("ANALYZE")
         print("Database analysis completed")
     }

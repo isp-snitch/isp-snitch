@@ -5,7 +5,6 @@ import ISPSnitchCore
 /// ISP Snitch CLI Interface
 ///
 /// Command-line interface for the ISP Snitch network monitoring application.
-@main
 struct ISPSnitchCLI: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "isp-snitch",
@@ -19,4 +18,12 @@ struct ISPSnitchCLI: ParsableCommand {
             ServiceCommand.self
         ]
     )
+}
+
+// Main entry point
+@main
+struct Main {
+    static func main() {
+        ISPSnitchCLI.main()
+    }
 }

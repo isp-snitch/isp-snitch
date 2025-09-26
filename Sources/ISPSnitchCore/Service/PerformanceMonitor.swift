@@ -3,7 +3,7 @@ import Logging
 
 /// Performance monitoring for ISP Snitch service
 /// Optimized for minimal overhead and real-time metrics collection
-public actor PerformanceMonitor {
+public class PerformanceMonitor {
     private let logger: Logger
     private var metrics: [String: Double] = [:]
     private var startTime: Date
@@ -21,119 +21,136 @@ public actor PerformanceMonitor {
     }
 
     /// Start performance monitoring
-    public func start() async {
+    public func start() {
         logger.info("Starting performance monitoring")
 
         // Initialize baseline metrics
-        await recordMetric(name: "startup_time", value: 0.0)
-        await recordMetric(name: "cpu_usage", value: 0.0)
-        await recordMetric(name: "memory_usage", value: 0.0)
-        await recordMetric(name: "request_count", value: 0.0)
-        await recordMetric(name: "error_count", value: 0.0)
+        recordMetric(name: "startup_time", value: 0.0)
+        recordMetric(name: "cpu_usage", value: 0.0)
+        recordMetric(name: "memory_usage", value: 0.0)
+        recordMetric(name: "request_count", value: 0.0)
+        recordMetric(name: "error_count", value: 0.0)
     }
 
     /// Record a performance metric
-    public func recordMetric(name: String, value: Double) async {
+    public func recordMetric(name: String, value: Double) {
         metrics[name] = value
 
         // Check for performance violations
-        await checkPerformanceThresholds(name: name, value: value)
+        checkPerformanceThresholds(name: name, value: value)
     }
 
     /// Get current CPU usage
-    public func getCurrentCpuUsage() async -> Double {
+    public func getCurrentCpuUsage() -> Double {
         let now = Date()
         let timeSinceLastCheck = now.timeIntervalSince(lastCpuCheck)
 
         // Only check CPU usage every 5 seconds to reduce overhead
         if timeSinceLastCheck >= 5.0 {
-            lastCpuUsage = await measureCpuUsage()
+            lastCpuUsage = measureCpuUsage()
             lastCpuCheck = now
         }
 
         return lastCpuUsage
     }
 
-    /// Get current memory usage
-    public func getCurrentMemoryUsage() async -> Double {
-        await measureMemoryUsage()
+    /// Get current memory usage in MB
+    public func getCurrentMemoryUsage() -> Double {
+        measureMemoryUsage()
     }
 
     /// Get all performance metrics
-    public func getMetrics() async -> [String: Double] {
+    public func getMetrics() -> [String: Double] {
         metrics
     }
 
     /// Check if performance is within acceptable limits
-    public func isPerformanceAcceptable() async -> Bool {
-        let cpuUsage = await getCurrentCpuUsage()
-        let memoryUsage = await getCurrentMemoryUsage()
+    public func isPerformanceAcceptable() -> Bool {
+        let cpuUsage = getCurrentCpuUsage()
+        let memoryUsage = getCurrentMemoryUsage()
 
         return cpuUsage <= maxCpuUsage && memoryUsage <= maxMemoryUsage
     }
 
+    /// Get performance summary
+    public func getPerformanceSummary() -> PerformanceSummary {
+        let uptime = Date().timeIntervalSince(startTime)
+        let cpuUsage = getCurrentCpuUsage()
+        let memoryUsage = getCurrentMemoryUsage()
+        let requestCount = metrics["request_count"] ?? 0.0
+        let errorCount = metrics["error_count"] ?? 0.0
+        let errorRate = requestCount > 0 ? (errorCount / requestCount) * 100.0 : 0.0
+
+        return PerformanceSummary(
+            uptime: uptime,
+            cpuUsage: cpuUsage,
+            memoryUsage: memoryUsage,
+            requestCount: Int(requestCount),
+            errorCount: Int(errorCount),
+            errorRate: errorRate,
+            isAcceptable: isPerformanceAcceptable()
+        )
+    }
+
     // MARK: - Private Methods
 
-    private func checkPerformanceThresholds(name: String, value: Double) async {
+    private func checkPerformanceThresholds(name: String, value: Double) {
         switch name {
-        case "startup_time":
-            if value > maxStartupTime {
-                logger.warning("Startup time \(value)s exceeds threshold \(maxStartupTime)s")
-            }
         case "cpu_usage":
             if value > maxCpuUsage {
-                logger.warning("CPU usage \(value)% exceeds threshold \(maxCpuUsage)%")
+                logger.warning("High CPU usage detected: \(value)% (threshold: \(maxCpuUsage)%)")
             }
         case "memory_usage":
             if value > maxMemoryUsage {
-                logger.warning("Memory usage \(value)MB exceeds threshold \(maxMemoryUsage)MB")
+                logger.warning("High memory usage detected: \(value)MB (threshold: \(maxMemoryUsage)MB)")
+            }
+        case "startup_time":
+            if value > maxStartupTime {
+                logger.warning("Slow startup detected: \(value)s (threshold: \(maxStartupTime)s)")
             }
         default:
             break
         }
     }
 
-    private func measureCpuUsage() async -> Double {
-        // Simplified CPU usage measurement
-        // In production, use proper system APIs like mach_task_basic_info
-        let processInfo = ProcessInfo.processInfo
-        let systemLoad = processInfo.systemUptime
-        // This is a simplified implementation
-        return min(systemLoad.truncatingRemainder(dividingBy: 10.0), 5.0)
+    private func measureCpuUsage() -> Double {
+        // Simplified CPU measurement - in production, use proper system APIs
+        // For now, return a baseline value
+        0.5 // 0.5% CPU usage
     }
 
-    private func measureMemoryUsage() async -> Double {
-        // Get process memory usage (simplified implementation)
-        // In production, use proper system APIs like mach_task_basic_info
-        _ = ProcessInfo.processInfo
-        // This is a simplified implementation - in production, use proper system APIs
-        // For now, return a reasonable baseline value
-        return 25.0 // 25MB baseline
+    private func measureMemoryUsage() -> Double {
+        // Simplified memory measurement - in production, use proper system APIs
+        // For now, return a baseline value
+        25.0 // 25MB memory usage
     }
 }
 
-/// Performance metrics structure
-public struct PerformanceMetrics: Sendable, Codable {
+/// Performance summary structure
+public struct PerformanceSummary: Sendable, Codable {
+    public let uptime: TimeInterval
     public let cpuUsage: Double
     public let memoryUsage: Double
-    public let startupTime: Double
     public let requestCount: Int
     public let errorCount: Int
-    public let averageResponseTime: Double
+    public let errorRate: Double
+    public let isAcceptable: Bool
 
     public init(
+        uptime: TimeInterval,
         cpuUsage: Double,
         memoryUsage: Double,
-        startupTime: Double,
         requestCount: Int,
         errorCount: Int,
-        averageResponseTime: Double
+        errorRate: Double,
+        isAcceptable: Bool
     ) {
+        self.uptime = uptime
         self.cpuUsage = cpuUsage
         self.memoryUsage = memoryUsage
-        self.startupTime = startupTime
         self.requestCount = requestCount
         self.errorCount = errorCount
-        self.averageResponseTime = averageResponseTime
+        self.errorRate = errorRate
+        self.isAcceptable = isAcceptable
     }
 }
