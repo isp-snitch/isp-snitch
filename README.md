@@ -10,6 +10,8 @@ A lightweight ISP service monitor for macOS that tracks network connectivity, pe
 - **Service Management**: Automatic startup and service management
 - **Data Storage**: SQLite database with data retention
 - **Logging**: Comprehensive logging and monitoring
+- **Quality Monitoring**: Documentation quality metrics and monitoring
+- **Performance Tracking**: System performance and resource monitoring
 
 ## Quick Start
 
@@ -59,6 +61,9 @@ isp-snitch config set monitoring.interval 300
 isp-snitch service start
 isp-snitch service stop
 isp-snitch service status
+
+# Quality monitoring
+isp-snitch quality check
 ```
 
 ### Web Interface
@@ -69,6 +74,50 @@ Once the service is running, access the web interface at:
 - **API Status**: http://localhost:8080/api/status
 - **Health Check**: http://localhost:8080/api/health
 - **Metrics**: http://localhost:8080/api/metrics
+
+## Quality Monitoring
+
+ISP Snitch includes comprehensive quality monitoring capabilities to track documentation quality, API coverage, and system performance.
+
+### Quality Metrics
+
+The quality monitoring system provides:
+
+- **Documentation Coverage**: Tracks percentage of documented public APIs
+- **Quality Scoring**: Assigns quality scores based on documentation completeness
+- **Performance Metrics**: Monitors generation time, memory usage, and CPU usage
+- **Trend Analysis**: Tracks quality trends over time
+- **Alert System**: Configurable alerts for quality degradation
+
+### Quality Commands
+
+```bash
+# Check current documentation quality
+isp-snitch quality check
+
+# Generate quality report
+isp-snitch quality check --format json
+
+# View quality metrics
+isp-snitch quality check --format text
+```
+
+### Quality Configuration
+
+Quality monitoring can be configured through the main configuration file:
+
+```json
+{
+  "quality": {
+    "enabled": true,
+    "minimum_coverage": 0.8,
+    "minimum_quality_score": 70,
+    "documentation_directory": "Sources",
+    "excluded_files": [],
+    "excluded_api_prefixes": ["private", "fileprivate"]
+  }
+}
+```
 
 ## Configuration
 
@@ -236,6 +285,16 @@ For issues and support, please check the logs and configuration files, or open a
 
 ## Changelog
 
+### v1.1.0
+
+- **Quality Monitoring**: Added comprehensive documentation quality monitoring
+- **Performance Tracking**: System performance and resource monitoring
+- **Quality Metrics**: Documentation coverage and quality scoring
+- **Quality CLI**: New `quality check` command for monitoring
+- **Quality Configuration**: Configurable quality thresholds and settings
+- **Quality Reports**: JSON and text format quality reports
+- **Quality Alerts**: Configurable alerts for quality degradation
+
 ### v1.0.0
 
 - Initial release
@@ -244,4 +303,4 @@ For issues and support, please check the logs and configuration files, or open a
 - Web interface and CLI tools
 - Service management and monitoring
 - SQLite database with data retention
-- Comprehensive logging and health checks# Test
+- Comprehensive logging and health checks
