@@ -1,0 +1,132 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+  workflow_dispatch:
+
+env:
+  SWIFT_VERSION: "6.0"
+  MACOS_VERSION: "14"
+
+jobs:
+  # Single comprehensive job that handles all CI tasks
+  ci-comprehensive:
+    name: Comprehensive CI/CD
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v2.3.0
+      with:
+        swift-version: ${{ env.SWIFT_VERSION }}
+        
+    - name: Cache Swift packages
+      uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+          
+    - name: Resolve dependencies
+      run: swift package resolve
+      
+    - name: Build project
+      run: swift build
+      
+    - name: Run tests
+      run: swift test
+      
+    - name: Install SwiftLint
+      run: |
+        brew install swiftlint
+        
+    - name: Run SwiftLint
+      run: |
+        swiftlint lint --strict
+        
+    - name: Check code formatting
+      run: |
+        swiftlint lint --strict --reporter json > swiftlint-report.json || true
+        
+    - name: Run SwiftLint autocorrect
+      run: |
+        swiftlint --fix
+        
+    - name: Check for TODO/FIXME comments
+      run: |
+        grep -r "TODO\|FIXME" Sources/ Tests/ || echo "No TODO/FIXME comments found"
+        
+    - name: Check for hardcoded secrets
+      run: |
+        grep -r -i "password\|secret\|key\|token" Sources/ Tests/ --exclude-dir=.git || echo "No hardcoded secrets found"
+        
+    - name: Install dependencies
+      run: |
+        brew install sqlite
+        brew install speedtest-cli || echo "speedtest-cli not available"
+        
+    - name: Run performance tests
+      run: |
+        swift test --filter PerformanceOptimizationTests
+        swift test --filter ResourceUsageTests
+        
+    - name: Memory usage test
+      run: |
+        swift test --filter "testMemoryUsage"
+        
+    - name: CPU usage test
+      run: |
+        swift test --filter "testCpuUsage"
+        
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+        
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: swift
+        
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      
+    - name: Create build artifact
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        mkdir -p dist
+        swift build --configuration release
+        cp .build/release/isp-snitch dist/
+        tar -czf dist/isp-snitch-$(date +%Y%m%d-%H%M%S).tar.gz -C dist isp-snitch
+        
+    - name: Upload build artifact
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: actions/upload-artifact@v3
+      with:
+        name: isp-snitch-build
+        path: dist/
+        
+    - name: Create build info
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        echo "Build completed successfully"
+        echo "Version: $(grep 'let version' Package.swift | sed 's/.*"\(.*\)".*/\1/')"
+        echo "Commit: ${{ github.sha }}"
