@@ -124,9 +124,26 @@ jobs:
         name: isp-snitch-build
         path: dist/
         
-    - name: Create build info
+    - name: Increment patch version
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: |
-        echo "Build completed successfully"
-        echo "Version: $(grep 'let version' Package.swift | sed 's/.*"\(.*\)".*/\1/')"
-        echo "Commit: ${{ github.sha }}"
+        # Get current version from Package.swift
+        CURRENT_VERSION=$(grep 'let version' Package.swift | sed 's/.*"\(.*\)".*/\1/')
+        echo "Current version: $CURRENT_VERSION"
+        
+        # Extract major.minor.patch and increment patch
+        IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+        NEW_PATCH=$((PATCH + 1))
+        NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
+        
+        echo "New version: $NEW_VERSION"
+        
+        # Update Package.swift with new version
+        sed -i '' "s/let version = \"$CURRENT_VERSION\"/let version = \"$NEW_VERSION\"/" Package.swift
+        
+        # Commit and push version update
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add Package.swift
+        git commit -m "Auto-increment patch version to $NEW_VERSION [skip ci]"
+        git push origin main
