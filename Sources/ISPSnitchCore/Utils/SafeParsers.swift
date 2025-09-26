@@ -41,7 +41,7 @@ public struct SafeParsers {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             let jsonData = try encoder.encode(data)
-            return String(data: jsonData, encoding: .utf8)
+            return String(bytes: jsonData, encoding: .utf8) ?? ""
         } catch {
             return nil
         }
@@ -65,7 +65,7 @@ public struct SafeParsers {
         do {
             let encoder = JSONEncoder()
             let jsonData = try encoder.encode(array)
-            return String(data: jsonData, encoding: .utf8) ?? "[]"
+            return String(bytes: jsonData, encoding: .utf8) ?? ""
         } catch {
             return "[]"
         }

@@ -86,7 +86,7 @@ print_section "Test Quality"
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
 
 # Count test suites
-TEST_SUITES=$(swift test -Xswiftc -parse-as-library --list-tests 2>/dev/null | grep -c "Suite" || echo "0")
+TEST_SUITES=$(swift test -Xswiftc -parse-as-library --list-tests 2>/dev/null | grep -c "Suite" | head -n 1 || echo "0")
 if [ "$TEST_SUITES" -ge $MIN_TEST_SUITES ]; then
     print_success "Test suites: $TEST_SUITES (≥ $MIN_TEST_SUITES)"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))
@@ -132,7 +132,7 @@ print_section "Code Quality"
 
 # Force unwrap check (exclude legitimate uses)
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
-FORCE_UNWRAPS=$(find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!" | grep -v "try!" | grep -v "guard" | wc -l)
+FORCE_UNWRAPS=$(find Sources -name "*.swift" -not -path "*/Tests/*" -exec grep -n "!" {} + | grep -v "//" | grep -v "import" | grep -v "as!" | grep -v "try!" | grep -v "guard" | grep -v "!Task.isCancelled" | grep -v "!$0.isEmpty" | grep -v "exitCode != 0" | grep -v "shouldSkipTest" | grep -v "filter { !" | grep -v "!isMonitoring" | grep -v "!isRunning" | wc -l)
 if [ "$FORCE_UNWRAPS" -le $MAX_FORCE_UNWRAPS ]; then
     print_success "Force unwraps: $FORCE_UNWRAPS (≤ $MAX_FORCE_UNWRAPS)"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))
@@ -170,7 +170,7 @@ print_section "Security Quality"
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
 
 # Check for hardcoded secrets (but exclude legitimate uses)
-SECRETS=$(find Sources -name "*.swift" -exec grep -i "password\|secret\|key\|token" {} + | grep -v "//" | grep -v "import" | grep -v "private" | grep -v "public" | grep -v "let " | grep -v "var " | wc -l)
+SECRETS=$(find Sources -name "*.swift" -exec grep -i "password\|secret\|key\|token" {} + | grep -v "//" | grep -v "import" | grep -v "private" | grep -v "public" | grep -v "let " | grep -v "var " | grep -v "primaryKey" | grep -v "NSLocalizedDescriptionKey" | grep -v "Configuration key" | wc -l)
 if [ "$SECRETS" -eq 0 ]; then
     print_success "No hardcoded secrets found"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))

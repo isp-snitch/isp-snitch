@@ -65,7 +65,8 @@ public actor UtilityExecutor {
         guard let data = process.standardOutput as? Pipe else {
             return ProcessResult(output: "", exitCode: -1, error: "Invalid pipe")
         }
-        let output = String(data: data.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? ""
+        let outputData = data.fileHandleForReading.readDataToEndOfFile()
+        let output = String(bytes: outputData, encoding: .utf8) ?? ""
 
         return ProcessResult(
             output: output,

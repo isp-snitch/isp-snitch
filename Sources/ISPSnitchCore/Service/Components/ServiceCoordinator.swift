@@ -30,7 +30,11 @@ public actor ServiceCoordinator {
 
     public func startComponents() async throws {
         guard let networkMonitor = networkMonitor else {
-            throw ServiceError.startupFailed(NSError(domain: "ServiceCoordinator", code: 1, userInfo: [NSLocalizedDescriptionKey: "NetworkMonitor not initialized"]))
+            throw ServiceError.startupFailed(NSError(
+                domain: "ServiceCoordinator",
+                code: 1,
+                userInfo: [NSLocalizedDescriptionKey: "NetworkMonitor not initialized"]
+            ))
         }
 
         try await networkMonitor.start()

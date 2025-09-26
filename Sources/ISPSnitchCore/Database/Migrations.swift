@@ -71,9 +71,18 @@ public struct Migrations {
         _ = Expression<String>("network_interface")
 
         // Add composite indexes for common queries
-        try connection.execute("CREATE INDEX IF NOT EXISTS idx_connectivity_test_type_timestamp ON connectivity_records(test_type, timestamp)")
-        try connection.execute("CREATE INDEX IF NOT EXISTS idx_connectivity_success_timestamp ON connectivity_records(success, timestamp)")
-        try connection.execute("CREATE INDEX IF NOT EXISTS idx_connectivity_interface_timestamp ON connectivity_records(network_interface, timestamp)")
+        try connection.execute("""
+            CREATE INDEX IF NOT EXISTS idx_connectivity_test_type_timestamp
+            ON connectivity_records(test_type, timestamp)
+            """)
+        try connection.execute("""
+            CREATE INDEX IF NOT EXISTS idx_connectivity_success_timestamp
+            ON connectivity_records(success, timestamp)
+            """)
+        try connection.execute("""
+            CREATE INDEX IF NOT EXISTS idx_connectivity_interface_timestamp
+            ON connectivity_records(network_interface, timestamp)
+            """)
 
         // Add index for system metrics timestamp queries
         try connection.execute("CREATE INDEX IF NOT EXISTS idx_system_metrics_timestamp ON system_metrics(timestamp)")

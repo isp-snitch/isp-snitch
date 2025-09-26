@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         // SQLite.swift for database operations
-        .package(url: "https://github.com/stephencelis/SQLite.swift.git", from: "0.15.0"),
+        .package(url: "https://github.com/stephencelis/SQLite.swift.git", from: "0.14.0"),
 
         // ArgumentParser for CLI interface
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
