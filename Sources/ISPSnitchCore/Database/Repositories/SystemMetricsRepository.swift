@@ -1,0 +1,56 @@
+import Foundation
+@preconcurrency import SQLite
+
+// MARK: - System Metrics Repository
+public actor SystemMetricsRepository {
+    private let connection: Connection
+    
+    public init(connection: Connection) {
+        self.connection = connection
+    }
+    
+    public func insert(_ metrics: SystemMetrics) async throws {
+        let insert = TableDefinitions.systemMetrics.insert(
+            SystemMetricsColumns.id <- metrics.id.uuidString,
+            SystemMetricsColumns.timestamp <- metrics.timestamp,
+            SystemMetricsColumns.cpuUsage <- metrics.cpuUsage,
+            SystemMetricsColumns.memoryUsage <- metrics.memoryUsage,
+            SystemMetricsColumns.diskUsage <- metrics.diskUsage,
+            SystemMetricsColumns.networkBytesIn <- metrics.networkBytesIn,
+            SystemMetricsColumns.networkBytesOut <- metrics.networkBytesOut
+        )
+
+        try connection.run(insert)
+    }
+    
+    public func getMetrics(
+        limit: Int = 100,
+        since: Date? = nil
+    ) async throws -> [SystemMetrics] {
+        var query = TableDefinitions.systemMetrics.select(*)
+
+        if let since = since {
+            query = query.filter(SystemMetricsColumns.timestamp >= since)
+        }
+
+        query = query.order(SystemMetricsColumns.timestamp.desc).limit(limit)
+
+        var metrics: [SystemMetrics] = []
+
+        for row in try connection.prepare(query) {
+            let metric = SystemMetrics(
+                id: UUID(uuidString: row[SystemMetricsColumns.id])!,
+                timestamp: row[SystemMetricsColumns.timestamp],
+                cpuUsage: row[SystemMetricsColumns.cpuUsage],
+                memoryUsage: row[SystemMetricsColumns.memoryUsage],
+                diskUsage: row[SystemMetricsColumns.diskUsage],
+                networkBytesIn: row[SystemMetricsColumns.networkBytesIn],
+                networkBytesOut: row[SystemMetricsColumns.networkBytesOut]
+            )
+
+            metrics.append(metric)
+        }
+
+        return metrics
+    }
+}
