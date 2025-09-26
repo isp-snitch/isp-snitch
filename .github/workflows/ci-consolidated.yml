@@ -112,6 +112,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: realm/SwiftLint@5.0.0
+      - uses: realm/SwiftLint@0.13.0
         with:
           strict: true
