@@ -1,28 +1,1207 @@
-﻿2025-09-26T02:41:19.6236900Z Current runner version: '2.328.0'
-2025-09-26T02:41:19.6252470Z ##[group]Runner Image Provisioner
-2025-09-26T02:41:19.6252940Z Hosted Compute Agent
-2025-09-26T02:41:19.6253260Z Version: 20250912.392
-2025-09-26T02:41:19.6253620Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
-2025-09-26T02:41:19.6254080Z Build Date: 2025-09-12T15:23:14Z
-2025-09-26T02:41:19.6254440Z ##[endgroup]
-2025-09-26T02:41:19.6254770Z ##[group]Operating System
-2025-09-26T02:41:19.6255110Z macOS
-2025-09-26T02:41:19.6255400Z 15.6.1
-2025-09-26T02:41:19.6255680Z 24G90
-2025-09-26T02:41:19.6255950Z ##[endgroup]
-2025-09-26T02:41:19.6256250Z ##[group]Runner Image
-2025-09-26T02:41:19.6256570Z Image: macos-15-arm64
-2025-09-26T02:41:19.6256890Z Version: 20250916.2338
-2025-09-26T02:41:19.6257570Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20250916.2338/images/macos/macos-15-arm64-Readme.md
-2025-09-26T02:41:19.6258580Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20250916.2338
-2025-09-26T02:41:19.6259190Z ##[endgroup]
-2025-09-26T02:41:19.6259900Z ##[group]GITHUB_TOKEN Permissions
-2025-09-26T02:41:19.6260950Z Contents: read
-2025-09-26T02:41:19.6261250Z Metadata: read
-2025-09-26T02:41:19.6261550Z SecurityEvents: write
-2025-09-26T02:41:19.6261890Z ##[endgroup]
-2025-09-26T02:41:19.6263290Z Secret source: Actions
-2025-09-26T02:41:19.6263680Z Prepare workflow directory
-2025-09-26T02:41:19.6592300Z Prepare all required actions
-2025-09-26T02:41:19.6620480Z Getting action download info
-2025-09-26T02:41:19.8971350Z ##[error]Unable to resolve action `swift-actions/setup-swift@v2.4.0`, unable to find version `v2.4.0`
+﻿2025-09-26T12:03:57.3466234Z Current runner version: '2.328.0'
+2025-09-26T12:03:57.3490504Z ##[group]Runner Image Provisioner
+2025-09-26T12:03:57.3491216Z Hosted Compute Agent
+2025-09-26T12:03:57.3491878Z Version: 20250912.392
+2025-09-26T12:03:57.3492440Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
+2025-09-26T12:03:57.3493179Z Build Date: 2025-09-12T15:23:14Z
+2025-09-26T12:03:57.3493816Z ##[endgroup]
+2025-09-26T12:03:57.3494336Z ##[group]Operating System
+2025-09-26T12:03:57.3494852Z Ubuntu
+2025-09-26T12:03:57.3495377Z 24.04.3
+2025-09-26T12:03:57.3496170Z LTS
+2025-09-26T12:03:57.3496630Z ##[endgroup]
+2025-09-26T12:03:57.3497186Z ##[group]Runner Image
+2025-09-26T12:03:57.3497685Z Image: ubuntu-24.04
+2025-09-26T12:03:57.3498180Z Version: 20250922.53.1
+2025-09-26T12:03:57.3499181Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250922.53/images/ubuntu/Ubuntu2404-Readme.md
+2025-09-26T12:03:57.3500711Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250922.53
+2025-09-26T12:03:57.3501752Z ##[endgroup]
+2025-09-26T12:03:57.3502789Z ##[group]GITHUB_TOKEN Permissions
+2025-09-26T12:03:57.3504879Z Contents: read
+2025-09-26T12:03:57.3505393Z Metadata: read
+2025-09-26T12:03:57.3506058Z SecurityEvents: write
+2025-09-26T12:03:57.3506531Z ##[endgroup]
+2025-09-26T12:03:57.3508601Z Secret source: Actions
+2025-09-26T12:03:57.3509539Z Prepare workflow directory
+2025-09-26T12:03:57.3985317Z Prepare all required actions
+2025-09-26T12:03:57.4040911Z Getting action download info
+2025-09-26T12:03:57.7145406Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-09-26T12:03:58.3430269Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2025-09-26T12:03:58.8584197Z Complete job name: build_test
+2025-09-26T12:03:58.9277196Z ##[group]Run actions/checkout@v4
+2025-09-26T12:03:58.9278102Z with:
+2025-09-26T12:03:58.9278535Z   repository: isp-snitch/isp-snitch
+2025-09-26T12:03:58.9279254Z   token: ***
+2025-09-26T12:03:58.9279687Z   ssh-strict: true
+2025-09-26T12:03:58.9280088Z   ssh-user: git
+2025-09-26T12:03:58.9280506Z   persist-credentials: true
+2025-09-26T12:03:58.9280974Z   clean: true
+2025-09-26T12:03:58.9281422Z   sparse-checkout-cone-mode: true
+2025-09-26T12:03:58.9281947Z   fetch-depth: 1
+2025-09-26T12:03:58.9282349Z   fetch-tags: false
+2025-09-26T12:03:58.9282763Z   show-progress: true
+2025-09-26T12:03:58.9283185Z   lfs: false
+2025-09-26T12:03:58.9283594Z   submodules: false
+2025-09-26T12:03:58.9284011Z   set-safe-directory: true
+2025-09-26T12:03:58.9284756Z env:
+2025-09-26T12:03:58.9285248Z   SWIFT_VERSION: 5.6
+2025-09-26T12:03:58.9286075Z ##[endgroup]
+2025-09-26T12:03:59.0377879Z Syncing repository: isp-snitch/isp-snitch
+2025-09-26T12:03:59.0379773Z ##[group]Getting Git version info
+2025-09-26T12:03:59.0380636Z Working directory is '/home/runner/work/isp-snitch/isp-snitch'
+2025-09-26T12:03:59.0381673Z [command]/usr/bin/git version
+2025-09-26T12:03:59.1683110Z git version 2.51.0
+2025-09-26T12:03:59.1710477Z ##[endgroup]
+2025-09-26T12:03:59.1726065Z Temporarily overriding HOME='/home/runner/work/_temp/fd732070-3ce2-430d-a80e-7b5feea55f98' before making global git config changes
+2025-09-26T12:03:59.1728317Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-26T12:03:59.1739475Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:03:59.1842872Z Deleting the contents of '/home/runner/work/isp-snitch/isp-snitch'
+2025-09-26T12:03:59.1846639Z ##[group]Initializing the repository
+2025-09-26T12:03:59.1850695Z [command]/usr/bin/git init /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:03:59.2994326Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-09-26T12:03:59.2995827Z hint: is subject to change. To configure the initial branch name to use in all
+2025-09-26T12:03:59.2996950Z hint: of your new repositories, which will suppress this warning, call:
+2025-09-26T12:03:59.2997739Z hint:
+2025-09-26T12:03:59.2998640Z hint: 	git config --global init.defaultBranch <name>
+2025-09-26T12:03:59.2999248Z hint:
+2025-09-26T12:03:59.2999812Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-09-26T12:03:59.3000839Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-09-26T12:03:59.3001664Z hint:
+2025-09-26T12:03:59.3002102Z hint: 	git branch -m <name>
+2025-09-26T12:03:59.3002575Z hint:
+2025-09-26T12:03:59.3003216Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-09-26T12:03:59.3052331Z Initialized empty Git repository in /home/runner/work/isp-snitch/isp-snitch/.git/
+2025-09-26T12:03:59.3068562Z [command]/usr/bin/git remote add origin https://github.com/isp-snitch/isp-snitch
+2025-09-26T12:03:59.3234398Z ##[endgroup]
+2025-09-26T12:03:59.3236298Z ##[group]Disabling automatic garbage collection
+2025-09-26T12:03:59.3238130Z [command]/usr/bin/git config --local gc.auto 0
+2025-09-26T12:03:59.3271673Z ##[endgroup]
+2025-09-26T12:03:59.3273363Z ##[group]Setting up auth
+2025-09-26T12:03:59.3278882Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-26T12:03:59.3310349Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-26T12:03:59.5234544Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-26T12:03:59.5271329Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-26T12:03:59.5509138Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-26T12:03:59.5552231Z ##[endgroup]
+2025-09-26T12:03:59.5554303Z ##[group]Fetching the repository
+2025-09-26T12:03:59.5564551Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5da3be1c28912e9decde5d1557fb94e02bf89b52:refs/remotes/origin/main
+2025-09-26T12:04:00.0722247Z From https://github.com/isp-snitch/isp-snitch
+2025-09-26T12:04:00.0724698Z  * [new ref]         5da3be1c28912e9decde5d1557fb94e02bf89b52 -> origin/main
+2025-09-26T12:04:00.0854195Z ##[endgroup]
+2025-09-26T12:04:00.0856313Z ##[group]Determining the checkout info
+2025-09-26T12:04:00.0858193Z ##[endgroup]
+2025-09-26T12:04:00.0860938Z [command]/usr/bin/git sparse-checkout disable
+2025-09-26T12:04:00.0955968Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-09-26T12:04:00.0986385Z ##[group]Checking out the ref
+2025-09-26T12:04:00.0989694Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-09-26T12:04:00.1355889Z Switched to a new branch 'main'
+2025-09-26T12:04:00.1357647Z branch 'main' set up to track 'origin/main'.
+2025-09-26T12:04:00.1365231Z ##[endgroup]
+2025-09-26T12:04:00.1402743Z [command]/usr/bin/git log -1 --format=%H
+2025-09-26T12:04:00.1425459Z 5da3be1c28912e9decde5d1557fb94e02bf89b52
+2025-09-26T12:04:00.1642895Z ##[group]Run wget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz
+2025-09-26T12:04:00.1647337Z [36;1mwget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz[0m
+2025-09-26T12:04:00.1650086Z [36;1mtar xzf swift-5.6-RELEASE-ubuntu20.04.tar.gz[0m
+2025-09-26T12:04:00.1651881Z [36;1mecho "$PWD/swift-5.6-RELEASE-ubuntu20.04/usr/bin" >> $GITHUB_PATH[0m
+2025-09-26T12:04:00.1689523Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:04:00.1690549Z env:
+2025-09-26T12:04:00.1691339Z   SWIFT_VERSION: 5.6
+2025-09-26T12:04:00.1692228Z ##[endgroup]
+2025-09-26T12:04:14.3910638Z ##[group]Run actions/cache@v4
+2025-09-26T12:04:14.3910964Z with:
+2025-09-26T12:04:14.3911227Z   path: ~/.swiftpm
+~/Library/Caches/org.swift.swiftpm
+
+2025-09-26T12:04:14.3912030Z   key: Linux-spmcache-21d754f6a67725cc64b067e8ac65a75e2befbe2f070d9a3edc6a120364f684da
+2025-09-26T12:04:14.3912524Z   restore-keys: Linux-spmcache-
+2025-09-26T12:04:14.3912789Z   enableCrossOsArchive: false
+2025-09-26T12:04:14.3913032Z   fail-on-cache-miss: false
+2025-09-26T12:04:14.3913266Z   lookup-only: false
+2025-09-26T12:04:14.3913467Z   save-always: false
+2025-09-26T12:04:14.3913664Z env:
+2025-09-26T12:04:14.3913831Z   SWIFT_VERSION: 5.6
+2025-09-26T12:04:14.3914027Z ##[endgroup]
+2025-09-26T12:04:14.6784358Z Cache not found for input keys: Linux-spmcache-21d754f6a67725cc64b067e8ac65a75e2befbe2f070d9a3edc6a120364f684da, Linux-spmcache-
+2025-09-26T12:04:14.6853400Z ##[group]Run swift package resolve
+2025-09-26T12:04:14.6853729Z [36;1mswift package resolve[0m
+2025-09-26T12:04:14.6887915Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:04:14.6888164Z env:
+2025-09-26T12:04:14.6888331Z   SWIFT_VERSION: 5.6
+2025-09-26T12:04:14.6888524Z ##[endgroup]
+2025-09-26T12:04:18.1067081Z Fetching https://github.com/stephencelis/SQLite.swift.git
+2025-09-26T12:04:18.1068500Z Fetching https://github.com/swiftlang/swift-toolchain-sqlite
+2025-09-26T12:04:18.1070200Z Fetching https://github.com/apple/swift-log.git
+2025-09-26T12:04:18.3512834Z [1/181] Fetching objects
+2025-09-26T12:04:19.1033626Z Fetched https://github.com/apple/swift-log.git (1.00s)
+2025-09-26T12:04:19.1053181Z Fetching https://github.com/apple/swift-argument-parser.git
+2025-09-26T12:04:19.1096031Z Fetched https://github.com/swiftlang/swift-toolchain-sqlite (1.00s)
+2025-09-26T12:04:19.1193292Z Fetched https://github.com/stephencelis/SQLite.swift.git (1.01s)
+2025-09-26T12:04:19.9839578Z Fetched https://github.com/apple/swift-argument-parser.git (0.88s)
+2025-09-26T12:04:19.9844134Z Computing version for https://github.com/apple/swift-log.git
+2025-09-26T12:04:20.0194907Z Computing version for https://github.com/apple/swift-argument-parser.git
+2025-09-26T12:04:20.0484430Z Computing version for https://github.com/stephencelis/SQLite.swift.git
+2025-09-26T12:04:20.2577571Z Computed https://github.com/stephencelis/SQLite.swift.git at 0.14.1 (0.19s)
+2025-09-26T12:04:20.2579839Z Fetching https://github.com/stephencelis/CSQLite.git
+2025-09-26T12:04:20.4843959Z Fetched https://github.com/stephencelis/CSQLite.git (0.23s)
+2025-09-26T12:04:20.4870235Z Computing version for https://github.com/stephencelis/CSQLite.git
+2025-09-26T12:04:21.0771461Z Computed https://github.com/stephencelis/CSQLite.git at 0.0.3 (0.59s)
+2025-09-26T12:04:21.2413701Z Computed https://github.com/apple/swift-argument-parser.git at 1.2.3 (0.16s)
+2025-09-26T12:04:21.3892222Z Computed https://github.com/apple/swift-log.git at 1.5.4 (0.15s)
+2025-09-26T12:04:21.4333980Z Creating working copy for https://github.com/stephencelis/CSQLite.git
+2025-09-26T12:04:21.4774530Z Working copy of https://github.com/stephencelis/CSQLite.git resolved at 0.0.3
+2025-09-26T12:04:21.4819768Z Creating working copy for https://github.com/apple/swift-argument-parser.git
+2025-09-26T12:04:21.5463073Z Working copy of https://github.com/apple/swift-argument-parser.git resolved at 1.2.3
+2025-09-26T12:04:21.5508508Z Creating working copy for https://github.com/stephencelis/SQLite.swift.git
+2025-09-26T12:04:21.6088736Z Working copy of https://github.com/stephencelis/SQLite.swift.git resolved at 0.14.1
+2025-09-26T12:04:21.6134875Z Creating working copy for https://github.com/apple/swift-log.git
+2025-09-26T12:04:21.6608890Z Working copy of https://github.com/apple/swift-log.git resolved at 1.5.4
+2025-09-26T12:04:22.0557072Z ##[group]Run swift build --configuration debug -Xswiftc -parse-as-library
+2025-09-26T12:04:22.0557592Z [36;1mswift build --configuration debug -Xswiftc -parse-as-library[0m
+2025-09-26T12:04:22.0590771Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:04:22.0590998Z env:
+2025-09-26T12:04:22.0591167Z   SWIFT_VERSION: 5.6
+2025-09-26T12:04:22.0591357Z ##[endgroup]
+2025-09-26T12:04:22.8332342Z 'csqlite': warning: ignoring declared target(s) 'CSQLite' in the system package
+2025-09-26T12:04:22.8791097Z Compiling plugin GenerateManual...
+2025-09-26T12:04:23.3171107Z Building for debugging...
+2025-09-26T12:04:23.3228569Z [1/8] Copying Schema.sql
+2025-09-26T12:04:25.0887020Z [2/42] Compiling ArgumentParserToolInfo ToolInfo.swift
+2025-09-26T12:04:25.0888880Z [3/42] Emitting module ArgumentParserToolInfo
+2025-09-26T12:04:25.2488762Z [6/44] Wrapping AST for ArgumentParserToolInfo for debugging
+2025-09-26T12:04:25.4377999Z [7/61] Emitting module SQLite
+2025-09-26T12:04:26.7928408Z [8/84] Compiling Logging Locks.swift
+2025-09-26T12:04:26.8005829Z [9/84] Emitting module Logging
+2025-09-26T12:04:27.0227917Z [10/85] Compiling Logging MetadataProvider.swift
+2025-09-26T12:04:27.2239893Z [11/85] Emitting module ArgumentParser
+2025-09-26T12:04:27.8644077Z [12/95] Compiling Logging Logging.swift
+2025-09-26T12:04:27.8701133Z [13/95] Compiling Logging LogHandler.swift
+2025-09-26T12:04:28.0349232Z [16/97] Wrapping AST for Logging for debugging
+2025-09-26T12:04:28.1692498Z [17/97] Compiling ArgumentParser ParsableArgumentsValidation.swift
+2025-09-26T12:04:28.1693301Z [18/97] Compiling ArgumentParser ParsableCommand.swift
+2025-09-26T12:04:28.1693924Z [19/97] Compiling ArgumentParser ArgumentDecoder.swift
+2025-09-26T12:04:28.1694773Z [20/97] Compiling ArgumentParser ArgumentDefinition.swift
+2025-09-26T12:04:28.1696203Z [21/97] Compiling ArgumentParser ArgumentSet.swift
+2025-09-26T12:04:28.1696979Z [22/97] Compiling ArgumentParser CommandParser.swift
+2025-09-26T12:04:28.1697708Z [23/97] Compiling ArgumentParser InputKey.swift
+2025-09-26T12:04:28.1698423Z [24/97] Compiling ArgumentParser InputOrigin.swift
+2025-09-26T12:04:28.1699135Z [25/97] Compiling ArgumentParser Name.swift
+2025-09-26T12:04:28.9046201Z [26/97] Compiling ArgumentParser Flag.swift
+2025-09-26T12:04:28.9049241Z [27/97] Compiling ArgumentParser NameSpecification.swift
+2025-09-26T12:04:28.9050101Z [28/97] Compiling ArgumentParser Option.swift
+2025-09-26T12:04:28.9050638Z [29/97] Compiling ArgumentParser OptionGroup.swift
+2025-09-26T12:04:28.9051236Z [30/97] Compiling ArgumentParser AsyncParsableCommand.swift
+2025-09-26T12:04:28.9051855Z [31/97] Compiling ArgumentParser CommandConfiguration.swift
+2025-09-26T12:04:28.9052431Z [32/97] Compiling ArgumentParser EnumerableFlag.swift
+2025-09-26T12:04:28.9053019Z [33/97] Compiling ArgumentParser ExpressibleByArgument.swift
+2025-09-26T12:04:28.9053614Z [34/97] Compiling ArgumentParser ParsableArguments.swift
+2025-09-26T12:04:28.9054263Z [35/97] Compiling ArgumentParser BashCompletionsGenerator.swift
+2025-09-26T12:04:28.9054919Z [36/97] Compiling ArgumentParser CompletionsGenerator.swift
+2025-09-26T12:04:28.9125917Z [37/97] Compiling ArgumentParser FishCompletionsGenerator.swift
+2025-09-26T12:04:28.9126732Z [38/97] Compiling ArgumentParser ZshCompletionsGenerator.swift
+2025-09-26T12:04:28.9127358Z [39/97] Compiling ArgumentParser Argument.swift
+2025-09-26T12:04:28.9127908Z [40/97] Compiling ArgumentParser ArgumentHelp.swift
+2025-09-26T12:04:28.9128517Z [41/97] Compiling ArgumentParser ArgumentVisibility.swift
+2025-09-26T12:04:28.9129137Z [42/97] Compiling ArgumentParser CompletionKind.swift
+2025-09-26T12:04:28.9129686Z [43/97] Compiling ArgumentParser Errors.swift
+2025-09-26T12:04:29.5611180Z [61/97] Compiling ArgumentParser Parsed.swift
+2025-09-26T12:04:29.5616800Z [62/97] Compiling ArgumentParser ParsedValues.swift
+2025-09-26T12:04:29.5622131Z [63/97] Compiling ArgumentParser ParserError.swift
+2025-09-26T12:04:29.5627365Z [64/97] Compiling ArgumentParser SplitArguments.swift
+2025-09-26T12:04:29.6990702Z [75/97] Compiling ArgumentParser DumpHelpGenerator.swift
+2025-09-26T12:04:29.6991373Z [76/97] Compiling ArgumentParser HelpCommand.swift
+2025-09-26T12:04:29.6991960Z [77/97] Compiling ArgumentParser HelpGenerator.swift
+2025-09-26T12:04:29.6992537Z [78/97] Compiling ArgumentParser MessageInfo.swift
+2025-09-26T12:04:29.6993098Z [79/97] Compiling ArgumentParser UsageGenerator.swift
+2025-09-26T12:04:29.6993709Z [80/97] Compiling ArgumentParser CollectionExtensions.swift
+2025-09-26T12:04:29.6994294Z [81/97] Compiling ArgumentParser Platform.swift
+2025-09-26T12:04:29.6995174Z [82/97] Compiling ArgumentParser SequenceExtensions.swift
+2025-09-26T12:04:29.6996012Z [83/97] Compiling ArgumentParser StringExtensions.swift
+2025-09-26T12:04:29.6996561Z [84/97] Compiling ArgumentParser Tree.swift
+2025-09-26T12:04:29.8046687Z [87/99] Wrapping AST for ArgumentParser for debugging
+2025-09-26T12:04:30.7293416Z [98/101] Wrapping AST for SQLite for debugging
+2025-09-26T12:04:31.0870119Z [99/129] Compiling ISPSnitchCore NetworkMonitorStatus.swift
+2025-09-26T12:04:31.0872120Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.0873923Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.0874341Z                ^
+2025-09-26T12:04:31.0874853Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.0875826Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.0876394Z               ^
+2025-09-26T12:04:31.0877743Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.0879183Z import Foundation
+2025-09-26T12:04:31.0879482Z ^
+2025-09-26T12:04:31.0879744Z @preconcurrency 
+2025-09-26T12:04:31.0881118Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.0882563Z     public let timestamp: Date
+2025-09-26T12:04:31.0882922Z                ^
+2025-09-26T12:04:31.0883427Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.0884198Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.0884745Z               ^
+2025-09-26T12:04:31.0886141Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.0887400Z import Foundation
+2025-09-26T12:04:31.0887683Z ^
+2025-09-26T12:04:31.0887933Z @preconcurrency 
+2025-09-26T12:04:31.0889042Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:04:31.0890302Z                 exitCode: exitCode,
+2025-09-26T12:04:31.0890693Z                           ^
+2025-09-26T12:04:31.0891034Z                           Int(    )
+2025-09-26T12:04:31.0891599Z [100/129] Compiling ISPSnitchCore TestDataContainer.swift
+2025-09-26T12:04:31.0893468Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.0895311Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.0896093Z                ^
+2025-09-26T12:04:31.0896656Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.0897485Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.0898426Z               ^
+2025-09-26T12:04:31.0899838Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.0901419Z import Foundation
+2025-09-26T12:04:31.0901813Z ^
+2025-09-26T12:04:31.0902089Z @preconcurrency 
+2025-09-26T12:04:31.0903514Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.0905323Z     public let timestamp: Date
+2025-09-26T12:04:31.0905913Z                ^
+2025-09-26T12:04:31.0906408Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.0907177Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.0907758Z               ^
+2025-09-26T12:04:31.0909040Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.0910430Z import Foundation
+2025-09-26T12:04:31.0910741Z ^
+2025-09-26T12:04:31.0911021Z @preconcurrency 
+2025-09-26T12:04:31.0912211Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:04:31.0913470Z                 exitCode: exitCode,
+2025-09-26T12:04:31.0913912Z                           ^
+2025-09-26T12:04:31.0914260Z                           Int(    )
+2025-09-26T12:04:31.0914728Z [101/129] Compiling ISPSnitchCore TestResult.swift
+2025-09-26T12:04:31.0916745Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.0918582Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.0919036Z                ^
+2025-09-26T12:04:31.0919644Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.0920473Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.0921045Z               ^
+2025-09-26T12:04:31.0922418Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.0923932Z import Foundation
+2025-09-26T12:04:31.0924231Z ^
+2025-09-26T12:04:31.0924512Z @preconcurrency 
+2025-09-26T12:04:31.0956369Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.0957953Z     public let timestamp: Date
+2025-09-26T12:04:31.0958312Z                ^
+2025-09-26T12:04:31.0958845Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.0959644Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.0960202Z               ^
+2025-09-26T12:04:31.0961469Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.0962845Z import Foundation
+2025-09-26T12:04:31.0963143Z ^
+2025-09-26T12:04:31.0963404Z @preconcurrency 
+2025-09-26T12:04:31.0964579Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:04:31.0966022Z                 exitCode: exitCode,
+2025-09-26T12:04:31.0966405Z                           ^
+2025-09-26T12:04:31.0966999Z                           Int(    )
+2025-09-26T12:04:31.0967496Z [102/129] Compiling ISPSnitchCore NetworkMonitor.swift
+2025-09-26T12:04:31.0969255Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.0971103Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.0971558Z                ^
+2025-09-26T12:04:31.0972421Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.0973247Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.0973823Z               ^
+2025-09-26T12:04:31.0975191Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.0977135Z import Foundation
+2025-09-26T12:04:31.0977432Z ^
+2025-09-26T12:04:31.0977709Z @preconcurrency 
+2025-09-26T12:04:31.0979094Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.0980624Z     public let timestamp: Date
+2025-09-26T12:04:31.0981006Z                ^
+2025-09-26T12:04:31.0981547Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.0982383Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.0982941Z               ^
+2025-09-26T12:04:31.0984207Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1015890Z import Foundation
+2025-09-26T12:04:31.1016239Z ^
+2025-09-26T12:04:31.1016507Z @preconcurrency 
+2025-09-26T12:04:31.1017682Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:04:31.1018990Z                 exitCode: exitCode,
+2025-09-26T12:04:31.1019355Z                           ^
+2025-09-26T12:04:31.1019660Z                           Int(    )
+2025-09-26T12:04:31.1020116Z [103/129] Compiling ISPSnitchCore OutputParser.swift
+2025-09-26T12:04:31.1021877Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.1023640Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.1024062Z                ^
+2025-09-26T12:04:31.1024567Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1025340Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1026044Z               ^
+2025-09-26T12:04:31.1027351Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1028750Z import Foundation
+2025-09-26T12:04:31.1029030Z ^
+2025-09-26T12:04:31.1029287Z @preconcurrency 
+2025-09-26T12:04:31.1030605Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.1032040Z     public let timestamp: Date
+2025-09-26T12:04:31.1032386Z                ^
+2025-09-26T12:04:31.1032879Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1033871Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1034404Z               ^
+2025-09-26T12:04:31.1035776Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1037100Z import Foundation
+2025-09-26T12:04:31.1037373Z ^
+2025-09-26T12:04:31.1037625Z @preconcurrency 
+2025-09-26T12:04:31.1038734Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:04:31.1040141Z                 exitCode: exitCode,
+2025-09-26T12:04:31.1040502Z                           ^
+2025-09-26T12:04:31.1040816Z                           Int(    )
+2025-09-26T12:04:31.1041241Z [104/129] Compiling ISPSnitchCore PingMonitor.swift
+2025-09-26T12:04:31.1042978Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.1044725Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.1045126Z                ^
+2025-09-26T12:04:31.1049943Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1050744Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1051263Z               ^
+2025-09-26T12:04:31.1052579Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1053968Z import Foundation
+2025-09-26T12:04:31.1054247Z ^
+2025-09-26T12:04:31.1054489Z @preconcurrency 
+2025-09-26T12:04:31.1056107Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.1057549Z     public let timestamp: Date
+2025-09-26T12:04:31.1057888Z                ^
+2025-09-26T12:04:31.1058387Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1059146Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1059669Z               ^
+2025-09-26T12:04:31.1060867Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1062172Z import Foundation
+2025-09-26T12:04:31.1062446Z ^
+2025-09-26T12:04:31.1062686Z @preconcurrency 
+2025-09-26T12:04:31.1063813Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:04:31.1065029Z                 exitCode: exitCode,
+2025-09-26T12:04:31.1065393Z                           ^
+2025-09-26T12:04:31.1065864Z                           Int(    )
+2025-09-26T12:04:31.1066288Z [105/129] Compiling ISPSnitchCore TestStrategy.swift
+2025-09-26T12:04:31.1068034Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.1069745Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.1070148Z                ^
+2025-09-26T12:04:31.1070626Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1071361Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1071858Z               ^
+2025-09-26T12:04:31.1073291Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1074682Z import Foundation
+2025-09-26T12:04:31.1074970Z ^
+2025-09-26T12:04:31.1075237Z @preconcurrency 
+2025-09-26T12:04:31.1076668Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.1078104Z     public let timestamp: Date
+2025-09-26T12:04:31.1078657Z                ^
+2025-09-26T12:04:31.1079159Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1079926Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1080440Z               ^
+2025-09-26T12:04:31.1081638Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1082957Z import Foundation
+2025-09-26T12:04:31.1083242Z ^
+2025-09-26T12:04:31.1083484Z @preconcurrency 
+2025-09-26T12:04:31.1084612Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:04:31.1086124Z                 exitCode: exitCode,
+2025-09-26T12:04:31.1086481Z                           ^
+2025-09-26T12:04:31.1086800Z                           Int(    )
+2025-09-26T12:04:31.1087249Z [106/129] Compiling ISPSnitchCore UtilityExecutor.swift
+2025-09-26T12:04:31.1088982Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.1090719Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.1091150Z                ^
+2025-09-26T12:04:31.1091651Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1092426Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1092966Z               ^
+2025-09-26T12:04:31.1094281Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1095954Z import Foundation
+2025-09-26T12:04:31.1096254Z ^
+2025-09-26T12:04:31.1096499Z @preconcurrency 
+2025-09-26T12:04:31.1097848Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.1099279Z     public let timestamp: Date
+2025-09-26T12:04:31.1099636Z                ^
+2025-09-26T12:04:31.1100158Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1100940Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1101462Z               ^
+2025-09-26T12:04:31.1102685Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1104068Z import Foundation
+2025-09-26T12:04:31.1104348Z ^
+2025-09-26T12:04:31.1104620Z @preconcurrency 
+2025-09-26T12:04:31.1105890Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:04:31.1107091Z                 exitCode: exitCode,
+2025-09-26T12:04:31.1107451Z                           ^
+2025-09-26T12:04:31.1107782Z                           Int(    )
+2025-09-26T12:04:31.1108464Z [107/129] Compiling ISPSnitchCore ServiceCoordinator.swift
+2025-09-26T12:04:31.1110230Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.1111930Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.1112341Z                ^
+2025-09-26T12:04:31.1112848Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1113810Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1114340Z               ^
+2025-09-26T12:04:31.1115791Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1117147Z import Foundation
+2025-09-26T12:04:31.1117435Z ^
+2025-09-26T12:04:31.1117699Z @preconcurrency 
+2025-09-26T12:04:31.1119050Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.1120456Z     public let timestamp: Date
+2025-09-26T12:04:31.1120789Z                ^
+2025-09-26T12:04:31.1121281Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.1122035Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.1122550Z               ^
+2025-09-26T12:04:31.1123761Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.1125058Z import Foundation
+2025-09-26T12:04:31.1125340Z ^
+2025-09-26T12:04:31.1125779Z @preconcurrency 
+2025-09-26T12:04:31.1126902Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:62:27: error: cannot convert value of type 'Int32' to expected argument type 'Int'
+2025-09-26T12:04:31.1128066Z                 exitCode: exitCode,
+2025-09-26T12:04:31.1128406Z                           ^
+2025-09-26T12:04:31.1128717Z                           Int(    )
+2025-09-26T12:04:31.3346935Z [108/137] Emitting module ISPSnitchCore
+2025-09-26T12:04:31.3369021Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3370449Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3370832Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3371907Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3373110Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3373470Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3374607Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3376054Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3376408Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3377465Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3378645Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3379010Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3380331Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3381825Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3382204Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3383801Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3385282Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3385883Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3387209Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3388660Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3389036Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3390341Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3392143Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3392515Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3393678Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3394950Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3395316Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3427002Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.3428326Z @preconcurrency import SQLite
+2025-09-26T12:04:31.3428697Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.3430114Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:31.3431707Z     public let testType: TestType = .ping
+2025-09-26T12:04:31.3432137Z                ^
+2025-09-26T12:04:31.3433668Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:31.3435337Z     public let testType: TestType = .ping
+2025-09-26T12:04:31.3435973Z                ^
+2025-09-26T12:04:31.3436985Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:31.3438155Z     public let testType: TestType = .ping
+2025-09-26T12:04:31.3438580Z            ~~~ ^
+2025-09-26T12:04:31.3438868Z            var
+2025-09-26T12:04:31.3440304Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:31.3441839Z     public let testType: TestType = .http
+2025-09-26T12:04:31.3442256Z                ^
+2025-09-26T12:04:31.3443764Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:31.3445420Z     public let testType: TestType = .http
+2025-09-26T12:04:31.3446048Z                ^
+2025-09-26T12:04:31.3447024Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:31.3448152Z     public let testType: TestType = .http
+2025-09-26T12:04:31.3448541Z            ~~~ ^
+2025-09-26T12:04:31.3448818Z            var
+2025-09-26T12:04:31.3450220Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:31.3451788Z     public let testType: TestType = .dns
+2025-09-26T12:04:31.3452202Z                ^
+2025-09-26T12:04:31.3453977Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:31.3485992Z     public let testType: TestType = .dns
+2025-09-26T12:04:31.3486453Z                ^
+2025-09-26T12:04:31.3487488Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:31.3488651Z     public let testType: TestType = .dns
+2025-09-26T12:04:31.3489061Z            ~~~ ^
+2025-09-26T12:04:31.3489646Z            var
+2025-09-26T12:04:31.3491076Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:31.3492698Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:31.3493118Z                ^
+2025-09-26T12:04:31.3494646Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:31.3496530Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:31.3496968Z                ^
+2025-09-26T12:04:31.3497990Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:31.3499135Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:31.3499579Z            ~~~ ^
+2025-09-26T12:04:31.3499872Z            var
+2025-09-26T12:04:31.3501497Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:6:16: warning: stored property 'lastTestTimes' of 'Sendable'-conforming struct 'NetworkMonitorStatus' has non-sendable type '[TestType : Date]'
+2025-09-26T12:04:31.3503340Z     public let lastTestTimes: [TestType: Date]
+2025-09-26T12:04:31.3503776Z                ^
+2025-09-26T12:04:31.3504306Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.3505117Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.3505877Z               ^
+2025-09-26T12:04:31.3507259Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/NetworkMonitorStatus.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.3508746Z import Foundation
+2025-09-26T12:04:31.3509068Z ^
+2025-09-26T12:04:31.3509343Z @preconcurrency 
+2025-09-26T12:04:31.3510757Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:8:16: warning: stored property 'timestamp' of 'Sendable'-conforming struct 'TestResult' has non-sendable type 'Date'
+2025-09-26T12:04:31.3512247Z     public let timestamp: Date
+2025-09-26T12:04:31.3512604Z                ^
+2025-09-26T12:04:31.3513163Z Foundation.Date:1:15: note: struct 'Date' does not conform to the 'Sendable' protocol
+2025-09-26T12:04:31.3513960Z public struct Date : ReferenceConvertible, Comparable, Equatable {
+2025-09-26T12:04:31.3514513Z               ^
+2025-09-26T12:04:31.3546021Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/Models/TestResult.swift:1:1: remark: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Foundation'
+2025-09-26T12:04:31.3547449Z import Foundation
+2025-09-26T12:04:31.3547783Z ^
+2025-09-26T12:04:31.3548346Z @preconcurrency 
+2025-09-26T12:04:31.9081615Z [109/137] Compiling ISPSnitchCore ServiceLifecycleManager.swift
+2025-09-26T12:04:31.9082957Z [110/137] Compiling ISPSnitchCore ServiceMetricsCollector.swift
+2025-09-26T12:04:31.9084905Z [111/137] Compiling ISPSnitchCore ISPSnitchService.swift
+2025-09-26T12:04:31.9085466Z [112/137] Compiling ISPSnitchCore ServiceError.swift
+2025-09-26T12:04:31.9086684Z [113/137] Compiling ISPSnitchCore ServiceMetrics.swift
+2025-09-26T12:04:31.9087241Z [114/137] Compiling ISPSnitchCore ServiceState.swift
+2025-09-26T12:04:31.9087827Z [115/137] Compiling ISPSnitchCore PerformanceMonitor.swift
+2025-09-26T12:04:31.9088459Z [116/137] Compiling ISPSnitchCore resource_bundle_accessor.swift
+2025-09-26T12:04:31.9089082Z [117/137] Compiling ISPSnitchCore CommandProtocols.swift
+2025-09-26T12:04:31.9090393Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9091818Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9092169Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9093191Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9094330Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9094663Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9095865Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9097035Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9097370Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9098375Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9099491Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9099829Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9101096Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9102484Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9102829Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9104054Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9105394Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9105866Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9107106Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9108463Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9108807Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9110079Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9111460Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9111800Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9444404Z [118/137] Compiling ISPSnitchCore DataRetentionManager.swift
+2025-09-26T12:04:31.9446283Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9447891Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9448363Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9449546Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9450930Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9451244Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9452159Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9453195Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9453492Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9454265Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9455043Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9455467Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9456577Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9457540Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9457777Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9458622Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9459699Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9459943Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9460779Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9461708Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9461946Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9462811Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9463757Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9463986Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9795675Z [119/137] Compiling ISPSnitchCore DataStorage.swift
+2025-09-26T12:04:31.9797211Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9798141Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9798415Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9799170Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9800022Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9800277Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9801216Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9802040Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9802274Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9802978Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9803761Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9803997Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9804879Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9805961Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9806210Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9807070Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9807938Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9808146Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9808906Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9809729Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9809939Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:31.9810711Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:31.9811547Z @preconcurrency import SQLite
+2025-09-26T12:04:31.9811762Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0151566Z [120/137] Compiling ISPSnitchCore DatabaseManager.swift
+2025-09-26T12:04:32.0152844Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0153737Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0153990Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0154720Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0155661Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0155908Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0156653Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0157608Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0157855Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0158551Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0159331Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0159570Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0160446Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0161406Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0161641Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0162493Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0163479Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0163724Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0164571Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0165599Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0165929Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0166648Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0167462Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0167658Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0502275Z [121/137] Compiling ISPSnitchCore Migrations.swift
+2025-09-26T12:04:32.0503395Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0504323Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0504598Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0505367Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0506565Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0506831Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0507662Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0508549Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0508806Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0509568Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0510417Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0510673Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0511630Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0512708Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0512970Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0514154Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0515182Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0515446Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0516491Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0517244Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0517444Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0518165Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0519095Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0519303Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0857998Z [122/137] Compiling ISPSnitchCore ConnectivityRecordRepository.swift
+2025-09-26T12:04:32.0859352Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0860242Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0860494Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0861224Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0862051Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0862292Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0863030Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0863852Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0864095Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0864787Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0866594Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0866844Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0867671Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0868502Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0868704Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0869433Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0870238Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0870446Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0871185Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0871988Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0872208Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.0872961Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.0873792Z @preconcurrency import SQLite
+2025-09-26T12:04:32.0873994Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1208168Z [123/137] Compiling ISPSnitchCore ServiceStatusRepository.swift
+2025-09-26T12:04:32.1209450Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1210334Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1210584Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1211290Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1212080Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1212324Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1213405Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1214246Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1214493Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1215205Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1216177Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1216609Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1217512Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1218407Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1218620Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1219356Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1220162Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1220368Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1221098Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1221948Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1222165Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1222950Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1223790Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1224004Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1557589Z [124/137] Compiling ISPSnitchCore SystemMetricsRepository.swift
+2025-09-26T12:04:32.1558993Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1560220Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1560565Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1561579Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1562708Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1563043Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1564071Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1565228Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1565931Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1566950Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1568089Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1568436Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1569702Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1571093Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1571437Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1572652Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1573991Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1574319Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1575651Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1576976Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1577525Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1578778Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1580142Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1580478Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1913882Z [125/137] Compiling ISPSnitchCore TestConfigurationRepository.swift
+2025-09-26T12:04:32.1915292Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataRetentionManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1917002Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1917346Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1918361Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DataStorage.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1919487Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1919830Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1920876Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/DatabaseManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1922031Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1922368Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1923380Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Migrations.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1924505Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1924850Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1926233Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ConnectivityRecordRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1927609Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1927940Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1929149Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/ServiceStatusRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1930472Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1930816Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1932025Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/SystemMetricsRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1933341Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1933671Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.1934906Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Repositories/TestConfigurationRepository.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.1936393Z @preconcurrency import SQLite
+2025-09-26T12:04:32.1936717Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.2276059Z [126/137] Compiling ISPSnitchCore SchemaManager.swift
+2025-09-26T12:04:32.2277390Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.2278593Z @preconcurrency import SQLite
+2025-09-26T12:04:32.2278935Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.2280045Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.2281255Z @preconcurrency import SQLite
+2025-09-26T12:04:32.2281590Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.2282956Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.2284447Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.2284826Z                ^
+2025-09-26T12:04:32.2286647Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.2288260Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.2288639Z                ^
+2025-09-26T12:04:32.2289575Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:32.2290627Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.2291172Z            ~~~ ^
+2025-09-26T12:04:32.2291431Z            var
+2025-09-26T12:04:32.2292767Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.2294241Z     public let testType: TestType = .http
+2025-09-26T12:04:32.2294608Z                ^
+2025-09-26T12:04:32.2296207Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.2297807Z     public let testType: TestType = .http
+2025-09-26T12:04:32.2298172Z                ^
+2025-09-26T12:04:32.2299092Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:32.2300147Z     public let testType: TestType = .http
+2025-09-26T12:04:32.2300528Z            ~~~ ^
+2025-09-26T12:04:32.2300779Z            var
+2025-09-26T12:04:32.2302118Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.2303589Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.2303965Z                ^
+2025-09-26T12:04:32.2305397Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.2307114Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.2307490Z                ^
+2025-09-26T12:04:32.2308417Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:32.2309491Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.2309877Z            ~~~ ^
+2025-09-26T12:04:32.2310129Z            var
+2025-09-26T12:04:32.2311481Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.2312968Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.2313366Z                ^
+2025-09-26T12:04:32.2314801Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.2316496Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.2316890Z                ^
+2025-09-26T12:04:32.2317811Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:32.2318882Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.2319267Z            ~~~ ^
+2025-09-26T12:04:32.2319532Z            var
+2025-09-26T12:04:32.3761913Z [127/137] Compiling ISPSnitchCore TableDefinitions.swift
+2025-09-26T12:04:32.3763817Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.3765051Z @preconcurrency import SQLite
+2025-09-26T12:04:32.3765396Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.3766724Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.3767951Z @preconcurrency import SQLite
+2025-09-26T12:04:32.3768284Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.3769637Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.3771293Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.3771680Z                ^
+2025-09-26T12:04:32.3773127Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.3774716Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.3775096Z                ^
+2025-09-26T12:04:32.3776193Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:32.3777259Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.3777628Z            ~~~ ^
+2025-09-26T12:04:32.3777887Z            var
+2025-09-26T12:04:32.3779237Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.3780698Z     public let testType: TestType = .http
+2025-09-26T12:04:32.3781077Z                ^
+2025-09-26T12:04:32.3782522Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.3784083Z     public let testType: TestType = .http
+2025-09-26T12:04:32.3784465Z                ^
+2025-09-26T12:04:32.3785385Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:32.3786569Z     public let testType: TestType = .http
+2025-09-26T12:04:32.3786945Z            ~~~ ^
+2025-09-26T12:04:32.3787202Z            var
+2025-09-26T12:04:32.3788536Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.3790000Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.3790383Z                ^
+2025-09-26T12:04:32.3791813Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.3793367Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.3793736Z                ^
+2025-09-26T12:04:32.3794665Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:32.3795837Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.3796209Z            ~~~ ^
+2025-09-26T12:04:32.3796465Z            var
+2025-09-26T12:04:32.3797844Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.3799321Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.3799864Z                ^
+2025-09-26T12:04:32.3801299Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.3802869Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.3803260Z                ^
+2025-09-26T12:04:32.3804180Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:32.3805371Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.3805910Z            ~~~ ^
+2025-09-26T12:04:32.3806164Z            var
+2025-09-26T12:04:32.5246083Z [128/137] Compiling ISPSnitchCore JSONSerializer.swift
+2025-09-26T12:04:32.5247487Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.5248716Z @preconcurrency import SQLite
+2025-09-26T12:04:32.5249059Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.5250182Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.5251421Z @preconcurrency import SQLite
+2025-09-26T12:04:32.5251757Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.5253117Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.5254608Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.5255002Z                ^
+2025-09-26T12:04:32.5256593Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.5258192Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.5258581Z                ^
+2025-09-26T12:04:32.5259509Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:32.5260591Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.5260969Z            ~~~ ^
+2025-09-26T12:04:32.5261236Z            var
+2025-09-26T12:04:32.5262590Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.5264068Z     public let testType: TestType = .http
+2025-09-26T12:04:32.5264445Z                ^
+2025-09-26T12:04:32.5266012Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.5267582Z     public let testType: TestType = .http
+2025-09-26T12:04:32.5267958Z                ^
+2025-09-26T12:04:32.5268883Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:32.5269945Z     public let testType: TestType = .http
+2025-09-26T12:04:32.5270312Z            ~~~ ^
+2025-09-26T12:04:32.5270569Z            var
+2025-09-26T12:04:32.5271911Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.5273383Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.5273758Z                ^
+2025-09-26T12:04:32.5275683Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.5277268Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.5277646Z                ^
+2025-09-26T12:04:32.5278578Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:32.5279645Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.5280180Z            ~~~ ^
+2025-09-26T12:04:32.5280444Z            var
+2025-09-26T12:04:32.5281785Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.5283272Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.5283664Z                ^
+2025-09-26T12:04:32.5285114Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.5286828Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.5309132Z                ^
+2025-09-26T12:04:32.5310165Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:32.5311291Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.5311703Z            ~~~ ^
+2025-09-26T12:04:32.5311961Z            var
+2025-09-26T12:04:32.6729602Z [129/137] Compiling ISPSnitchCore ISPSnitchCore.swift
+2025-09-26T12:04:32.6730972Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.6732218Z @preconcurrency import SQLite
+2025-09-26T12:04:32.6732566Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.6733680Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.6734905Z @preconcurrency import SQLite
+2025-09-26T12:04:32.6735241Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.6736810Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.6738322Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.6738719Z                ^
+2025-09-26T12:04:32.6740162Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.6741773Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.6742165Z                ^
+2025-09-26T12:04:32.6743096Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:32.6744162Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.6744537Z            ~~~ ^
+2025-09-26T12:04:32.6744802Z            var
+2025-09-26T12:04:32.6746281Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.6747757Z     public let testType: TestType = .http
+2025-09-26T12:04:32.6748138Z                ^
+2025-09-26T12:04:32.6749909Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.6751487Z     public let testType: TestType = .http
+2025-09-26T12:04:32.6751865Z                ^
+2025-09-26T12:04:32.6752800Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:32.6753863Z     public let testType: TestType = .http
+2025-09-26T12:04:32.6754236Z            ~~~ ^
+2025-09-26T12:04:32.6754500Z            var
+2025-09-26T12:04:32.6756003Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.6757656Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.6758039Z                ^
+2025-09-26T12:04:32.6759479Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.6761064Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.6761434Z                ^
+2025-09-26T12:04:32.6762367Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:32.6763419Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.6763793Z            ~~~ ^
+2025-09-26T12:04:32.6764054Z            var
+2025-09-26T12:04:32.6765390Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.6767010Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.6767405Z                ^
+2025-09-26T12:04:32.6768840Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.6770420Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.6770806Z                ^
+2025-09-26T12:04:32.6771730Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:32.6772793Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.6773195Z            ~~~ ^
+2025-09-26T12:04:32.6773450Z            var
+2025-09-26T12:04:32.8208863Z [130/137] Compiling ISPSnitchCore ConnectivityRecord.swift
+2025-09-26T12:04:32.8210265Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.8211475Z @preconcurrency import SQLite
+2025-09-26T12:04:32.8211850Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.8212961Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.8214182Z @preconcurrency import SQLite
+2025-09-26T12:04:32.8214523Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.8216100Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.8217602Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.8217991Z                ^
+2025-09-26T12:04:32.8219453Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.8221417Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.8221808Z                ^
+2025-09-26T12:04:32.8222764Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:32.8223847Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.8224237Z            ~~~ ^
+2025-09-26T12:04:32.8224497Z            var
+2025-09-26T12:04:32.8225989Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.8227732Z     public let testType: TestType = .http
+2025-09-26T12:04:32.8228107Z                ^
+2025-09-26T12:04:32.8229556Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.8231126Z     public let testType: TestType = .http
+2025-09-26T12:04:32.8231504Z                ^
+2025-09-26T12:04:32.8232425Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:32.8233485Z     public let testType: TestType = .http
+2025-09-26T12:04:32.8233861Z            ~~~ ^
+2025-09-26T12:04:32.8234114Z            var
+2025-09-26T12:04:32.8235452Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.8237043Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.8237424Z                ^
+2025-09-26T12:04:32.8238860Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.8240414Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.8240800Z                ^
+2025-09-26T12:04:32.8241714Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:32.8242768Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.8243134Z            ~~~ ^
+2025-09-26T12:04:32.8243391Z            var
+2025-09-26T12:04:32.8244732Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.8246340Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.8246746Z                ^
+2025-09-26T12:04:32.8248175Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.8249744Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.8250141Z                ^
+2025-09-26T12:04:32.8251059Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:32.8252131Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.8252523Z            ~~~ ^
+2025-09-26T12:04:32.8252788Z            var
+2025-09-26T12:04:32.9686908Z [131/137] Compiling ISPSnitchCore ConnectivityRecordBuilder.swift
+2025-09-26T12:04:32.9688333Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.9689563Z @preconcurrency import SQLite
+2025-09-26T12:04:32.9689920Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.9691421Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:32.9692668Z @preconcurrency import SQLite
+2025-09-26T12:04:32.9693007Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:32.9694376Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.9696102Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.9696774Z                ^
+2025-09-26T12:04:32.9698225Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.9699804Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.9700195Z                ^
+2025-09-26T12:04:32.9701125Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:32.9702220Z     public let testType: TestType = .ping
+2025-09-26T12:04:32.9702603Z            ~~~ ^
+2025-09-26T12:04:32.9702863Z            var
+2025-09-26T12:04:32.9704201Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.9705834Z     public let testType: TestType = .http
+2025-09-26T12:04:32.9706216Z                ^
+2025-09-26T12:04:32.9707649Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.9709205Z     public let testType: TestType = .http
+2025-09-26T12:04:32.9709581Z                ^
+2025-09-26T12:04:32.9710498Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:32.9711556Z     public let testType: TestType = .http
+2025-09-26T12:04:32.9711924Z            ~~~ ^
+2025-09-26T12:04:32.9712185Z            var
+2025-09-26T12:04:32.9713531Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.9715007Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.9715384Z                ^
+2025-09-26T12:04:32.9716954Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.9718522Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.9718898Z                ^
+2025-09-26T12:04:32.9719817Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:32.9720873Z     public let testType: TestType = .dns
+2025-09-26T12:04:32.9721239Z            ~~~ ^
+2025-09-26T12:04:32.9721498Z            var
+2025-09-26T12:04:32.9722831Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:32.9724344Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.9724743Z                ^
+2025-09-26T12:04:32.9726485Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:32.9728074Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.9728465Z                ^
+2025-09-26T12:04:32.9729399Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:32.9730462Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:32.9730866Z            ~~~ ^
+2025-09-26T12:04:32.9731138Z            var
+2025-09-26T12:04:33.1177364Z [132/137] Compiling ISPSnitchCore TestExecutor.swift
+2025-09-26T12:04:33.1178706Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:33.1179936Z @preconcurrency import SQLite
+2025-09-26T12:04:33.1180288Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:33.1181431Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:33.1182645Z @preconcurrency import SQLite
+2025-09-26T12:04:33.1182986Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:33.1184340Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.1186189Z     public let testType: TestType = .ping
+2025-09-26T12:04:33.1186596Z                ^
+2025-09-26T12:04:33.1188071Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.1189678Z     public let testType: TestType = .ping
+2025-09-26T12:04:33.1190063Z                ^
+2025-09-26T12:04:33.1191007Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:33.1192066Z     public let testType: TestType = .ping
+2025-09-26T12:04:33.1192448Z            ~~~ ^
+2025-09-26T12:04:33.1192704Z            var
+2025-09-26T12:04:33.1194075Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.1195719Z     public let testType: TestType = .http
+2025-09-26T12:04:33.1196099Z                ^
+2025-09-26T12:04:33.1197539Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.1199096Z     public let testType: TestType = .http
+2025-09-26T12:04:33.1199473Z                ^
+2025-09-26T12:04:33.1200430Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:33.1201500Z     public let testType: TestType = .http
+2025-09-26T12:04:33.1201882Z            ~~~ ^
+2025-09-26T12:04:33.1202135Z            var
+2025-09-26T12:04:33.1203491Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.1204977Z     public let testType: TestType = .dns
+2025-09-26T12:04:33.1205359Z                ^
+2025-09-26T12:04:33.1208096Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.1210017Z     public let testType: TestType = .dns
+2025-09-26T12:04:33.1210406Z                ^
+2025-09-26T12:04:33.1211332Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:33.1212393Z     public let testType: TestType = .dns
+2025-09-26T12:04:33.1212763Z            ~~~ ^
+2025-09-26T12:04:33.1213020Z            var
+2025-09-26T12:04:33.1214365Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.1216142Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:33.1216541Z                ^
+2025-09-26T12:04:33.1217970Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.1219539Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:33.1219931Z                ^
+2025-09-26T12:04:33.1220852Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:33.1221922Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:33.1222310Z            ~~~ ^
+2025-09-26T12:04:33.1222571Z            var
+2025-09-26T12:04:33.2661047Z [133/137] Compiling ISPSnitchCore TestScheduler.swift
+2025-09-26T12:04:33.2662876Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:33.2664661Z @preconcurrency import SQLite
+2025-09-26T12:04:33.2665135Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:33.2666910Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:33.2667970Z @preconcurrency import SQLite
+2025-09-26T12:04:33.2668250Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:33.2669344Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.2670400Z     public let testType: TestType = .ping
+2025-09-26T12:04:33.2670684Z                ^
+2025-09-26T12:04:33.2671707Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.2672834Z     public let testType: TestType = .ping
+2025-09-26T12:04:33.2673108Z                ^
+2025-09-26T12:04:33.2673765Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:33.2674516Z     public let testType: TestType = .ping
+2025-09-26T12:04:33.2674786Z            ~~~ ^
+2025-09-26T12:04:33.2674974Z            var
+2025-09-26T12:04:33.2676047Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.2677085Z     public let testType: TestType = .http
+2025-09-26T12:04:33.2677363Z                ^
+2025-09-26T12:04:33.2678360Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.2679466Z     public let testType: TestType = .http
+2025-09-26T12:04:33.2679729Z                ^
+2025-09-26T12:04:33.2680596Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:33.2681217Z     public let testType: TestType = .http
+2025-09-26T12:04:33.2681444Z            ~~~ ^
+2025-09-26T12:04:33.2681627Z            var
+2025-09-26T12:04:33.2682398Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.2683243Z     public let testType: TestType = .dns
+2025-09-26T12:04:33.2683614Z                ^
+2025-09-26T12:04:33.2684433Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.2685323Z     public let testType: TestType = .dns
+2025-09-26T12:04:33.2685653Z                ^
+2025-09-26T12:04:33.2686194Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:33.2686823Z     public let testType: TestType = .dns
+2025-09-26T12:04:33.2687048Z            ~~~ ^
+2025-09-26T12:04:33.2687208Z            var
+2025-09-26T12:04:33.2687987Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.2688850Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:33.2689087Z                ^
+2025-09-26T12:04:33.2689912Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.2690825Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:33.2691057Z                ^
+2025-09-26T12:04:33.2691597Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:33.2692210Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:33.2692447Z            ~~~ ^
+2025-09-26T12:04:33.2692601Z            var
+2025-09-26T12:04:33.4145971Z [134/137] Compiling ISPSnitchCore NetworkMonitorError.swift
+2025-09-26T12:04:33.4147038Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/SchemaManager.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:33.4147988Z @preconcurrency import SQLite
+2025-09-26T12:04:33.4148267Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:33.4149095Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Database/Schema/TableDefinitions.swift:2:17: remark: '@preconcurrency' attribute on module 'SQLite' is unused
+2025-09-26T12:04:33.4150005Z @preconcurrency import SQLite
+2025-09-26T12:04:33.4150259Z ~~~~~~~~~~~~~~~~^
+2025-09-26T12:04:33.4151282Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.4152397Z     public let testType: TestType = .ping
+2025-09-26T12:04:33.4152678Z                ^
+2025-09-26T12:04:33.4153729Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.4154867Z     public let testType: TestType = .ping
+2025-09-26T12:04:33.4155144Z                ^
+2025-09-26T12:04:33.4155917Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:109:16: note: make the property mutable instead
+2025-09-26T12:04:33.4156990Z     public let testType: TestType = .ping
+2025-09-26T12:04:33.4157274Z            ~~~ ^
+2025-09-26T12:04:33.4157462Z            var
+2025-09-26T12:04:33.4158431Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.4159472Z     public let testType: TestType = .http
+2025-09-26T12:04:33.4159743Z                ^
+2025-09-26T12:04:33.4160756Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.4162012Z     public let testType: TestType = .http
+2025-09-26T12:04:33.4162264Z                ^
+2025-09-26T12:04:33.4162813Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:154:16: note: make the property mutable instead
+2025-09-26T12:04:33.4163415Z     public let testType: TestType = .http
+2025-09-26T12:04:33.4163640Z            ~~~ ^
+2025-09-26T12:04:33.4163793Z            var
+2025-09-26T12:04:33.4164559Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.4165399Z     public let testType: TestType = .dns
+2025-09-26T12:04:33.4165727Z                ^
+2025-09-26T12:04:33.4166552Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.4167445Z     public let testType: TestType = .dns
+2025-09-26T12:04:33.4167678Z                ^
+2025-09-26T12:04:33.4168216Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:180:16: note: make the property mutable instead
+2025-09-26T12:04:33.4168825Z     public let testType: TestType = .dns
+2025-09-26T12:04:33.4169041Z            ~~~ ^
+2025-09-26T12:04:33.4169205Z            var
+2025-09-26T12:04:33.4169973Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+2025-09-26T12:04:33.4170819Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:33.4171055Z                ^
+2025-09-26T12:04:33.4171875Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'testType' case to silence this warning
+2025-09-26T12:04:33.4172784Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:33.4173023Z                ^
+2025-09-26T12:04:33.4173554Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Models/ConnectivityRecord.swift:203:16: note: make the property mutable instead
+2025-09-26T12:04:33.4174171Z     public let testType: TestType = .speedtest
+2025-09-26T12:04:33.4174399Z            ~~~ ^
+2025-09-26T12:04:33.4174558Z            var
+2025-09-26T12:04:33.5674870Z ##[error]Process completed with exit code 1.
+2025-09-26T12:04:33.5768928Z Post job cleanup.
+2025-09-26T12:04:33.6708678Z [command]/usr/bin/git version
+2025-09-26T12:04:33.6746552Z git version 2.51.0
+2025-09-26T12:04:33.6790616Z Temporarily overriding HOME='/home/runner/work/_temp/e7e1dd1d-dbca-4777-9b4a-02adfcacc9bc' before making global git config changes
+2025-09-26T12:04:33.6791892Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-26T12:04:33.6797103Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:04:33.6832326Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-26T12:04:33.6864397Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-26T12:04:33.7085123Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-26T12:04:33.7106680Z http.https://github.com/.extraheader
+2025-09-26T12:04:33.7119467Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-09-26T12:04:33.7150579Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-26T12:04:33.7477560Z Cleaning up orphan processes

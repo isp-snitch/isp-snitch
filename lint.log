@@ -1,0 +1,177 @@
+﻿2025-09-26T12:03:57.8861960Z Current runner version: '2.328.0'
+2025-09-26T12:03:57.8886143Z ##[group]Runner Image Provisioner
+2025-09-26T12:03:57.8886950Z Hosted Compute Agent
+2025-09-26T12:03:57.8887588Z Version: 20250912.392
+2025-09-26T12:03:57.8888204Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
+2025-09-26T12:03:57.8888894Z Build Date: 2025-09-12T15:23:14Z
+2025-09-26T12:03:57.8889500Z ##[endgroup]
+2025-09-26T12:03:57.8890074Z ##[group]Operating System
+2025-09-26T12:03:57.8890600Z Ubuntu
+2025-09-26T12:03:57.8891324Z 24.04.3
+2025-09-26T12:03:57.8891783Z LTS
+2025-09-26T12:03:57.8892243Z ##[endgroup]
+2025-09-26T12:03:57.8892677Z ##[group]Runner Image
+2025-09-26T12:03:57.8893336Z Image: ubuntu-24.04
+2025-09-26T12:03:57.8893847Z Version: 20250922.53.1
+2025-09-26T12:03:57.8894796Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250922.53/images/ubuntu/Ubuntu2404-Readme.md
+2025-09-26T12:03:57.8896438Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250922.53
+2025-09-26T12:03:57.8897439Z ##[endgroup]
+2025-09-26T12:03:57.8898651Z ##[group]GITHUB_TOKEN Permissions
+2025-09-26T12:03:57.8900657Z Contents: read
+2025-09-26T12:03:57.8901489Z Metadata: read
+2025-09-26T12:03:57.8902005Z SecurityEvents: write
+2025-09-26T12:03:57.8902498Z ##[endgroup]
+2025-09-26T12:03:57.8904608Z Secret source: Actions
+2025-09-26T12:03:57.8905254Z Prepare workflow directory
+2025-09-26T12:03:57.9339048Z Prepare all required actions
+2025-09-26T12:03:57.9389291Z Getting action download info
+2025-09-26T12:03:58.3712537Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-09-26T12:03:59.2709562Z Complete job name: lint
+2025-09-26T12:03:59.3513191Z ##[group]Run actions/checkout@v4
+2025-09-26T12:03:59.3514132Z with:
+2025-09-26T12:03:59.3514589Z   repository: isp-snitch/isp-snitch
+2025-09-26T12:03:59.3515298Z   token: ***
+2025-09-26T12:03:59.3515701Z   ssh-strict: true
+2025-09-26T12:03:59.3516118Z   ssh-user: git
+2025-09-26T12:03:59.3516552Z   persist-credentials: true
+2025-09-26T12:03:59.3517043Z   clean: true
+2025-09-26T12:03:59.3517474Z   sparse-checkout-cone-mode: true
+2025-09-26T12:03:59.3517985Z   fetch-depth: 1
+2025-09-26T12:03:59.3518397Z   fetch-tags: false
+2025-09-26T12:03:59.3518823Z   show-progress: true
+2025-09-26T12:03:59.3519261Z   lfs: false
+2025-09-26T12:03:59.3519656Z   submodules: false
+2025-09-26T12:03:59.3520106Z   set-safe-directory: true
+2025-09-26T12:03:59.3520951Z env:
+2025-09-26T12:03:59.3521366Z   SWIFT_VERSION: 5.6
+2025-09-26T12:03:59.3521787Z ##[endgroup]
+2025-09-26T12:03:59.4582917Z Syncing repository: isp-snitch/isp-snitch
+2025-09-26T12:03:59.4584734Z ##[group]Getting Git version info
+2025-09-26T12:03:59.4585627Z Working directory is '/home/runner/work/isp-snitch/isp-snitch'
+2025-09-26T12:03:59.4586656Z [command]/usr/bin/git version
+2025-09-26T12:03:59.6097052Z git version 2.51.0
+2025-09-26T12:03:59.6126212Z ##[endgroup]
+2025-09-26T12:03:59.6150304Z Temporarily overriding HOME='/home/runner/work/_temp/0ddcc23d-af91-44b1-aa71-f32030232682' before making global git config changes
+2025-09-26T12:03:59.6154100Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-26T12:03:59.6157263Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:03:59.6256816Z Deleting the contents of '/home/runner/work/isp-snitch/isp-snitch'
+2025-09-26T12:03:59.6260144Z ##[group]Initializing the repository
+2025-09-26T12:03:59.6264235Z [command]/usr/bin/git init /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:03:59.8239853Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-09-26T12:03:59.8242289Z hint: is subject to change. To configure the initial branch name to use in all
+2025-09-26T12:03:59.8244265Z hint: of your new repositories, which will suppress this warning, call:
+2025-09-26T12:03:59.8245727Z hint:
+2025-09-26T12:03:59.8246626Z hint: 	git config --global init.defaultBranch <name>
+2025-09-26T12:03:59.8247719Z hint:
+2025-09-26T12:03:59.8249040Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-09-26T12:03:59.8251153Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-09-26T12:03:59.8252637Z hint:
+2025-09-26T12:03:59.8253354Z hint: 	git branch -m <name>
+2025-09-26T12:03:59.8254310Z hint:
+2025-09-26T12:03:59.8255654Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-09-26T12:03:59.8496387Z Initialized empty Git repository in /home/runner/work/isp-snitch/isp-snitch/.git/
+2025-09-26T12:03:59.8509645Z [command]/usr/bin/git remote add origin https://github.com/isp-snitch/isp-snitch
+2025-09-26T12:03:59.8643672Z ##[endgroup]
+2025-09-26T12:03:59.8645284Z ##[group]Disabling automatic garbage collection
+2025-09-26T12:03:59.8647809Z [command]/usr/bin/git config --local gc.auto 0
+2025-09-26T12:03:59.8678893Z ##[endgroup]
+2025-09-26T12:03:59.8680326Z ##[group]Setting up auth
+2025-09-26T12:03:59.8685533Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-26T12:03:59.8716164Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-26T12:04:00.1389781Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-26T12:04:00.1423703Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-26T12:04:00.1659015Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-26T12:04:00.1696158Z ##[endgroup]
+2025-09-26T12:04:00.1698738Z ##[group]Fetching the repository
+2025-09-26T12:04:00.1708034Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5da3be1c28912e9decde5d1557fb94e02bf89b52:refs/remotes/origin/main
+2025-09-26T12:04:00.9593314Z From https://github.com/isp-snitch/isp-snitch
+2025-09-26T12:04:00.9595392Z  * [new ref]         5da3be1c28912e9decde5d1557fb94e02bf89b52 -> origin/main
+2025-09-26T12:04:00.9681284Z ##[endgroup]
+2025-09-26T12:04:00.9682106Z ##[group]Determining the checkout info
+2025-09-26T12:04:00.9684504Z ##[endgroup]
+2025-09-26T12:04:00.9689928Z [command]/usr/bin/git sparse-checkout disable
+2025-09-26T12:04:00.9780020Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-09-26T12:04:00.9806610Z ##[group]Checking out the ref
+2025-09-26T12:04:00.9811183Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-09-26T12:04:01.0169014Z Switched to a new branch 'main'
+2025-09-26T12:04:01.0170128Z branch 'main' set up to track 'origin/main'.
+2025-09-26T12:04:01.0177871Z ##[endgroup]
+2025-09-26T12:04:01.0214841Z [command]/usr/bin/git log -1 --format=%H
+2025-09-26T12:04:01.0236427Z 5da3be1c28912e9decde5d1557fb94e02bf89b52
+2025-09-26T12:04:01.0414250Z ##[group]Run curl -fsSL https://github.com/realm/SwiftLint/releases/download/0.55.1/swiftlint_linux.zip -o swiftlint.zip
+2025-09-26T12:04:01.0415245Z [36;1mcurl -fsSL https://github.com/realm/SwiftLint/releases/download/0.55.1/swiftlint_linux.zip -o swiftlint.zip[0m
+2025-09-26T12:04:01.0415819Z [36;1munzip swiftlint.zip[0m
+2025-09-26T12:04:01.0416107Z [36;1msudo mv swiftlint /usr/local/bin/[0m
+2025-09-26T12:04:01.0453670Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:04:01.0453958Z env:
+2025-09-26T12:04:01.0454170Z   SWIFT_VERSION: 5.6
+2025-09-26T12:04:01.0454397Z ##[endgroup]
+2025-09-26T12:04:02.3122474Z Archive:  swiftlint.zip
+2025-09-26T12:04:03.2058395Z   inflating: swiftlint               
+2025-09-26T12:04:03.2059178Z   inflating: LICENSE                 
+2025-09-26T12:04:03.2172744Z ##[group]Run swiftlint lint --strict
+2025-09-26T12:04:03.2173061Z [36;1mswiftlint lint --strict[0m
+2025-09-26T12:04:03.2205083Z shell: /usr/bin/bash -e {0}
+2025-09-26T12:04:03.2205485Z env:
+2025-09-26T12:04:03.2205685Z   SWIFT_VERSION: 5.6
+2025-09-26T12:04:03.2205913Z ##[endgroup]
+2025-09-26T12:04:03.2747167Z warning: Found a configuration for 'identifier_name' rule, but it is disabled in 'disabled_rules'.
+2025-09-26T12:04:03.2748768Z warning: Found a configuration for 'implicitly_unwrapped_optional' rule, but it is not enabled in 'opt_in_rules'.
+2025-09-26T12:04:07.4723802Z Linting Swift files in current working directory
+2025-09-26T12:04:07.5242975Z Linting 'main.swift' (1/41)
+2025-09-26T12:04:07.5243429Z Linting 'ServiceCommand.swift' (2/41)
+2025-09-26T12:04:07.5243899Z Linting 'StatusCommand.swift' (3/41)
+2025-09-26T12:04:07.5244365Z Linting 'ReportCommand.swift' (4/41)
+2025-09-26T12:04:08.0917469Z Linting 'ExportCommand.swift' (5/41)
+2025-09-26T12:04:08.0942441Z Linting 'ConfigCommand.swift' (6/41)
+2025-09-26T12:04:08.0943150Z Linting 'ISPSnitchWeb.swift' (7/41)
+2025-09-26T12:04:08.0949656Z Linting 'DatabaseManager.swift' (8/41)
+2025-09-26T12:04:08.1211017Z Linting 'TableDefinitions.swift' (9/41)
+2025-09-26T12:04:08.1421357Z Linting 'SchemaManager.swift' (10/41)
+2025-09-26T12:04:08.1421946Z Linting 'DataRetentionManager.swift' (11/41)
+2025-09-26T12:04:08.1424631Z Linting 'DataStorage.swift' (12/41)
+2025-09-26T12:04:08.1655633Z Linting 'TestConfigurationRepository.swift' (13/41)
+2025-09-26T12:04:08.1715036Z Linting 'SystemMetricsRepository.swift' (14/41)
+2025-09-26T12:04:08.1716241Z Linting 'ServiceStatusRepository.swift' (15/41)
+2025-09-26T12:04:08.1716719Z Linting 'Migrations.swift' (16/41)
+2025-09-26T12:04:08.1889384Z Linting 'ConnectivityRecordRepository.swift' (17/41)
+2025-09-26T12:04:08.1889930Z Linting 'JSONSerializer.swift' (18/41)
+2025-09-26T12:04:08.1890408Z Linting 'CommandProtocols.swift' (19/41)
+2025-09-26T12:04:08.2098217Z Linting 'ConnectivityRecordBuilder.swift' (20/41)
+2025-09-26T12:04:08.2100533Z Linting 'ConnectivityRecord.swift' (21/41)
+2025-09-26T12:04:08.2101614Z Linting 'TestStrategy.swift' (22/41)
+2025-09-26T12:04:08.2444355Z Linting 'TestExecutor.swift' (23/41)
+2025-09-26T12:04:08.2444829Z Linting 'TestScheduler.swift' (24/41)
+2025-09-26T12:04:08.2447416Z Linting 'NetworkMonitorStatus.swift' (25/41)
+2025-09-26T12:04:08.2557411Z Linting 'TestDataContainer.swift' (26/41)
+2025-09-26T12:04:08.2559420Z Linting 'TestResult.swift' (27/41)
+2025-09-26T12:04:08.2561470Z Linting 'NetworkMonitorError.swift' (28/41)
+2025-09-26T12:04:08.2637299Z Linting 'NetworkMonitor.swift' (29/41)
+2025-09-26T12:04:08.2638558Z Linting 'PingMonitor.swift' (30/41)
+2025-09-26T12:04:08.2638986Z Linting 'UtilityExecutor.swift' (31/41)
+2025-09-26T12:04:08.6510208Z Linting 'OutputParser.swift' (32/41)
+2025-09-26T12:04:08.6512436Z /home/runner/work/isp-snitch/isp-snitch/Sources/ISPSnitchCore/Network/UtilityExecutor.swift:33:22: error: Non-Optional String <-> Data Conversion Violation: Prefer using UTF-8 encoded strings when converting between `String` and `Data` (non_optional_string_data_conversion)
+2025-09-26T12:04:08.6515249Z Linting 'ISPSnitchCore.swift' (33/41)
+2025-09-26T12:04:08.6515760Z Linting 'PerformanceMonitor.swift' (34/41)
+2025-09-26T12:04:08.6833930Z Linting 'ServiceCoordinator.swift' (35/41)
+2025-09-26T12:04:08.6834475Z Linting 'ServiceLifecycleManager.swift' (36/41)
+2025-09-26T12:04:08.6838029Z Linting 'ServiceMetricsCollector.swift' (37/41)
+2025-09-26T12:04:08.6982209Z Linting 'ServiceError.swift' (38/41)
+2025-09-26T12:04:08.6982866Z Linting 'ServiceMetrics.swift' (39/41)
+2025-09-26T12:04:08.6983347Z Linting 'ServiceState.swift' (40/41)
+2025-09-26T12:04:08.7052693Z Linting 'ISPSnitchService.swift' (41/41)
+2025-09-26T12:04:08.7100595Z Done linting! Found 1 violation, 1 serious in 41 files.
+2025-09-26T12:04:08.7835624Z ##[error]Process completed with exit code 2.
+2025-09-26T12:04:08.7923375Z Post job cleanup.
+2025-09-26T12:04:08.8866599Z [command]/usr/bin/git version
+2025-09-26T12:04:08.8902173Z git version 2.51.0
+2025-09-26T12:04:08.8945756Z Temporarily overriding HOME='/home/runner/work/_temp/50dfe66b-05ed-475e-abd7-b35de2fe0591' before making global git config changes
+2025-09-26T12:04:08.8947381Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-26T12:04:08.8952489Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/isp-snitch/isp-snitch
+2025-09-26T12:04:08.8987959Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-26T12:04:08.9020324Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-26T12:04:08.9290373Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-26T12:04:08.9311704Z http.https://github.com/.extraheader
+2025-09-26T12:04:08.9325285Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-09-26T12:04:08.9355781Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-26T12:04:08.9675573Z Cleaning up orphan processes

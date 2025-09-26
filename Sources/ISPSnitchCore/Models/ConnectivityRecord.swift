@@ -106,7 +106,7 @@ public struct SystemContext: Sendable, Codable {
 
 // MARK: - Test-Specific Data Structures
 public struct PingData: Sendable, Codable, TestData {
-    public let testType: TestType = .ping
+    public let testType: TestType
     public let latency: TimeInterval
     public let packetLoss: Double
     public let ttl: Int?
@@ -118,6 +118,7 @@ public struct PingData: Sendable, Codable, TestData {
         ttl: Int? = nil,
         statistics: PingStatistics? = nil
     ) {
+        self.testType = .ping
         self.latency = latency
         self.packetLoss = packetLoss
         self.ttl = ttl
@@ -151,7 +152,7 @@ public struct PingStatistics: Sendable, Codable {
 }
 
 public struct HttpData: Sendable, Codable, TestData {
-    public let testType: TestType = .http
+    public let testType: TestType
     public let httpCode: Int
     public let totalTime: TimeInterval
     public let connectTime: TimeInterval
@@ -167,6 +168,7 @@ public struct HttpData: Sendable, Codable, TestData {
         downloadSize: Int,
         downloadSpeed: Double
     ) {
+        self.testType = .http
         self.httpCode = httpCode
         self.totalTime = totalTime
         self.connectTime = connectTime
@@ -177,7 +179,7 @@ public struct HttpData: Sendable, Codable, TestData {
 }
 
 public struct DnsData: Sendable, Codable, TestData {
-    public let testType: TestType = .dns
+    public let testType: TestType
     public let queryTime: TimeInterval
     public let status: String
     public let answerCount: Int
@@ -191,6 +193,7 @@ public struct DnsData: Sendable, Codable, TestData {
         server: String,
         answers: [String]
     ) {
+        self.testType = .dns
         self.queryTime = queryTime
         self.status = status
         self.answerCount = answerCount
@@ -200,7 +203,7 @@ public struct DnsData: Sendable, Codable, TestData {
 }
 
 public struct SpeedtestData: Sendable, Codable, TestData {
-    public let testType: TestType = .speedtest
+    public let testType: TestType
     public let ping: TimeInterval
     public let downloadSpeed: Double  // Mbit/s
     public let uploadSpeed: Double    // Mbit/s
@@ -210,6 +213,7 @@ public struct SpeedtestData: Sendable, Codable, TestData {
         downloadSpeed: Double,
         uploadSpeed: Double
     ) {
+        self.testType = .speedtest
         self.ping = ping
         self.downloadSpeed = downloadSpeed
         self.uploadSpeed = uploadSpeed

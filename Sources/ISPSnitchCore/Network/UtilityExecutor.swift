@@ -30,7 +30,7 @@ public class UtilityExecutor {
         process.waitUntilExit()
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8) ?? ""
+        let output = String(bytes: data, encoding: .utf8) ?? ""
 
         if process.terminationStatus != 0 {
             throw UtilityExecutionError(
