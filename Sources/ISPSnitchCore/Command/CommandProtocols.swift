@@ -25,11 +25,11 @@ public struct CommandResult {
     }
 
     public static func success(_ message: String, data: [String: Any]? = nil) -> CommandResult {
-        return CommandResult(success: true, message: message, data: data)
+        CommandResult(success: true, message: message, data: data)
     }
 
     public static func failure(_ message: String, exitCode: Int32 = 1) -> CommandResult {
-        return CommandResult(success: false, message: message, exitCode: exitCode)
+        CommandResult(success: false, message: message, exitCode: exitCode)
     }
 }
 

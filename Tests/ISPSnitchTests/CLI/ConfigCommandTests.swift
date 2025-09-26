@@ -142,7 +142,7 @@ struct ConfigCommandTests {
         let validDnsTargets = ["google.com", "cloudflare.com"]
 
         for target in validPingTargets {
-            let isValid = target.contains(".") && target.count > 0
+            let isValid = target.contains(".") && !target.isEmpty
             #expect(isValid == true)
         }
 
@@ -152,7 +152,7 @@ struct ConfigCommandTests {
         }
 
         for target in validDnsTargets {
-            let isValid = target.contains(".") && target.count > 0
+            let isValid = target.contains(".") && !target.isEmpty
             #expect(isValid == true)
         }
     }

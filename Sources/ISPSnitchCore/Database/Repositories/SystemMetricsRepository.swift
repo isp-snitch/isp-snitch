@@ -4,11 +4,11 @@ import Foundation
 // MARK: - System Metrics Repository
 public actor SystemMetricsRepository {
     private let connection: Connection
-    
+
     public init(connection: Connection) {
         self.connection = connection
     }
-    
+
     public func insert(_ metrics: SystemMetrics) async throws {
         let insert = TableDefinitions.systemMetrics.insert(
             SystemMetricsColumns.id <- metrics.id.uuidString,
@@ -22,7 +22,7 @@ public actor SystemMetricsRepository {
 
         try connection.run(insert)
     }
-    
+
     public func getMetrics(
         limit: Int = 100,
         since: Date? = nil

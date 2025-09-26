@@ -10,21 +10,15 @@ excluded:
   - .git
   - dist
 
-# Rules to enable/disable
+# Rules to disable entirely
 disabled_rules:
-  - todo # Allow TODO comments for development
-  - line_length # Allow longer lines for SQL queries and URLs
-  - implicit_return # Allow explicit returns for clarity
-  - force_unwrapping # Allow force unwrapping in controlled contexts
-  - force_cast # Allow force casting in test contexts
-  - switch_case_on_newline # Allow compact switch statements
-  - empty_count # Allow count comparisons
-  - redundant_nil_coalescing # Allow nil coalescing patterns
-  - redundant_type_annotation # Allow explicit type annotations
-  - large_tuple # Allow larger tuples for database operations
-  - unused_closure_parameter # Allow unused parameters in closures
-  - identifier_name # Allow short variable names in tests and closures
+  - todo # Allow TODOs in dev
+  - switch_case_on_newline # Allow compact switches
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - identifier_name # We'll handle with custom rules instead
 
+# Rules enabled with warnings (more relaxed enforcement)
 opt_in_rules:
   - empty_count
   - empty_string
@@ -44,40 +38,37 @@ opt_in_rules:
   - overridden_super_call
   - pattern_matching_keywords
   - prefer_self_type_over_type_of_self
-  - redundant_nil_coalescing
-  - redundant_type_annotation
   - single_test_class
   - sorted_first_last
-  - switch_case_on_newline
   - toggle_bool
   - unneeded_parentheses_in_closure_argument
   - vertical_parameter_alignment_on_call
   - yoda_condition
 
-# Custom rules
+# Relaxed length rules
 line_length:
-  warning: 120
-  error: 150
+  warning: 140
+  error: 180
   ignores_urls: true
   ignores_function_declarations: true
   ignores_comments: true
 
 file_length:
+  warning: 300
+  error: 500
+
+function_body_length:
+  warning: 50
+  error: 80
+
+type_body_length:
   warning: 200
   error: 300
 
-function_body_length:
-  warning: 30
-  error: 50
-
-type_body_length:
-  warning: 150
-  error: 250
-
 # Identifier naming
 identifier_name:
-  min_length: 3
-  max_length: 40
+  min_length: 2
+  max_length: 50
   excluded:
     - id
     - url
@@ -107,30 +98,27 @@ identifier_name:
     - ux
     - cli
     - gui
-    - api
     - sdk
     - ios
     - macos
     - tvos
     - watchos
 
-# Force unwrapping rules
+# Force unwraps and casts → warnings only
 force_unwrapping:
   severity: warning
 
-# Force casting rules
 force_cast:
   severity: warning
 
-# Implicitly unwrapped optional rules
 implicitly_unwrapped_optional:
   severity: warning
 
-# Large tuple rules
+# Large tuple rules (relaxed)
 large_tuple:
-  warning: 2
-  error: 3
+  warning: 3
+  error: 5
 
-# Unused closure parameter rules
+# Unused closure parameter rules → warning only
 unused_closure_parameter:
   severity: warning

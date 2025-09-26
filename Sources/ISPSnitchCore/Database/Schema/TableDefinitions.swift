@@ -20,13 +20,13 @@ public struct ConnectivityRecordColumns {
     public static let errorMessage = Expression<String?>("error_message")
     public static let errorCode = Expression<Int?>("error_code")
     public static let networkInterface = Expression<String>("network_interface")
-    
+
     // System Context columns
     public static let cpuUsage = Expression<Double>("cpu_usage")
     public static let memoryUsage = Expression<Double>("memory_usage")
     public static let networkInterfaceStatus = Expression<String>("network_interface_status")
     public static let batteryLevel = Expression<Double?>("battery_level")
-    
+
     // Test-specific data columns
     public static let pingData = Expression<String?>("ping_data")
     public static let httpData = Expression<String?>("http_data")

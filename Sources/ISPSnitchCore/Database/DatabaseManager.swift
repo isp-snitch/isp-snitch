@@ -36,7 +36,7 @@ public actor DatabaseManager {
         success: Bool? = nil,
         since: Date? = nil
     ) async throws -> [ConnectivityRecord] {
-        return try await dataStorage.getConnectivityRecords(
+        try await dataStorage.getConnectivityRecords(
             limit: limit,
             offset: offset,
             testType: testType,
@@ -50,7 +50,7 @@ public actor DatabaseManager {
     }
 
     public func getTestConfigurations() async throws -> [TestConfiguration] {
-        return try await dataStorage.getTestConfigurations()
+        try await dataStorage.getTestConfigurations()
     }
 
     public func insertSystemMetrics(_ metrics: SystemMetrics) async throws {
@@ -61,7 +61,7 @@ public actor DatabaseManager {
         limit: Int = 100,
         since: Date? = nil
     ) async throws -> [SystemMetrics] {
-        return try await dataStorage.getSystemMetrics(limit: limit, since: since)
+        try await dataStorage.getSystemMetrics(limit: limit, since: since)
     }
 
     public func insertServiceStatus(_ status: ServiceStatus) async throws {
@@ -69,7 +69,7 @@ public actor DatabaseManager {
     }
 
     public func getServiceStatus() async throws -> ServiceStatus? {
-        return try await dataStorage.getServiceStatus()
+        try await dataStorage.getServiceStatus()
     }
 
     public func cleanup() async throws {

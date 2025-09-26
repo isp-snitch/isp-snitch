@@ -4,11 +4,11 @@ import Foundation
 // MARK: - Schema Manager
 public actor SchemaManager {
     private let connection: Connection
-    
+
     public init(connection: Connection) {
         self.connection = connection
     }
-    
+
     public func createTables() throws {
         try createConnectivityRecordsTable()
         try createTestConfigurationsTable()
@@ -16,7 +16,7 @@ public actor SchemaManager {
         try createServiceStatusTable()
         try createIndexes()
     }
-    
+
     private func createConnectivityRecordsTable() throws {
         try connection.run(TableDefinitions.connectivityRecords.create(ifNotExists: true) { table in
             table.column(ConnectivityRecordColumns.id, primaryKey: true)
@@ -38,7 +38,7 @@ public actor SchemaManager {
             table.column(ConnectivityRecordColumns.speedtestData)
         })
     }
-    
+
     private func createTestConfigurationsTable() throws {
         try connection.run(TableDefinitions.testConfigurations.create(ifNotExists: true) { table in
             table.column(TestConfigurationColumns.id, primaryKey: true)
@@ -58,7 +58,7 @@ public actor SchemaManager {
             table.column(TestConfigurationColumns.updatedAt)
         })
     }
-    
+
     private func createSystemMetricsTable() throws {
         try connection.run(TableDefinitions.systemMetrics.create(ifNotExists: true) { table in
             table.column(SystemMetricsColumns.id, primaryKey: true)
@@ -70,7 +70,7 @@ public actor SchemaManager {
             table.column(SystemMetricsColumns.networkBytesOut)
         })
     }
-    
+
     private func createServiceStatusTable() throws {
         try connection.run(TableDefinitions.serviceStatus.create(ifNotExists: true) { table in
             table.column(ServiceStatusColumns.id, primaryKey: true)
@@ -80,17 +80,17 @@ public actor SchemaManager {
             table.column(ServiceStatusColumns.version)
         })
     }
-    
+
     private func createIndexes() throws {
         // Connectivity records indexes
         try connection.execute("CREATE INDEX IF NOT EXISTS idx_connectivity_timestamp ON connectivity_records(timestamp)")
         try connection.execute("CREATE INDEX IF NOT EXISTS idx_connectivity_test_type ON connectivity_records(test_type)")
         try connection.execute("CREATE INDEX IF NOT EXISTS idx_connectivity_success ON connectivity_records(success)")
         try connection.execute("CREATE INDEX IF NOT EXISTS idx_connectivity_interface ON connectivity_records(network_interface)")
-        
+
         // System metrics indexes
         try connection.execute("CREATE INDEX IF NOT EXISTS idx_system_metrics_timestamp ON system_metrics(timestamp)")
-        
+
         // Service status indexes
         try connection.execute("CREATE INDEX IF NOT EXISTS idx_service_status_timestamp ON service_status(timestamp)")
     }

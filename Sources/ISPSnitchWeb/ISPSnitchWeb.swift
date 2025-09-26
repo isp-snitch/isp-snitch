@@ -94,7 +94,7 @@ private final class WebServerHandler: ChannelInboundHandler {
 
     private func handleStatusRequest() -> String {
         // TODO: Implement real status endpoint
-        return """
+        """
         {
           "serviceStatus": {
             "id": "placeholder",
@@ -125,7 +125,7 @@ private final class WebServerHandler: ChannelInboundHandler {
     }
 
     private func handleHealthRequest() -> String {
-        return """
+        """
         {
           "status": "healthy",
           "timestamp": "2024-12-19T14:30:25Z",
@@ -136,7 +136,7 @@ private final class WebServerHandler: ChannelInboundHandler {
     }
 
     private func handleMetricsRequest() -> String {
-        return """
+        """
         {
           "serviceMetrics": {
             "uptimeSeconds": 0,
@@ -166,7 +166,7 @@ private final class WebServerHandler: ChannelInboundHandler {
     }
 
     private func handleNotFoundRequest() -> String {
-        return """
+        """
         {
           "error": {
             "code": "NOT_FOUND",

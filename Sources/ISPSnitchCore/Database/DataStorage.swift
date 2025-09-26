@@ -36,7 +36,7 @@ public actor DataStorage {
         success: Bool? = nil,
         since: Date? = nil
     ) async throws -> [ConnectivityRecord] {
-        return try await connectivityRecordRepository.getRecords(
+        try await connectivityRecordRepository.getRecords(
             limit: limit,
             offset: offset,
             testType: testType,
@@ -51,7 +51,7 @@ public actor DataStorage {
     }
 
     public func getTestConfigurations() async throws -> [TestConfiguration] {
-        return try await testConfigurationRepository.getAll()
+        try await testConfigurationRepository.getAll()
     }
 
     // MARK: - System Metrics
@@ -63,7 +63,7 @@ public actor DataStorage {
         limit: Int = 100,
         since: Date? = nil
     ) async throws -> [SystemMetrics] {
-        return try await systemMetricsRepository.getMetrics(limit: limit, since: since)
+        try await systemMetricsRepository.getMetrics(limit: limit, since: since)
     }
 
     // MARK: - Service Status
@@ -72,6 +72,6 @@ public actor DataStorage {
     }
 
     public func getServiceStatus() async throws -> ServiceStatus? {
-        return try await serviceStatusRepository.getLatest()
+        try await serviceStatusRepository.getLatest()
     }
 }

@@ -171,15 +171,15 @@ struct StatusCommandTests {
         let validNetworkInterfaces = ["en0", "en1", "wlan0", "eth0"]
 
         for status in validStatuses {
-            #expect(status.count > 0)
+            #expect(!status.isEmpty)
         }
 
         for testType in validTestTypes {
-            #expect(testType.count > 0)
+            #expect(!testType.isEmpty)
         }
 
         for interface in validNetworkInterfaces {
-            #expect(interface.count > 0)
+            #expect(!interface.isEmpty)
         }
     }
 

@@ -4,11 +4,11 @@ import Foundation
 // MARK: - Test Configuration Repository
 public actor TestConfigurationRepository {
     private let connection: Connection
-    
+
     public init(connection: Connection) {
         self.connection = connection
     }
-    
+
     public func insert(_ configuration: TestConfiguration) async throws {
         let pingTargetsJson = try JSONSerializer.encodeTargets(configuration.pingTargets)
         let httpTargetsJson = try JSONSerializer.encodeTargets(configuration.httpTargets)
@@ -34,7 +34,7 @@ public actor TestConfigurationRepository {
 
         try connection.run(insert)
     }
-    
+
     public func getAll() async throws -> [TestConfiguration] {
         var configurations: [TestConfiguration] = []
 
@@ -45,12 +45,12 @@ public actor TestConfigurationRepository {
 
         return configurations
     }
-    
+
     private func createConfiguration(from row: Row) throws -> TestConfiguration {
         let pingTargetsDecoded = try JSONSerializer.decodeTargets(row[TestConfigurationColumns.pingTargets])
         let httpTargetsDecoded = try JSONSerializer.decodeTargets(row[TestConfigurationColumns.httpTargets])
         let dnsTargetsDecoded = try JSONSerializer.decodeTargets(row[TestConfigurationColumns.dnsTargets])
-        
+
         return TestConfiguration(
             id: UUID(uuidString: row[TestConfigurationColumns.id])!,
             name: row[TestConfigurationColumns.name],

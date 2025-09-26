@@ -144,7 +144,7 @@ public actor NetworkMonitor {
     private func getCurrentNetworkInterface() async -> String {
         // Get the current active network interface
         // This is a simplified implementation
-        return "en0" // Default to en0, should be dynamically detected
+        "en0" // Default to en0, should be dynamically detected
     }
 
     private func getSystemContext() async -> SystemContext {
@@ -165,19 +165,19 @@ public actor NetworkMonitor {
     private func getCpuUsage() async -> Double {
         // Simplified CPU usage detection
         // In a real implementation, this would use system APIs
-        return 0.5
+        0.5
     }
 
     private func getMemoryUsage() async -> Double {
         // Simplified memory usage detection
         // In a real implementation, this would use system APIs
-        return 42.0
+        42.0
     }
 
     private func getBatteryLevel() async -> Double? {
         // Simplified battery level detection
         // In a real implementation, this would use system APIs
-        return 85.0
+        85.0
     }
 
     /// Start background monitoring with optimized intervals
@@ -225,7 +225,7 @@ public actor NetworkMonitor {
 
     /// Check if we should perform a test
     private func shouldPerformTest(testType: TestType, target: String) async -> Bool {
-        return !(await shouldSkipTest(testType: testType))
+        !(await shouldSkipTest(testType: testType))
     }
 }
 

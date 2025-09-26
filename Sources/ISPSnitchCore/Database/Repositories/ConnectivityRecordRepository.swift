@@ -4,11 +4,11 @@ import Foundation
 // MARK: - Connectivity Record Repository
 public actor ConnectivityRecordRepository {
     private let connection: Connection
-    
+
     public init(connection: Connection) {
         self.connection = connection
     }
-    
+
     public func insert(_ record: ConnectivityRecord) async throws {
         let pingDataJson = try JSONSerializer.encode(record.pingData)
         let httpDataJson = try JSONSerializer.encode(record.httpData)
@@ -37,7 +37,7 @@ public actor ConnectivityRecordRepository {
 
         try connection.run(insert)
     }
-    
+
     public func getRecords(
         limit: Int = 100,
         offset: Int = 0,
@@ -56,29 +56,29 @@ public actor ConnectivityRecordRepository {
 
         return records
     }
-    
+
     private func buildQuery(
         testType: TestType?,
         success: Bool?,
         since: Date?
     ) -> QueryType {
         var query = TableDefinitions.connectivityRecords.select(*)
-        
+
         if let testType = testType {
             query = query.filter(ConnectivityRecordColumns.testType == testType.rawValue)
         }
-        
+
         if let success = success {
             query = query.filter(ConnectivityRecordColumns.success == success)
         }
-        
+
         if let since = since {
             query = query.filter(ConnectivityRecordColumns.timestamp >= since)
         }
-        
+
         return query.order(ConnectivityRecordColumns.timestamp.desc)
     }
-    
+
     private func createRecord(from row: Row) throws -> ConnectivityRecord {
         let systemContext = SystemContext(
             cpuUsage: row[ConnectivityRecordColumns.cpuUsage],
@@ -86,12 +86,12 @@ public actor ConnectivityRecordRepository {
             networkInterfaceStatus: row[ConnectivityRecordColumns.networkInterfaceStatus],
             batteryLevel: row[ConnectivityRecordColumns.batteryLevel]
         )
-        
+
         let pingDataDecoded = try JSONSerializer.decode(row[ConnectivityRecordColumns.pingData], as: PingData.self)
         let httpDataDecoded = try JSONSerializer.decode(row[ConnectivityRecordColumns.httpData], as: HttpData.self)
         let dnsDataDecoded = try JSONSerializer.decode(row[ConnectivityRecordColumns.dnsData], as: DnsData.self)
         let speedtestDataDecoded = try JSONSerializer.decode(row[ConnectivityRecordColumns.speedtestData], as: SpeedtestData.self)
-        
+
         return ConnectivityRecord(
             id: UUID(uuidString: row[ConnectivityRecordColumns.id])!,
             timestamp: row[ConnectivityRecordColumns.timestamp],

@@ -128,7 +128,7 @@ public struct DataStorageStats: Sendable, Codable {
     }
 
     public var totalRecords: Int {
-        return connectivityRecordsCount + systemMetricsCount + serviceStatusCount
+        connectivityRecordsCount + systemMetricsCount + serviceStatusCount
     }
 
     public var dataSpanDays: Int? {

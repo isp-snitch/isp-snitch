@@ -56,12 +56,12 @@ public actor PerformanceMonitor {
 
     /// Get current memory usage
     public func getCurrentMemoryUsage() async -> Double {
-        return await measureMemoryUsage()
+        await measureMemoryUsage()
     }
 
     /// Get all performance metrics
     public func getMetrics() async -> [String: Double] {
-        return metrics
+        metrics
     }
 
     /// Check if performance is within acceptable limits

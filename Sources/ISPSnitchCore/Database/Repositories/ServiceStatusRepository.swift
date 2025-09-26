@@ -4,11 +4,11 @@ import Foundation
 // MARK: - Service Status Repository
 public actor ServiceStatusRepository {
     private let connection: Connection
-    
+
     public init(connection: Connection) {
         self.connection = connection
     }
-    
+
     public func insert(_ status: ServiceStatus) async throws {
         let insert = TableDefinitions.serviceStatus.insert(
             ServiceStatusColumns.id <- status.id.uuidString,
@@ -20,7 +20,7 @@ public actor ServiceStatusRepository {
 
         try connection.run(insert)
     }
-    
+
     public func getLatest() async throws -> ServiceStatus? {
         guard let row = try connection.pluck(TableDefinitions.serviceStatus.select(*).order(ServiceStatusColumns.timestamp.desc)) else {
             return nil

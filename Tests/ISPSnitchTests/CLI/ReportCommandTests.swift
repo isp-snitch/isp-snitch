@@ -141,15 +141,15 @@ struct ReportCommandTests {
         let validTargets = ["google.com", "cloudflare.com", "8.8.8.8", "1.1.1.1"]
 
         for testType in validTestTypes {
-            #expect(testType.count > 0)
+            #expect(!testType.isEmpty)
         }
 
         for format in validFormats {
-            #expect(format.count > 0)
+            #expect(!format.isEmpty)
         }
 
         for target in validTargets {
-            #expect(target.count > 0)
+            #expect(!target.isEmpty)
         }
     }
 

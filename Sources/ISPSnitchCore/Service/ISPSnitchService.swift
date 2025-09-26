@@ -114,7 +114,7 @@ public final class ISPSnitchService: ObservableObject {
 
     /// Get current service status
     public func getStatus() -> ServiceState {
-        return status
+        status
     }
 
     /// Get service metrics with real-time performance data
@@ -151,14 +151,14 @@ public final class ISPSnitchService: ObservableObject {
     /// Get current memory usage in MB
     private func getCurrentMemoryUsage() async -> Double {
         // Use performance monitor for accurate memory measurement
-        return await performanceMonitor?.getCurrentMemoryUsage() ?? 25.0
+        await performanceMonitor?.getCurrentMemoryUsage() ?? 25.0
     }
 
     /// Get current CPU usage percentage
     private func getCurrentCpuUsage() async -> Double {
         // Use system APIs to get real CPU usage
         // Simplified implementation - in production, use proper system APIs
-        return await performanceMonitor?.getCurrentCpuUsage() ?? 0.0
+        await performanceMonitor?.getCurrentCpuUsage() ?? 0.0
     }
 }
 
