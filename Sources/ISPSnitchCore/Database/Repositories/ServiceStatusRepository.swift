@@ -27,7 +27,7 @@ public actor ServiceStatusRepository {
         }
 
         // Safe UUID parsing
-        guard let id = SafeParsers.parseUUID(from: row[ServiceStatusColumns.id]) else {
+        guard let id = UUID(uuidString: row[ServiceStatusColumns.id]) else {
             throw RepositoryError.invalidData("Invalid UUID in service status")
         }
 

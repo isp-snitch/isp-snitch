@@ -100,7 +100,7 @@ public actor ConnectivityRecordRepository {
         let speedtestData = JSONSerializer.decode(row[ConnectivityRecordColumns.speedtestData], as: SpeedtestData.self)
 
         // Safe UUID parsing
-        guard let id = SafeParsers.parseUUID(from: row[ConnectivityRecordColumns.id]) else {
+        guard let id = UUID(uuidString: row[ConnectivityRecordColumns.id]) else {
             throw RepositoryError.invalidData("Invalid UUID in connectivity record")
         }
 

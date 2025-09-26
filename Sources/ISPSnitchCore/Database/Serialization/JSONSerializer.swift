@@ -15,18 +15,49 @@ public struct JSONSerializer {
     }()
 
     public static func encode<T: Codable>(_ data: T?) -> String? {
-        SafeParsers.encodeJSON(data)
+        guard let data = data else {
+            return nil
+        }
+
+        do {
+            let jsonData = try encoder.encode(data)
+            return String(bytes: jsonData, encoding: .utf8) ?? ""
+        } catch {
+            return nil
+        }
     }
 
     public static func decode<T: Codable>(_ jsonString: String?, as type: T.Type) -> T? {
-        SafeParsers.parseJSON(jsonString, as: type)
+        guard let jsonString = jsonString,
+              let jsonData = jsonString.data(using: .utf8) else {
+            return nil
+        }
+
+        do {
+            return try decoder.decode(type, from: jsonData)
+        } catch {
+            return nil
+        }
     }
 
     public static func encodeTargets(_ targets: [String]) -> String {
-        SafeParsers.encodeStringArray(targets)
+        do {
+            let jsonData = try encoder.encode(targets)
+            return String(bytes: jsonData, encoding: .utf8) ?? "[]"
+        } catch {
+            return "[]"
+        }
     }
 
     public static func decodeTargets(_ jsonString: String) -> [String] {
-        SafeParsers.parseStringArray(jsonString)
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            return []
+        }
+
+        do {
+            return try decoder.decode([String].self, from: jsonData)
+        } catch {
+            return []
+        }
     }
 }

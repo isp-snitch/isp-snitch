@@ -39,7 +39,7 @@ public actor SystemMetricsRepository {
 
         for row in try connection.prepare(query) {
             // Safe UUID parsing
-            guard let id = SafeParsers.parseUUID(from: row[SystemMetricsColumns.id]) else {
+            guard let id = UUID(uuidString: row[SystemMetricsColumns.id]) else {
                 throw RepositoryError.invalidData("Invalid UUID in system metrics")
             }
 

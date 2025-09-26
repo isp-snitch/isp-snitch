@@ -53,7 +53,7 @@ public actor TestConfigurationRepository {
         let dnsTargets = JSONSerializer.decodeTargets(row[TestConfigurationColumns.dnsTargets])
 
         // Safe UUID parsing
-        guard let id = SafeParsers.parseUUID(from: row[TestConfigurationColumns.id]) else {
+        guard let id = UUID(uuidString: row[TestConfigurationColumns.id]) else {
             throw RepositoryError.invalidData("Invalid UUID in test configuration")
         }
 

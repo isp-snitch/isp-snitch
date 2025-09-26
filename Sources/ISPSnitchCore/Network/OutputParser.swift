@@ -84,7 +84,7 @@ public struct OutputParser: Sendable {
               let avgRange = Range(match.range(at: 2), in: output),
               let maxRange = Range(match.range(at: 3), in: output),
               let stdDevRange = Range(match.range(at: 4), in: output) else {
-            throw ParseError.invalidData("Failed to extract ranges from ping output")
+            throw NSError(domain: "OutputParser", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to extract ranges from ping output"])
         }
 
         // Safe double parsing
@@ -97,7 +97,7 @@ public struct OutputParser: Sendable {
               let avg = Double(avgString),
               let max = Double(maxString),
               let stdDev = Double(stdDevString) else {
-            throw ParseError.invalidData("Failed to parse ping statistics")
+            throw NSError(domain: "OutputParser", code: 2, userInfo: [NSLocalizedDescriptionKey: "Failed to parse ping statistics"])
         }
 
         let minLatency = min / 1000.0

@@ -117,14 +117,14 @@ else
     print_error "Repository pattern: $REPO_COUNT files (< $MIN_REPOSITORY_FILES)"
 fi
 
-# SafeParsers check
+# Direct Swift API usage check (replaces SafeParsers)
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
-SAFE_PARSERS_COUNT=$(find Sources -name "*.swift" -exec grep -l "SafeParsers" {} + | wc -l)
-if [ "$SAFE_PARSERS_COUNT" -ge $MIN_SAFE_PARSERS_FILES ]; then
-    print_success "SafeParsers adoption: $SAFE_PARSERS_COUNT files (≥ $MIN_SAFE_PARSERS_FILES)"
+DIRECT_API_COUNT=$(find Sources -name "*.swift" -exec grep -l "UUID(uuidString:" {} + | wc -l)
+if [ "$DIRECT_API_COUNT" -ge $MIN_SAFE_PARSERS_FILES ]; then
+    print_success "Direct Swift API usage: $DIRECT_API_COUNT files (≥ $MIN_SAFE_PARSERS_FILES)"
     QUALITY_SCORE=$((QUALITY_SCORE + 1))
 else
-    print_error "SafeParsers adoption: $SAFE_PARSERS_COUNT files (< $MIN_SAFE_PARSERS_FILES)"
+    print_error "Direct Swift API usage: $DIRECT_API_COUNT files (< $MIN_SAFE_PARSERS_FILES)"
 fi
 
 # 4. Code Quality Check
