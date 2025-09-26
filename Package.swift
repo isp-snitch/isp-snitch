@@ -20,9 +20,6 @@ let package = Package(
         // ArgumentParser for CLI interface
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.3.0"),
 
-        // Swift Metrics for monitoring (disabled due to compatibility issues)
-        // .package(url: "https://github.com/apple/swift-metrics.git", from: "2.4.0"),
-
         // Swift Log for logging
         .package(url: "https://github.com/apple/swift-log.git", from: "1.5.0")
     ],
@@ -33,7 +30,6 @@ let package = Package(
             dependencies: [
                 .product(name: "SQLite", package: "SQLite.swift"),
                 .product(name: "Logging", package: "swift-log")
-                // .product(name: "Metrics", package: "swift-metrics") - disabled due to compatibility issues
             ],
             resources: [
                 .process("Database/Schema.sql")  // Include schema documentation as resource
