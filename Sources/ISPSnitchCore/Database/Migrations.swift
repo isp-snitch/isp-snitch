@@ -28,10 +28,10 @@ public struct Migrations {
     }
 
     private static func createMigrationsTable(on connection: Connection) throws {
-        try connection.run(migrations.create(ifNotExists: true) { t in
-            t.column(migrationVersion, primaryKey: true)
-            t.column(migrationName)
-            t.column(migrationTimestamp)
+        try connection.run(migrations.create(ifNotExists: true) { table in
+            table.column(migrationVersion, primaryKey: true)
+            table.column(migrationName)
+            table.column(migrationTimestamp)
         })
     }
 
@@ -88,12 +88,12 @@ public struct Migrations {
         let uptime = Expression<Double>("uptime")
         let version = Expression<String>("version")
 
-        try connection.run(serviceStatus.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: true)
-            t.column(timestamp)
-            t.column(status)
-            t.column(uptime)
-            t.column(version)
+        try connection.run(serviceStatus.create(ifNotExists: true) { table in
+            table.column(id, primaryKey: true)
+            table.column(timestamp)
+            table.column(status)
+            table.column(uptime)
+            table.column(version)
         })
 
         // Add index for timestamp queries

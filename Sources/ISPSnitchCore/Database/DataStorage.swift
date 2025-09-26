@@ -75,66 +75,66 @@ public actor DataStorage {
     }
 
     private func createConnectivityRecordsTable() throws {
-        try connection.run(connectivityRecords.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: true)
-            t.column(timestamp)
-            t.column(testType)
-            t.column(target)
-            t.column(latency)
-            t.column(success)
-            t.column(errorMessage)
-            t.column(errorCode)
-            t.column(networkInterface)
-            t.column(cpuUsage)
-            t.column(memoryUsage)
-            t.column(networkInterfaceStatus)
-            t.column(batteryLevel)
-            t.column(pingData)
-            t.column(httpData)
-            t.column(dnsData)
-            t.column(speedtestData)
+        try connection.run(connectivityRecords.create(ifNotExists: true) { table in
+            table.column(id, primaryKey: true)
+            table.column(timestamp)
+            table.column(testType)
+            table.column(target)
+            table.column(latency)
+            table.column(success)
+            table.column(errorMessage)
+            table.column(errorCode)
+            table.column(networkInterface)
+            table.column(cpuUsage)
+            table.column(memoryUsage)
+            table.column(networkInterfaceStatus)
+            table.column(batteryLevel)
+            table.column(pingData)
+            table.column(httpData)
+            table.column(dnsData)
+            table.column(speedtestData)
         })
     }
 
     private func createTestConfigurationsTable() throws {
-        try connection.run(testConfigurations.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: true)
-            t.column(name)
-            t.column(pingTargets)
-            t.column(httpTargets)
-            t.column(dnsTargets)
-            t.column(testInterval)
-            t.column(timeout)
-            t.column(retryCount)
-            t.column(webPort)
-            t.column(dataRetentionDays)
-            t.column(enableNotifications)
-            t.column(enableWebInterface)
-            t.column(isActive)
-            t.column(createdAt)
-            t.column(updatedAt)
+        try connection.run(testConfigurations.create(ifNotExists: true) { table in
+            table.column(id, primaryKey: true)
+            table.column(name)
+            table.column(pingTargets)
+            table.column(httpTargets)
+            table.column(dnsTargets)
+            table.column(testInterval)
+            table.column(timeout)
+            table.column(retryCount)
+            table.column(webPort)
+            table.column(dataRetentionDays)
+            table.column(enableNotifications)
+            table.column(enableWebInterface)
+            table.column(isActive)
+            table.column(createdAt)
+            table.column(updatedAt)
         })
     }
 
     private func createSystemMetricsTable() throws {
-        try connection.run(systemMetrics.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: true)
-            t.column(timestamp)
-            t.column(cpuUsage)
-            t.column(memoryUsage)
-            t.column(diskUsage)
-            t.column(networkBytesIn)
-            t.column(networkBytesOut)
+        try connection.run(systemMetrics.create(ifNotExists: true) { table in
+            table.column(id, primaryKey: true)
+            table.column(timestamp)
+            table.column(cpuUsage)
+            table.column(memoryUsage)
+            table.column(diskUsage)
+            table.column(networkBytesIn)
+            table.column(networkBytesOut)
         })
     }
 
     private func createServiceStatusTable() throws {
-        try connection.run(serviceStatus.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: true)
-            t.column(timestamp)
-            t.column(status)
-            t.column(uptime)
-            t.column(version)
+        try connection.run(serviceStatus.create(ifNotExists: true) { table in
+            table.column(id, primaryKey: true)
+            table.column(timestamp)
+            table.column(status)
+            table.column(uptime)
+            table.column(version)
         })
     }
 
