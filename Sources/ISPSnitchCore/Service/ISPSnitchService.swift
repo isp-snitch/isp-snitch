@@ -2,7 +2,7 @@ import Foundation
 import Logging
 
 /// ISP Snitch Main Service
-/// 
+///
 /// This is the main service that integrates all core components
 /// and provides the primary interface for the ISP Snitch application.
 /// Optimized for minimal resource usage and high performance.

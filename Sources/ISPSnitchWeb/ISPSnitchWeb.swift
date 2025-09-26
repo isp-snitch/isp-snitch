@@ -4,7 +4,7 @@ import NIOHTTP1
 import NIOCore
 
 /// ISP Snitch Web Interface
-/// 
+///
 /// This module contains the web server and API endpoints
 /// for the ISP Snitch network monitoring application.
 public struct ISPSnitchWeb {

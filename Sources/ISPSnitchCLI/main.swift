@@ -3,7 +3,7 @@ import ArgumentParser
 import ISPSnitchCore
 
 /// ISP Snitch CLI Interface
-/// 
+///
 /// Command-line interface for the ISP Snitch network monitoring application.
 @main
 struct ISPSnitchCLI: ParsableCommand {

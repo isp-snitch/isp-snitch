@@ -14,9 +14,6 @@ excluded:
 disabled_rules:
   - todo # Allow TODO comments for development
   - line_length # Allow longer lines for SQL queries and URLs
-  - file_length # Allow longer files for database schemas
-  - function_body_length # Allow longer functions for database operations
-  - type_body_length # Allow longer types for database actors
   - implicit_return # Allow explicit returns for clarity
   - force_unwrapping # Allow force unwrapping in controlled contexts
   - force_cast # Allow force casting in test contexts
@@ -66,16 +63,16 @@ line_length:
   ignores_comments: true
 
 file_length:
-  warning: 400
-  error: 500
+  warning: 200
+  error: 300
 
 function_body_length:
-  warning: 50
-  error: 100
+  warning: 30
+  error: 50
 
 type_body_length:
-  warning: 250
-  error: 400
+  warning: 150
+  error: 250
 
 # Identifier naming
 identifier_name:
