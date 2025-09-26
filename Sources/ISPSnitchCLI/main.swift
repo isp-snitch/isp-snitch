@@ -19,7 +19,6 @@ struct ISPSnitchCLI: ParsableCommand {
         ]
     )
 }
-
 // Main entry point
 @main
 struct Main {
