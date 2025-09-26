@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  SWIFT_VERSION: "5.7"
+  SWIFT_VERSION: "5.6"
   QUALITY_THRESHOLD: 95
 
 jobs:
