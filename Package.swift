@@ -34,6 +34,9 @@ let package = Package(
                 .product(name: "SQLite", package: "SQLite.swift"),
                 .product(name: "Logging", package: "swift-log")
                 // .product(name: "Metrics", package: "swift-metrics") - disabled due to compatibility issues
+            ],
+            resources: [
+                .process("Database/Schema.sql")  // Include schema documentation as resource
             ]
         ),
 
