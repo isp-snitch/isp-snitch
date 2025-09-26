@@ -20,9 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: swift-actions/setup-swift@v2.3.0
-        with:
-          swift-version: ${{ env.SWIFT_VERSION }}
+      - name: Install Swift
+        run: |
+          wget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz
+          tar xzf swift-5.6-RELEASE-ubuntu20.04.tar.gz
+          echo "$PWD/swift-5.6-RELEASE-ubuntu20.04/usr/bin" >> $GITHUB_PATH
       - uses: actions/cache@v4
         with:
           path: |
@@ -43,9 +45,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: swift-actions/setup-swift@v2.3.0
-        with:
-          swift-version: ${{ env.SWIFT_VERSION }}
+      - name: Install Swift
+        run: |
+          wget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz
+          tar xzf swift-5.6-RELEASE-ubuntu20.04.tar.gz
+          echo "$PWD/swift-5.6-RELEASE-ubuntu20.04/usr/bin" >> $GITHUB_PATH
 
       - name: Build release (universal if needed)
         run: |
