@@ -26,8 +26,13 @@ public actor ServiceStatusRepository {
             return nil
         }
 
+        // Safe UUID parsing
+        guard let id = SafeParsers.parseUUID(from: row[ServiceStatusColumns.id]) else {
+            throw RepositoryError.invalidData("Invalid UUID in service status")
+        }
+
         return ServiceStatus(
-            id: UUID(uuidString: row[ServiceStatusColumns.id])!,
+            id: id,
             timestamp: row[ServiceStatusColumns.timestamp],
             status: row[ServiceStatusColumns.status],
             uptime: row[ServiceStatusColumns.uptime],

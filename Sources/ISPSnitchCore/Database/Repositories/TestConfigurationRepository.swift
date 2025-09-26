@@ -10,9 +10,9 @@ public actor TestConfigurationRepository {
     }
 
     public func insert(_ configuration: TestConfiguration) async throws {
-        let pingTargetsJson = try JSONSerializer.encodeTargets(configuration.pingTargets)
-        let httpTargetsJson = try JSONSerializer.encodeTargets(configuration.httpTargets)
-        let dnsTargetsJson = try JSONSerializer.encodeTargets(configuration.dnsTargets)
+        let pingTargetsJson = JSONSerializer.encodeTargets(configuration.pingTargets)
+        let httpTargetsJson = JSONSerializer.encodeTargets(configuration.httpTargets)
+        let dnsTargetsJson = JSONSerializer.encodeTargets(configuration.dnsTargets)
 
         let insert = TableDefinitions.testConfigurations.insert(
             TestConfigurationColumns.id <- configuration.id.uuidString,
@@ -47,16 +47,22 @@ public actor TestConfigurationRepository {
     }
 
     private func createConfiguration(from row: Row) throws -> TestConfiguration {
-        let pingTargetsDecoded = try JSONSerializer.decodeTargets(row[TestConfigurationColumns.pingTargets])
-        let httpTargetsDecoded = try JSONSerializer.decodeTargets(row[TestConfigurationColumns.httpTargets])
-        let dnsTargetsDecoded = try JSONSerializer.decodeTargets(row[TestConfigurationColumns.dnsTargets])
+        // Safe JSON parsing
+        let pingTargets = JSONSerializer.decodeTargets(row[TestConfigurationColumns.pingTargets])
+        let httpTargets = JSONSerializer.decodeTargets(row[TestConfigurationColumns.httpTargets])
+        let dnsTargets = JSONSerializer.decodeTargets(row[TestConfigurationColumns.dnsTargets])
+
+        // Safe UUID parsing
+        guard let id = SafeParsers.parseUUID(from: row[TestConfigurationColumns.id]) else {
+            throw RepositoryError.invalidData("Invalid UUID in test configuration")
+        }
 
         return TestConfiguration(
-            id: UUID(uuidString: row[TestConfigurationColumns.id])!,
+            id: id,
             name: row[TestConfigurationColumns.name],
-            pingTargets: pingTargetsDecoded,
-            httpTargets: httpTargetsDecoded,
-            dnsTargets: dnsTargetsDecoded,
+            pingTargets: pingTargets,
+            httpTargets: httpTargets,
+            dnsTargets: dnsTargets,
             testInterval: row[TestConfigurationColumns.testInterval],
             timeout: row[TestConfigurationColumns.timeout],
             retryCount: row[TestConfigurationColumns.retryCount],

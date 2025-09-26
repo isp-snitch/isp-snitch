@@ -79,21 +79,37 @@ public struct OutputParser: Sendable {
             return nil
         }
 
-        let minRange = Range(match.range(at: 1), in: output)!
-        let avgRange = Range(match.range(at: 2), in: output)!
-        let maxRange = Range(match.range(at: 3), in: output)!
-        let stdDevRange = Range(match.range(at: 4), in: output)!
+        // Safe range extraction
+        guard let minRange = Range(match.range(at: 1), in: output),
+              let avgRange = Range(match.range(at: 2), in: output),
+              let maxRange = Range(match.range(at: 3), in: output),
+              let stdDevRange = Range(match.range(at: 4), in: output) else {
+            throw ParseError.invalidData("Failed to extract ranges from ping output")
+        }
 
-        let min = Double(String(output[minRange]))! / 1000.0
-        let avg = Double(String(output[avgRange]))! / 1000.0
-        let max = Double(String(output[maxRange]))! / 1000.0
-        let stdDev = Double(String(output[stdDevRange]))! / 1000.0
+        // Safe double parsing
+        let minString = String(output[minRange])
+        let avgString = String(output[avgRange])
+        let maxString = String(output[maxRange])
+        let stdDevString = String(output[stdDevRange])
+
+        guard let min = Double(minString),
+              let avg = Double(avgString),
+              let max = Double(maxString),
+              let stdDev = Double(stdDevString) else {
+            throw ParseError.invalidData("Failed to parse ping statistics")
+        }
+
+        let minLatency = min / 1000.0
+        let avgLatency = avg / 1000.0
+        let maxLatency = max / 1000.0
+        let stdDevLatency = stdDev / 1000.0
 
         return PingStatistics(
-            minLatency: min,
-            avgLatency: avg,
-            maxLatency: max,
-            stdDev: stdDev,
+            minLatency: minLatency,
+            avgLatency: avgLatency,
+            maxLatency: maxLatency,
+            stdDev: stdDevLatency,
             packetsTransmitted: 1,
             packetsReceived: 1
         )

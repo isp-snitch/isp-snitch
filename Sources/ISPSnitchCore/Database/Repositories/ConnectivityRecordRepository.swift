@@ -1,6 +1,12 @@
 import Foundation
 @preconcurrency import SQLite
 
+// MARK: - Repository Error
+public enum RepositoryError: Error, Sendable {
+    case invalidData(String)
+    case databaseError(String)
+}
+
 // MARK: - Connectivity Record Repository
 public actor ConnectivityRecordRepository {
     private let connection: Connection
@@ -10,10 +16,10 @@ public actor ConnectivityRecordRepository {
     }
 
     public func insert(_ record: ConnectivityRecord) async throws {
-        let pingDataJson = try JSONSerializer.encode(record.pingData)
-        let httpDataJson = try JSONSerializer.encode(record.httpData)
-        let dnsDataJson = try JSONSerializer.encode(record.dnsData)
-        let speedtestDataJson = try JSONSerializer.encode(record.speedtestData)
+        let pingDataJson = JSONSerializer.encode(record.pingData)
+        let httpDataJson = JSONSerializer.encode(record.httpData)
+        let dnsDataJson = JSONSerializer.encode(record.dnsData)
+        let speedtestDataJson = JSONSerializer.encode(record.speedtestData)
 
         let insert = TableDefinitions.connectivityRecords.insert(
             ConnectivityRecordColumns.id <- record.id.uuidString,
@@ -87,15 +93,26 @@ public actor ConnectivityRecordRepository {
             batteryLevel: row[ConnectivityRecordColumns.batteryLevel]
         )
 
-        let pingDataDecoded = try JSONSerializer.decode(row[ConnectivityRecordColumns.pingData], as: PingData.self)
-        let httpDataDecoded = try JSONSerializer.decode(row[ConnectivityRecordColumns.httpData], as: HttpData.self)
-        let dnsDataDecoded = try JSONSerializer.decode(row[ConnectivityRecordColumns.dnsData], as: DnsData.self)
-        let speedtestDataDecoded = try JSONSerializer.decode(row[ConnectivityRecordColumns.speedtestData], as: SpeedtestData.self)
+        // Safe JSON parsing
+        let pingData = JSONSerializer.decode(row[ConnectivityRecordColumns.pingData], as: PingData.self)
+        let httpData = JSONSerializer.decode(row[ConnectivityRecordColumns.httpData], as: HttpData.self)
+        let dnsData = JSONSerializer.decode(row[ConnectivityRecordColumns.dnsData], as: DnsData.self)
+        let speedtestData = JSONSerializer.decode(row[ConnectivityRecordColumns.speedtestData], as: SpeedtestData.self)
+
+        // Safe UUID parsing
+        guard let id = SafeParsers.parseUUID(from: row[ConnectivityRecordColumns.id]) else {
+            throw RepositoryError.invalidData("Invalid UUID in connectivity record")
+        }
+
+        // Safe enum parsing
+        guard let testType = TestType(rawValue: row[ConnectivityRecordColumns.testType]) else {
+            throw RepositoryError.invalidData("Invalid test type: \(row[ConnectivityRecordColumns.testType])")
+        }
 
         return ConnectivityRecord(
-            id: UUID(uuidString: row[ConnectivityRecordColumns.id])!,
+            id: id,
             timestamp: row[ConnectivityRecordColumns.timestamp],
-            testType: TestType(rawValue: row[ConnectivityRecordColumns.testType])!,
+            testType: testType,
             target: row[ConnectivityRecordColumns.target],
             latency: row[ConnectivityRecordColumns.latency],
             success: row[ConnectivityRecordColumns.success],
@@ -103,10 +120,10 @@ public actor ConnectivityRecordRepository {
             errorCode: row[ConnectivityRecordColumns.errorCode],
             networkInterface: row[ConnectivityRecordColumns.networkInterface],
             systemContext: systemContext,
-            pingData: pingDataDecoded,
-            httpData: httpDataDecoded,
-            dnsData: dnsDataDecoded,
-            speedtestData: speedtestDataDecoded
+            pingData: pingData,
+            httpData: httpData,
+            dnsData: dnsData,
+            speedtestData: speedtestData
         )
     }
 }
