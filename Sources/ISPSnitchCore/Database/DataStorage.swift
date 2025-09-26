@@ -155,13 +155,10 @@ public actor DataStorage {
     // MARK: - Connectivity Records
 
     public func insertConnectivityRecord(_ record: ConnectivityRecord) async throws {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-
-        let pingDataJson = try record.pingData.map { try String(data: encoder.encode($0), encoding: .utf8) } ?? nil
-        let httpDataJson = try record.httpData.map { try String(data: encoder.encode($0), encoding: .utf8) } ?? nil
-        let dnsDataJson = try record.dnsData.map { try String(data: encoder.encode($0), encoding: .utf8) } ?? nil
-        let speedtestDataJson = try record.speedtestData.map { try String(data: encoder.encode($0), encoding: .utf8) } ?? nil
+        let pingDataJson = try encodeTestData(record.pingData)
+        let httpDataJson = try encodeTestData(record.httpData)
+        let dnsDataJson = try encodeTestData(record.dnsData)
+        let speedtestDataJson = try encodeTestData(record.speedtestData)
 
         let insert = connectivityRecords.insert(
             id <- record.id.uuidString,
@@ -193,76 +190,12 @@ public actor DataStorage {
         success: Bool? = nil,
         since: Date? = nil
     ) async throws -> [ConnectivityRecord] {
-        var query = connectivityRecords.select(*)
-
-        if let testType = testType {
-            query = query.filter(self.testType == testType.rawValue)
-        }
-
-        if let success = success {
-            query = query.filter(self.success == success)
-        }
-
-        if let since = since {
-            query = query.filter(self.timestamp >= since)
-        }
-
-        query = query.order(timestamp.desc).limit(limit, offset: offset)
-
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        let query = buildConnectivityQuery(testType: testType, success: success, since: since)
+            .limit(limit, offset: offset)
 
         var records: [ConnectivityRecord] = []
-
         for row in try connection.prepare(query) {
-            let systemContext = SystemContext(
-                cpuUsage: row[cpuUsage],
-                memoryUsage: row[memoryUsage],
-                networkInterfaceStatus: row[networkInterfaceStatus],
-                batteryLevel: row[batteryLevel]
-            )
-
-            let pingDataDecoded: PingData? = try {
-                guard let jsonString = row[pingData],
-                      let jsonData = jsonString.data(using: .utf8) else { return nil }
-                return try decoder.decode(PingData.self, from: jsonData)
-            }()
-
-            let httpDataDecoded: HttpData? = try {
-                guard let jsonString = row[httpData],
-                      let jsonData = jsonString.data(using: .utf8) else { return nil }
-                return try decoder.decode(HttpData.self, from: jsonData)
-            }()
-
-            let dnsDataDecoded: DnsData? = try {
-                guard let jsonString = row[dnsData],
-                      let jsonData = jsonString.data(using: .utf8) else { return nil }
-                return try decoder.decode(DnsData.self, from: jsonData)
-            }()
-
-            let speedtestDataDecoded: SpeedtestData? = try {
-                guard let jsonString = row[speedtestData],
-                      let jsonData = jsonString.data(using: .utf8) else { return nil }
-                return try decoder.decode(SpeedtestData.self, from: jsonData)
-            }()
-
-            let record = ConnectivityRecord(
-                id: UUID(uuidString: row[id])!,
-                timestamp: row[timestamp],
-                testType: TestType(rawValue: row[self.testType])!,
-                target: row[target],
-                latency: row[latency],
-                success: row[self.success],
-                errorMessage: row[errorMessage],
-                errorCode: row[errorCode],
-                networkInterface: row[networkInterface],
-                systemContext: systemContext,
-                pingData: pingDataDecoded,
-                httpData: httpDataDecoded,
-                dnsData: dnsDataDecoded,
-                speedtestData: speedtestDataDecoded
-            )
-
+            let record = try createConnectivityRecord(from: row)
             records.append(record)
         }
 
@@ -272,11 +205,9 @@ public actor DataStorage {
     // MARK: - Test Configurations
 
     public func insertTestConfiguration(_ configuration: TestConfiguration) async throws {
-        let encoder = JSONEncoder()
-
-        let pingTargetsJson = try String(data: encoder.encode(configuration.pingTargets), encoding: .utf8)!
-        let httpTargetsJson = try String(data: encoder.encode(configuration.httpTargets), encoding: .utf8)!
-        let dnsTargetsJson = try String(data: encoder.encode(configuration.dnsTargets), encoding: .utf8)!
+        let pingTargetsJson = try encodeTargets(configuration.pingTargets)
+        let httpTargetsJson = try encodeTargets(configuration.httpTargets)
+        let dnsTargetsJson = try encodeTargets(configuration.dnsTargets)
 
         let insert = testConfigurations.insert(
             id <- configuration.id.uuidString,
@@ -300,30 +231,10 @@ public actor DataStorage {
     }
 
     public func getTestConfigurations() async throws -> [TestConfiguration] {
-        let decoder = JSONDecoder()
         var configurations: [TestConfiguration] = []
 
         for row in try connection.prepare(testConfigurations.select(*)) {
-            let pingTargetsDecoded = try decoder.decode([String].self, from: row[pingTargets].data(using: .utf8)!)
-            let httpTargetsDecoded = try decoder.decode([String].self, from: row[httpTargets].data(using: .utf8)!)
-            let dnsTargetsDecoded = try decoder.decode([String].self, from: row[dnsTargets].data(using: .utf8)!)
-
-            let configuration = TestConfiguration(
-                id: UUID(uuidString: row[id])!,
-                name: row[name],
-                pingTargets: pingTargetsDecoded,
-                httpTargets: httpTargetsDecoded,
-                dnsTargets: dnsTargetsDecoded,
-                testInterval: row[testInterval],
-                timeout: row[timeout],
-                retryCount: row[retryCount],
-                webPort: row[webPort],
-                dataRetentionDays: row[dataRetentionDays],
-                enableNotifications: row[enableNotifications],
-                enableWebInterface: row[enableWebInterface],
-                isActive: row[isActive]
-            )
-
+            let configuration = try createTestConfiguration(from: row)
             configurations.append(configuration)
         }
 
@@ -402,6 +313,112 @@ public actor DataStorage {
             status: row[status],
             uptime: row[uptime],
             version: row[version]
+        )
+    }
+    
+    // MARK: - Helper Functions
+    
+    private func encodeTestData<T: Codable>(_ data: T?) throws -> String? {
+        guard let data = data else { return nil }
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        return try String(data: encoder.encode(data), encoding: .utf8)
+    }
+    
+    private func decodeTestData<T: Codable>(_ jsonString: String?, as type: T.Type) throws -> T? {
+        guard let jsonString = jsonString,
+              let jsonData = jsonString.data(using: .utf8) else { return nil }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return try decoder.decode(type, from: jsonData)
+    }
+    
+    private func buildConnectivityQuery(
+        testType: TestType?,
+        success: Bool?,
+        since: Date?
+    ) -> QueryType {
+        var query = connectivityRecords.select(*)
+        
+        if let testType = testType {
+            query = query.filter(self.testType == testType.rawValue)
+        }
+        
+        if let success = success {
+            query = query.filter(self.success == success)
+        }
+        
+        if let since = since {
+            query = query.filter(timestamp >= since)
+        }
+        
+        return query.order(timestamp.desc)
+    }
+    
+    private func createSystemContext(from row: Row) -> SystemContext {
+        return SystemContext(
+            cpuUsage: row[cpuUsage],
+            memoryUsage: row[memoryUsage],
+            networkInterfaceStatus: row[networkInterfaceStatus],
+            batteryLevel: row[batteryLevel]
+        )
+    }
+    
+    private func createConnectivityRecord(from row: Row) throws -> ConnectivityRecord {
+        let systemContext = createSystemContext(from: row)
+        
+        let pingDataDecoded = try decodeTestData(row[pingData], as: PingData.self)
+        let httpDataDecoded = try decodeTestData(row[httpData], as: HttpData.self)
+        let dnsDataDecoded = try decodeTestData(row[dnsData], as: DnsData.self)
+        let speedtestDataDecoded = try decodeTestData(row[speedtestData], as: SpeedtestData.self)
+        
+        return ConnectivityRecord(
+            id: UUID(uuidString: row[id])!,
+            timestamp: row[timestamp],
+            testType: TestType(rawValue: row[self.testType])!,
+            target: row[target],
+            latency: row[latency],
+            success: row[self.success],
+            errorMessage: row[errorMessage],
+            errorCode: row[errorCode],
+            networkInterface: row[networkInterface],
+            systemContext: systemContext,
+            pingData: pingDataDecoded,
+            httpData: httpDataDecoded,
+            dnsData: dnsDataDecoded,
+            speedtestData: speedtestDataDecoded
+        )
+    }
+    
+    private func encodeTargets(_ targets: [String]) throws -> String {
+        let encoder = JSONEncoder()
+        return try String(data: encoder.encode(targets), encoding: .utf8)!
+    }
+    
+    private func decodeTargets(_ jsonString: String) throws -> [String] {
+        let decoder = JSONDecoder()
+        return try decoder.decode([String].self, from: jsonString.data(using: .utf8)!)
+    }
+    
+    private func createTestConfiguration(from row: Row) throws -> TestConfiguration {
+        let pingTargetsDecoded = try decodeTargets(row[pingTargets])
+        let httpTargetsDecoded = try decodeTargets(row[httpTargets])
+        let dnsTargetsDecoded = try decodeTargets(row[dnsTargets])
+        
+        return TestConfiguration(
+            id: UUID(uuidString: row[id])!,
+            name: row[name],
+            pingTargets: pingTargetsDecoded,
+            httpTargets: httpTargetsDecoded,
+            dnsTargets: dnsTargetsDecoded,
+            testInterval: row[testInterval],
+            timeout: row[timeout],
+            retryCount: row[retryCount],
+            webPort: row[webPort],
+            dataRetentionDays: row[dataRetentionDays],
+            enableNotifications: row[enableNotifications],
+            enableWebInterface: row[enableWebInterface],
+            isActive: row[isActive]
         )
     }
 }
