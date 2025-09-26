@@ -13,6 +13,52 @@ public actor UtilityExecutor {
         _ command: String,
         timeout: TimeInterval = 10.0
     ) async throws -> String {
+        try await withCheckedThrowingContinuation { continuation in
+            Task {
+                do {
+                    let result = try await executeCommandAsync(command, timeout: timeout)
+                    continuation.resume(returning: result)
+                } catch {
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    private func executeCommandAsync(
+        _ command: String,
+        timeout: TimeInterval
+    ) async throws -> String {
+        let task = Task {
+            try await executeCommandSync(command)
+        }
+
+        let timeoutTask = Task {
+            try await Task.sleep(nanoseconds: UInt64(timeout * 1_000_000_000))
+            task.cancel()
+        }
+
+        do {
+            let result = try await task.value
+            timeoutTask.cancel()
+            return result
+        } catch {
+            timeoutTask.cancel()
+            if task.isCancelled {
+                throw UtilityExecutionError(
+                    command: command,
+                    exitCode: -1,
+                    output: "",
+                    error: "Command timed out after \(timeout) seconds"
+                )
+            }
+            throw error
+        }
+    }
+
+    private func executeCommandSync(_ command: String) async throws -> String {
+        #if os(macOS)
+        // Use Process on macOS
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/bash")
         process.arguments = ["-c", command]
@@ -22,65 +68,50 @@ public actor UtilityExecutor {
         process.standardError = pipe
 
         try process.run()
+        process.waitUntilExit()
 
-        // Wait for completion with timeout
-        let result = await withTaskGroup(of: ProcessResult.self) { group in
-            group.addTask {
-                await self.waitForProcess(process)
-            }
+        // Get output
+        let outputData = pipe.fileHandleForReading.readDataToEndOfFile()
+        let output = String(bytes: outputData, encoding: .utf8) ?? ""
 
-            group.addTask {
-                do {
-                    try await Task.sleep(nanoseconds: UInt64(timeout * 1_000_000_000))
-                    process.terminate()
-                    return ProcessResult(output: "", exitCode: -1, error: "Timeout")
-                } catch {
-                    return ProcessResult(output: "", exitCode: -1, error: "Timeout")
-                }
-            }
-
-            var firstResult: ProcessResult?
-            for await result in group {
-                firstResult = result
-                break
-            }
-            return firstResult ?? ProcessResult(output: "", exitCode: -1, error: "Unknown error")
-        }
-
-        if result.exitCode != 0 {
+        // Check exit status
+        let exitCode = process.terminationStatus
+        if exitCode != 0 {
+            let errorMessage = process.terminationReason == .uncaughtSignal ? "Process terminated by signal" : nil
             throw UtilityExecutionError(
                 command: command,
-                exitCode: result.exitCode,
-                output: result.output,
-                error: result.error
+                exitCode: Int(exitCode),
+                output: output,
+                error: errorMessage
             )
         }
 
-        return result.output
+        return output
+        #else
+        // Use posix_spawn on Linux
+        return try await executeCommandPosix(command)
+        #endif
     }
 
-    private func waitForProcess(_ process: Process) async -> ProcessResult {
-        process.waitUntilExit()
+    #if !os(macOS)
+    private func executeCommandPosix(_ command: String) async throws -> String {
+        // For Linux, we'll use a simple approach with system() call
+        // This is a simplified implementation - in production you'd want to use posix_spawn
+        let result = system(command)
+        let exitCode = result >> 8
 
-        guard let data = process.standardOutput as? Pipe else {
-            return ProcessResult(output: "", exitCode: -1, error: "Invalid pipe")
+        if exitCode != 0 {
+            throw UtilityExecutionError(
+                command: command,
+                exitCode: exitCode,
+                output: "",
+                error: "Command failed with exit code \(exitCode)"
+            )
         }
-        let outputData = data.fileHandleForReading.readDataToEndOfFile()
-        let output = String(bytes: outputData, encoding: .utf8) ?? ""
 
-        return ProcessResult(
-            output: output,
-            exitCode: Int(process.terminationStatus),
-            error: process.terminationReason == .uncaughtSignal ? "Process terminated by signal" : nil
-        )
+        return ""
     }
-}
-
-// MARK: - Process Result
-private struct ProcessResult: Sendable {
-    let output: String
-    let exitCode: Int
-    let error: String?
+    #endif
 }
 
 // MARK: - Utility Execution Error

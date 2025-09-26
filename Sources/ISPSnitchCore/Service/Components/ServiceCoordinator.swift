@@ -1,6 +1,18 @@
 import Foundation
 import Logging
 
+// MARK: - Service Coordinator Error
+public enum ServiceCoordinatorError: Error, Sendable {
+    case networkMonitorNotInitialized
+
+    public var localizedDescription: String {
+        switch self {
+        case .networkMonitorNotInitialized:
+            return "NetworkMonitor not initialized"
+        }
+    }
+}
+
 // MARK: - Service Coordinator
 /// Coordinates all service components and manages their lifecycle
 public actor ServiceCoordinator {
@@ -30,11 +42,7 @@ public actor ServiceCoordinator {
 
     public func startComponents() async throws {
         guard let networkMonitor = networkMonitor else {
-            throw ServiceError.startupFailed(NSError(
-                domain: "ServiceCoordinator",
-                code: 1,
-                userInfo: [NSLocalizedDescriptionKey: "NetworkMonitor not initialized"]
-            ))
+            throw ServiceError.startupFailed(ServiceCoordinatorError.networkMonitorNotInitialized)
         }
 
         try await networkMonitor.start()

@@ -1,6 +1,21 @@
 import Foundation
 import Logging
 
+// MARK: - Output Parser Error
+public enum OutputParserError: Error, Sendable {
+    case failedToExtractRanges
+    case failedToParseStatistics
+
+    public var localizedDescription: String {
+        switch self {
+        case .failedToExtractRanges:
+            return "Failed to extract ranges from ping output"
+        case .failedToParseStatistics:
+            return "Failed to parse ping statistics"
+        }
+    }
+}
+
 // MARK: - Output Parser
 public struct OutputParser: Sendable {
     private let logger: Logger
@@ -84,7 +99,7 @@ public struct OutputParser: Sendable {
               let avgRange = Range(match.range(at: 2), in: output),
               let maxRange = Range(match.range(at: 3), in: output),
               let stdDevRange = Range(match.range(at: 4), in: output) else {
-            throw NSError(domain: "OutputParser", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to extract ranges from ping output"])
+            throw OutputParserError.failedToExtractRanges
         }
 
         // Safe double parsing
@@ -97,7 +112,7 @@ public struct OutputParser: Sendable {
               let avg = Double(avgString),
               let max = Double(maxString),
               let stdDev = Double(stdDevString) else {
-            throw NSError(domain: "OutputParser", code: 2, userInfo: [NSLocalizedDescriptionKey: "Failed to parse ping statistics"])
+            throw OutputParserError.failedToParseStatistics
         }
 
         let minLatency = min / 1000.0
