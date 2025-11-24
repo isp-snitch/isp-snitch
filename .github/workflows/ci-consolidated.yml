@@ -19,7 +19,7 @@ jobs:
   build_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install Swift
         run: |
           wget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz
@@ -43,7 +43,7 @@ jobs:
     permissions:
       contents: write   # required to create release and upload assets
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install Swift
         run: |
@@ -115,7 +115,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install SwiftLint
         run: |
           curl -fsSL https://github.com/realm/SwiftLint/releases/download/0.55.1/swiftlint_linux.zip -o swiftlint.zip
