@@ -26,7 +26,7 @@ jobs:
           echo "$PWD/swift-5.6-RELEASE-ubuntu20.04/usr/bin" >> $GITHUB_PATH
           
       - name: Cache dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.swiftpm

@@ -25,7 +25,7 @@ jobs:
           wget -q https://download.swift.org/swift-5.6-release/ubuntu2004/swift-5.6-RELEASE/swift-5.6-RELEASE-ubuntu20.04.tar.gz
           tar xzf swift-5.6-RELEASE-ubuntu20.04.tar.gz
           echo "$PWD/swift-5.6-RELEASE-ubuntu20.04/usr/bin" >> $GITHUB_PATH
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: |
             ~/.swiftpm
